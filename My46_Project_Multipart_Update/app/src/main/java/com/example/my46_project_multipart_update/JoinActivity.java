@@ -73,4 +73,4 @@ public class JoinActivity extends AppCompatActivity {
 
 
     }
-}
+}//주석달기
