@@ -12,6 +12,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        //dex file 오류
+
     }
 
     buildTypes {
@@ -50,6 +54,5 @@ dependencies {
 
     //Dex error
     implementation 'com.android.support:multidex:1.0.3'
-
 
 }

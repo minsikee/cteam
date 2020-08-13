@@ -1,5 +1,6 @@
 package com.example.cteam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -7,20 +8,47 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class petSelect extends AppCompatActivity {
+    petChoose petChoose;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_select);
-        checkDangerousPermissions();
+        checkDangerousPermissions(); //위험권한
+        petChoose=new petChoose();
+
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, petChoose).commit(); //첫화면에 프래그먼트 1이 나오게
+
+        BottomNavigationView bottomNavigationView =
+                findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.tab1 :
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container,petChoose).commit();
+                        break;
+                }
+
+                return true;
+            }
+        });//선택됐을때
+
 
 
     }
 
-    private void checkDangerousPermissions() {
+    private void checkDangerousPermissions() {  //위험권한
         String[] permissions = {
                 Manifest.permission.RECEIVE_SMS,
                 Manifest.permission.READ_EXTERNAL_STORAGE,

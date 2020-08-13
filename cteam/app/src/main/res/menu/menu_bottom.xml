@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <item
+        android:id="@+id/tab1"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:enabled="true"
+        android:title="사진첩"
+        />
+    <!--누르면 이벤트를 탈건지 제일처음 활성화되어있는것?-->
+
+
+    <item
+        android:id="@+id/tab2"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/hospital"
+        android:title="우리동네병원"
+        />
+    <!--enalbed:제일처음 활성화되어있는것-->
+
+    <item
+        android:id="@+id/tab3"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/calendar_96"
+        android:title="캘린더"
+        />
+    <item
+        android:id="@+id/tab4"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/dog_walking"
+        android:title="산책게시판"
+        />
+
+</menu>
