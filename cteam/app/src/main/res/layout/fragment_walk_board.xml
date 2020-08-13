@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".walkBoard">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/board"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="게시판"
+        android:textSize="30sp" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/board_name1"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40sp"
+            android:gravity="center"
+            android:text="산책"
+            android:textColor="#3926E4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/board_name2"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="돌봄이"
+            android:textColor="#ACA8A8"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10sp">
+
+        <Button
+            android:id="@+id/search_land"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="특별시,도 선택" />
+
+        <Button
+            android:id="@+id/search_region"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="시,군 선택" />
+
+        <Button
+            android:id="@+id/search_city"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="지역구 선택" />
+
+    </LinearLayout>
+
+    <SearchView
+        android:layout_width="227dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"/>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="321dp" />
+
+    <Button
+        android:id="@+id/board_write"
+        android:layout_width="120sp"
+        android:layout_height="40sp"
+        android:layout_gravity="right"
+        android:text="글쓰기"
+        android:textSize="17sp" />
+
+
+</LinearLayout>
