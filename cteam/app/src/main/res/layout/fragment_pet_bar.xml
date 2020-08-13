@@ -1,14 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".petBar">
+    tools:context=".MainActivity"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="0dp"
+
+        android:layout_weight="0.3"
+        android:background="@drawable/back" />
+
+    <LinearLayout
+        android:layout_width="298dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+
+        android:layout_weight="0.3"
+
+        android:weightSum="3">
+
+        <ImageView
+            android:id="sun"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:src="@drawable/sun" />
+
+        <Switch
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3" />
+
+        <ImageView
+            android:id="moon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:src="@drawable/moon" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
 
-</FrameLayout>
+        android:layout_weight="3.2"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="0.6"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        >
+
+        <Button
+            android:id="icon1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/training"></Button>
+
+        <Button
+            android:id="icon2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dog_eat"
+            ></Button>
+        <Button
+            android:id="icon3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dog_walking"
+            ></Button>
+        <Button
+            android:id="icon4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/pill"
+            ></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="0.6"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <Button
+            android:id="icon5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tooth"></Button>
+
+        <Button
+            android:id="icon6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/hospital"></Button>
+
+        <Button
+            android:id="icon7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bath_48"></Button>
+
+        <Button
+            android:id="icon8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/barbershop"></Button>
+    </LinearLayout>
+
+
+</LinearLayout>
