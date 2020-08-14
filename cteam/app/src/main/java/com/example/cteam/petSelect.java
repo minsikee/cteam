@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class petSelect extends AppCompatActivity {
-    petChoose petChoose;
+    calendar calendar;
 
 
     @Override
@@ -22,11 +22,11 @@ public class petSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_select);
         checkDangerousPermissions(); //위험권한
-        petChoose=new petChoose();
+        calendar=new calendar();
 
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, petChoose).commit(); //첫화면에 프래그먼트 1이 나오게
+                .replace(R.id.container, calendar).commit(); //첫화면에 프래그먼트 1이 나오게
 
         BottomNavigationView bottomNavigationView =
                 findViewById(R.id.bottom_navigation);
@@ -36,7 +36,7 @@ public class petSelect extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.tab1 :
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,petChoose).commit();
+                                .replace(R.id.container,calendar).commit();
                         break;
                 }
 

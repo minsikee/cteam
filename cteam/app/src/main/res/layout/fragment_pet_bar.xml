@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".petBar"
 
     android:orientation="vertical"
     android:weightSum="5">
@@ -28,7 +28,7 @@
         android:weightSum="3">
 
         <ImageView
-            android:id="sun"
+            android:id="@+id/sun"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -40,7 +40,7 @@
             android:layout_weight="0.3" />
 
         <ImageView
-            android:id="moon"
+            android:id="@+id/moon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -65,28 +65,28 @@
         >
 
         <Button
-            android:id="icon1"
+            android:id="@+id/icon1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/training"></Button>
 
         <Button
-            android:id="icon2"
+            android:id="@+id/icon2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/dog_eat"
             ></Button>
         <Button
-            android:id="icon3"
+            android:id="@+id/icon3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/dog_walking"
             ></Button>
         <Button
-            android:id="icon4"
+            android:id="@+id/icon4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -103,28 +103,28 @@
         android:weightSum="4">
 
         <Button
-            android:id="icon5"
+            android:id="@+id/icon6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/tooth"></Button>
 
         <Button
-            android:id="icon6"
+            android:id="@+id/icon7"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/hospital"></Button>
 
         <Button
-            android:id="icon7"
+            android:id="@+id/icon8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/bath_48"></Button>
 
         <Button
-            android:id="icon8"
+            android:id="@+id/icon9"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
