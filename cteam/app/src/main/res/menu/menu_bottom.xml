@@ -6,7 +6,6 @@
 
     <item
         android:id="@+id/tab1"
-        app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_dialog_email"
         android:enabled="true"
         android:title="사진첩"
@@ -16,7 +15,6 @@
 
     <item
         android:id="@+id/tab2"
-        app:showAsAction="ifRoom"
         android:icon="@drawable/hospital"
         android:title="우리동네병원"
         />
@@ -24,13 +22,11 @@
 
     <item
         android:id="@+id/tab3"
-        app:showAsAction="ifRoom"
         android:icon="@drawable/calendar_96"
         android:title="캘린더"
         />
     <item
         android:id="@+id/tab4"
-        app:showAsAction="ifRoom"
         android:icon="@drawable/dog_walking"
         android:title="산책게시판"
         />
