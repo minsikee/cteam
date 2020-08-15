@@ -1,9 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Find">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/Find_name"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="이름을 입력하세요" />
+
+        <EditText
+            android:id="@+id/Find_phonenum"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_name"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:inputType="phone"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="전화번호를 입력하세요" />
+
+        <Button
+            android:id="@+id/Find_btn_id"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_phonenum"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:text="아이디찾기" />
+
+
+
+        <EditText
+            android:id="@+id/Find_id"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_btn_id"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="아이디를 입력하세요" />
+
+        <EditText
+            android:id="@+id/Find_qs"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_id"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="비밀번호 찾기 질문을 선택하세요" />
+
+        <EditText
+            android:id="@+id/Find_qs_as"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_qs"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="비밀번호 찾기 답변을 입력하세요" />
+
+        <Button
+            android:id="@+id/Find_btn_pw"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_qs_as"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:text="비밀번호찾기" />
+
+
+
+        <Button
+            android:id="@+id/Find_btn_signup"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_btn_pw"
+            android:layout_alignParentLeft="@+id/Find_btn_pw"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/text_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#3F51B5"
+            android:textSize="16sp"
+            android:text="회원가입" />
+
+        <Button
+            android:id="@+id/Find_btn_login"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Find_btn_pw"
+            android:layout_toRightOf="@id/Find_btn_signup"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/text_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#3F51B5"
+            android:textSize="16sp"
+            android:text="로그인하기" />
+
+    </RelativeLayout>
+
+</LinearLayout>
