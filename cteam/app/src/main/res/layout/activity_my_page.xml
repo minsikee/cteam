@@ -1,9 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myPage">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/MyPage_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/MyPage_name"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_img"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:focusable="false"
+            android:textSize="14sp"
+            android:text="이름" />
+
+        <TextView
+            android:id="@+id/MyPage_id"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_name"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:focusable="false"
+            android:textSize="14sp"
+            android:text="아이디" />
+
+        <EditText
+            android:id="@+id/MyPage_pw"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_id"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:textSize="14sp"
+            android:hint="비밀번호"/>
+
+        <EditText
+            android:id="@+id/MyPage_pw_confirm"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_pw"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:textSize="14sp"
+            android:hint="비밀번호 확인"/>
+
+        <EditText
+            android:id="@+id/MyPage_qs"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_pw_confirm"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="비밀번호 찾기 질문" />
+
+        <EditText
+            android:id="@+id/MyPage_qs_as"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_qs"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="비밀번호 찾기 답" />
+
+        <EditText
+            android:id="@+id/MyPage_phonenum"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_qs_as"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_stroke"
+            android:drawableLeft="@drawable/image_medi"
+            android:gravity="center_vertical"
+            android:inputType="phone"
+            android:textSize="14sp"
+            android:hint="연락처"/>
+
+        <Button
+            android:id="@+id/MyPage_cancel"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_phonenum"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:text="취소" />
+
+        <Button
+            android:id="@+id/MyPage_ok"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/MyPage_phonenum"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/MyPage_cancel"
+            android:background="@drawable/login_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:text="확인"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

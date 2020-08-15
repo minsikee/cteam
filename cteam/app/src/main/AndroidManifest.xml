@@ -31,14 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".boardWrite" />
-        <activity android:name=".consetPopup" />
+        <activity android:name=".BoardWrite" />
+        <activity android:name=".ConsetPopup" />
         <activity android:name=".Help" />
-        <activity android:name=".myPage" />
-        <activity android:name=".petModify" />
-        <activity android:name=".petAdd" />
-        <activity android:name=".signUp" />
-        <activity android:name=".passwordModify" />
+        <activity android:name=".MyPage" />
+        <activity android:name=".PetModify" />
+        <activity android:name=".PetAdd" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".PasswordModify" />
         <activity android:name=".Find" />
         <activity android:name=".Login" />
     </application>
