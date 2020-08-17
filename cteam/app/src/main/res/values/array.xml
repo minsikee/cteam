@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="board_SpinnerArray">
+        <item>전체보기</item>
+        <item>산책게시판</item>
+        <item>돌봄이게시판</item>
+    </string-array>
+</resources>

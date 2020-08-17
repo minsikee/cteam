@@ -4,56 +4,46 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class WalkBoard extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public WalkBoard() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment walkBoard.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WalkBoard newInstance(String param1, String param2) {
-        WalkBoard fragment = new WalkBoard();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+        //spinner 객체 생성
+        final Spinner board_spinner = (Spinner) getView().findViewById(R.id.board_spinner);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_walk_board, container, false);
+        //values에 있는 array.xml의 item을 String 배열로 가져오기
+        String[] str = getResources().getStringArray(R.array.board_SpinnerArray);
+
+        //spinner_item.xml과 str을 인자로 어댑터 생성.
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, str);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        board_spinner.setAdapter(adapter);
+
+        //spinner 이벤트 리스너
+        board_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (board_spinner.getSelectedItemPosition() > 0) {
+                    //선택된 항목
+                    Log.v("알림", board_spinner.getSelectedItem().toString() + "is selected");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
     }
 }

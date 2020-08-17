@@ -13,7 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class petSelect extends AppCompatActivity {
+
+public class PetSelect extends AppCompatActivity {
     Calendar calendar;
 
 

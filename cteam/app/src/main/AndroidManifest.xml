@@ -24,6 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".AgreePopup"></activity>
 
         <uses-library
@@ -31,7 +32,14 @@
             android:required="false" />
 
         <activity android:name=".PetAdd" />
-        <activity android:name=".petSelect"></activity>
+
+        <activity android:name=".PetSelect">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".BoardWrite" />
         <activity android:name=".ConsetPopup" />
         <activity android:name=".Help" />
