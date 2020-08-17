@@ -99,7 +99,7 @@
 
 
         <Button
-            android:id="@+id/Find_btn_signup"
+            android:id="@+id/Find_btn_login"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_below="@+id/Find_btn_pw"
@@ -109,21 +109,21 @@
             android:shadowColor="@android:color/transparent"
             android:textColor="#3F51B5"
             android:textSize="16sp"
-            android:text="회원가입" />
+            android:text="로그인하기" />
 
         <Button
-            android:id="@+id/Find_btn_login"
+            android:id="@+id/Find_btn_signup"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_below="@+id/Find_btn_pw"
-            android:layout_toRightOf="@id/Find_btn_signup"
+            android:layout_toRightOf="@id/Find_btn_login"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/text_stroke"
             android:shadowColor="@android:color/transparent"
             android:textColor="#3F51B5"
             android:textSize="16sp"
-            android:text="로그인하기" />
+            android:text="회원가입" />
 
     </RelativeLayout>
 

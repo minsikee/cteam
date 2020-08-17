@@ -26,6 +26,13 @@ public class Login extends AppCompatActivity {
 
         //로그인 버튼 > 펫 선택 화면으로 이동
         login_btn1 = findViewById(R.id.login_btn1);
+        login_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PetSelect.class);
+                startActivity(intent);
+            }
+        });
 
         //비밀번호찾기 버튼 > 찾기 화면으로 이동
         login_btn2 = findViewById(R.id.login_btn2);
@@ -48,5 +55,4 @@ public class Login extends AppCompatActivity {
         });
 
     } //onCreate
-
 }

@@ -13,7 +13,6 @@
     <!-- ~ 알람 권한 ~ -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- ▶ 진동 -->
     <uses-permission android:name="READ_GSERVICES" /> <!-- 구글 서비스 읽기 -->
-
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -25,22 +24,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".petSelect">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".AgreePopup"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".PetAdd" />
+        <activity android:name=".petSelect"></activity>
         <activity android:name=".BoardWrite" />
         <activity android:name=".ConsetPopup" />
         <activity android:name=".Help" />
         <activity android:name=".MyPage" />
         <activity android:name=".PetModify" />
-        <activity android:name=".PetAdd" />
         <activity android:name=".SignUp" />
         <activity android:name=".PasswordModify" />
         <activity android:name=".Find" />
-        <activity android:name=".Login" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
