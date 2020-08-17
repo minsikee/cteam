@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class petSelect extends AppCompatActivity {
-    calendar calendar;
+public class PetSelect extends AppCompatActivity {
+    Calendar calendar;
 
 
     @Override
@@ -22,7 +22,7 @@ public class petSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_select);
         checkDangerousPermissions(); //위험권한
-        calendar=new calendar();
+        calendar=new Calendar();
 
 
         getSupportFragmentManager().beginTransaction()
