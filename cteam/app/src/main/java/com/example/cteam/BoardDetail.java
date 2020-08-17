@@ -20,7 +20,7 @@ public class BoardDetail extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public boardDetail() {
+    public BoardDetail() {
         // Required empty public constructor
     }
 
@@ -33,8 +33,8 @@ public class BoardDetail extends Fragment {
      * @return A new instance of fragment boardDetail.
      */
     // TODO: Rename and change types and number of parameters
-    public static boardDetail newInstance(String param1, String param2) {
-        boardDetail fragment = new boardDetail();
+    public static BoardDetail newInstance(String param1, String param2) {
+        BoardDetail fragment = new BoardDetail();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

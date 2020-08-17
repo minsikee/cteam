@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class petModify extends AppCompatActivity {
+public class PetModify extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

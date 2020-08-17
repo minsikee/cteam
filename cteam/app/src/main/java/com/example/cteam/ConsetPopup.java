@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class consetPopup extends AppCompatActivity {
+public class ConsetPopup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

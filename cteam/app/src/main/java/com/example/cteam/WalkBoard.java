@@ -8,12 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link walkBoard#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class walkBoard extends Fragment {
+public class WalkBoard extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +19,7 @@ public class walkBoard extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public walkBoard() {
+    public WalkBoard() {
         // Required empty public constructor
     }
 
@@ -37,8 +32,8 @@ public class walkBoard extends Fragment {
      * @return A new instance of fragment walkBoard.
      */
     // TODO: Rename and change types and number of parameters
-    public static walkBoard newInstance(String param1, String param2) {
-        walkBoard fragment = new walkBoard();
+    public static WalkBoard newInstance(String param1, String param2) {
+        WalkBoard fragment = new WalkBoard();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
