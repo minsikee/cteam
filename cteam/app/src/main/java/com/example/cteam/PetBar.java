@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class PetBar extends Fragment {
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
