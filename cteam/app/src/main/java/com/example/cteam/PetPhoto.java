@@ -8,12 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link petPhoto#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class petPhoto extends Fragment {
+public class PetPhoto extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +19,7 @@ public class petPhoto extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public petPhoto() {
+    public PetPhoto() {
         // Required empty public constructor
     }
 
@@ -37,8 +32,8 @@ public class petPhoto extends Fragment {
      * @return A new instance of fragment petPhoto.
      */
     // TODO: Rename and change types and number of parameters
-    public static petPhoto newInstance(String param1, String param2) {
-        petPhoto fragment = new petPhoto();
+    public static PetPhoto newInstance(String param1, String param2) {
+        PetPhoto fragment = new PetPhoto();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
