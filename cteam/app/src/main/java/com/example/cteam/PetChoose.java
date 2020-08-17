@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cteam.R;
 
 
-public class petChoose extends Fragment {
+public class PetChoose extends Fragment {
 
     //화면이 붙을 때 불러오는 메소드
 
