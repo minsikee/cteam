@@ -18,11 +18,11 @@
             android:text="이름 :"
             android:gravity="right|center"/>
         <EditText
-            android:id="@+id/etId"
+            android:id="@+id/petName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="ID"
+            android:hint="name"
             android:inputType="number|text|numberDecimal" />
 
 
@@ -38,7 +38,7 @@
             android:text="나이 :"
             android:gravity="right|center"/>
         <EditText
-            android:id="@+id/etAge"
+            android:id="@+id/petAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -57,7 +57,7 @@
             android:text="몸무게 :"
             android:gravity="right|center"/>
         <EditText
-            android:id="@+id/etWidth"
+            android:id="@+id/PETWEIGHT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -100,9 +100,6 @@
                 android:layout_weight="2"
                 android:orientation="vertical">
 
-<<<<<<< HEAD
-        </LinearLayout>
-=======
                 <Button
                     android:id="@+id/btnLoad"
                     android:layout_width="match_parent"
@@ -116,7 +113,6 @@
                 android:layout_height="150dp"
                 android:orientation="vertical"
                 android:layout_weight="2">
->>>>>>> 4664ac2f2e8b13a6dfefd5348ba398e06e2a5333
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -127,17 +123,12 @@
                         android:id="@+id/imageView"
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
-                         />
+                        android:scaleType="fitCenter" />
 
                 </FrameLayout>
 
-<<<<<<< HEAD
-        </LinearLayout>
-=======
 
             </LinearLayout>
->>>>>>> 4664ac2f2e8b13a6dfefd5348ba398e06e2a5333
 
 
         </LinearLayout>
