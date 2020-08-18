@@ -18,20 +18,11 @@ import java.util.List;
 public class Calendar extends Fragment {
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_calendar,
-                container, false);
-
-
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_calendar,container, false);
         return rootView;
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 }

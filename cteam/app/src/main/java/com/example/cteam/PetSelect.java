@@ -16,6 +16,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PetSelect extends AppCompatActivity {
     Calendar calendar;
+    WalkBoard walkBoard;
+    FindStore findStore;
+    PetPhoto petPhoto;
 
 
     @Override
@@ -24,7 +27,9 @@ public class PetSelect extends AppCompatActivity {
         setContentView(R.layout.activity_pet_select);
         checkDangerousPermissions(); //위험권한
         calendar=new Calendar();
-
+        walkBoard = new WalkBoard();
+        petPhoto = new PetPhoto();
+        findStore = new FindStore();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, calendar).commit(); //첫화면에 프래그먼트 1이 나오게
@@ -37,7 +42,19 @@ public class PetSelect extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.tab1 :
                         getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container,petPhoto).commit();
+                        break;
+                    case R.id.tab2 :
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container,findStore).commit();
+                        break;
+                    case R.id.tab3 :
+                        getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container,calendar).commit();
+                        break;
+                    case R.id.tab4 :
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container,walkBoard).commit();
                         break;
                 }
 
