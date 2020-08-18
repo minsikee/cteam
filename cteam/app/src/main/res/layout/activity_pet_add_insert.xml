@@ -40,8 +40,6 @@
                 android:layout_height="wrap_content"
                 android:text="삭제" />
 
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -58,13 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="8">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="그냥대충아무말"
-                android:gravity="center"/>
 
         </LinearLayout>
 

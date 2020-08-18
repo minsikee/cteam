@@ -1,9 +1,11 @@
-package com.example.myapplication;
+package com.example.cteam.pet_add;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cteam.R;
 
 public class petUpdate extends AppCompatActivity {
 
