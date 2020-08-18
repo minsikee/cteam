@@ -1,72 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sub1_add"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PetAdd">
-
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="10">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="30">
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1">
         <TextView
-            android:id="@+id/Choice"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="우리집 반려동물"
-            android:textSize="24dp" />
-
-        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="이름 :"
+            android:gravity="right|center"/>
+        <EditText
+            android:id="@+id/etId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:ems="10"
+            android:hint="ID"
+            android:inputType="number|text|numberDecimal" />
 
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="추가" />
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="삭제" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="나이 :"
+            android:gravity="right|center"/>
+        <EditText
+            android:id="@+id/etAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20">
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="textPersonName" />
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="몸무게 :"
+            android:gravity="right|center"/>
+        <EditText
+            android:id="@+id/etWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="8">
+            android:ems="10"
+            android:hint="Width"
+            android:inputType="textPersonName" />
 
-        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_weight="2">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="성별 :"
+            android:gravity="right|center"/>
+        <EditText
+            android:id="@+id/etGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Gender"
+            android:inputType="textPersonName" />
 
     </LinearLayout>
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_weight="3">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+<<<<<<< HEAD
+        </LinearLayout>
+=======
+                <Button
+                    android:id="@+id/btnLoad"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="사진로드" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="vertical"
+                android:layout_weight="2">
+>>>>>>> 4664ac2f2e8b13a6dfefd5348ba398e06e2a5333
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin ="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                         />
+
+                </FrameLayout>
+
+<<<<<<< HEAD
+        </LinearLayout>
+=======
+
+            </LinearLayout>
+>>>>>>> 4664ac2f2e8b13a6dfefd5348ba398e06e2a5333
 
 
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="btnAddClicked"
+                android:layout_weight="1"
+                android:text="추가" />
+
+            <Button
+                android:id="@+id/btnCancle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="btnCancelClicked"
+                android:text="취소"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
