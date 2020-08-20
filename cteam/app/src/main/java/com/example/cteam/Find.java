@@ -23,7 +23,11 @@ public class Find extends AppCompatActivity {
         Find_btn_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Find.this, "아이디는 XX 입니다", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getApplicationContext(), IdFindPopup.class);
+                intent.putExtra("data", "Test Popup");
+                startActivityForResult(intent, 1);
+
             }
         });
 
