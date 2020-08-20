@@ -11,9 +11,9 @@ public class MyItem implements Serializable {
     public int age;
     public int weight;
     public String gender;
-    public String image_path;
+    public int image_path;
 
-    public MyItem(String name, int age, int weight, String gender, String image_path) {
+    public MyItem(String name, int age, int weight, String gender, int image_path) {
         this.name = name;
         this.age = age;
         this.weight = weight;
@@ -53,11 +53,11 @@ public class MyItem implements Serializable {
         this.gender = gender;
     }
 
-    public String getImage_path() {
+    public int getImage_path() {
         return image_path;
     }
 
-    public void setImage_path(String image_path) {
+    public void setImage_path(int image_path) {
         this.image_path = image_path;
     }
 }
