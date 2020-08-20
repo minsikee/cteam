@@ -21,6 +21,10 @@ public class MyItem implements Serializable {
         this.image_path = image_path;
     }
 
+    public MyItem() {
+
+    }
+
     public String getName() {
         return name;
     }

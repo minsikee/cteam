@@ -1,7 +1,6 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,16 @@ import android.widget.Toast;
 
 import com.example.cteam.Dto.MyItem;
 import com.example.cteam.R;
-import com.example.cteam.pet_add.petInsert;
 
 import java.util.ArrayList;
 
 public class petAddAdapter extends BaseAdapter {
+
+    private SetOnClickListener mlistener;
+
+    public void setOnItemClickListener(SetOnClickListener mlistener) {
+        this.mlistener = mlistener;
+    }
 
     Context context;
     ArrayList<MyItem> dtos;
@@ -84,15 +88,14 @@ public class petAddAdapter extends BaseAdapter {
 
         viewHolder.TV_Name.setText(name);
         viewHolder.TV_Gender.setText(gender);
-        viewHolder.TV_Age.setText(age);
-        viewHolder.tv_weigth.setText(weigth);
+        viewHolder.TV_Age.setText("" + age);
+        viewHolder.tv_weigth.setText(""+weigth);
         viewHolder.imageIcon.setImageResource(resId);
 
         viewHolder.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, petInsert.class);
-
+                if (mlistener != null) mlistener.onItemClick(view);
             }
         });
 
@@ -107,8 +110,9 @@ public class petAddAdapter extends BaseAdapter {
         return view;
     }
 
-
-
+    public interface SetOnClickListener {
+        void onItemClick(View view);
+    }
 
     public class PetAddViewHolder{
         public ImageView imageIcon;

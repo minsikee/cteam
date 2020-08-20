@@ -15,7 +15,6 @@ public class petInsert extends AppCompatActivity {
     Button btn_add,btnCancle;
 
     String name = "", age = "",date = "",weight = "",gender ="";
-    Button btn_add, btnCancle;
 
 
     @Override
