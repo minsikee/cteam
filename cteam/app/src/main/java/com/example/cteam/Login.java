@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
 
                     // 로그인 정보에 값이 있으면 로그인이 되었으므로 메인화면으로 이동
                     if(loginDTO != null){
-                        Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                        Intent intent = new Intent(getApplicationContext(), PetAdd.class);
                         startActivity(intent);
                     }
 

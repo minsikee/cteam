@@ -134,30 +134,30 @@
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/SignUp_cancel"
+            android:id="@+id/SignUp_join"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_below="@+id/SignUp_agree"
             android:layout_marginTop="5dp"
             android:background="@drawable/login_stroke"
             android:shadowColor="@android:color/transparent"
+            android:text="가입하기"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:text="취소" />
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/SignUp_ok"
+            android:id="@+id/SignUp_cancel"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_below="@+id/SignUp_agree"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/SignUp_cancel"
+            android:layout_toRightOf="@+id/SignUp_join"
             android:background="@drawable/login_stroke"
             android:shadowColor="@android:color/transparent"
+            android:text="취소"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:text="가입하기" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

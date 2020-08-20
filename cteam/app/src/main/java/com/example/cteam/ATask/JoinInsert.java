@@ -20,12 +20,12 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 
 public class JoinInsert extends AsyncTask<Void, Void, String> {
 
-    String member_id, member_passwd, member_name, member_qeustion, member_answer, member_phonenum;
+    String member_id, member_pw, member_name, member_qeustion, member_answer, member_phonenum;
 
-    public JoinInsert(String member_id, String member_passwd, String member_name,
+    public JoinInsert(String member_id, String member_pw, String member_name,
                 String member_question, String member_as,String member_phonenum) {
         this.member_id = member_id;
-        this.member_passwd = member_passwd;
+        this.member_pw = member_pw;
         this.member_name = member_name;
         this.member_qeustion = member_question;
         this.member_answer = member_as;
@@ -52,14 +52,14 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
 
             // 문자열 및 데이터 추가
             builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("member_passwd", member_passwd, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("member_pw", member_pw, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("member_name", member_name, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("member_qeustion", member_qeustion, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("member_answer", member_answer, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("member_phonenum", member_phonenum, ContentType.create("Multipart/related", "UTF-8"));
 
 
-            String postURL = ipConfig + "/app/anJoin";
+            String postURL = ipConfig + "/app/cJoin";
             // 전송
             InputStream inputStream = null;
             httpClient = AndroidHttpClient.newInstance("memberjoin");
@@ -68,6 +68,8 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
             httpResponse = httpClient.execute(httpPost);
             httpEntity = httpResponse.getEntity();
             inputStream = httpEntity.getContent();
+
+
 
             // 응답
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
