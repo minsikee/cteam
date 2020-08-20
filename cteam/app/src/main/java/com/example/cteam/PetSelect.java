@@ -6,6 +6,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -45,8 +47,8 @@ public class PetSelect extends AppCompatActivity {
                                 .replace(R.id.container,petPhoto).commit();
                         break;
                     case R.id.tab2 :
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,findStore).commit();
+                        Intent intent = new Intent(getApplicationContext(),FindStore.class);
+                        startActivity(intent);
                         break;
                     case R.id.tab3 :
                         getSupportFragmentManager().beginTransaction()
