@@ -9,14 +9,14 @@ import java.io.Serializable;
 public class MyItem implements Serializable {
     public String name;
     public int age;
-    public int weidth;
+    public int weight;
     public String gender;
     public String image_path;
 
-    public MyItem(String name, int age, int weidth, String gender, String image_path) {
+    public MyItem(String name, int age, int weight, String gender, String image_path) {
         this.name = name;
         this.age = age;
-        this.weidth = weidth;
+        this.weight = weight;
         this.gender = gender;
         this.image_path = image_path;
     }
@@ -37,12 +37,12 @@ public class MyItem implements Serializable {
         this.age = age;
     }
 
-    public int getWeidth() {
-        return weidth;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setWeidth(int weidth) {
-        this.weidth = weidth;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public String getGender() {
@@ -60,5 +60,4 @@ public class MyItem implements Serializable {
     public void setImage_path(String image_path) {
         this.image_path = image_path;
     }
-
 }

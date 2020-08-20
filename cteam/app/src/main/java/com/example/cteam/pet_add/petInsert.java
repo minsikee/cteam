@@ -12,7 +12,7 @@ import com.example.cteam.R;
 public class petInsert extends AppCompatActivity {
 
     EditText petName, petAge,petWeight,petGender;
-    Button btnLoad;
+    Button btn_add,btnCancle;
 
 
     @Override
