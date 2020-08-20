@@ -1,6 +1,7 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.cteam.Dto.MyItem;
 import com.example.cteam.R;
+import com.example.cteam.pet_add.petInsert;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,7 @@ public class petAddAdapter extends BaseAdapter {
             viewHolder = new PetAddViewHolder();
             viewHolder.TV_Name = view.findViewById(R.id.TV_Name);
             viewHolder.TV_Age = view.findViewById(R.id.TV_Age);
-            viewHolder.tv_weigth = view.findViewById(R.id.tv_weigth);
+            viewHolder.tv_weigth = view.findViewById(R.id.TV_Weight);
             viewHolder.imageIcon = view.findViewById(R.id.imageIcon);
             viewHolder.TV_Gender = view.findViewById(R.id.TV_Gender);
             viewHolder.UpdateBtn = view.findViewById(R.id.UpdateBtn);
@@ -81,11 +81,20 @@ public class petAddAdapter extends BaseAdapter {
         String gender = dto.getGender();
         int resId = dto.getImage_path();
 
+
         viewHolder.TV_Name.setText(name);
         viewHolder.TV_Gender.setText(gender);
         viewHolder.TV_Age.setText(age);
         viewHolder.tv_weigth.setText(weigth);
         viewHolder.imageIcon.setImageResource(resId);
+
+        viewHolder.signBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, petInsert.class);
+
+            }
+        });
 
         viewHolder.imageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +103,6 @@ public class petAddAdapter extends BaseAdapter {
                 + ", 이름 :" + dtos.get(position).getName(), Toast.LENGTH_SHORT);
             }
         });
-
-
 
         return view;
     }

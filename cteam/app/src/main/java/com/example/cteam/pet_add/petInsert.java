@@ -14,6 +14,9 @@ public class petInsert extends AppCompatActivity {
     EditText petName, petAge,petWeight,petGender;
     Button btn_add,btnCancle;
 
+    String name = "", age = "",date = "",weight = "",gender ="";
+    Button btn_add, btnCancle;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
