@@ -7,24 +7,18 @@ import java.io.Serializable;
  */
 
 public class MyItem implements Serializable {
-    public String id;
     public String name;
-    public String hire_date;
+    public int age;
+    public int weidth;
+    public String gender;
     public String image_path;
 
-    public MyItem(String id, String name, String hire_date, String image_path) {
-        this.id = id;
+    public MyItem(String name, int age, int weidth, String gender, String image_path) {
         this.name = name;
-        this.hire_date = hire_date;
+        this.age = age;
+        this.weidth = weidth;
+        this.gender = gender;
         this.image_path = image_path;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -35,12 +29,28 @@ public class MyItem implements Serializable {
         this.name = name;
     }
 
-    public String getDate() {
-        return hire_date;
+    public int getAge() {
+        return age;
     }
 
-    public void setDate(String hire_date) {
-        this.hire_date = hire_date;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getWeidth() {
+        return weidth;
+    }
+
+    public void setWeidth(int weidth) {
+        this.weidth = weidth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getImage_path() {

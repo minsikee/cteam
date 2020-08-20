@@ -18,12 +18,12 @@
             android:text="이름 :"
             android:gravity="right|center"/>
         <EditText
-            android:id="@+id/etId"
+            android:id="@+id/petName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="ID"
-            android:inputType="number|text|numberDecimal" />
+            android:hint="name"
+            android:inputType="textPersonName" />
 
 
     </LinearLayout>
@@ -38,12 +38,12 @@
             android:text="나이 :"
             android:gravity="right|center"/>
         <EditText
-            android:id="@+id/etAge"
+            android:id="@+id/petAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Age"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -56,13 +56,14 @@
             android:layout_height="match_parent"
             android:text="몸무게 :"
             android:gravity="right|center"/>
+
         <EditText
-            android:id="@+id/etWidth"
+            android:id="@+id/petWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Width"
-            android:inputType="textPersonName" />
+            android:hint="Weight"
+            android:inputType="text" />
 
     </LinearLayout>
     <LinearLayout
@@ -75,12 +76,12 @@
             android:text="성별 :"
             android:gravity="right|center"/>
         <EditText
-            android:id="@+id/etGender"
+            android:id="@+id/petGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Gender"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
     </LinearLayout>
 

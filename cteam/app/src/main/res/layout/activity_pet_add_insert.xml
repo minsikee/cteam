@@ -56,12 +56,13 @@
             android:layout_height="match_parent"
             android:text="몸무게 :"
             android:gravity="right|center"/>
+
         <EditText
             android:id="@+id/petWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Width"
+            android:hint="Weight"
             android:inputType="text" />
 
     </LinearLayout>
