@@ -3,13 +3,11 @@ package com.example.cteam.board;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +16,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.example.cteam.Adapter.BoardAdapter;
+import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import static com.example.cteam.R.array.board_SpinnerArray;
 
 public class WalkBoard extends Fragment {
 
     Spinner spinner_board, spinner_City, spinner_Sigungu;
-    ListView listView;
     ArrayAdapter<CharSequence> City_spinner, Sigungu_spinner;
 
     @Override
@@ -38,7 +37,6 @@ public class WalkBoard extends Fragment {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_walk_board,container, false);
 
         spinner_board = rootView.findViewById(R.id.board_spinner_board);
-        listView = rootView.findViewById(R.id.board_list);
         ArrayList<String> list = new ArrayList<>();
 
         //게시판 선택창
@@ -63,7 +61,7 @@ public class WalkBoard extends Fragment {
         City_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
         spinner_City.setAdapter(City_spinner);
 
-        spinner_City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+ /*       spinner_City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(City_spinner.getItem(i).equals("서울특별시")) {
@@ -94,27 +92,34 @@ public class WalkBoard extends Fragment {
                     });
                 }
             }
-        });
+        }); */
 
+        // 게시판 리사이클러 뷰 찾기
+        RecyclerView recyclerView = rootView.findViewById(R.id.board_list);
 
+        // 임의의 데이터 만들기 (이 부분에서 게시판 정보를 가져와야 함)
+        BoardDTO dto = new BoardDTO();
+        dto.setTitle("글제목");
+        dto.setId("아이디");
+        dto.setDate("20200822");
+        dto.setComment("8개");
 
+        BoardDTO dto2 = new BoardDTO();
+        dto.setTitle("글제목2임");
+        dto.setId("현열");
+        dto.setDate("54654654");
+        dto.setComment("99개");
 
+        ArrayList<BoardDTO> bList = new ArrayList<>();
+        bList.add(dto);
+        bList.add(dto2);
 
-/*        //게시판 목록
-        ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(adapter);
-
-        list.add("목록1");
-        list.add("목록2");
-        list.add("목록3");
-        list.add("목록4");
-        list.add("목록5");
-        list.add("목록6");
-        list.add("목록7");*/
+        // 리사이클러뷰 어댑터 선언
+        BoardAdapter adapter = new BoardAdapter(bList);
+        recyclerView.setAdapter(adapter);
 
         //글등록 플로팅액션버튼 → 글쓰기 Activity로 이동
-        FloatingActionButton fab = rootView.findViewById(R.id.fab);
+        FloatingActionButton fab = rootView.findViewById(R.id.board_write);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,14 +128,6 @@ public class WalkBoard extends Fragment {
             }
         });
         return rootView;
+
     }
-
-
-
-
-
-     /*   Spinner board_spinner;
-        board_spinner = rootView.findViewById(R.id.board_spinner);
-*/
-
 }
