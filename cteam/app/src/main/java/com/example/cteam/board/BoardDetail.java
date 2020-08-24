@@ -1,4 +1,4 @@
-package com.example.cteam;
+package com.example.cteam.board;
 
 import android.os.Bundle;
 
