@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/imageIcon"
+                        android:id="@+id/imageView"
                         android:layout_width="54dp"
                         android:layout_height="68dp"
                         android:layout_alignParentTop="true"

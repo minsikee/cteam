@@ -68,7 +68,7 @@ public class petAddAdapter extends BaseAdapter {
             viewHolder.TV_Name = view.findViewById(R.id.TV_Name);
             viewHolder.TV_Age = view.findViewById(R.id.TV_Age);
             viewHolder.tv_weigth = view.findViewById(R.id.TV_Weight);
-            viewHolder.imageIcon = view.findViewById(R.id.imageIcon);
+            viewHolder.imageIcon = view.findViewById(R.id.imageView);
             viewHolder.TV_Gender = view.findViewById(R.id.TV_Gender);
             viewHolder.UpdateBtn = view.findViewById(R.id.UpdateBtn);
             viewHolder.signBtn = view.findViewById(R.id.signBtn);
