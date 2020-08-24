@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/imageIcon"
+                        android:id="@+id/imageView"
                         android:layout_width="54dp"
                         android:layout_height="68dp"
                         android:layout_alignParentTop="true"
@@ -131,7 +131,7 @@
                         android:textSize="18dp" />
 
                     <TextView
-                        android:id="@+id/tv_weigth"
+                        android:id="@+id/TV_Weight"
                         android:layout_width="72dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/petName"
