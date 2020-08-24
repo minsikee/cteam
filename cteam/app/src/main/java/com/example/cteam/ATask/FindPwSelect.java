@@ -2,6 +2,7 @@ package com.example.cteam.ATask;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,28 +19,27 @@ import java.nio.charset.Charset;
 
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 
-public class JoinInsert extends AsyncTask<Void, Void, String> {
+public class FindPwSelect extends AsyncTask<Void, Void, String> {
 
-    String member_id, member_pw, member_name, member_qeustion, member_answer, member_phonenum;
+    String member_id, member_question,member_answer;
 
-    public JoinInsert(String member_id, String member_pw, String member_name,
-                String member_question, String member_as,String member_phonenum) {
+    public FindPwSelect(String member_id, String member_question,String member_answer) {
         this.member_id = member_id;
-        this.member_pw = member_pw;
-        this.member_name = member_name;
-        this.member_qeustion = member_question;
-        this.member_answer = member_as;
-        this.member_phonenum = member_phonenum;
-
+        this.member_question = member_question;
+        this.member_answer = member_answer;
     }
-
-    // 데이터베이스에 삽입결과 0보다크면 삽입성공, 같거나 작으면 실패
-    String state = "";
+    //데이터베이스에서 패스워드 찾아옴
+    String pw_return;
 
     HttpClient httpClient;
     HttpPost httpPost;
     HttpResponse httpResponse;
     HttpEntity httpEntity;
+
+    /*@Override  // 없어도 됨
+    protected void onPreExecute() {
+
+    }*/
 
     @Override
     protected String doInBackground(Void... voids) {
@@ -52,14 +52,10 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
 
             // 문자열 및 데이터 추가
             builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("member_pw", member_pw, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("member_name", member_name, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("member_qeustion", member_qeustion, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("member_question", member_question, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("member_answer", member_answer, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("member_phonenum", member_phonenum, ContentType.create("Multipart/related", "UTF-8"));
 
-
-            String postURL = ipConfig + "/app/cJoin";
+            String postURL = ipConfig + "/app/cPwFind";
             // 전송
             InputStream inputStream = null;
             httpClient = AndroidHttpClient.newInstance("cteam");
@@ -69,8 +65,6 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
             httpEntity = httpResponse.getEntity();
             inputStream = httpEntity.getContent();
 
-
-
             // 응답
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             StringBuilder stringBuilder = new StringBuilder();
@@ -78,11 +72,12 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
             while ((line = bufferedReader.readLine()) != null){
                 stringBuilder.append(line + "\n");
             }
-             state = stringBuilder.toString();
+            pw_return = stringBuilder.toString();
 
             inputStream.close();
 
-        }  catch (Exception e) {
+        } catch (Exception e) {
+            Log.d("main:findPw", e.getMessage());
             e.printStackTrace();
         }finally {
             if(httpEntity != null){
@@ -100,11 +95,12 @@ public class JoinInsert extends AsyncTask<Void, Void, String> {
 
         }
 
-        return state;
+        return pw_return;
     }
 
-    @Override
-    protected void onPostExecute(String state) {
 
+
+    @Override
+    protected void onPostExecute(String pw_return) {
     }
 }
