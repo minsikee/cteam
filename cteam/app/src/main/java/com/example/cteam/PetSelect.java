@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.cteam.board.WalkBoard;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -56,7 +57,7 @@ public class PetSelect extends AppCompatActivity {
                         break;
                     case R.id.tab4 :
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,walkBoard).commit();
+                                .replace(R.id.container, walkBoard).commit();
                         break;
                 }
 

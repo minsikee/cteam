@@ -97,6 +97,14 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.main_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PetSelect.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
