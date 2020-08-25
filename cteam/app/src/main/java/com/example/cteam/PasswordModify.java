@@ -55,9 +55,9 @@ public class PasswordModify extends AppCompatActivity {
 
                 if (PasswordModify_pw.getText().toString().length() != 0 && PasswordModify_pw_confirm.getText().toString().length() != 0) {
 
-                    if (PasswordModify_pw.getText().toString() == PasswordModify_pw_confirm.getText().toString()) { //비밀번호 확인이 다르면
+                    if (PasswordModify_pw.getText().toString().equals(PasswordModify_pw_confirm.getText().toString())) { //비밀번호 확인이 같으면
 
-                        if (PasswordModify_pw.getText().toString() != pw_return) {
+                        if (PasswordModify_pw.getText().toString().equals(pw_return) ) {
                             String member_pw = PasswordModify_pw.getText().toString();
 
                             PwUpdate pwUpdate = new PwUpdate(member_pw);
@@ -77,10 +77,9 @@ public class PasswordModify extends AppCompatActivity {
                             return;
                         }
                     } else {
-                        Toast.makeText(PasswordModify.this, "비밀번호확인이 다릅니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PasswordModify.this, "비밀번호확인이 다릅니다", Toast.LENGTH_LONG).show();
                         Log.d("main:find", "비밀번호가 다릅니다");
                         return;
-
                     }
 
                 } else {

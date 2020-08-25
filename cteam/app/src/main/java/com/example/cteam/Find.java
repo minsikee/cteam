@@ -76,7 +76,7 @@ public class Find extends AppCompatActivity {
 
                 } else {
 
-                    Toast.makeText(Find.this, "아이디가 없습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Find.this, "존재하는 아이디가 없습니다", Toast.LENGTH_SHORT).show();
                     Log.d("main:login", "아이디가 없습니다");
                     Find_name.setText("");
                     Find_phonenum.setText("");
@@ -114,7 +114,7 @@ public class Find extends AppCompatActivity {
                 }
 
 
-                if (pw_return != null) {
+                if (!pw_return.equals("null")) {
 
                     Log.d("main:findPw", pw_return + "패스워드입니다");
 
@@ -126,7 +126,7 @@ public class Find extends AppCompatActivity {
 
 
                 } else {
-                    Toast.makeText(Find.this, "올바른 정보를 입력해주세요 !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Find.this, "일치하는 회원가입 정보가 없습니다", Toast.LENGTH_SHORT).show();
                     Log.d("main:find", "정보가 입력안됨 !!!");
                     Find_id.setText("");
                     Find_qs.setText("");
