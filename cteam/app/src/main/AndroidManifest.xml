@@ -44,11 +44,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".PetSelect"/>
-<<<<<<< HEAD
+
         <activity android:name=".board.BoardWrite"/>
-=======
-        <activity android:name=".board.BoardWrite" />
->>>>>>> 7a1a1e462b6c93b924983092214023b7fa568be8
+
         <activity android:name=".ConsetPopup" />
         <activity android:name=".Help" />
         <activity android:name=".MyPage" />
