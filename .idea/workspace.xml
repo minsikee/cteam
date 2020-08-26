@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03b8c1ec-a17f-435f-8136-021becd126d0" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/ListUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cteam/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Adapter/petAddAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Adapter/petAddAdapter.java" afterDir="false" />
@@ -9,6 +10,21 @@
       <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petInsert.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petInsert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_pet_add_update.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_pet_add_update.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/FindPwSelect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/FindSelect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/PwUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/JoinInsert.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/JoinInsert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Dto/MemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Dto/MemberDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Find.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Find.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/IdFindPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/IdFindPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/PasswordModify.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/PasswordModify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/PetBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/PetBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_find.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_find.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_password_modify.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_password_modify.xml" afterDir="false" />
+>>>>>>> 7a1a1e462b6c93b924983092214023b7fa568be8
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +58,16 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598432096142">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598432096142" />
+=======
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598262214280">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598262214280" />
+>>>>>>> 7a1a1e462b6c93b924983092214023b7fa568be8
   </component>
 </project>

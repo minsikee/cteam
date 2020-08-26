@@ -36,9 +36,19 @@
             android:required="false" />
 
         <activity android:name=".AgreePopup"></activity>
-        <activity android:name=".Login" />
+        <activity android:name=".Login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".PetSelect"/>
+<<<<<<< HEAD
         <activity android:name=".board.BoardWrite"/>
+=======
+        <activity android:name=".board.BoardWrite" />
+>>>>>>> 7a1a1e462b6c93b924983092214023b7fa568be8
         <activity android:name=".ConsetPopup" />
         <activity android:name=".Help" />
         <activity android:name=".MyPage" />
@@ -48,11 +58,7 @@
         <activity android:name=".Find" />
         <activity android:name=".pet_add.petInsert" />
         <activity android:name=".PetAdd">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
