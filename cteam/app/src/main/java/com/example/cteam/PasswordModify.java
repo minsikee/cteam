@@ -44,7 +44,7 @@ public class PasswordModify extends AppCompatActivity {
 
        //찾은 패스워드를 putextra에서 가져온다
         Intent intent=getIntent();
-        pw_return=intent.getStringExtra("pw_return");
+        pw_return=intent.getStringExtra("data");
 
         //비밀번호 변경하기 버튼 > 로그인 화면으로 이동
         PasswordModify_change = (Button)findViewById(R.id.PasswordModify_change);
@@ -58,23 +58,26 @@ public class PasswordModify extends AppCompatActivity {
                     if (PasswordModify_pw.getText().toString().equals(PasswordModify_pw_confirm.getText().toString())) { //비밀번호 확인이 같으면
 
                         if (PasswordModify_pw.getText().toString().equals(pw_return) ) {
+
+                            Toast.makeText(PasswordModify.this, "새로운 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                            Log.d("main:find", pw_return+"비밀번호가 바뀌지 않음");
+                            PasswordModify_pw.setText("");
+                            PasswordModify_pw_confirm.setText("");
+                            PasswordModify_pw.requestFocus();
+                            return;
+
+                        } else { //변경 전 비밀번호와 변경 비밀번호가 다르면!
                             String member_pw = PasswordModify_pw.getText().toString();
 
                             PwUpdate pwUpdate = new PwUpdate(member_pw);
                             try {
-                                pw_return = pwUpdate.execute().get().trim();
+                                state = pwUpdate.execute().get().trim();
                             } catch (ExecutionException e) {
                                 e.getMessage();
                             } catch (InterruptedException e) {
                                 e.getMessage();
                             }
-                        } else { //변경 전 비밀번호와 변경 비밀번호가 같으면
-                            Toast.makeText(PasswordModify.this, "새로운 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            Log.d("main:find", "비밀번호가 바뀌지 않음");
-                            PasswordModify_pw.setText("");
-                            PasswordModify_pw_confirm.setText("");
-                            PasswordModify_pw.requestFocus();
-                            return;
+
                         }
                     } else {
                         Toast.makeText(PasswordModify.this, "비밀번호확인이 다릅니다", Toast.LENGTH_LONG).show();
@@ -89,7 +92,7 @@ public class PasswordModify extends AppCompatActivity {
                 }
 
 
-                if (state != null) {
+                if (state.equals("1")) {
 
                     Log.d("main:ModifyPw", state + "변경");
 

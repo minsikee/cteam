@@ -17,10 +17,13 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import static com.example.cteam.Common.CommonMethod.ipConfig;
+import static com.example.cteam.Login.loginDTO;
 
 public class PwUpdate extends AsyncTask<Void, Void, String> {
 
     String member_pw;
+    String member_id = loginDTO.getMember_id();
+
 
     public PwUpdate(String member_pw) {
         this.member_pw = member_pw;
@@ -45,6 +48,7 @@ public class PwUpdate extends AsyncTask<Void, Void, String> {
 
             // 문자열 및 데이터 추가
             builder.addTextBody("member_pw", member_pw, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
 
 
             String postURL = ipConfig + "/app/cPwUpdate";
