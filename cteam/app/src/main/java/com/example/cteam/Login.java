@@ -41,12 +41,15 @@ public class Login extends AppCompatActivity {
         loginPw = findViewById(R.id.login_pw);
 
         loginBtn1 = findViewById(R.id.login_btn1);
+        loginBtn2 = findViewById(R.id.login_btn2);
         loginBtn3 = findViewById(R.id.login_btn3);
 
         // 로그인 버튼
         loginBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginDTO = null;
+
                 if(loginId.getText().toString().length() != 0 && loginPw.getText().toString().length() != 0){
                     String id = loginId.getText().toString();
                     String pw = loginPw.getText().toString();
@@ -84,6 +87,14 @@ public class Login extends AppCompatActivity {
                     loginId.requestFocus();
                 }
 
+            }
+        });
+        //비밀 번호 찾기 버튼
+        loginBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Find.class);
+                startActivity(intent);
             }
         });
 

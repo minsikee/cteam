@@ -35,7 +35,7 @@
             android:hint="전화번호를 입력하세요" />
 
         <Button
-            android:id="@+id/Find_btn_id"
+            android:id="@+id/Find_btn_idFind"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_below="@+id/Find_phonenum"
@@ -52,7 +52,7 @@
             android:id="@+id/Find_id"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/Find_btn_id"
+            android:layout_below="@+id/Find_btn_idFind"
             android:layout_marginTop="30dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/image_medi"
@@ -85,7 +85,7 @@
             android:hint="비밀번호 찾기 답변을 입력하세요" />
 
         <Button
-            android:id="@+id/Find_btn_pw"
+            android:id="@+id/Find_btn_pwFind"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_below="@+id/Find_qs_as"
@@ -102,8 +102,8 @@
             android:id="@+id/Find_btn_login"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/Find_btn_pw"
-            android:layout_alignParentLeft="@+id/Find_btn_pw"
+            android:layout_below="@+id/Find_btn_pwFind"
+            android:layout_alignParentLeft="@+id/Find_btn_pwFind"
             android:layout_marginTop="30dp"
             android:background="@drawable/text_stroke"
             android:shadowColor="@android:color/transparent"
@@ -115,7 +115,7 @@
             android:id="@+id/Find_btn_signup"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/Find_btn_pw"
+            android:layout_below="@+id/Find_btn_pwFind"
             android:layout_toRightOf="@id/Find_btn_login"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"

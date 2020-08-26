@@ -4,42 +4,143 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class Find extends AppCompatActivity {
+import com.example.cteam.ATask.FindPwSelect;
+import com.example.cteam.ATask.FindSelect;
+import com.example.cteam.ATask.LoginSelect;
 
-    Button Find_btn_id, Find_btn_pw;
-    Button Find_btn_signup, Find_btn_login;
+import java.util.concurrent.ExecutionException;
+
+public class Find extends AppCompatActivity {
+    private static final String TAG = "mainFind";
+    
+    String id_return = "", pw_return = "";
+    Button  Find_btn_idFind, Find_btn_pwFind,Find_btn_login, Find_btn_signup;
+    TextView Find_name, Find_phonenum, Find_id, Find_qs, Find_as;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        //아이디 찾기 버튼 > 토스트 말고 칸 하나 만들기로 함
-        Find_btn_id = findViewById((R.id.Find_btn_id));
-        Find_btn_id.setOnClickListener(new View.OnClickListener() {
+        Find_name=findViewById(R.id.Find_name);
+        Find_phonenum=findViewById(R.id.Find_phonenum);
+        Find_id=findViewById(R.id.Find_id);
+        Find_qs=findViewById(R.id.Find_qs);
+        Find_as=findViewById(R.id.Find_qs_as);
+
+
+        //아이디 찾기 버튼 > 팝업창
+        Find_btn_idFind = findViewById((R.id.Find_btn_idFind));
+        Find_btn_idFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), IdFindPopup.class);
-                intent.putExtra("data", "Test Popup");
-                startActivityForResult(intent, 1);
+                if (Find_name.getText().toString().length() != 0 && Find_phonenum.getText().toString().length() != 0) {
+                    String member_name = Find_name.getText().toString();
+                    String member_phonenum = Find_phonenum.getText().toString();
 
+                    FindSelect findSelect = new FindSelect(member_name, member_phonenum);
+                    try {
+
+                       id_return = findSelect.execute().get().trim();
+
+                        Log.d(TAG, "onClick: " + id_return);
+                    } catch (ExecutionException e) {
+                        e.getMessage();
+                    } catch (InterruptedException e) {
+                        e.getMessage();
+                    }
+
+                } else {
+                    Toast.makeText(Find.this, "이름과 전화번호를 모두 입력하세요", Toast.LENGTH_SHORT).show();
+                    Log.d("main:find", "이름과 전화번호를 모두 입력하세요 !!!");
+                    return;
+                }
+
+
+                if (!id_return.equals("null")) {
+
+                    Log.d("main:find", id_return + "아이디입니다");
+
+                    // db에 아이디가 있을경우 팝업창으로 아이디 알려줌
+
+                    Intent intent = new Intent(getApplicationContext(), IdFindPopup.class);
+                    intent.putExtra("data", id_return);
+                    startActivityForResult(intent, 1);
+
+                } else {
+
+                    Toast.makeText(Find.this, "존재하는 아이디가 없습니다", Toast.LENGTH_SHORT).show();
+                    Log.d("main:login", "아이디가 없습니다");
+                    Find_name.setText("");
+                    Find_phonenum.setText("");
+                    Find_name.requestFocus();
+                }
             }
+
         });
+
+
 
         //비밀번호 찾기 버튼 > 비밀번호 변경 페이지로 이동
-        Find_btn_pw = findViewById(R.id.Find_btn_pw);
-        Find_btn_pw.setOnClickListener(new View.OnClickListener() {
+        Find_btn_pwFind = findViewById(R.id.Find_btn_pwFind);
+        Find_btn_pwFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PasswordModify.class);
-                startActivity(intent);
+                if (Find_id.getText().toString().length() != 0 && Find_qs.getText().toString().length() != 0&& Find_as.getText().toString().length() != 0) {
+                    String member_id = Find_id.getText().toString();
+                    String member_question = Find_qs.getText().toString();
+                    String member_answer = Find_as.getText().toString();
+
+                    FindPwSelect findPwSelect = new FindPwSelect(member_id, member_question,member_answer);
+                    try {
+                        pw_return=findPwSelect.execute().get().trim();
+                    } catch (ExecutionException e) {
+                        e.getMessage();
+                    } catch (InterruptedException e) {
+                        e.getMessage();
+                    }
+
+                } else {
+                    Toast.makeText(Find.this, "정보를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    Log.d("main:find", "비밀번호가 없습니다");
+                    return;
+                }
+
+
+                if (!pw_return.equals("null")) {
+
+                    Log.d("main:findPw", pw_return + "패스워드입니다");
+
+                    // 정보가 맞으면 패스워드 변경창으로 넘겨줌
+
+                    Intent intent = new Intent(getApplicationContext(), PasswordModify.class);
+                    intent.putExtra("data", pw_return);
+                    startActivityForResult(intent, 1);
+
+
+                } else {
+                    Toast.makeText(Find.this, "일치하는 회원가입 정보가 없습니다", Toast.LENGTH_SHORT).show();
+                    Log.d("main:find", "정보가 입력안됨 !!!");
+                    Find_id.setText("");
+                    Find_qs.setText("");
+                    Find_as.setText("");
+                    Find_id.requestFocus();
+                }
             }
+
+
+
         });
+
+
+
 
         //회원가입 버튼 > 가입 화면으로 이동
         Find_btn_signup = findViewById(R.id.Find_btn_signup);

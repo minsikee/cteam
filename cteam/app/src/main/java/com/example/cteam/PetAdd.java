@@ -15,6 +15,7 @@ import com.example.cteam.pet_add.petInsert;
 import java.util.ArrayList;
 
 public class PetAdd extends AppCompatActivity {
+    public static MyItem selItem = null;
 
     Button btnAdd;
     Button btnUpdate;
@@ -24,6 +25,9 @@ public class PetAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add);
+
+
+
 
         btnAdd = findViewById(R.id.btnAdd);
         btnUpdate = findViewById(R.id.btnUpdate);

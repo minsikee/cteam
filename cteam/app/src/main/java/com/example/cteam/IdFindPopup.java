@@ -1,6 +1,7 @@
 package com.example.cteam;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,7 +12,7 @@ import com.example.cteam.R;
 
 public class IdFindPopup extends Activity {
 
-    TextView txtText;
+    TextView txtText2;
 
 
     @Override
@@ -22,7 +23,13 @@ public class IdFindPopup extends Activity {
         setContentView(R.layout.activity_id_find_popup);
 
         //UI 객체생성
-        txtText = (TextView)findViewById(R.id.txtText);
+        txtText2 = (TextView)findViewById(R.id.txtText2);
+
+        //putextra에 넣은 아이디를 가져와 뿌려준다
+        Intent intent = getIntent();
+        String data = intent.getStringExtra("data");
+        txtText2.setText(data);
+
 
     }
 

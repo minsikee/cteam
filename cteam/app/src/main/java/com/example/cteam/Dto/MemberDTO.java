@@ -2,7 +2,7 @@ package com.example.cteam.Dto;
 
 public class MemberDTO {
     String member_id;
-    String member_passwd;
+    String member_pw;
     String member_name;
     String member_phonenum;
     String member_qeustion;
@@ -18,9 +18,9 @@ public class MemberDTO {
     }
 
     // 데이터베이스에 멤버정보를 추가할때
-    public MemberDTO(String member_id, String member_passwd,String member_name, String member_phonenum, String member_qeustion, String member_answer) {
+    public MemberDTO(String member_id, String member_pw,String member_name, String member_phonenum, String member_qeustion, String member_answer) {
         this.member_id = member_id;
-        this.member_passwd = member_passwd;
+        this.member_pw = member_pw;
         this.member_name = member_name;
         this.member_phonenum = member_phonenum;
         this.member_qeustion = member_qeustion;
@@ -35,12 +35,12 @@ public class MemberDTO {
         this.member_id = member_id;
     }
 
-    public String getMember_passwd() {
-        return member_passwd;
+    public String getMember_pw() {
+        return member_pw;
     }
 
-    public void setMember_passwd(String member_passwd) {
-        this.member_passwd = member_passwd;
+    public void setMember_pw(String member_pw) {
+        this.member_pw = member_pw;
     }
 
     public String getMember_name() {

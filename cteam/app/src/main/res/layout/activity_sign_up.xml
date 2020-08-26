@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,9 +70,9 @@
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/image_medi"
             android:gravity="center_vertical"
+            android:hint="비밀번호 확인"
             android:inputType="textPassword"
-            android:textSize="14sp"
-            android:hint="비밀번호를 확인하세요"/>
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/SignUp_qs"
