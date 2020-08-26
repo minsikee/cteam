@@ -60,10 +60,12 @@ public class petInsert extends AppCompatActivity {
         petAge = findViewById(R.id.petAge);
         petGender = findViewById(R.id.petGender);
         petWeight = findViewById(R.id.petWeight);
+        petPhoto = findViewById(R.id.petPhoto);
 
         btnLoad = findViewById(R.id.btnLoad);
         btn_add = findViewById(R.id.btn_add);
         btnCancle = findViewById(R.id.btnCancle);
+
 
         btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +155,7 @@ public class petInsert extends AppCompatActivity {
         return res;
     }
 
-    public void btn_add(View view) {
+    public void btnAddClicked(View view) {
         if (CommonMethod.isNetworkConnected(this) == true) {
             if (fileSize <= 30000000) {
                 name = petName.getText().toString();

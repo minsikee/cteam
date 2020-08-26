@@ -80,17 +80,17 @@ public class petAddAdapter extends BaseAdapter {
 
         MyItem dto = dtos.get(position);
         String name = dto.getName();
-        int age = dto.getAge();
-        int weigth = dto.getWeight();
+        String age = dto.getAge();
+        String weigth = dto.getWeight();
         String gender = dto.getGender();
-        int resId = dto.getImage_path();
+        String resId = dto.getImage_path();
 
 
         viewHolder.TV_Name.setText(name);
         viewHolder.TV_Gender.setText(gender);
-        viewHolder.TV_Age.setText("" + age);
-        viewHolder.tv_weigth.setText(""+weigth);
-        viewHolder.imageIcon.setImageResource(resId);
+        viewHolder.TV_Age.setText(age);
+        viewHolder.tv_weigth.setText(weigth);
+        viewHolder.imageIcon.setImageResource(Integer.parseInt(resId));
 
         viewHolder.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -38,7 +38,7 @@
         <activity android:name=".AgreePopup"></activity>
         <activity android:name=".Login" />
         <activity android:name=".PetSelect"/>
-        <activity android:name=".BoardWrite" />
+        <activity android:name=".board.BoardWrite"/>
         <activity android:name=".ConsetPopup" />
         <activity android:name=".Help" />
         <activity android:name=".MyPage" />

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03b8c1ec-a17f-435f-8136-021becd126d0" name="Default Changelist" comment="" />
+    <list default="true" id="03b8c1ec-a17f-435f-8136-021becd126d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/ATask/ListUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Adapter/petAddAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Adapter/petAddAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Dto/MyItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/Dto/MyItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petInsert.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petInsert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/java/com/example/cteam/pet_add/petUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_pet_add_update.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cteam/app/src/main/res/layout/activity_pet_add_update.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cteam" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -34,9 +42,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1597797384833">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598432096142">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597797384833" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598432096142" />
   </component>
 </project>
