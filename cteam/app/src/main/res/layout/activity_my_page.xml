@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -11,17 +11,31 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <ImageView
+        <Button
+            android:id="@+id/profileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/MyPage_img"
+            android:layout_alignEnd="@+id/MyPage_img"
+            android:layout_alignRight="@+id/MyPage_img"
+            android:layout_marginTop="118dp"
+            android:layout_marginEnd="-91dp"
+            android:layout_marginRight="-91dp"
+            android:background="@drawable/profile_btn"
+            android:text="사진수정" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/MyPage_img"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/dog"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@mipmap/ic_launcher_round" />
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="2dp" />
 
         <TextView
             android:id="@+id/MyPage_name"
@@ -31,10 +45,10 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/image_medi"
-            android:gravity="center_vertical"
             android:focusable="false"
-            android:textSize="14sp"
-            android:text="이름" />
+            android:gravity="center_vertical"
+            android:text="이름"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/MyPage_id"
@@ -71,9 +85,9 @@
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/image_medi"
             android:gravity="center_vertical"
+            android:hint="비밀번호 확인"
             android:inputType="textPassword"
-            android:textSize="14sp"
-            android:hint="비밀번호 확인"/>
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/MyPage_qs"
@@ -122,7 +136,7 @@
             android:shadowColor="@android:color/transparent"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:text="취소" />
+            android:text="수정취소" />
 
         <Button
             android:id="@+id/MyPage_ok"
@@ -136,7 +150,7 @@
             android:shadowColor="@android:color/transparent"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:text="확인"/>
+            android:text="수정하기"/>
 
     </RelativeLayout>
 
