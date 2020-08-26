@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 public class MyItem implements Serializable {
     public String name;
-    public int age;
-    public int weight;
+    public String age;
+    public String weight;
     public String gender;
-    public int image_path;
+    public String image_path;
 
-    public MyItem(String name, int age, int weight, String gender, int image_path) {
+    public MyItem(String name, String age, String weight, String gender, String image_path) {
         this.name = name;
         this.age = age;
         this.weight = weight;
@@ -33,19 +33,19 @@ public class MyItem implements Serializable {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -57,11 +57,11 @@ public class MyItem implements Serializable {
         this.gender = gender;
     }
 
-    public int getImage_path() {
+    public String getImage_path() {
         return image_path;
     }
 
-    public void setImage_path(int image_path) {
+    public void setImage_path(String image_path) {
         this.image_path = image_path;
     }
 }
