@@ -163,7 +163,6 @@ public class SignUp extends AppCompatActivity {
                 intent.putExtra("data", "Test Popup");
                 startActivityForResult(intent, 1);
 
-                SignUp_agree.setChecked(true);
             }
         });
 
