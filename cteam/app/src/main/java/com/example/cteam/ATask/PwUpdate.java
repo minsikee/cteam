@@ -21,9 +21,12 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 public class PwUpdate extends AsyncTask<Void, Void, String> {
 
     String member_pw;
+    String member_id;
 
-    public PwUpdate(String member_pw) {
+
+    public PwUpdate(String member_pw,String member_id) {
         this.member_pw = member_pw;
+        this.member_id = member_id;
     }
 
     // 데이터베이스에 삽입결과 0보다크면 삽입성공, 같거나 작으면 실패

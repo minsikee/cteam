@@ -121,7 +121,8 @@ public class Find extends AppCompatActivity {
                     // 정보가 맞으면 패스워드 변경창으로 넘겨줌
 
                     Intent intent = new Intent(getApplicationContext(), PasswordModify.class);
-                    intent.putExtra("data", pw_return);
+                    intent.putExtra("pw_return", pw_return);
+                    intent.putExtra("member_id", Find_id.getText().toString());
                     startActivityForResult(intent, 1);
 
 

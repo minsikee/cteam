@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- ▶ 와이파이 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- ▶ 위성 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- ▶ 기지국 -->
+    <uses-permission android:name="com.example.cteam.permission.MAPS_RECEIVE"/>
     <!-- ~ 알람 권한 ~ -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- ▶ 진동 -->
     <uses-permission android:name="READ_GSERVICES" /> <!-- 구글 서비스 읽기 -->
@@ -55,6 +56,7 @@
         <activity android:name=".PasswordModify" />
         <activity android:name=".Find" />
         <activity android:name=".pet_add.petInsert" />
+        <activity android:name=".FindStore"/>
         <activity android:name=".PetAdd">
 
         </activity>
@@ -65,6 +67,14 @@
         <activity
             android:name=".IdFindPopup"
             android:theme="@android:style/Theme.Dialog" />
+
+        //지도
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDUe3mN0qdkPzd2vfAtCmVBwUyMwVsJJw4"/>
+        <meta-data
+            android:name="com.google.android.gms.vision"
+            android:value="@integer/google_play_services_version"/>
 
 
         <!-- API24 이상부터 Url 이 file:// 로 시작되면 안되서 content:// 으로 변환시키는 부분 -->

@@ -19,7 +19,7 @@ public class PasswordModify extends AppCompatActivity {
 //extends Activity implements OnClickListener
     Button PasswordModify_cancel, PasswordModify_change;
     TextView PasswordModify_pw, PasswordModify_pw_confirm;
-    String state,pw_return;
+    String state,pw_return,member_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class PasswordModify extends AppCompatActivity {
        //찾은 패스워드를 putextra에서 가져온다
         Intent intent=getIntent();
         pw_return=intent.getStringExtra("pw_return");
-
+        member_id=intent.getStringExtra("member_id");
         //비밀번호 변경하기 버튼 > 로그인 화면으로 이동
         PasswordModify_change = (Button)findViewById(R.id.PasswordModify_change);
 
@@ -60,7 +60,7 @@ public class PasswordModify extends AppCompatActivity {
                         if (PasswordModify_pw.getText().toString().equals(pw_return) ) {
                             String member_pw = PasswordModify_pw.getText().toString();
 
-                            PwUpdate pwUpdate = new PwUpdate(member_pw);
+                            PwUpdate pwUpdate = new PwUpdate(member_pw,member_id);
                             try {
                                 pw_return = pwUpdate.execute().get().trim();
                             } catch (ExecutionException e) {
