@@ -21,8 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.board.WalkBoard;
-import com.example.lasttest.Help;
+import com.example.cteam.Help;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -68,7 +69,7 @@ public class PetSelect extends AppCompatActivity
         logout = new Logout();
 
         //MemberDTO
-        dto = new MemberDTO("jamong", "자몽", "0000", "보물 1호?", "나","010-0000-0000");
+        //dto = new MemberDTO("jamong", "자몽", "0000", "보물 1호?", "나","010-0000-0000");
 
         //frameLayout 초기화
         getSupportFragmentManager().beginTransaction().replace(R.id.container, petChoose).commit();
@@ -82,8 +83,8 @@ public class PetSelect extends AppCompatActivity
         ImageView imageView = headerView.findViewById(R.id.profile);
         TextView tvloginID = headerView.findViewById(R.id.user_id);
         TextView tvloginName = headerView.findViewById(R.id.user_name);
-        tvloginID.setText(dto.getId());
-        tvloginName.setText(dto.getName());
+        tvloginID.setText(Login.loginDTO.getMember_id());
+        tvloginName.setText(Login.loginDTO.getMember_name());
         imageView.setImageResource(R.drawable.dog);
 
         getSupportFragmentManager().beginTransaction()
@@ -127,9 +128,9 @@ public class PetSelect extends AppCompatActivity
 
         if(id == R.id.nav_myPage){
             Bundle bundle = new Bundle();
-            bundle.putSerializable("memberdto", dto);
+            //bundle.putSerializable("memberdto", dto);
 
-            onFragmentSelected(0, bundle);
+            onFragmentSelected(0, null);
         }else if(id == R.id.nav_help){
             onFragmentSelected(1, null);
         }else if(id == R.id.nav_logout){

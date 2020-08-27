@@ -70,11 +70,13 @@
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_weight="2">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="성별 :"
-            android:gravity="right|center"/>
+            android:gravity="right|center"
+            android:text="성별 :" />
+
         <EditText
             android:id="@+id/petGender"
             android:layout_width="match_parent"
@@ -148,21 +150,33 @@
                 android:id="@+id/btn_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="btnAddClicked"
                 android:layout_weight="1"
+                android:onClick="btnAddClicked"
                 android:text="추가" />
 
             <Button
                 android:id="@+id/btnCancle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="btnCancelClicked"
-                android:text="취소"
-                android:layout_weight="1"/>
+                android:text="취소" />
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/goMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="메인으로 이동" />
+    </LinearLayout>
 
 
 </LinearLayout>
