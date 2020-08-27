@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cteam.ATask.JoinInsert;
 
+import java.nio.file.Files;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
@@ -24,6 +26,7 @@ public class SignUp extends AppCompatActivity {
     EditText signupId, signupPw, signupName, signupPwConfirm, signupQuestion, signupAnswer, signupPhoneNum;
     Button btnJoin, btnCancel;
     TextView SignUp_agree_text,txtResult;
+    CheckBox SignUp_agree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class SignUp extends AppCompatActivity {
         btnJoin = findViewById(R.id.SignUp_join);
         btnCancel = findViewById(R.id.SignUp_cancel);
         signupPwConfirm =findViewById(R.id.SignUp_pw_confirm);
+        SignUp_agree= findViewById(R.id.SignUp_agree);
+
 
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +163,7 @@ public class SignUp extends AppCompatActivity {
                 intent.putExtra("data", "Test Popup");
                 startActivityForResult(intent, 1);
 
+                SignUp_agree.setChecked(true);
             }
         });
 

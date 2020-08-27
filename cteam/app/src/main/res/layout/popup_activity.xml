@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="53dp"
-            android:background="#B900BCD4"
+            android:background="#B961A0A8"
             android:gravity="center"
             android:text="약관"
             android:textColor="#fff"
@@ -58,16 +58,32 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="2">
 
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/popup_agree"
+            android:layout_width="173dp"
             android:layout_height="53dp"
+            android:layout_weight="1"
+            android:background="#398E98"
+            android:gravity="center"
+            android:onClick="mOnClose"
+            android:padding="16dp"
+            android:text="동의하기"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/popup_cancel"
+            android:layout_width="173dp"
+            android:layout_height="53dp"
+            android:layout_weight="1"
             android:background="#00000000"
             android:gravity="center"
             android:onClick="mOnClose"
             android:padding="16dp"
-            android:text="확인"
+            android:text="취소"
             android:textColor="#00BCD4"
             android:textSize="15sp" />
     </LinearLayout>
