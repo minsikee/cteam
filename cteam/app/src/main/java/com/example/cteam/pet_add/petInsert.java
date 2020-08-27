@@ -25,6 +25,7 @@ import androidx.core.content.FileProvider;
 import com.example.cteam.ATask.Listinsert;
 import com.example.cteam.Common.CommonMethod;
 import com.example.cteam.PetAdd;
+import com.example.cteam.PetSelect;
 import com.example.cteam.R;
 
 import java.io.File;
@@ -35,6 +36,7 @@ import java.util.Date;
 public class petInsert extends AppCompatActivity {
 
     EditText petName, petAge,petWeight,petGender;
+    Button goMain;
 
     String name = "", age = "",weight = "",gender ="";
     ImageView petPhoto;
@@ -79,6 +81,14 @@ public class petInsert extends AppCompatActivity {
             }
         });
 
+        goMain = findViewById(R.id.goMain);
+        goMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PetSelect.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

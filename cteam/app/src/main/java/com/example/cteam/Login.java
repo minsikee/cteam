@@ -72,12 +72,13 @@ public class Login extends AppCompatActivity {
                 if(loginDTO != null){
                     Toast.makeText(Login.this, "로그인 되었습니다 !!!", Toast.LENGTH_SHORT).show();
                     Log.d("main:login", loginDTO.getMember_id() + "님 로그인 되었습니다 !!!");
+                    Log.d("main:login", loginDTO.getMember_pw() + "님 로그인 되었습니다 !!!");
+                    Log.d("main:login", loginDTO.getMember_name() + "님 로그인 되었습니다 !!!");
 
                     // 로그인 정보에 값이 있으면 로그인이 되었으므로 메인화면으로 이동
-                    if(loginDTO != null){
-                        Intent intent = new Intent(getApplicationContext(), PetAdd.class);
-                        startActivity(intent);
-                    }
+                    Intent intent = new Intent(getApplicationContext(), PetAdd.class);
+                    startActivity(intent);
+
 
                 }else {
                     Toast.makeText(Login.this, "아이디나 비밀번호가 일치안함 !!!", Toast.LENGTH_SHORT).show();
