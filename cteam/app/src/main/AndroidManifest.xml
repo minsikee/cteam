@@ -47,8 +47,7 @@
 
         <activity android:name=".board.BoardWrite" />
         <activity android:name=".ConsetPopup" />
-        <activity android:name=".Help" />
-        <activity android:name=".MyPage" />
+
         <activity android:name=".PetModify" />
         <activity android:name=".SignUp" />
         <activity android:name=".PasswordModify" />
