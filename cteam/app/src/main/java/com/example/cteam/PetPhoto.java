@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
+import com.example.cteam.R;
+
 import java.util.ArrayList;
 
 public class PetPhoto extends Fragment {
