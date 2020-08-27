@@ -71,17 +71,17 @@ public class LoginSelect extends AsyncTask<Void, Void, Void> {
         } catch (Exception e) {
             Log.d("main:loginselect", e.getMessage());
             e.printStackTrace();
-        }finally {
-            if(httpEntity != null){
+        } finally {
+            if (httpEntity != null) {
                 httpEntity = null;
             }
-            if(httpResponse != null){
+            if (httpResponse != null) {
                 httpResponse = null;
             }
-            if(httpPost != null){
+            if (httpPost != null) {
                 httpPost = null;
             }
-            if(httpClient != null){
+            if (httpClient != null) {
                 httpClient = null;
             }
 
@@ -98,14 +98,14 @@ public class LoginSelect extends AsyncTask<Void, Void, Void> {
     public MemberDTO readMessage(InputStream inputStream) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
 
-        String member_id = "",member_pw = "", member_name = "", member_phonenum = "", member_question = "", member_answer="";
+        String member_id = "", member_pw = "", member_name = "", member_phonenum = "", member_question = "", member_answer = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
             if (readStr.equals("member_id")) {
                 member_id = reader.nextString();
-            }else if (readStr.equals("member_pw")) {
+            } else if (readStr.equals("member_pw")) {
                 member_pw = reader.nextString();
             } else if (readStr.equals("member_name")) {
                 member_name = reader.nextString();
@@ -113,16 +113,16 @@ public class LoginSelect extends AsyncTask<Void, Void, Void> {
                 member_phonenum = reader.nextString();
             } else if (readStr.equals("member_question")) {
                 member_question = reader.nextString();
-            }else if(readStr.equals("member_answer")){
+            } else if (readStr.equals("member_answer")) {
                 member_answer = reader.nextString();
-            }else {
+            } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("main:loginselect : ", member_id + "," +member_pw + "," +  member_name + "," + member_phonenum + "," + member_question
+        Log.d("main:loginselect : ", member_id + "," + member_pw + "," + member_name + "," + member_phonenum + "," + member_question
                 + "," + member_answer);
-        return new MemberDTO(member_id, member_pw, member_name, member_phonenum, member_question,member_answer);
+        return new MemberDTO(member_id, member_pw, member_name, member_phonenum, member_question, member_answer);
 
     }
 }

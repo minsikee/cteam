@@ -1,4 +1,4 @@
-package com.example.lasttest;
+package com.example.cteam;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

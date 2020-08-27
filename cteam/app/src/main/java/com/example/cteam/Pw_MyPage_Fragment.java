@@ -7,18 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.cteam.Dto.MemberDTO;
+
 public class Pw_MyPage_Fragment extends Fragment {
     PetSelect activity;
     Button pw_btn;
     Button pw_cancleBtn;
     EditText editPW;
-    MemberDTO dto;
+    //MemberDTO dto;
     Bundle bundle = null;
 
     @Nullable
@@ -28,22 +31,25 @@ public class Pw_MyPage_Fragment extends Fragment {
 
         activity = (PetSelect) getActivity();
 
-        if(activity.mBundle != null){
+       /* if(activity.mBundle != null){
             bundle = activity.mBundle;
             dto = (MemberDTO) bundle.getSerializable("memberdto");
             activity.mBundle = null;
-        }
+        }*/
 
         editPW = rootView.findViewById(R.id.edPW);
         pw_btn = rootView.findViewById(R.id.pw_btn);
         pw_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(editPW.getText().toString().equals(dto.getPw())){
+                if(editPW.getText().toString().trim().equals(Login.loginDTO.getMember_pw())){
+
                     activity.onFragmentChange(1, bundle);
+
                 }else {
-                   // Toast.makeText(activity, "비밀번호를 다시 입력하세요!", Toast.LENGTH_LONG).show();
-                    showMessage();
+                    Toast.makeText(activity, "dto : "+ Login.loginDTO.getMember_pw()+"\n입력한 비번 : "+ editPW.getText().toString(), Toast.LENGTH_LONG).show();
+/*
+                    showMessage();*/
                 }
             }
         });
