@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class PopupActivity extends Activity {
 
     TextView txtText;
-
+    Button popup_agree,popup_cancel;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +24,30 @@ public class PopupActivity extends Activity {
 
         //UI 객체생성
         txtText = (TextView)findViewById(R.id.txtText);
+        popup_agree=findViewById(R.id.popup_agree);
+        popup_cancel=findViewById(R.id.popup_cancel);
+        checkBox=findViewById(R.id.SignUp_agree);
 
+        //동의
+        popup_agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkBox.setChecked(true);
+                finish();
+            }
+        });
+
+        //취소
+        popup_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
-    //확인 버튼 클릭
-    public void mOnClose(View v){
 
-        //액티비티(팝업) 닫기
-        finish();
-    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
