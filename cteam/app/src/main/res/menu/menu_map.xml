@@ -10,12 +10,14 @@
     <item
         android:id="@+id/map_hair"
         android:icon="@drawable/map_hair"
-        android:title="미용"
+        android:enabled="true"
+        android:title="미용실"
         />
     <item
+        android:state_checked="true"
         android:id="@+id/map_park"
         android:icon="@drawable/map_park"
+        android:enabled="true"
         android:title="공원"
         />
-
 </menu>
