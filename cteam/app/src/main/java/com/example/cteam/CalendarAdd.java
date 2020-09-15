@@ -1,5 +1,7 @@
 package com.example.cteam;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cteam.ATask.CalListDelete;
+import com.example.cteam.ATask.CalListSelect;
 import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 
@@ -36,6 +39,9 @@ public class CalendarAdd extends Fragment {
     RecyclerView CalendarAdd_view;
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
+    String calendar_date;
+
+    CalListSelect calListSelect;
 
     String select_date = "";
 
@@ -53,15 +59,23 @@ public class CalendarAdd extends Fragment {
         }
 
         //리사이클러 뷰 셋팅
-        icons = new ArrayList<>();
-        adapter = new CalendarAdapter(getActivity(), icons);
-        CalendarAdd_view = (RecyclerView) rootView.findViewById(R.id.CalendarAdd_view);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        //CalendarAdd_view.setLayoutManager(layoutManager);
-        CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        CalendarAdd_view.setAdapter(adapter);
+                    icons = new ArrayList<>();
+            adapter = new CalendarAdapter(getActivity(), icons);
+            CalendarAdd_view = (RecyclerView) rootView.findViewById(R.id.CalendarAdd_view);
+            //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+            //CalendarAdd_view.setLayoutManager(layoutManager);
+            CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+            CalendarAdd_view.setAdapter(adapter);
 
-        //데이터 선택했을 때
+            //데이터 불러옴
+            calendar_date = select_date;
+            if(isNetworkConnected(getActivity()) == true) {
+                calListSelect = new CalListSelect(icons, adapter, calendar_date);
+                calListSelect.execute();
+            } else {
+                Toast.makeText(getActivity(), "인터넷이 연결되어 있지 않습니다.",
+                    Toast.LENGTH_SHORT).show();
+        }
 
         //추가 클릭 > CalendarInsert로 이동
         CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
@@ -103,7 +117,7 @@ public class CalendarAdd extends Fragment {
                 if(isNetworkConnected(getContext()) == true) {
                     //선택된 아이콘이 있을 때만 삭제
                     if(selectIcon != null){
-                        CalListDelete calListDelete = new CalListDelete(selectIcon.getCalendar_date(), selectIcon.getCalendar_icon(), selectIcon.getCalendar_memo());
+                        CalListDelete calListDelete = new CalListDelete(selectIcon.getCalendar_icon());
                         calListDelete.execute();
                         // 화면갱신
                         refresh();

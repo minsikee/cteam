@@ -14,6 +14,11 @@ public class CalendarDTO implements Serializable  {
         this.calendar_memo = calendar_memo;
     }
 
+    public CalendarDTO(String calendar_icon, String calendar_memo) {
+        this.calendar_icon = calendar_icon;
+        this.calendar_memo = calendar_memo;
+    }
+
     public String getCalendar_date() {
         return calendar_date;
     }
