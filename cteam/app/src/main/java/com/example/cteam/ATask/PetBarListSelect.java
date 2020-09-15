@@ -28,7 +28,7 @@ import static com.example.cteam.Login.loginDTO;
 
 // doInBackground 파라미터 타입, onProgressUpdate파라미터 타입, onPostExecute 파라미터 타입 순서
 // AsyncTask <Params, Progress, Result> 순서임
-public class PetBarListSelect extends AsyncTask<Void, Void, Void> {
+public class PetBarListSelect extends AsyncTask<Void, Void, String> {
     // 생성자
    public static ArrayList<PetBarItem> petBarItemArrayList;
    PetBarAdapter petBarAdapter;
@@ -52,7 +52,7 @@ public class PetBarListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected String doInBackground(Void... voids) {
         petBarItemArrayList.clear();
         String result = "";
         String postURL = ipConfig + "/app/petSelectMulti";
@@ -101,12 +101,12 @@ public class PetBarListSelect extends AsyncTask<Void, Void, Void> {
 
         }
 
-        return null;
+        return "Work Complete !!!";
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
 
         if(progressDialog != null){
             progressDialog.dismiss();

@@ -30,6 +30,7 @@ public class PetBarAdapter extends RecyclerView.Adapter<PetBarAdapter.ItemViewHo
     public PetBarAdapter(Context mContext, ArrayList<PetBarItem> arrayList) {
         this.mContext = mContext;
         this.arrayList = arrayList;
+        arrayList.clear();
     }
 
 
@@ -49,7 +50,7 @@ public class PetBarAdapter extends RecyclerView.Adapter<PetBarAdapter.ItemViewHo
         Log.d("main:adater", "" + position);
 
 
-         PetBarItem item = arrayList.get(position);
+        PetBarItem item = arrayList.get(position);
         holder.setItem(item);
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {

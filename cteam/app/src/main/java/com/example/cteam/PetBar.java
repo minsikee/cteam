@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,12 +28,15 @@ import com.example.cteam.Adapter.PetBarAdapter;
 import com.example.cteam.Dto.PetBarItem;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.ATask.PetBarListSelect.petBarItemArrayList;
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
 
 public class PetBar extends AppCompatActivity {
+    private static final String TAG = "main:PetBar";
+
     public static PetBarItem selItem =null;
     PetBarListSelect petBarListSelect;
     RecyclerView recyclerView;
@@ -87,6 +91,8 @@ public class PetBar extends AppCompatActivity {
 
 
 
+
+
        /* //hour 가져와서 버튼 색칠
         for(int i=0;i<petBarItemArrayList.size();i++) {
            if(petBarItemArrayList.get(i).getHour()!=null) {
@@ -106,7 +112,14 @@ public class PetBar extends AppCompatActivity {
 
         if(isNetworkConnected(this) == true){
             petBarListSelect = new PetBarListSelect(petBarItemsArrayList, petBarAdapter, progressDialog);
-            petBarListSelect.execute();
+            try {
+                String result = petBarListSelect.execute().get();
+                Log.d(TAG, "onCreate: " + result);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }else {
             Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
@@ -122,13 +135,27 @@ public class PetBar extends AppCompatActivity {
 
         //Toast.makeText(this, petBarItemArrayList.size(), Toast.LENGTH_SHORT).show();
 
-
         for(int i=0;i<=23; i++){
 
-            button[i] = (Button) findViewById(Rid_button[i]);
-
+            button[i] = findViewById(Rid_button[i]);
 
         }//버튼찾기
+
+        for(int i=0; i<petBarItemsArrayList.size(); i++){
+
+
+            int hour = Integer.parseInt(petBarItemsArrayList.get(i).getHour());
+
+            if(hour==0||hour==12){
+                button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
+            }else if(hour==11||hour==23){
+                button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
+            }else{
+                button[hour].setBackgroundResource(R.drawable.barbtnclicked);
+
+            }
+
+        }
 
 
         //버튼 클릭시
