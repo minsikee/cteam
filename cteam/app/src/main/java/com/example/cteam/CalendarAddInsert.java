@@ -473,25 +473,150 @@ public class CalendarAddInsert extends Fragment {
             public void onClick(View view) {
                 if(isNetworkConnected(getContext()) == true) {
                     calendar_date = select_date;
-                    if(checked2 == 1) {
-                        calendar_icon = "/res/drawable/sample_icon_1";
-                        //calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_1", null, null));
-                        //calendar_icon = String.valueOf((R.drawable.sample_icon_1));
-                        //calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_1","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 2) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_2","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 3) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_3","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 4) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_4","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 5) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_5","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 6) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_6","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 7) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_7","drawable", getActivity().getPackageName()));
-                    } else if(checked2 == 8) {
-                        calendar_icon = String.valueOf(getResources().getIdentifier("sample_icon_8","drawable", getActivity().getPackageName()));
+                    if (checked1 == 1) {
+                        if (checked2 == 1) {
+                            calendar_icon = "11";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "12";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "13";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "14";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "15";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "16";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "17";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "18";
+                        }
+                    } else if (checked1 == 2) {
+                        if (checked2 == 1) {
+                            calendar_icon = "21";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "22";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "23";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "24";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "25";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "26";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "27";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "28";
+                        }
+                    } else if (checked1 == 3) {
+                        if (checked2 == 1) {
+                            calendar_icon = "31";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "32";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "33";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "34";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "35";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "36";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "37";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "38";
+                        }
+                    } else if (checked1 == 4) {
+                        if (checked2 == 1) {
+                            calendar_icon = "41";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "42";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "43";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "44";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "45";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "46";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "47";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "48";
+                        }
+                    } else if (checked1 == 5) {
+                        if (checked2 == 1) {
+                            calendar_icon = "51";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "52";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "53";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "54";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "55";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "56";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "57";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "58";
+                        }
+                    } else if (checked1 == 6) {
+                        if (checked2 == 1) {
+                            calendar_icon = "61";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "62";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "63";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "64";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "65";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "66";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "67";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "68";
+                        }
+                    } else if (checked1 == 7) {
+                        if (checked2 == 1) {
+                            calendar_icon = "71";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "72";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "73";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "74";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "75";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "76";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "77";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "78";
+                        }
+                    } else if (checked1 == 8) {
+                        if (checked2 == 1) {
+                            calendar_icon = "81";
+                        } else if (checked2 == 2) {
+                            calendar_icon = "82";
+                        } else if (checked2 == 3) {
+                            calendar_icon = "83";
+                        } else if (checked2 == 4) {
+                            calendar_icon = "84";
+                        } else if (checked2 == 5) {
+                            calendar_icon = "85";
+                        } else if (checked2 == 6) {
+                            calendar_icon = "86";
+                        } else if (checked2 == 7) {
+                            calendar_icon = "87";
+                        } else if (checked2 == 8) {
+                            calendar_icon = "88";
+                        }
                     }
                     calendar_memo = CalendarAddInsert_memo.getText().toString();
 

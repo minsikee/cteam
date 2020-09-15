@@ -16,14 +16,10 @@ import java.nio.charset.Charset;
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 
 public class CalListDelete extends AsyncTask<Void, Void, Void> {
-    String calendar_date;
     String calendar_icon;
-    String calendar_memo;
 
-    public CalListDelete(String calendar_date, String calendar_icon, String calendar_memo ) {
-        this.calendar_date = calendar_date;
+    public CalListDelete(String calendar_icon) {
         this.calendar_icon = calendar_icon;
-        this.calendar_memo = calendar_memo;
     }
 
     @Override
@@ -31,20 +27,18 @@ public class CalListDelete extends AsyncTask<Void, Void, Void> {
 
         try {
             // MultipartEntityBuild 생성
-            String postURL = "";
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
 
             // 문자열 및 데이터 추가
-            builder.addTextBody("calendar_date", calendar_date, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("calendar_icon", calendar_icon, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("calendar_memo", calendar_memo, ContentType.create("Multipart/related", "UTF-8"));
 
-            postURL = ipConfig + "/app/calDelete";
+            builder.addTextBody("calendar_icon", calendar_icon, ContentType.create("Multipart/related", "UTF-8"));
+
+            String postURL = ipConfig + "/app/calDelete";
             // 전송
             //InputStream inputStream = null;
-            HttpClient httpClient = AndroidHttpClient.newInstance("Android");
+            HttpClient httpClient = AndroidHttpClient.newInstance("cteam");
             HttpPost httpPost = new HttpPost(postURL);
             httpPost.setEntity(builder.build());
             HttpResponse httpResponse = httpClient.execute(httpPost);
