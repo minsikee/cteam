@@ -27,6 +27,12 @@ android {
 
     /* http 사용하는 라이브러리 */
     useLibrary 'org.apache.http.legacy'
+
+    //캘린더
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -65,11 +71,18 @@ dependencies {
         exclude module: "httpclient"
     }
 
-
-
     // URL 이미지로더
     // 사용법
     // Glide.with(this).load("http://www.selphone.co.kr/homepage/img/team/3.jpg").into(imageView);
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //캘린더
+    implementation "com.prolificinteractive:material-calendarview:1.4.3"
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
+
+    //리사이클러 뷰 사용하기
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.android.support:design:30.0.0'
+
 }

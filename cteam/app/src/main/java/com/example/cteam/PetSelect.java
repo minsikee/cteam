@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cteam.Dto.CalendarDTO;
 import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.board.WalkBoard;
 import com.example.cteam.Help;
@@ -31,7 +32,6 @@ import com.google.android.material.navigation.NavigationView;
 public class PetSelect extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static MemberDTO dto = null;
-    Calendar calendar;
     WalkBoard walkBoard;
     FindStore findStore;
     PetPhoto petPhoto;
@@ -43,6 +43,16 @@ public class PetSelect extends AppCompatActivity
     Pw_MyPage_Fragment pw_myPage_fragment;
     // MemberDTO dto;
     Bundle mBundle = null;
+
+    //캘린더 - 프래그먼트 선언
+    Calendar calendar;
+    CalendarAdd calendarAdd;
+    CalendarAddInsert calendarAddInsert;
+    CalendarAddUpdate calendarAddUpdate;
+
+    //캘린더 - IconDTO
+    public static CalendarDTO cdto = null;
+    Bundle cBundle = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,13 @@ public class PetSelect extends AppCompatActivity
         myPage = new MyPage();
         help = new Help();
         logout = new Logout();
+
+        //캘린더 - 프래그먼트 객체 생성
+        //calendar = (com.example.cteam.Calendar) getSupportFragmentManager().findFragmentById(R.id.calendar);
+        calendar = new Calendar();
+        calendarAdd = new CalendarAdd();
+        calendarAddInsert = new CalendarAddInsert();
+        calendarAddUpdate = new CalendarAddUpdate();
 
         //MemberDTO
         //dto = new MemberDTO("jamong", "자몽", "0000", "보물 1호?", "나","010-0000-0000");
@@ -179,8 +196,21 @@ public class PetSelect extends AppCompatActivity
             mBundle = bundle;
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, petChoose).commit();
+        } else if (state == 3) {
+            cBundle = bundle;
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, calendar).commit();
+        } else if (state == 4) {
+            cBundle = bundle;
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAdd).commit();
+        } else if (state == 5) {
+            cBundle = bundle;
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddInsert).commit();
+        } else if (state == 6) {
+            cBundle = bundle;
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddUpdate).commit();
         }
     }
+
 
     private void checkDangerousPermissions() {  //위험권한
         String[] permissions = {
