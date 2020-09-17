@@ -143,15 +143,17 @@ public class PetBar extends AppCompatActivity {
 
         for(int i=0; i<petBarItemsArrayList.size(); i++){
 
+            if(petBarItemsArrayList.get(i).getHour()!=null&&!petBarItemsArrayList.get(i).getHour().equals("")) {
+                int hour = Integer.parseInt(petBarItemsArrayList.get(i).getHour());
 
-            int hour = Integer.parseInt(petBarItemsArrayList.get(i).getHour());
+                if(hour==0||hour==12){
+                    button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
+                }else if(hour==11||hour==23){
+                    button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
+                }else{
+                    button[hour].setBackgroundResource(R.drawable.barbtnclicked);
 
-            if(hour==0||hour==12){
-                button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
-            }else if(hour==11||hour==23){
-                button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
-            }else{
-                button[hour].setBackgroundResource(R.drawable.barbtnclicked);
+                }
 
             }
 
