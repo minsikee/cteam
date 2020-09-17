@@ -39,6 +39,7 @@ public class CalendarAdd extends Fragment {
     RecyclerView CalendarAdd_view;
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
+    String calendar_date;
 
     CalListSelect calListSelect;
 
@@ -58,20 +59,21 @@ public class CalendarAdd extends Fragment {
         }
 
         //리사이클러 뷰 셋팅
-        icons = new ArrayList<>();
-        adapter = new CalendarAdapter(getActivity(), icons);
-        CalendarAdd_view = (RecyclerView) rootView.findViewById(R.id.CalendarAdd_view);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        //CalendarAdd_view.setLayoutManager(layoutManager);
-        CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        CalendarAdd_view.setAdapter(adapter);
+                    icons = new ArrayList<>();
+            adapter = new CalendarAdapter(getActivity(), icons);
+            CalendarAdd_view = (RecyclerView) rootView.findViewById(R.id.CalendarAdd_view);
+            //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+            //CalendarAdd_view.setLayoutManager(layoutManager);
+            CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+            CalendarAdd_view.setAdapter(adapter);
 
-        //데이터 선택했을 때
-        if(isNetworkConnected(getActivity()) == true) {
-            calListSelect = new CalListSelect(icons, adapter);
-            calListSelect.execute();
-        } else {
-            Toast.makeText(getActivity(), "인터넷이 연결되어 있지 않습니다.",
+            //데이터 불러옴
+            calendar_date = select_date;
+            if(isNetworkConnected(getActivity()) == true) {
+                calListSelect = new CalListSelect(icons, adapter, calendar_date);
+                calListSelect.execute();
+            } else {
+                Toast.makeText(getActivity(), "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
 

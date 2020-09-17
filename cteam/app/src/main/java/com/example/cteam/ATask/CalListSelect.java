@@ -12,6 +12,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -25,10 +26,12 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 public class CalListSelect extends AsyncTask<Void, Void, Void> {
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
+    String calendar_date;
 
-    public CalListSelect(ArrayList<CalendarDTO> icons, CalendarAdapter adapter) {
+    public CalListSelect(ArrayList<CalendarDTO> icons, CalendarAdapter adapter, String calendar_date) {
         this.icons = icons;
         this.adapter = adapter;
+        this.calendar_date = calendar_date;
     }
 
     HttpClient httpClient;
@@ -52,6 +55,8 @@ public class CalListSelect extends AsyncTask<Void, Void, Void> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             // 기본셋팅 여기까지
+
+            builder.addTextBody("calendar_date", calendar_date, ContentType.create("Multipart/related", "UTF-8"));
 
             // 전송, 그대로 갖다쓰기
             InputStream inputStream = null;
