@@ -14,9 +14,10 @@ import com.example.cteam.ATask.FindPwSelect;
 import com.example.cteam.ATask.PwUpdate;
 
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
 
 public class PasswordModify extends AppCompatActivity {
-//extends Activity implements OnClickListener
+    //extends Activity implements OnClickListener
     Button PasswordModify_cancel, PasswordModify_change;
     TextView PasswordModify_pw, PasswordModify_pw_confirm;
     String state,pw_return,member_id;
@@ -42,7 +43,7 @@ public class PasswordModify extends AppCompatActivity {
         PasswordModify_pw=findViewById(R.id.PasswordModify_pw);
         PasswordModify_pw_confirm=findViewById(R.id.PasswordModify_pw_confirm);
 
-       //찾은 패스워드를 putextra에서 가져온다
+        //찾은 패스워드를 putextra에서 가져온다
         Intent intent=getIntent();
         pw_return=intent.getStringExtra("pw_return");
         member_id=intent.getStringExtra("member_id");
@@ -57,17 +58,43 @@ public class PasswordModify extends AppCompatActivity {
 
                     if (PasswordModify_pw.getText().toString().equals(PasswordModify_pw_confirm.getText().toString())) { //비밀번호 확인이 같으면
 
-                        if (PasswordModify_pw.getText().toString().equals(pw_return) ) {
-                            String member_pw = PasswordModify_pw.getText().toString();
+                        if (!PasswordModify_pw.getText().toString().equals(pw_return)) {
 
-                            PwUpdate pwUpdate = new PwUpdate(member_pw,member_id);
-                            try {
-                                pw_return = pwUpdate.execute().get().trim();
-                            } catch (ExecutionException e) {
-                                e.getMessage();
-                            } catch (InterruptedException e) {
-                                e.getMessage();
+                            if(!PasswordModify_pw.getText().toString().equals(member_id)) {
+
+                                if(Pattern.matches("^[a-zA-Z0-9]{8,12}$", PasswordModify_pw.getText().toString())) {
+                                    String member_pw = PasswordModify_pw.getText().toString();
+
+                                    PwUpdate pwUpdate = new PwUpdate(member_pw, member_id);
+                                    try {
+                                        state = pwUpdate.execute().get().trim();
+                                    } catch (ExecutionException e) {
+                                        e.getMessage();
+                                    } catch (InterruptedException e) {
+                                        e.getMessage();
+                                    }
+
+                                }else{//비밀번호 형식이 다르면
+                                    Toast.makeText(PasswordModify.this, "비밀번호는 영문,숫자 8-12글자로 만들어주세요", Toast.LENGTH_SHORT).show();
+                                    Log.d("main:find", "정규표현식에 걸림");
+                                    PasswordModify_pw.setText("");
+                                    PasswordModify_pw_confirm.setText("");
+                                    PasswordModify_pw.requestFocus();
+                                    return;
+                                }
+
+                            }else{  //아이디와 비밀번호가 같으면
+                                Toast.makeText(PasswordModify.this, "비밀번호는 아이디와 같을 수 없습니다", Toast.LENGTH_SHORT).show();
+                                Log.d("main:find", "아이디와 비밀번호가 같음");
+                                PasswordModify_pw.setText("");
+                                PasswordModify_pw_confirm.setText("");
+                                PasswordModify_pw.requestFocus();
+                                return;
                             }
+
+
+
+
                         } else { //변경 전 비밀번호와 변경 비밀번호가 같으면
                             Toast.makeText(PasswordModify.this, "새로운 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                             Log.d("main:find", "비밀번호가 바뀌지 않음");
@@ -89,7 +116,7 @@ public class PasswordModify extends AppCompatActivity {
                 }
 
 
-                if (state != null) {
+                if (state.equals("1")) {
 
                     Log.d("main:ModifyPw", state + "변경");
 
@@ -101,7 +128,6 @@ public class PasswordModify extends AppCompatActivity {
                     intentLogin.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intentLogin);
                     finish();
-
 
                 } else {
                     Toast.makeText(PasswordModify.this, "변경 실패했습니다 !!!", Toast.LENGTH_SHORT).show();

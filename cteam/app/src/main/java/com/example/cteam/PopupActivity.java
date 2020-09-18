@@ -1,6 +1,7 @@
 package com.example.cteam;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +15,7 @@ public class PopupActivity extends Activity {
     TextView txtText;
     Button popup_agree,popup_cancel;
     CheckBox checkBox;
+    int popup_consent=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +26,21 @@ public class PopupActivity extends Activity {
 
         //UI 객체생성
         txtText = (TextView)findViewById(R.id.txtText);
-        popup_agree=findViewById(R.id.popup_agree);
-        popup_cancel=findViewById(R.id.popup_cancel);
-        checkBox=findViewById(R.id.SignUp_agree);
+        popup_agree=findViewById(R.id.iconPopup_agree);
+        popup_cancel=findViewById(R.id.iconPopup_cancel);
+
+
+        String data=getIntent().getStringExtra("data");
 
         //동의
         popup_agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBox.setChecked(true);
+
+
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                intent.putExtra("data",1);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

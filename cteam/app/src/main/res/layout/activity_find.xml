@@ -16,7 +16,9 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/baseline_pets_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
             android:hint="이름을 입력하세요" />
@@ -28,7 +30,9 @@
             android:layout_below="@+id/Find_name"
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_call_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:inputType="phone"
             android:gravity="center_vertical"
             android:textSize="14sp"
@@ -55,22 +59,35 @@
             android:layout_below="@+id/Find_btn_idFind"
             android:layout_marginTop="30dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_person_outline_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
             android:hint="아이디를 입력하세요" />
 
-        <EditText
+        <!--    <EditText
+                android:id="@+id/Find_qs"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/Find_id"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/text_stroke"
+                android:drawableLeft="@drawable/image_medi"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:hint="비밀번호 찾기 질문을 선택하세요" />-->
+
+        <Spinner
             android:id="@+id/Find_qs"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_below="@+id/Find_id"
             android:layout_marginTop="10dp"
-            android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:background="@drawable/spinner_spinner1"
             android:gravity="center_vertical"
             android:textSize="14sp"
-            android:hint="비밀번호 찾기 질문을 선택하세요" />
+            />
 
         <EditText
             android:id="@+id/Find_qs_as"
@@ -79,7 +96,9 @@
             android:layout_below="@+id/Find_qs"
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_help_outline_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
             android:hint="비밀번호 찾기 답변을 입력하세요" />
