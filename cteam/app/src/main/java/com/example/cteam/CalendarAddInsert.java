@@ -1,12 +1,15 @@
 package com.example.cteam;
 
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +26,14 @@ public class CalendarAddInsert extends Fragment {
 
     PetSelect activity;
 
+    int selectedTime;
     CalendarDTO dto;
     Bundle bundle = null;
 
     String calendar_date;
     String calendar_icon;
     String calendar_memo;
+    String calendar_minute;
 
     ImageView CalendarAddInsert_color1, CalendarAddInsert_color2, CalendarAddInsert_color3, CalendarAddInsert_color4,
             CalendarAddInsert_color5, CalendarAddInsert_color6, CalendarAddInsert_color7, CalendarAddInsert_color8;
@@ -48,6 +53,8 @@ public class CalendarAddInsert extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_calendar_add_insert, container, false);
 
         activity = (PetSelect) getActivity();
+        //넘버피커 찾기
+        final NumberPicker np = rootView.findViewById(R.id.petbarPicker);
 
         //날짜 데이터 받는 부분 : bundle로 받은 후 bundle 비우기
         if(activity.cBundle != null){
@@ -58,6 +65,24 @@ public class CalendarAddInsert extends Fragment {
 
         //날짜 포맷 설정
         tmpDateFormat = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss");
+
+        //넘버피커
+        np.setMinValue(0);
+        np.setMaxValue(59);
+        np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+      //  setDividerColor(np, android.R.color.white );
+        np.setWrapSelectorWheel(false);
+        np.setValue(0);
+
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                calendar_minute=String.valueOf(newVal);
+                Toast.makeText(activity, calendar_minute, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        selectedTime=np.getValue();
 
         //찾기
         CalendarAddInsert_memo = (TextView) rootView.findViewById(R.id.CalendarAddInsert_memo);
@@ -631,6 +656,10 @@ public class CalendarAddInsert extends Fragment {
 
         return rootView;
 
+
+
     } //onCreateView()
+
+
 
 }

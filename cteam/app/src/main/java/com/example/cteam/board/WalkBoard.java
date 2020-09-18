@@ -61,7 +61,7 @@ public class WalkBoard extends Fragment {
         City_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
         spinner_City.setAdapter(City_spinner);
 
- /*       spinner_City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner_City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(City_spinner.getItem(i).equals("서울특별시")) {
@@ -92,7 +92,13 @@ public class WalkBoard extends Fragment {
                     });
                 }
             }
-        }); */
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
 
         // 게시판 리사이클러 뷰 찾기
         RecyclerView recyclerView = rootView.findViewById(R.id.board_list);
