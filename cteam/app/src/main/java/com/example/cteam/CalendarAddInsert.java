@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import com.example.cteam.ATask.CalListInsert;
 import com.example.cteam.Dto.CalendarDTO;
 
+import java.lang.reflect.Field;
+
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
 public class CalendarAddInsert extends Fragment {
@@ -34,6 +36,9 @@ public class CalendarAddInsert extends Fragment {
     String calendar_icon;
     String calendar_memo;
     String calendar_minute;
+    String calendar_hour;
+
+
 
     ImageView CalendarAddInsert_color1, CalendarAddInsert_color2, CalendarAddInsert_color3, CalendarAddInsert_color4,
             CalendarAddInsert_color5, CalendarAddInsert_color6, CalendarAddInsert_color7, CalendarAddInsert_color8;
@@ -70,7 +75,7 @@ public class CalendarAddInsert extends Fragment {
         np.setMinValue(0);
         np.setMaxValue(59);
         np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-      //  setDividerColor(np, android.R.color.white );
+        setDividerColor(np, android.R.color.white );
         np.setWrapSelectorWheel(false);
         np.setValue(0);
 
@@ -78,11 +83,15 @@ public class CalendarAddInsert extends Fragment {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 calendar_minute=String.valueOf(newVal);
-                Toast.makeText(activity, calendar_minute, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(activity, calendar_minute, Toast.LENGTH_SHORT).show();
             }
         });
 
         selectedTime=np.getValue();
+
+
+
+
 
         //찾기
         CalendarAddInsert_memo = (TextView) rootView.findViewById(R.id.CalendarAddInsert_memo);
@@ -645,7 +654,7 @@ public class CalendarAddInsert extends Fragment {
                     }
                     calendar_memo = CalendarAddInsert_memo.getText().toString();
 
-                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo);
+                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo,);
                     calListInsert.execute();
 
                     activity.onFragmentChange(4, null);
@@ -660,6 +669,25 @@ public class CalendarAddInsert extends Fragment {
 
     } //onCreateView()
 
+    private void setDividerColor(NumberPicker picker, int color) {
+        Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+        for (Field pf : pickerFields) {
+            if (pf.getName().equals("mSelectionDivider")) {
+                pf.setAccessible(true);
+                try {
+                    ColorDrawable colorDrawable = new ColorDrawable(color);
+                    pf.set(picker, colorDrawable);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
 
 
 }
