@@ -74,6 +74,7 @@ public class CalendarAdd extends Fragment {
         if(activity.cBundle != null){
             bundle = activity.cBundle;
             select_date = bundle.getString("select_date");
+
         }
 
         //리사이클러 뷰 셋팅
@@ -105,23 +106,23 @@ public class CalendarAdd extends Fragment {
 
         }//버튼찾기
 
-        for(int i=0; i<petBarItemsArrayList.size(); i++){
-
-            if(petBarItemsArrayList.get(i).getHour()!=null&&!petBarItemsArrayList.get(i).getHour().equals("")) {
-                int hour = Integer.parseInt(petBarItemsArrayList.get(i).getHour());
-
-                if(hour==0||hour==12){
-                    button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
-                }else if(hour==11||hour==23){
-                    button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
-                }else{
-                    button[hour].setBackgroundResource(R.drawable.barbtnclicked);
-
-                }
-
-            }
-
-        }
+//        for(int i=0; i<petBarItemsArrayList.size(); i++){
+//
+//            if(petBarItemsArrayList.get(i).getHour()!=null&&!petBarItemsArrayList.get(i).getHour().equals("")) {
+//                int hour = Integer.parseInt(petBarItemsArrayList.get(i).getHour());
+//
+//                if(hour==0||hour==12){
+//                    button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
+//                }else if(hour==11||hour==23){
+//                    button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
+//                }else{
+//                    button[hour].setBackgroundResource(R.drawable.barbtnclicked);
+//
+//                }
+//
+//            }
+//
+//        }
 
 
         //버튼 클릭시
@@ -162,22 +163,22 @@ public class CalendarAdd extends Fragment {
                     });
 
 
-                    //추가
-                    bar_add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            if(isNetworkConnected(getApplicationContext()) == true){
-                                Intent intent = new Intent(getApplicationContext(), Petbar_Add.class);
-                                intent.putExtra("time",INDEX);
-                                startActivityForResult(intent, 1);
-
-                            }else {
-                                Toast.makeText(getApplicationContext(), "인터넷이 연결되어 있지 않습니다.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+//                    //추가
+//                    bar_add.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//
+//                            if(isNetworkConnected(getApplicationContext()) == true){
+//                                Intent intent = new Intent(getApplicationContext(), Petbar_Add.class);
+//                                intent.putExtra("time",INDEX);
+//                                startActivityForResult(intent, 1);
+//
+//                            }else {
+//                                Toast.makeText(getApplicationContext(), "인터넷이 연결되어 있지 않습니다.",
+//                                        Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
 
 
 

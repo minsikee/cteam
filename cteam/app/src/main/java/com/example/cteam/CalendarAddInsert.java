@@ -654,7 +654,7 @@ public class CalendarAddInsert extends Fragment {
                     }
                     calendar_memo = CalendarAddInsert_memo.getText().toString();
 
-                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo,);
+                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo);
                     calListInsert.execute();
 
                     activity.onFragmentChange(4, null);
