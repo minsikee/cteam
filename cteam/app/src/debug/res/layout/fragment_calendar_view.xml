@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+    <ImageView
+    android:id="@+id/Calendar_icon1"
+    android:gravity="top|left"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:drawable="@drawable/icon55"/>
+
+    <ImageView
+        android:id="@+id/Calendar_icon2"
+        android:gravity="top|right"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@+id/Calendar_icon1"
+        android:drawable="@drawable/icon55"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

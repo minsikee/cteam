@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:gravity="top|left"
+        android:width="40dp"
+        android:height="40dp"
+        android:drawable="@drawable/icon55" >
+    </item>
+    <item
+        android:gravity="top|center"
+        android:width="40dp"
+        android:height="40dp"
+        android:right="40dp"
+        android:left="40dp"
+        android:drawable="@drawable/icon66" >
+    </item>
+    <item
+        android:gravity="top|right"
+        android:width="40dp"
+        android:height="40dp"
+        android:drawable="@drawable/icon77" >
+    </item>
+</layer-list>

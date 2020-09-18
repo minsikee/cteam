@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/cal_icon0"
+        android:right="40dp">
+        <bitmap
+            android:tint="#8C8C8C"
+            android:src="@drawable/sample_icon_3"
+            android:width="40dp"
+            android:height="40dp" />
+    </item>
+    <item android:left="40dp">
+        <bitmap
+            android:tint="#8C8C8C"
+            android:src="@drawable/sample_icon_4"
+            android:width="40dp"
+            android:height="40dp" />
+    </item>
+</layer-list>
