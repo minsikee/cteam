@@ -119,7 +119,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                     Log.d("main:login", loginDTO.getMember_name() + "님 로그인 되었습니다 !!!");
 
                     // 로그인 정보에 값이 있으면 로그인이 되었으므로 메인화면으로 이동
-                    Intent intent = new Intent(getApplicationContext(), PetChoose.class);
+                    Intent intent = new Intent(getApplicationContext(), PetAdd.class);
                     startActivity(intent);
 
 
