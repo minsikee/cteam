@@ -54,6 +54,8 @@ public class PetSelect extends AppCompatActivity
     public static CalendarDTO cdto = null;
     Bundle cBundle = null;
 
+    Bundle sBundle=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,7 +208,8 @@ public class PetSelect extends AppCompatActivity
             cBundle = bundle;
             getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddInsert).commit();
         } else if (state == 6) {
-            cBundle = bundle;
+            //cBundle = bundle;
+            sBundle = bundle;
             getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddUpdate).commit();
         }
     }

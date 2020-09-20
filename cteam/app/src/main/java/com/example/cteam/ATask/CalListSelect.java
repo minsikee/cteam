@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
+import com.example.cteam.Dto.PetBarItem;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 
-public class CalListSelect extends AsyncTask<Void, Void, Void> {
+public class CalListSelect extends AsyncTask<Void, Void, String> {
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
     String calendar_date;
@@ -45,7 +46,7 @@ public class CalListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected String doInBackground(Void... voids) {
         icons.clear();
         String postURL = ipConfig + "/app/calSelect";
 
@@ -91,8 +92,8 @@ public class CalListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
 
         adapter.notifyDataSetChanged();
     }
@@ -112,7 +113,7 @@ public class CalListSelect extends AsyncTask<Void, Void, Void> {
 
     public CalendarDTO readMessage(JsonReader reader) throws IOException {
 
-        String calendar_date = "", calendar_icon = "", calendar_memo = "";
+        String calendar_date = "", calendar_icon = "", calendar_memo = "",calendar_hour = "",calendar_minute = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -123,13 +124,19 @@ public class CalListSelect extends AsyncTask<Void, Void, Void> {
                 calendar_icon = reader.nextString();
             } else if (readStr.equals("calendar_memo")) {
                 calendar_memo = reader.nextString();
+            } else if (readStr.equals("calendar_hour")) {
+                calendar_hour = reader.nextString();
+            } else if (readStr.equals("calendar_minute")) {
+                calendar_minute = reader.nextString();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
 
-        return new CalendarDTO(calendar_date, calendar_icon, calendar_memo);
+        Log.d("listselect:myitem", "시간:"+calendar_hour+","+calendar_minute);
+
+        return new CalendarDTO(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
 
     }
 

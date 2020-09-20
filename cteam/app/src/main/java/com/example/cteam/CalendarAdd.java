@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,6 +72,13 @@ public class CalendarAdd extends Fragment {
 
         activity = (PetSelect) getActivity();
 
+        //수정에 데이터 보내는 부분
+
+        //Log.d(TAG, "onDayClick: " + select_date);
+        Bundle sbundle = new Bundle();
+        if(selectIcon!=null) {
+            sbundle.putSerializable("selectIcon", selectIcon);
+        }
         //날짜 데이터 받는 부분
         if(activity.cBundle != null){
             bundle = activity.cBundle;
@@ -78,18 +87,35 @@ public class CalendarAdd extends Fragment {
         }
 
         //리사이클러 뷰 셋팅
-                    icons = new ArrayList<>();
+            icons = new ArrayList<>();
             adapter = new CalendarAdapter(getActivity(), icons);
             CalendarAdd_view = (RecyclerView) rootView.findViewById(R.id.CalendarAdd_view);
             //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
             //CalendarAdd_view.setLayoutManager(layoutManager);
             CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-            CalendarAdd_view.setAdapter(adapter);
+
+//            DividerItemDecoration dividerItemDecoration =
+//                    new DividerItemDecoration(CalendarAdd_view.getContext(),new LinearLayoutManager(getContext()).getOrientation());
+//            // 리싸이클러뷰 구분선
+
+          //  CalendarAdd_view.addItemDecoration(dividerItemDecoration);
+            // 구분선 추가
+
+            RecyclerDecoration spaceDecoration = new RecyclerDecoration();
+            CalendarAdd_view.addItemDecoration(spaceDecoration);
+
+
+            //간격
+            CalendarAdd_view.addItemDecoration(new RecyclerDecoration());
+
+
+        CalendarAdd_view.setAdapter(adapter);
 
 
 
 
-            //데이터 불러옴
+
+        //데이터 불러옴
             calendar_date = select_date;
             if(isNetworkConnected(getActivity()) == true) {
                 calListSelect = new CalListSelect(icons, adapter, calendar_date);
@@ -106,23 +132,26 @@ public class CalendarAdd extends Fragment {
 
         }//버튼찾기
 
-//        for(int i=0; i<petBarItemsArrayList.size(); i++){
-//
-//            if(petBarItemsArrayList.get(i).getHour()!=null&&!petBarItemsArrayList.get(i).getHour().equals("")) {
-//                int hour = Integer.parseInt(petBarItemsArrayList.get(i).getHour());
-//
-//                if(hour==0||hour==12){
-//                    button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
-//                }else if(hour==11||hour==23){
-//                    button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
-//                }else{
-//                    button[hour].setBackgroundResource(R.drawable.barbtnclicked);
-//
-//                }
-//
-//            }
-//
-//        }
+
+        Log.d("this","사이즈"+icons.size());
+
+        for(int i=0; i<icons.size(); i++){
+
+            if(icons.get(i).getCalendar_hour()!=null&&!icons.get(i).getCalendar_hour().equals("")) {
+                int hour = Integer.parseInt(icons.get(i).getCalendar_hour().trim());
+                //Toast.makeText(activity, hour, Toast.LENGTH_SHORT).show();
+                if(hour==0||hour==12){
+                    button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
+                }else if(hour==11||hour==23){
+                    button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
+                }else{
+                    button[hour].setBackgroundResource(R.drawable.barbtnclicked);
+
+                }
+
+            }
+
+        }
 
 
         //버튼 클릭시
@@ -155,30 +184,14 @@ public class CalendarAdd extends Fragment {
                         @Override
                         public void onClick(View view) {
                             if(isNetworkConnected(getContext()) == true){
+                                bundle.putInt("time",INDEX);
                                 activity.onFragmentChange(5, bundle);
+
                             } else {
                                 Toast.makeText(getContext(), "인터넷이 연결되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
-
-//                    //추가
-//                    bar_add.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//
-//                            if(isNetworkConnected(getApplicationContext()) == true){
-//                                Intent intent = new Intent(getApplicationContext(), Petbar_Add.class);
-//                                intent.putExtra("time",INDEX);
-//                                startActivityForResult(intent, 1);
-//
-//                            }else {
-//                                Toast.makeText(getApplicationContext(), "인터넷이 연결되어 있지 않습니다.",
-//                                        Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
 
 
 
@@ -191,12 +204,12 @@ public class CalendarAdd extends Fragment {
 
 
         //버튼막기
-        CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                return;
-            }
-        });
+//        CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                return;
+//            }
+//        });
 
 
 
@@ -214,7 +227,7 @@ public class CalendarAdd extends Fragment {
                     //선택된 아이콘이 있을 때만 이동
                     if (selectIcon != null) {
                         //화면이동
-                        activity.onFragmentChange(6, null);
+                        activity.onFragmentChange(6, sbundle);
                     } else {
                         Toast.makeText(getContext(), "수정할 스케줄을 선택하세요", Toast.LENGTH_SHORT).show();
                     }
