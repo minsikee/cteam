@@ -7,11 +7,15 @@ public class CalendarDTO implements Serializable  {
     public String calendar_date;
     public String calendar_icon;
     public String calendar_memo;
+    public String calendar_hour;
+    public String calendar_minute;
 
-    public CalendarDTO(String calendar_date, String calendar_icon, String calendar_memo) {
+    public CalendarDTO(String calendar_date, String calendar_icon, String calendar_memo,String calendar_hour, String calendar_minute) {
         this.calendar_date = calendar_date;
         this.calendar_icon = calendar_icon;
         this.calendar_memo = calendar_memo;
+        this.calendar_hour=calendar_hour;
+        this.calendar_minute=calendar_minute;
     }
 
     public CalendarDTO(String calendar_icon, String calendar_memo) {
@@ -38,4 +42,19 @@ public class CalendarDTO implements Serializable  {
         this.calendar_memo = calendar_memo;
     }
 
+    public String getCalendar_hour() {
+        return calendar_hour;
+    }
+
+    public void setCalendar_hour(String calendar_hour) {
+        this.calendar_hour = calendar_hour;
+    }
+
+    public String getCalendar_minute() {
+        return calendar_minute;
+    }
+
+    public void setCalendar_minute(String calendar_minute) {
+        this.calendar_minute = calendar_minute;
+    }
 }

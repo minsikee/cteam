@@ -28,6 +28,8 @@ import com.example.cteam.Help;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import static com.example.cteam.Login.loginDTO;
+
 
 public class PetSelect extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +55,8 @@ public class PetSelect extends AppCompatActivity
     //캘린더 - IconDTO
     public static CalendarDTO cdto = null;
     Bundle cBundle = null;
+
+    Bundle sBundle=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +104,8 @@ public class PetSelect extends AppCompatActivity
         ImageView imageView = headerView.findViewById(R.id.profile);
         TextView tvloginID = headerView.findViewById(R.id.user_id);
         TextView tvloginName = headerView.findViewById(R.id.user_name);
-        tvloginID.setText(Login.loginDTO.getMember_id());
-        tvloginName.setText(Login.loginDTO.getMember_name());
+        tvloginID.setText(loginDTO.getMember_id());
+        tvloginName.setText(loginDTO.getMember_name());
         imageView.setImageResource(R.drawable.dog);
 
         getSupportFragmentManager().beginTransaction()
@@ -206,7 +210,8 @@ public class PetSelect extends AppCompatActivity
             cBundle = bundle;
             getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddInsert).commit();
         } else if (state == 6) {
-            cBundle = bundle;
+            //cBundle = bundle;
+            sBundle = bundle;
             getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddUpdate).commit();
         }
     }

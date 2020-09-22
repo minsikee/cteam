@@ -17,11 +17,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cteam.Dto.CalendarDTO;
+import com.example.cteam.PetBar;
 import com.example.cteam.R;
 
 import java.util.ArrayList;
 
 import static com.example.cteam.CalendarAdd.selectIcon;
+
+
+
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconViewHolder> {
     //로그 찍어볼 때
@@ -59,7 +63,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
 
                 selectIcon = icons.get(position);
 
-                Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_icon(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: " + selectIcon.getCalendar_memo());
+                //Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_icon(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -97,6 +102,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
         public LinearLayout parentLayout;
         public ImageView c_icon;
         public TextView c_memo;
+        public TextView c_time;
 
         public IconViewHolder(@NonNull final View iconView) {
             super(iconView);
@@ -104,6 +110,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
             parentLayout = iconView.findViewById(R.id.parentLayout);
             c_icon = iconView.findViewById(R.id.CalendarAdd_icon);
             c_memo = iconView.findViewById(R.id.CalendarAdd_memo);
+            c_time = iconView.findViewById(R.id.CalendarAdd_time);
         }
 
         public void setIcon(CalendarDTO icon) {
@@ -239,6 +246,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
             }
 
             c_memo.setText(icon.getCalendar_memo());
+            c_time.setText(icon.getCalendar_hour()+"시"+icon.getCalendar_minute()+"분");
         }
 
     }

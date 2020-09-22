@@ -205,7 +205,8 @@
             android:layout_below="@+id/CalendarAddInsert_txt3"
             android:ems="10"
             android:inputType="textPersonName"
-            android:backgroundTint="#999"/>
+            android:backgroundTint="#999"
+            android:paddingLeft="20dp"/>
         <TextView
             android:id="@+id/CalendarAddInsert_txt4"
             android:layout_width="wrap_content"
@@ -229,16 +230,16 @@
                  android:text="8시"
                 android:textSize="20dp"
             android:layout_marginLeft="60dp"
-            android:layout_marginTop="60dp"/>
+            android:layout_marginTop="40dp"/>
 
             <NumberPicker
                 android:id="@+id/petbarPicker"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_below="@+id/CalendarAddInsert_memo"
                 android:layout_toRightOf="@+id/CalendarAddInsert_Time"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="20dp"
 
                 />
             <TextView
@@ -251,13 +252,13 @@
                 android:textSize="20dp"
                 android:layout_below="@+id/CalendarAddInsert_memo"
                 android:layout_toRightOf="@+id/petbarPicker"
-                android:layout_marginTop="60dp"/>
+                android:layout_marginTop="40dp"/>
 
 
         <Button
             android:id="@+id/CalendarAddInsert_ok"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@+id/CalendarAddInsert_Time"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
@@ -270,7 +271,7 @@
         <Button
             android:id="@+id/CalendarAddInsert_cancel"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@+id/CalendarAddInsert_Time"
             android:layout_marginTop="20dp"
             android:text="취소"

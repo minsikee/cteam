@@ -19,11 +19,15 @@ public class CalListUpdate extends AsyncTask<Void, Void, Void> {
     String calendar_date;
     String calendar_icon;
     String calendar_memo;
+    String calendar_hour;
+    String calendar_minute;
 
-    public CalListUpdate(String calendar_date, String calendar_icon, String calendar_memo ) {
+    public CalListUpdate(String calendar_date, String calendar_icon, String calendar_memo,String calendar_hour,String calendar_minute ) {
         this.calendar_date = calendar_date;
         this.calendar_icon = calendar_icon;
         this.calendar_memo = calendar_memo;
+        this.calendar_hour = calendar_hour;
+        this.calendar_minute = calendar_minute;
     }
 
     @Override
@@ -38,12 +42,14 @@ public class CalListUpdate extends AsyncTask<Void, Void, Void> {
             builder.addTextBody("calendar_date", calendar_date, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("calendar_icon", calendar_icon, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("calendar_memo", calendar_memo, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("calendar_hour", calendar_hour, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("calendar_minute", calendar_minute, ContentType.create("Multipart/related", "UTF-8"));
 
             postURL = ipConfig + "/app/calUpdate";
 
             // 전송
             //InputStream inputStream = null;
-            HttpClient httpClient = AndroidHttpClient.newInstance("Android");
+            HttpClient httpClient = AndroidHttpClient.newInstance("cteam");
             HttpPost httpPost = new HttpPost(postURL);
             httpPost.setEntity(builder.build());
             HttpResponse httpResponse = httpClient.execute(httpPost);
