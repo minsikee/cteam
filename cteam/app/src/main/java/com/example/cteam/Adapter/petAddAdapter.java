@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cteam.Dto.MyItem;
+import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.R;
 
 import java.util.ArrayList;
@@ -24,17 +24,17 @@ public class petAddAdapter extends BaseAdapter {
     }
 
     Context context;
-    ArrayList<MyItem> dtos;
+    ArrayList<PetDTO> dtos;
 
     LayoutInflater inflater;
 
-    public petAddAdapter(Context context, ArrayList<MyItem> dtos) {
+    public petAddAdapter(Context context, ArrayList<PetDTO> dtos) {
         this.context = context;
         this.dtos = dtos;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    public void addDto(MyItem dto){
+    public void addDto(PetDTO dto){
         dtos.add(dto);
     }
 
@@ -70,7 +70,7 @@ public class petAddAdapter extends BaseAdapter {
             viewHolder.tv_weigth = view.findViewById(R.id.TV_Weight);
             viewHolder.imageIcon = view.findViewById(R.id.imageView);
             viewHolder.TV_Gender = view.findViewById(R.id.TV_Gender);
-            viewHolder.UpdateBtn = view.findViewById(R.id.UpdateBtn);
+            viewHolder.UpdateBtn = view.findViewById(R.id.signBtn);
             viewHolder.signBtn = view.findViewById(R.id.signBtn);
 
             view.setTag(viewHolder);
@@ -78,7 +78,7 @@ public class petAddAdapter extends BaseAdapter {
             viewHolder = (PetAddViewHolder) view.getTag();
         }
 
-        MyItem dto = dtos.get(position);
+        PetDTO dto = dtos.get(position);
         String name = dto.getName();
         String age = dto.getAge();
         String weigth = dto.getWeight();

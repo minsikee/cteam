@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.ListUpdate;
 import com.example.cteam.Common.CommonMethod;
-import com.example.cteam.Dto.MyItem;
+import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.PetAdd;
 import com.example.cteam.R;
 
@@ -74,7 +74,7 @@ public class petUpdate extends AppCompatActivity {
         petPhoto = findViewById(R.id.petPhoto);
 
         Intent intent = getIntent();
-        MyItem selItem = (MyItem) intent.getSerializableExtra("selItem");
+        PetDTO selItem = (PetDTO) intent.getSerializableExtra("selItem");
 
         name = selItem.getName();
         age = selItem.getAge();

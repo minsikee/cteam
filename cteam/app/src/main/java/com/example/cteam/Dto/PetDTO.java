@@ -6,14 +6,14 @@ import java.io.Serializable;
  * Created by LG on 2017-02-08.
  */
 
-public class MyItem implements Serializable {
+public class PetDTO implements Serializable {
     public String name;
     public String age;
     public String weight;
     public String gender;
     public String image_path;
 
-    public MyItem(String name, String age, String weight, String gender, String image_path) {
+    public PetDTO(String name, String age, String weight, String gender, String image_path) {
         this.name = name;
         this.age = age;
         this.weight = weight;
@@ -21,7 +21,7 @@ public class MyItem implements Serializable {
         this.image_path = image_path;
     }
 
-    public MyItem() {
+    public PetDTO() {
 
     }
 
