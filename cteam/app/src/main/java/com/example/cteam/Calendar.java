@@ -130,29 +130,31 @@ public class Calendar extends Fragment {
         calendar3.add(java.util.Calendar.DAY_OF_MONTH, 0);
         events.add(new EventDay(calendar3, R.drawable.cal_3icons));
 
+        /*
         //날짜 포맷 변경
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh");
 
         String date1 = icons.get(0).calendar_date;
         String date2 = format.format(calendar3.getTime());
 
-        Date currentTime = new Date();
-        String current = format.format(currentTime);
+        Date date = new Date();
+        String strDate = format.format(date);
 
         try {
             Date firstDate = format.parse(date1);
             Date secondDate = format.parse(date2);
 
-            long calDate = firstDate.getTime() - secondDate.getTime();
-            long calDates = calDate / (24*60*60*1000);
 
-            calDates = Math.abs(calDates);
-
-            Log.d("main:Calendar", "차이: " + calDates);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        long calDate = firstDate.getTime() - secondDate.getTime();
+        long calDates = calDate / (24*60*60*1000);
 
+        calDates = Math.abs(calDates);
+
+        Log.d("main:Calendar", "차이: " + calDates);
+        */
 
         /*
         if(icons.get(0).calendar_date != null) {
