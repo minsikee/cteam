@@ -21,6 +21,7 @@ import com.example.cteam.ATask.CalListInsert;
 import com.example.cteam.Dto.CalendarDTO;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
@@ -37,7 +38,7 @@ public class CalendarAddInsert extends Fragment {
     String calendar_memo;
     String calendar_minute;
     String calendar_hour;
-
+    TextView CalendarAddInsert_Time;
 
 
     ImageView CalendarAddInsert_color1, CalendarAddInsert_color2, CalendarAddInsert_color3, CalendarAddInsert_color4,
@@ -65,6 +66,7 @@ public class CalendarAddInsert extends Fragment {
         if(activity.cBundle != null){
             bundle = activity.cBundle;
             select_date = bundle.getString("select_date");
+            calendar_hour= String.valueOf(bundle.getInt("time"));
             activity.cBundle = null;
         }
 
@@ -83,6 +85,7 @@ public class CalendarAddInsert extends Fragment {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 calendar_minute=String.valueOf(newVal);
+
                // Toast.makeText(activity, calendar_minute, Toast.LENGTH_SHORT).show();
             }
         });
@@ -90,6 +93,9 @@ public class CalendarAddInsert extends Fragment {
         selectedTime=np.getValue();
 
 
+        CalendarAddInsert_Time=rootView.findViewById(R.id.CalendarAddInsert_Time);
+
+        CalendarAddInsert_Time.setText(calendar_hour+"시");
 
 
 
@@ -654,7 +660,7 @@ public class CalendarAddInsert extends Fragment {
                     }
                     calendar_memo = CalendarAddInsert_memo.getText().toString();
 
-                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo);
+                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
                     calListInsert.execute();
 
                     activity.onFragmentChange(4, null);

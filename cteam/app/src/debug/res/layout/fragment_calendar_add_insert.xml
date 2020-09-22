@@ -205,7 +205,8 @@
             android:layout_below="@+id/CalendarAddInsert_txt3"
             android:ems="10"
             android:inputType="textPersonName"
-            android:backgroundTint="#999"/>
+            android:backgroundTint="#999"
+            android:paddingLeft="20dp"/>
         <TextView
             android:id="@+id/CalendarAddInsert_txt4"
             android:layout_width="wrap_content"
