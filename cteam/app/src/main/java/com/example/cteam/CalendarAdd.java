@@ -2,7 +2,9 @@ package com.example.cteam;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +26,7 @@ import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
@@ -45,6 +49,25 @@ public class CalendarAdd extends Fragment {
 
     String select_date = "";
 
+    Button button[] = new Button[24];
+
+    Integer[] Rid_button = {
+
+            R.id.barBtn0, R.id.barBtn1, R.id.barBtn2, R.id.barBtn3, R.id.barBtn4,
+
+            R.id.barBtn5, R.id.barBtn6, R.id.barBtn7, R.id.barBtn8, R.id.barBtn9,
+
+            R.id.barBtn10, R.id.barBtn11, R.id.barBtn12, R.id.barBtn13, R.id.barBtn14,
+
+            R.id.barBtn15, R.id.barBtn16, R.id.barBtn17, R.id.barBtn18, R.id.barBtn19,
+
+            R.id.barBtn20, R.id.barBtn21, R.id.barBtn22, R.id.barBtn23
+
+    };
+
+    Bundle sbundle;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,39 +79,143 @@ public class CalendarAdd extends Fragment {
         if(activity.cBundle != null){
             bundle = activity.cBundle;
             select_date = bundle.getString("select_date");
+
         }
 
         //리사이클러 뷰 셋팅
-                    icons = new ArrayList<>();
+            icons = new ArrayList<>();
             adapter = new CalendarAdapter(getActivity(), icons);
             CalendarAdd_view = (RecyclerView) rootView.findViewById(R.id.CalendarAdd_view);
             //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
             //CalendarAdd_view.setLayoutManager(layoutManager);
             CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-            CalendarAdd_view.setAdapter(adapter);
 
-            //데이터 불러옴
+//            DividerItemDecoration dividerItemDecoration =
+//                    new DividerItemDecoration(CalendarAdd_view.getContext(),new LinearLayoutManager(getContext()).getOrientation());
+//            // 리싸이클러뷰 구분선
+
+          //  CalendarAdd_view.addItemDecoration(dividerItemDecoration);
+            // 구분선 추가
+
+            RecyclerDecoration spaceDecoration = new RecyclerDecoration();
+            CalendarAdd_view.addItemDecoration(spaceDecoration);
+
+
+            //간격
+            CalendarAdd_view.addItemDecoration(new RecyclerDecoration());
+
+
+        CalendarAdd_view.setAdapter(adapter);
+
+
+
+
+
+        //데이터 불러옴
             calendar_date = select_date;
             if(isNetworkConnected(getActivity()) == true) {
                 calListSelect = new CalListSelect(icons, adapter, calendar_date);
-                calListSelect.execute();
+                try {
+                    calListSelect.execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } else {
                 Toast.makeText(getActivity(), "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
 
-        //추가 클릭 > CalendarInsert로 이동
-        CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
-        CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isNetworkConnected(getContext()) == true){
-                    activity.onFragmentChange(5, bundle);
-                } else {
-                    Toast.makeText(getContext(), "인터넷이 연결되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+            //바 버튼찾기
+        for(int i=0;i<=23; i++){
+
+            button[i] = rootView.findViewById(Rid_button[i]);
+
+        }//버튼찾기
+
+
+        Log.d("main:this","사이즈"+icons.size());
+
+
+
+        for(int i=0; i<icons.size(); i++){
+
+            if(icons.get(i).getCalendar_hour()!=null&&!icons.get(i).getCalendar_hour().equals("")) {
+                int hour = Integer.parseInt(icons.get(i).getCalendar_hour().trim());
+                //Toast.makeText(activity, hour, Toast.LENGTH_SHORT).show();
+                if(hour==0||hour==12){
+                    button[hour].setBackgroundResource(R.drawable.barbtnleftclicked);
+                }else if(hour==11||hour==23){
+                    button[hour].setBackgroundResource(R.drawable.barbtnrightclicked);
+                }else{
+                    button[hour].setBackgroundResource(R.drawable.barbtnclicked);
+
                 }
+
             }
-        });
+
+        }
+
+
+        //버튼 클릭시
+        for(int i=0; i<button.length; i++){
+
+            final int INDEX;
+
+            INDEX = i;
+
+            button[INDEX].setOnClickListener(new View.OnClickListener() {
+
+                @Override
+
+                public void onClick(View v) {
+
+
+                    /*  if(INDEX==0||INDEX==12){
+                    button[INDEX].setBackgroundResource(R.drawable.barbtnleftclicked);
+                }else if(INDEX==11||INDEX==23){
+                    button[INDEX].setBackgroundResource(R.drawable.barbtnrightclicked);
+                    }else{
+                    button[INDEX].setBackgroundResource(R.drawable.barbtnclicked);
+
+                }*/
+
+
+                    //추가 클릭 > CalendarInsert로 이동
+                    CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
+                    CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(isNetworkConnected(getContext()) == true){
+                                bundle.putInt("time",INDEX);
+                                activity.onFragmentChange(5, bundle);
+
+                            } else {
+                                Toast.makeText(getContext(), "인터넷이 연결되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+
+
+                }
+
+            });
+
+        }//버튼클릭시
+
+
+        //버튼막기
+//        CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                return;
+//            }
+//        });
+
+
 
         //수정 > CalendarUpdate로 이동
         CalendarAdd_update = rootView.findViewById(R.id.CalendarAdd_update);
@@ -99,6 +226,12 @@ public class CalendarAdd extends Fragment {
                     //선택된 아이콘이 있을 때만 이동
                     if (selectIcon != null) {
                         //화면이동
+                        //수정에 데이터 보내는 부분
+                        /*sbundle = new Bundle();
+                        sbundle.putSerializable("selectIcon", selectIcon);
+
+                        Log.d("main:Calendaradd", "onClick: " + selectIcon.getCalendar_memo());*/
+
                         activity.onFragmentChange(6, null);
                     } else {
                         Toast.makeText(getContext(), "수정할 스케줄을 선택하세요", Toast.LENGTH_SHORT).show();

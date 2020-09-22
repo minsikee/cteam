@@ -22,8 +22,17 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:background="@mipmap/ic_launcher_round" />
+            android:src="@drawable/dogface" />
 
+        <Button
+            android:id="@+id/Signup_BtnPhotoAdd"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignRight="@id/SignUp_img"
+            android:layout_above="@+id/SignUp_name"
+            android:background="@drawable/outline_photo_camera_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            />
         <EditText
             android:id="@+id/SignUp_name"
             android:layout_width="250dp"
@@ -31,22 +40,43 @@
             android:layout_below="@+id/SignUp_img"
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/baseline_pets_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:hint="이름을 입력하세요" />
+            android:hint="이름을 입력하세요"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/SignUp_id"
-            android:layout_width="250dp"
+            android:layout_width="170dp"
             android:layout_height="40dp"
             android:layout_below="@+id/SignUp_name"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_person_outline_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:hint="아이디를 입력하세요" />
+            android:hint="아이디 입력"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/Signup_idCheck"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/SignUp_name"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/SignUp_id"
+            android:background="@drawable/login_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:text="중복확인"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+
+            />
+
 
         <EditText
             android:id="@+id/SignUp_pw"
@@ -55,11 +85,13 @@
             android:layout_below="@+id/SignUp_id"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_lock_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
+            android:hint="비밀번호를 입력하세요"
             android:inputType="textPassword"
-            android:textSize="14sp"
-            android:hint="비밀번호를 입력하세요" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/SignUp_pw_confirm"
@@ -68,13 +100,15 @@
             android:layout_below="@+id/SignUp_pw"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_lock_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="비밀번호 확인"
             android:inputType="textPassword"
             android:textSize="14sp" />
 
-        <EditText
+        <!--<EditText
             android:id="@+id/SignUp_qs"
             android:layout_width="250dp"
             android:layout_height="40dp"
@@ -84,7 +118,19 @@
             android:drawableLeft="@drawable/image_medi"
             android:gravity="center_vertical"
             android:textSize="14sp"
-            android:hint="비밀번호 찾기 질문을 선택하세요" />
+            android:hint="비밀번호 찾기 질문을 선택하세요" />-->
+        <Spinner
+            android:id="@+id/SignUp_qs"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/SignUp_pw_confirm"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/spinner_spinner1"
+
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            />
+
 
         <EditText
             android:id="@+id/SignUp_qs_as"
@@ -93,10 +139,12 @@
             android:layout_below="@+id/SignUp_qs"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_help_outline_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:hint="비밀번호 찾기 답을 입력하세요" />
+            android:hint="비밀번호 찾기 답을 입력하세요"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/SignUp_phonenum"
@@ -105,11 +153,13 @@
             android:layout_below="@+id/SignUp_qs_as"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
-            android:drawableLeft="@drawable/image_medi"
+            android:drawableLeft="@drawable/outline_call_black_18dp"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="5dp"
             android:gravity="center_vertical"
+            android:hint="연락처를 입력하세요"
             android:inputType="phone"
-            android:textSize="14sp"
-            android:hint="연락처를 입력하세요" />
+            android:textSize="14sp" />
 
         <CheckBox
             android:id="@+id/SignUp_agree"

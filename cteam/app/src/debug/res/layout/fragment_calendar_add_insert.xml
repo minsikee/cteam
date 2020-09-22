@@ -9,16 +9,28 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#5E73E6"
+            android:text="일정추가"
+            android:textSize="20dp"
+            android:textColor="#FFF"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/CalendarAddInsert_txt1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/title"
             android:layout_marginBottom="10dp"
             android:text="아이콘 색상 선택"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginLeft="15dp"/>
 
         <ImageView
             android:id="@+id/CalendarAddInsert_color1"
@@ -26,7 +38,8 @@
             android:layout_height="50dp"
             android:layout_below="@+id/CalendarAddInsert_txt1"
             android:src="@drawable/ic_dot"
-            app:tint="#FF0000" />
+            app:tint="#FF0000"
+            android:layout_marginLeft="7dp"/>
 
         <ImageView
             android:id="@+id/CalendarAddInsert_color2"
@@ -99,7 +112,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:text="아이콘 선택"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginLeft="15dp"/>
 
         <ImageView
             android:id="@+id/CalendarAddInsert_icon1"
@@ -107,7 +121,8 @@
             android:layout_height="50dp"
             android:layout_below="@+id/CalendarAddInsert_txt2"
             android:src="@drawable/sample_icon_1"
-            app:tint="#000000" />
+            app:tint="#000000"
+            android:layout_marginLeft="7dp"/>
 
         <ImageView
             android:id="@+id/CalendarAddInsert_icon2"
@@ -180,7 +195,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:text="메모"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginLeft="15dp"/>
 
         <EditText
             android:id="@+id/CalendarAddInsert_memo"
@@ -188,24 +204,84 @@
             android:layout_height="50dp"
             android:layout_below="@+id/CalendarAddInsert_txt3"
             android:ems="10"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/CalendarAddInsert_cancel"
+            android:inputType="textPersonName"
+            android:backgroundTint="#999"
+            android:paddingLeft="20dp"/>
+        <TextView
+            android:id="@+id/CalendarAddInsert_txt4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/CalendarAddInsert_memo"
             android:layout_marginTop="20dp"
-            android:text="취소" />
+            android:layout_marginBottom="10dp"
+            android:text="시간"
+            android:textSize="20sp"
+            android:layout_marginLeft="15dp"
+
+            />
+        <TextView
+                android:id="@+id/CalendarAddInsert_Time"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal|center_vertical"
+              android:layout_below="@+id/CalendarAddInsert_memo"
+
+                 android:text="8시"
+                android:textSize="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="40dp"/>
+
+            <NumberPicker
+                android:id="@+id/petbarPicker"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_below="@+id/CalendarAddInsert_memo"
+                android:layout_toRightOf="@+id/CalendarAddInsert_Time"
+                android:layout_marginTop="20dp"
+
+                />
+            <TextView
+                android:id="@+id/CalendarAddInsert_minute"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="분"
+                android:textSize="20dp"
+                android:layout_below="@+id/CalendarAddInsert_memo"
+                android:layout_toRightOf="@+id/petbarPicker"
+                android:layout_marginTop="40dp"/>
+
 
         <Button
             android:id="@+id/CalendarAddInsert_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/CalendarAddInsert_memo"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/CalendarAddInsert_Time"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/CalendarAddInsert_cancel"
-            android:text="확인" />
+            android:layout_marginLeft="50dp"
+            android:text="등록"
+            android:background="#5E73E6"
+            android:textSize="20dp"
+            android:textColor="#FFF"/>
+
+        <Button
+            android:id="@+id/CalendarAddInsert_cancel"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/CalendarAddInsert_Time"
+            android:layout_marginTop="20dp"
+            android:text="취소"
+            android:layout_toRightOf="@id/CalendarAddInsert_ok"
+            android:textSize="20dp"
+            android:background="#FFF"
+            android:textColor="#5E73E6"
+           />
+
+
 
     </RelativeLayout>
 

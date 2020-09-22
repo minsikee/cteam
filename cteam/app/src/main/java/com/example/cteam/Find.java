@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,14 +17,19 @@ import com.example.cteam.ATask.FindPwSelect;
 import com.example.cteam.ATask.FindSelect;
 import com.example.cteam.ATask.LoginSelect;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class Find extends AppCompatActivity {
     private static final String TAG = "mainFind";
-    
+
     String id_return = "", pw_return = "";
     Button  Find_btn_idFind, Find_btn_pwFind,Find_btn_login, Find_btn_signup;
-    TextView Find_name, Find_phonenum, Find_id, Find_qs, Find_as;
+    TextView Find_name, Find_phonenum, Find_id, Find_as;
+    Spinner Find_qs_spinner;
+    SpinnerAdapter spinnerAdapter;
+    String Find_qs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +39,44 @@ public class Find extends AppCompatActivity {
         Find_name=findViewById(R.id.Find_name);
         Find_phonenum=findViewById(R.id.Find_phonenum);
         Find_id=findViewById(R.id.Find_id);
-        Find_qs=findViewById(R.id.Find_qs);
         Find_as=findViewById(R.id.Find_qs_as);
+
+
+        //데이터
+        List<String> data = new ArrayList<>();
+        data.add("롤모델의 이름"); data.add("당신의 꿈"); data.add("사랑하는 펫의 이름"); data.add("펫을 데려온 날짜"); data.add("인상깊게 본 영화의 제목");
+        data.add("비밀번호 찾기 힌트");
+
+
+        //UI생성
+        Find_qs_spinner = (Spinner)findViewById(R.id.Find_qs);
+
+        //Adapter
+        spinnerAdapter = new com.example.cteam.Adapter.SpinnerAdapter(this,data);
+
+        //Adapter 적용
+        Find_qs_spinner.setAdapter(spinnerAdapter);
+
+        //힌트 나타나게
+        Find_qs_spinner.setSelection(5);
+
+
+        Find_qs= (String)Find_qs_spinner.getSelectedItem();
+
+        //스피너가 선택한 값 받게
+        Find_qs_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                Find_qs=(String)parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
 
         //아이디 찾기 버튼 > 팝업창
@@ -48,7 +92,7 @@ public class Find extends AppCompatActivity {
                     FindSelect findSelect = new FindSelect(member_name, member_phonenum);
                     try {
 
-                       id_return = findSelect.execute().get().trim();
+                        id_return = findSelect.execute().get().trim();
 
                         Log.d(TAG, "onClick: " + id_return);
                     } catch (ExecutionException e) {
@@ -93,10 +137,12 @@ public class Find extends AppCompatActivity {
         Find_btn_pwFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Find_id.getText().toString().length() != 0 && Find_qs.getText().toString().length() != 0&& Find_as.getText().toString().length() != 0) {
+                if (Find_id.getText().toString().length() != 0 && Find_qs.length() != 0&& Find_as.getText().toString().length() != 0) {
                     String member_id = Find_id.getText().toString();
-                    String member_question = Find_qs.getText().toString();
+                    String member_question = Find_qs;
                     String member_answer = Find_as.getText().toString();
+
+                    Toast.makeText(Find.this, Find_qs, Toast.LENGTH_SHORT).show();
 
                     FindPwSelect findPwSelect = new FindPwSelect(member_id, member_question,member_answer);
                     try {
@@ -130,7 +176,6 @@ public class Find extends AppCompatActivity {
                     Toast.makeText(Find.this, "일치하는 회원가입 정보가 없습니다", Toast.LENGTH_SHORT).show();
                     Log.d("main:find", "정보가 입력안됨 !!!");
                     Find_id.setText("");
-                    Find_qs.setText("");
                     Find_as.setText("");
                     Find_id.requestFocus();
                 }
