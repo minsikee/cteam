@@ -22,6 +22,7 @@ import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.example.cteam.ATask.CalcalSelect;
 import com.example.cteam.Dto.CalendarDTO;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -79,13 +80,10 @@ public class Calendar extends Fragment {
             @Override
             public void onDayClick(EventDay eventDay) {
                 //날짜 데이터 보내는 부분
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 String select_date = format.format(eventDay.getCalendar().getTime());
-                //String select_date = eventDay.getCalendar().getTime().toString();
                 Bundle bundle = new Bundle();
                 bundle.putString("select_date", select_date);
-
-                Log.d("main:Calendar", "onCreateView: " + select_date);
 
                 //이벤트 추가 버튼 등장
                 Calendar_event = rootView.findViewById(R.id.Calendar_event);
@@ -133,23 +131,27 @@ public class Calendar extends Fragment {
         events.add(new EventDay(calendar3, R.drawable.cal_3icons));
 
         //날짜 포맷 변경
-        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh");
 
-        //String firstDate = icons.get(3).calendar_date;
-        //String secondDate = format.format(calendar3.getTime());
-/*
-        Date tempDate = new Date();
-        firstDate = new DecimalFormat("0000").format(tempDate.getYear()) + "-" +
-                new DecimalFormat("00").format(tempDate.getMonth() + 1) + "-" +
-                new DecimalFormat("00").format(tempDate.getDay());
-*/
-        //Log.d("main:Calendar", "onCreateView: " + select_date);
+        String date1 = icons.get(0).calendar_date;
+        String date2 = format.format(calendar3.getTime());
 
+        Date currentTime = new Date();
+        String current = format.format(currentTime);
 
+        try {
+            Date firstDate = format.parse(date1);
+            Date secondDate = format.parse(date2);
 
-        //long calDate = firstDate.getTime() - secondDate.getTime();
-            //long calDates = calDate / (24*60*60*1000);
+            long calDate = firstDate.getTime() - secondDate.getTime();
+            long calDates = calDate / (24*60*60*1000);
 
+            calDates = Math.abs(calDates);
+
+            Log.d("main:Calendar", "차이: " + calDates);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         /*
