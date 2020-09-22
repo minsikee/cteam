@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cteam.ATask.CalListUpdate;
 import com.example.cteam.Dto.CalendarDTO;
@@ -127,6 +128,10 @@ public class CalendarAddUpdate extends Fragment {
             calendar_minute=selectIcon.getCalendar_minute();
 
             Log.d("main:date", "onCreateView:date 값"+calendar_date);
+
+
+            //메모값 초기화
+            CalendarAddUpdate_memo.setText("");
 
             // 메모에 가져온 값 써 넣기
             CalendarAddUpdate_memo.setText(calendar_memo);
@@ -1554,9 +1559,13 @@ public class CalendarAddUpdate extends Fragment {
         //취소 > 저장하지 않고 CalendarAdd로 이동
         CalendarAddUpdate_cancel = rootView.findViewById(R.id.CalendarAddUpdate_cancel);
         CalendarAddUpdate_cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                refresh();
                 activity.onFragmentChange(4, null);
+
+
             }
         });
 
@@ -1719,6 +1728,7 @@ public class CalendarAddUpdate extends Fragment {
                     CalListUpdate calListUpdate = new CalListUpdate(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
                     calListUpdate.execute();
 
+                    refresh();
                     activity.onFragmentChange(4, null);
                 }
                 //Toast.makeText(getContext(), calendar_icon, Toast.LENGTH_SHORT).show();
@@ -1750,4 +1760,9 @@ public class CalendarAddUpdate extends Fragment {
             }
         }
     }
+
+    private void refresh() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.detach(this).attach(this).commit();
+    } //refresh()
 }
