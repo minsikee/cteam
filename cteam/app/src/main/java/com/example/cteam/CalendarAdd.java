@@ -26,6 +26,7 @@ import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
@@ -64,6 +65,8 @@ public class CalendarAdd extends Fragment {
 
     };
 
+    Bundle sbundle;
+
 
     @Nullable
     @Override
@@ -72,13 +75,6 @@ public class CalendarAdd extends Fragment {
 
         activity = (PetSelect) getActivity();
 
-        //수정에 데이터 보내는 부분
-
-        //Log.d(TAG, "onDayClick: " + select_date);
-        Bundle sbundle = new Bundle();
-        if(selectIcon!=null) {
-            sbundle.putSerializable("selectIcon", selectIcon);
-        }
         //날짜 데이터 받는 부분
         if(activity.cBundle != null){
             bundle = activity.cBundle;
@@ -119,7 +115,13 @@ public class CalendarAdd extends Fragment {
             calendar_date = select_date;
             if(isNetworkConnected(getActivity()) == true) {
                 calListSelect = new CalListSelect(icons, adapter, calendar_date);
-                calListSelect.execute();
+                try {
+                    calListSelect.execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } else {
                 Toast.makeText(getActivity(), "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
@@ -133,7 +135,9 @@ public class CalendarAdd extends Fragment {
         }//버튼찾기
 
 
-        Log.d("this","사이즈"+icons.size());
+        Log.d("main:this","사이즈"+icons.size());
+
+
 
         for(int i=0; i<icons.size(); i++){
 
@@ -213,11 +217,6 @@ public class CalendarAdd extends Fragment {
 
 
 
-
-
-
-
-
         //수정 > CalendarUpdate로 이동
         CalendarAdd_update = rootView.findViewById(R.id.CalendarAdd_update);
         CalendarAdd_update.setOnClickListener(new View.OnClickListener() {
@@ -227,7 +226,13 @@ public class CalendarAdd extends Fragment {
                     //선택된 아이콘이 있을 때만 이동
                     if (selectIcon != null) {
                         //화면이동
-                        activity.onFragmentChange(6, sbundle);
+                        //수정에 데이터 보내는 부분
+                        /*sbundle = new Bundle();
+                        sbundle.putSerializable("selectIcon", selectIcon);
+
+                        Log.d("main:Calendaradd", "onClick: " + selectIcon.getCalendar_memo());*/
+
+                        activity.onFragmentChange(6, null);
                     } else {
                         Toast.makeText(getContext(), "수정할 스케줄을 선택하세요", Toast.LENGTH_SHORT).show();
                     }

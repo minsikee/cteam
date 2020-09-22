@@ -63,7 +63,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
 
                 selectIcon = icons.get(position);
 
-                Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_icon(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: " + selectIcon.getCalendar_memo());
+                //Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_icon(), Toast.LENGTH_SHORT).show();
             }
         });
 

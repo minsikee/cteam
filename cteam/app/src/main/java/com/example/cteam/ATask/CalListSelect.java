@@ -107,6 +107,7 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
             }
             reader.endArray();
         } finally {
+            Log.d("main:Callistselect", "readJsonStream: " + icons.size());
             reader.close();
         }
     }
@@ -134,7 +135,7 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
         }
         reader.endObject();
 
-        Log.d("listselect:myitem", "시간:"+calendar_hour+","+calendar_minute);
+        Log.d("listselect:myitem", "날자:"+calendar_date+","+calendar_minute);
 
         return new CalendarDTO(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
 
