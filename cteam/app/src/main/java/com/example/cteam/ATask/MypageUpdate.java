@@ -2,7 +2,10 @@ package com.example.cteam.ATask;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.JsonReader;
+import android.util.Log;
 
+import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.R;
 
 import org.apache.http.HttpEntity;
@@ -20,6 +23,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import static com.example.cteam.Common.CommonMethod.ipConfig;
+import static com.example.cteam.Login.loginDTO;
 
 public class MypageUpdate extends AsyncTask<Void, Void, String>{
         String member_id;
@@ -38,6 +42,7 @@ public class MypageUpdate extends AsyncTask<Void, Void, String>{
         this.member_answer = member_answer;
 
     }
+
     String state = "";
 
     HttpClient httpClient;
@@ -73,18 +78,6 @@ public class MypageUpdate extends AsyncTask<Void, Void, String>{
             inputStream = httpEntity.getContent();
 
 
-
-            // 응답
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null){
-                stringBuilder.append(line + "\n");
-            }
-            state = stringBuilder.toString();
-
-            inputStream.close();
-
         }  catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -105,4 +98,5 @@ public class MypageUpdate extends AsyncTask<Void, Void, String>{
 
         return state;
     }
+
 }

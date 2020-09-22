@@ -71,7 +71,7 @@ public class PetSelect extends AppCompatActivity
                 0, 0);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
+        myPage = new MyPage();
         petChoose = new PetChoose();
         pw_myPage_fragment = new Pw_MyPage_Fragment();
         myPage = new MyPage();
