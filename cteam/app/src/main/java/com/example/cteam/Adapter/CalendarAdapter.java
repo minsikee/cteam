@@ -37,6 +37,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
     public CalendarAdapter(Context context, ArrayList<CalendarDTO> icons) {
         this.context = context;
         this.icons = icons;
+        selectIcon=null;
     }
 
     @NonNull
@@ -64,7 +65,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
                 selectIcon = icons.get(position);
 
                 Log.d(TAG, "onClick: " + selectIcon.getCalendar_memo());
-                //Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_icon(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_memo(), Toast.LENGTH_SHORT).show();
             }
         });
 

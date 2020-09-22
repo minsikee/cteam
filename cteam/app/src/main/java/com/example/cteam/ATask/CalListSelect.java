@@ -114,7 +114,7 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
 
     public CalendarDTO readMessage(JsonReader reader) throws IOException {
 
-        String calendar_date = "", calendar_icon = "", calendar_memo = "",calendar_hour = "",calendar_minute = "";
+        String calendar_date = "", calendar_icon = "", calendar_memo = "",calendar_hour = "",calendar_minute = "",calendar_id = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -129,7 +129,9 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
                 calendar_hour = reader.nextString();
             } else if (readStr.equals("calendar_minute")) {
                 calendar_minute = reader.nextString();
-            } else {
+            } else if (readStr.equals("calendar_id")) {
+                calendar_id = reader.nextString();
+            }   else {
                 reader.skipValue();
             }
         }
@@ -137,7 +139,7 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
 
         Log.d("listselect:myitem", "날자:"+calendar_date+","+calendar_minute);
 
-        return new CalendarDTO(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
+        return new CalendarDTO(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute,calendar_id);
 
     }
 

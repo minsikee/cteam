@@ -41,6 +41,7 @@ public class CalendarAddUpdate extends Fragment {
     String calendar_memo;
     String calendar_minute;
     String calendar_hour;
+    String calendar_id;
 
     NumberPicker CalendarAddUpdate_Time;
     TextView CalendarAddUpdate_memo;
@@ -76,6 +77,7 @@ public class CalendarAddUpdate extends Fragment {
     java.text.SimpleDateFormat tmpDateFormat;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,6 +91,8 @@ public class CalendarAddUpdate extends Fragment {
             selectIcon= (CalendarDTO) bundle.getSerializable("selectIcon");
             activity.sBundle = null;
         }*/
+        //refresh();
+
 
         //메모찾기
         CalendarAddUpdate_memo = rootView.findViewById(R.id.CalendarAddUpdate_memo);
@@ -115,9 +119,6 @@ public class CalendarAddUpdate extends Fragment {
         CalendarAddUpdate_icon8=rootView.findViewById(R.id.CalendarAddUpdate_icon8);
 
 
-
-
-
         if(selectIcon != null){
             Log.d("main:CalAddUpdate", "onCreateView: " + selectIcon.getCalendar_memo());
 
@@ -126,12 +127,13 @@ public class CalendarAddUpdate extends Fragment {
             calendar_memo=selectIcon.getCalendar_memo();
             calendar_hour=selectIcon.getCalendar_hour();
             calendar_minute=selectIcon.getCalendar_minute();
+            calendar_id=selectIcon.getCalendar_id();
 
-            Log.d("main:date", "onCreateView:date 값"+calendar_date);
+            Log.d("main:date", "onCreateView:memo 값"+calendar_memo);
 
 
             //메모값 초기화
-            CalendarAddUpdate_memo.setText("");
+            //CalendarAddUpdate_memo.setText("");
 
             // 메모에 가져온 값 써 넣기
             CalendarAddUpdate_memo.setText(calendar_memo);
@@ -1562,12 +1564,13 @@ public class CalendarAddUpdate extends Fragment {
 
             @Override
             public void onClick(View view) {
-                refresh();
+                CalendarAddUpdate_memo.setText("");
                 activity.onFragmentChange(4, null);
 
-
             }
+
         });
+
 
         //확인 > 저장하고 CalendarAdd로 이동
         CalendarAddUpdate_ok = rootView.findViewById(R.id.CalendarAddUpdate_ok);
@@ -1725,11 +1728,11 @@ public class CalendarAddUpdate extends Fragment {
 
                     Log.d("main:hour", "onClick: 시간"+calendar_hour);
 
-                    CalListUpdate calListUpdate = new CalListUpdate(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
+                    CalListUpdate calListUpdate = new CalListUpdate(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute,calendar_id);
                     calListUpdate.execute();
 
-                    refresh();
                     activity.onFragmentChange(4, null);
+
                 }
                 //Toast.makeText(getContext(), calendar_icon, Toast.LENGTH_SHORT).show();
             }
