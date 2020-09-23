@@ -27,7 +27,8 @@ public class CalcalSelect extends AsyncTask<Void, Void, ArrayList<CalendarDTO>> 
 
     ArrayList<CalendarDTO> icons;
 
-    public CalcalSelect() {
+    public CalcalSelect(ArrayList<CalendarDTO> icons) {
+        this.icons = icons;
     }
 
     HttpClient httpClient;

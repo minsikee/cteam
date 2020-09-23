@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 
 import android.widget.Toast;
@@ -19,12 +18,12 @@ import android.widget.Toast;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.example.cteam.ATask.CalListSelect;
 import com.example.cteam.ATask.CalcalSelect;
 import com.example.cteam.Dto.CalendarDTO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,10 +100,11 @@ public class Calendar extends Fragment {
 
         //스케줄 데이터 불러옴
         if(isNetworkConnected(getActivity()) == true) {
-            calcalSelect = new CalcalSelect();
+            calcalSelect = new CalcalSelect(icons);
             try {
-                icons = calcalSelect.execute().get();
-                //Log.d("main:Calendar", "onCreateView: " + icons.get(0).calendar_date);
+                calcalSelect.execute().get();
+                //icons = calcalSelect.execute().get();
+                Log.d("main:Calendar", "onCreateView: " + dto.calendar_icon);
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -115,11 +115,94 @@ public class Calendar extends Fragment {
                     Toast.LENGTH_SHORT).show();
         }
 
-        //아이콘 붙이기
-        //String icon_date = getCalendar().getTime().toString();
-        //calendar_date = icon_date;
-        //icons.get(0).calendar_date = icon_date;
+        /*
+        //날짜 차이 구하기
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String strDate = format.format(date);
 
+        String date1;
+        String date2;
+        Date firstDate;
+        Date secondDate;
+        long calDate;
+        long calDates;
+
+        try {
+            for (int i = 0; i < icons.size(); i++) {
+                java.util.Calendar calendar3 = java.util.Calendar.getInstance();
+
+                date1 = icons.get(i).calendar_date;
+                date2 = format.format(calendar3.getTime());
+
+                firstDate = format.parse(date1);
+                secondDate = format.parse(date2);
+
+                calDate = firstDate.getTime() - secondDate.getTime();
+                calDates = calDate / (24 * 60 * 60 * 1000);
+
+                Log.d("main:Calendar", "차이: " + calDates);
+
+                    LayerDrawable cal_icon3 = (LayerDrawable) getResources().getDrawable(R.drawable.cal_3icons);
+                    if (icons.get(i).calendar_icon.equals("11")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
+                    } else if (icons.get(i).calendar_icon.equals("12")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon12));
+                    } else if (icons.get(i).calendar_icon.equals("13")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon13));
+                    } else if (icons.get(i).calendar_icon.equals("14")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon14));
+                    } else if (icons.get(i).calendar_icon.equals("15")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon15));
+                    } else if (icons.get(i).calendar_icon.equals("16")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon16));
+                    } else if (icons.get(i).calendar_icon.equals("17")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon17));
+                    } else if (icons.get(i).calendar_icon.equals("18")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon18));
+                    }
+                    calendar3.add(java.util.Calendar.DAY_OF_MONTH, (int) calDates);
+                    events.add(new EventDay(calendar3, R.drawable.cal_3icons));
+
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+*/
+
+                    /*
+                    //아이콘 붙이기
+                    LayerDrawable cal_icon3 = (LayerDrawable) getResources().getDrawable(R.drawable.cal_3icons);
+
+                    if (icons.get(0).calendar_icon.equals("11")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
+                    } else if (icons.get(0).calendar_icon.equals("12")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon12));
+                    } else if (icons.get(0).calendar_icon.equals("13")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon13));
+                    } else if (icons.get(0).calendar_icon.equals("14")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon14));
+                    } else if (icons.get(0).calendar_icon.equals("15")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon15));
+                    } else if (icons.get(0).calendar_icon.equals("16")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon16));
+                    } else if (icons.get(0).calendar_icon.equals("17")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon17));
+                    } else if (icons.get(0).calendar_icon.equals("18")) {
+                        cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon18));
+                    }
+
+
+                    calendar3.add(java.util.Calendar.DAY_OF_MONTH, 10);
+                    events.add(new EventDay(calendar3, R.drawable.cal_3icons));
+                    */
+
+
+
+
+        /*
+        //아이콘 붙이기
         LayerDrawable cal_icon3 = (LayerDrawable) getResources().getDrawable(R.drawable.cal_3icons);
 
         cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
@@ -127,59 +210,11 @@ public class Calendar extends Fragment {
         cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon44));
 
         java.util.Calendar calendar3 = java.util.Calendar.getInstance();
-        calendar3.add(java.util.Calendar.DAY_OF_MONTH, 0);
+        calendar3.add(java.util.Calendar.DAY_OF_MONTH, (int) rhkdus);
         events.add(new EventDay(calendar3, R.drawable.cal_3icons));
-
-        /*
-        //날짜 포맷 변경
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh");
-
-        String date1 = icons.get(0).calendar_date;
-        String date2 = format.format(calendar3.getTime());
-
-        Date date = new Date();
-        String strDate = format.format(date);
-
-        try {
-            Date firstDate = format.parse(date1);
-            Date secondDate = format.parse(date2);
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        long calDate = firstDate.getTime() - secondDate.getTime();
-        long calDates = calDate / (24*60*60*1000);
-
-        calDates = Math.abs(calDates);
-
-        Log.d("main:Calendar", "차이: " + calDates);
         */
 
         /*
-        if(icons.get(0).calendar_date != null) {
-            cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
-            cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon33));
-            cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon44));
-
-            java.util.Calendar calendar3 = java.util.Calendar.getInstance();
-            calendar3.add(java.util.Calendar.DAY_OF_MONTH, 0);
-            events.add(new EventDay(calendar3, R.drawable.cal_3icons));
-        } else {
-            cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.sample_icon_1));
-            cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.sample_icon_2));
-            cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.sample_icon_3));
-
-            java.util.Calendar calendar3 = java.util.Calendar.getInstance();
-            calendar3.add(java.util.Calendar.DAY_OF_MONTH, 0);
-            events.add(new EventDay(calendar3, R.drawable.cal_3icons));
-        }
-
-
-        //날짜 구하기?
-        //int eventDay = 0 - Integer.parseInt(icon.calendar_date);
-
-/*
         //날짜에 아이콘 붙이기 (3개짜리)
         LayerDrawable cal_icon3 = (LayerDrawable) getResources().getDrawable(R.drawable.cal_3icons);
 
@@ -207,10 +242,5 @@ public class Calendar extends Fragment {
         return rootView;
 
     } //onCreateView()
-
-
-
-
-
 
 }
