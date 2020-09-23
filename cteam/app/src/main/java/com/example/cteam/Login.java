@@ -121,7 +121,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                     // 로그인 정보에 값이 있으면 로그인이 되었으므로 메인화면으로 이동
                     Intent intent = new Intent(getApplicationContext(), PetAdd.class);
                     startActivity(intent);
-
+                    finish();
 
                 }else {
                     Toast.makeText(Login.this, "아이디나 비밀번호가 일치안함 !!!", Toast.LENGTH_SHORT).show();
