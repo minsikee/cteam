@@ -42,12 +42,12 @@ public class PetAdd extends AppCompatActivity {
         myItemArrayList = new ArrayList();
         adapter = new petAddAdapter(this, myItemArrayList);
         recyclerView = findViewById(R.id.recyclerView);
-
+/*
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
                 RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        petListView.setAdapter(adapter);
+        petListView.setAdapter(adapter);*/
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
