@@ -100,11 +100,10 @@ public class Calendar extends Fragment {
 
         //스케줄 데이터 불러옴
         if(isNetworkConnected(getActivity()) == true) {
-            calcalSelect = new CalcalSelect(icons);
+            calcalSelect = new CalcalSelect();
             try {
                 calcalSelect.execute().get();
-                //icons = calcalSelect.execute().get();
-                Log.d("main:Calendar", "onCreateView: " + dto.calendar_icon);
+                Log.d("main:Calendar", "onCreateView: " + icons.get(0).calendar_date);
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
