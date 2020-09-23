@@ -102,8 +102,8 @@ public class Calendar extends Fragment {
         if(isNetworkConnected(getActivity()) == true) {
             calcalSelect = new CalcalSelect();
             try {
-                calcalSelect.execute().get();
-                Log.d("main:Calendar", "onCreateView: " + icons.get(0).calendar_date);
+                icons = calcalSelect.execute().get();
+                //Log.d("main:Calendar", "onCreateView: " + icons.get(0).calendar_date);
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -114,7 +114,6 @@ public class Calendar extends Fragment {
                     Toast.LENGTH_SHORT).show();
         }
 
-        /*
         //날짜 차이 구하기
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -168,7 +167,7 @@ public class Calendar extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-*/
+
 
                     /*
                     //아이콘 붙이기
