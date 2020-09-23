@@ -79,18 +79,18 @@ public class petAddAdapter extends BaseAdapter {
         }
 
         PetDTO dto = dtos.get(position);
-        String name = dto.getName();
-        String age = dto.getAge();
-        String weigth = dto.getWeight();
-        String gender = dto.getGender();
-        String resId = dto.getImage_path();
+        String petname = dto.getPetname();
+        String petage = dto.getPetage();
+        String petweight = dto.getPetweight();
+        String petgender = dto.getPetgender();
+        String petimagePath = dto.getPetimage_path();
 
 
-        viewHolder.TV_Name.setText(name);
-        viewHolder.TV_Gender.setText(gender);
-        viewHolder.TV_Age.setText(age);
-        viewHolder.tv_weigth.setText(weigth);
-        viewHolder.imageIcon.setImageResource(Integer.parseInt(resId));
+        viewHolder.TV_Name.setText(petname);
+        viewHolder.TV_Gender.setText(petgender);
+        viewHolder.TV_Age.setText(petage);
+        viewHolder.tv_weigth.setText(petweight);
+        viewHolder.imageIcon.setImageResource(Integer.parseInt(petimagePath));
 
         viewHolder.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class petAddAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"선택 :" + position
-                + ", 이름 :" + dtos.get(position).getName(), Toast.LENGTH_SHORT);
+                + ", 이름 :" + dtos.get(position).getPetname(), Toast.LENGTH_SHORT);
             }
         });
 

@@ -60,7 +60,7 @@ public class petUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
 
-        petName = findViewById(R.id.petName);
+       /* petName = findViewById(R.id.petName);
         petAge = findViewById(R.id.petAge);
         petGender = findViewById(R.id.petGender);
         petWeight = findViewById(R.id.petWeight);
@@ -230,6 +230,6 @@ public class petUpdate extends AppCompatActivity {
             Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
-
+*/
     }
 }

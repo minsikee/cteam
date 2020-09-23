@@ -125,26 +125,26 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public PetDTO readMessage(JsonReader reader) throws IOException {
-        String name = "", age = "", weight = "", gender = "";
+        String petname = "", petage = "", petweight = "", petgender = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            if (readStr.equals("name")) {
-                name = reader.nextString();
-            } else if (readStr.equals("age")) {
-                age = reader.nextString();
-            } else if (readStr.equals("weight")) {
-                weight = reader.nextString();
-            } else if (readStr.equals("gender")) {
-                gender = reader.nextString();
+            if (readStr.equals("petpetname")) {
+                petname = reader.nextString();
+            } else if (readStr.equals("petage")) {
+                petage = reader.nextString();
+            } else if (readStr.equals("petweight")) {
+                petweight = reader.nextString();
+            } else if (readStr.equals("petgender")) {
+                petgender = reader.nextString();
             }else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("listselect:myitem", name + "," + age + "," + weight + "," + gender);
-       return new PetDTO();
+        Log.d("listselect:myitem", petname + "," + petage + "," + petweight + "," + petgender);
+       return null;
 
     }
 

@@ -24,14 +24,14 @@ import static com.example.cteam.Login.loginDTO;
 
 public class Listinsert extends AsyncTask<Void,Void,Void> {
 
-    String id,name,age,weight,gender,imageDBPathA,imageRealPathA;
+    String id,petname,petage,petweight,petgender,petimage_path,imageRealPathA;
 
-    public Listinsert(String name, String age, String weight, String gender, String imageDBPathA, String imageRealPathA) {
-        this.name = name;
-        this.age = age;
-        this.weight = weight;
-        this.gender = gender;
-        this.imageDBPathA = imageDBPathA;
+    public Listinsert(String petname, String petage, String petweight, String petgender, String petimage_path, String imageRealPathA) {
+        this.petname = petname;
+        this.petage = petage;
+        this.petweight = petweight;
+        this.petgender = petgender;
+        this.petimage_path = petimage_path;
         this.imageRealPathA = imageRealPathA;
     }
 
@@ -53,13 +53,13 @@ public class Listinsert extends AsyncTask<Void,Void,Void> {
             // 문자열 및 데이터 추가
 
             builder.addTextBody("id", id, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("name", name, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("age", age, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("weight", weight , ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("gender", gender , ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petage", petage, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petweight", petweight , ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("gender", petgender , ContentType.create("Multipart/related", "UTF-8"));
 
-            builder.addTextBody("imageDBPathA", imageDBPathA, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addPart("image", new FileBody(new File(imageRealPathA)));
+            builder.addTextBody("petimage_path", petimage_path, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addPart("imageRealPathA", new FileBody(new File(imageRealPathA)));
 
             String postURL = ipConfig + "/app/PetaddInsert";
 
