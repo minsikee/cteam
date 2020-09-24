@@ -24,6 +24,7 @@ import androidx.core.content.FileProvider;
 
 import com.example.cteam.ATask.Listinsert;
 import com.example.cteam.Common.CommonMethod;
+import com.example.cteam.Login;
 import com.example.cteam.PetAdd;
 import com.example.cteam.PetSelect;
 import com.example.cteam.R;
@@ -33,13 +34,16 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import static com.example.cteam.Login.loginDTO;
+
 public class petInsert extends AppCompatActivity {
 
     EditText petName, petAge,petWeight,petGender;
     Button goMain;
 
-    String name = "", age = "",weight = "",gender ="";
+    String petname = "", petage = "",petweight = "",petgender ="";
     ImageView petPhoto;
+    String id;
 
     Button btnLoad,btnCancle,btn_add;
 
@@ -141,7 +145,7 @@ public class petInsert extends AppCompatActivity {
                 }
 
                 imageRealPathA = path;
-                Log.d("Sub1Add", "imageFilePathA Path : " + imageRealPathA);
+                Log.d("petInsert", "imageFilePathA Path : " + imageRealPathA);
                 String uploadFileName = imageRealPathA.split("/")[imageRealPathA.split("/").length - 1];
                 imageDbPathA = CommonMethod.ipConfig + "/app/resources/" + uploadFileName;
 
@@ -168,12 +172,13 @@ public class petInsert extends AppCompatActivity {
     public void btnAddClicked(View view) {
         if (CommonMethod.isNetworkConnected(this) == true) {
             if (fileSize <= 30000000) {
-                name = petName.getText().toString();
-                age = petAge.getText().toString();
-                gender = petGender.getText().toString();
-                weight = petWeight.getText().toString();
+                id = loginDTO.getMember_id().toString();
+                petname = petName.getText().toString();
+                petage = petAge.getText().toString();
+                petgender = petGender.getText().toString();
+                petweight = petWeight.getText().toString();
 
-                Listinsert listinsert = new Listinsert(name, age, gender, weight, imageDbPathA, imageRealPathA);
+                Listinsert listinsert = new Listinsert(id, petname, petage, petweight, petgender, imageDbPathA, imageRealPathA);
                 listinsert.execute();
 
                 Intent showIntent = new Intent(getApplicationContext(), PetAdd.class);

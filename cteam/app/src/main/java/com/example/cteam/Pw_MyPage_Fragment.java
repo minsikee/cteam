@@ -45,11 +45,11 @@ public class Pw_MyPage_Fragment extends Fragment {
                 if(editPW.getText().toString().trim().equals(Login.loginDTO.getMember_pw())){
 
                     activity.onFragmentChange(1, bundle);
+                    editPW.setText(null);
 
                 }else {
                     Toast.makeText(activity, "dto : "+ Login.loginDTO.getMember_pw()+"\n입력한 비번 : "+ editPW.getText().toString(), Toast.LENGTH_LONG).show();
-/*
-                    showMessage();*/
+                    showMessage();
                 }
             }
         });

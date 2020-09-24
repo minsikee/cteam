@@ -21,7 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cteam.ATask.CalListUpdate;
 import com.example.cteam.Dto.CalendarDTO;
-import com.example.cteam.Dto.MyItem;
+import com.example.cteam.Dto.PetDTO;
 
 import java.lang.reflect.Field;
 
@@ -29,7 +29,7 @@ import static com.example.cteam.CalendarAdd.selectIcon;
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
 public class CalendarAddUpdate extends Fragment {
-    public static MyItem selItem = null;
+    public static PetDTO selItem = null;
 
     PetSelect activity;
 

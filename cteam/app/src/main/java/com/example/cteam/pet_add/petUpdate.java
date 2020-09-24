@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.ListUpdate;
 import com.example.cteam.Common.CommonMethod;
-import com.example.cteam.Dto.MyItem;
+import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.PetAdd;
 import com.example.cteam.R;
 
@@ -60,7 +60,7 @@ public class petUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
 
-        petName = findViewById(R.id.petName);
+       /* petName = findViewById(R.id.petName);
         petAge = findViewById(R.id.petAge);
         petGender = findViewById(R.id.petGender);
         petWeight = findViewById(R.id.petWeight);
@@ -74,7 +74,7 @@ public class petUpdate extends AppCompatActivity {
         petPhoto = findViewById(R.id.petPhoto);
 
         Intent intent = getIntent();
-        MyItem selItem = (MyItem) intent.getSerializableExtra("selItem");
+        PetDTO selItem = (PetDTO) intent.getSerializableExtra("selItem");
 
         name = selItem.getName();
         age = selItem.getAge();
@@ -230,6 +230,6 @@ public class petUpdate extends AppCompatActivity {
             Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
-
+*/
     }
 }
