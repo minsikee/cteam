@@ -16,15 +16,19 @@ import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.pet_add.petInsert;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import static com.example.cteam.Login.loginDTO;
 
 public class PetAdd extends AppCompatActivity {
-    public static PetDTO selItem = null;
+    public static PetDTO dto = null;
 
+    ListSelect listSelect;
     Button btnAdd;
     Button btnUpdate;
-    ListView petListView;
 
-    ArrayList<PetDTO> myItemArrayList;
+    ArrayList<PetDTO> petList;
 
     RecyclerView recyclerView;
     petAddAdapter adapter;
@@ -36,18 +40,16 @@ public class PetAdd extends AppCompatActivity {
 
         btnAdd = findViewById(R.id.btnAdd);
         btnUpdate = findViewById(R.id.btnUpdate);
-        petListView = findViewById(R.id.petListView);
 
+        petList = new ArrayList<>();
+        adapter = new petAddAdapter(this, petList);
+        recyclerView = findViewById(R.id.petListView);
 
-        myItemArrayList = new ArrayList();
-        adapter = new petAddAdapter(this, myItemArrayList);
-        recyclerView = findViewById(R.id.recyclerView);
-/*
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
                 RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        petListView.setAdapter(adapter);*/
+        recyclerView.setAdapter(adapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +59,15 @@ public class PetAdd extends AppCompatActivity {
             }
         });
 
+        listSelect = new ListSelect(loginDTO.getMember_id(), petList, adapter );
+        try {
+            listSelect.execute().get();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

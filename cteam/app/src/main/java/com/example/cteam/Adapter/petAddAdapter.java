@@ -4,120 +4,103 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.cteam.Dto.PetDTO;
+import com.example.cteam.PetAdd;
 import com.example.cteam.R;
 
 import java.util.ArrayList;
 
-public class petAddAdapter extends BaseAdapter {
+import static com.example.cteam.PetAdd.dto;
 
-    private SetOnClickListener mlistener;
-
-    public void setOnItemClickListener(SetOnClickListener mlistener) {
-        this.mlistener = mlistener;
-    }
-
+public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHolder> {
     Context context;
-    ArrayList<PetDTO> dtos;
+    ArrayList<PetDTO> petList;
 
-    LayoutInflater inflater;
-
-    public petAddAdapter(Context context, ArrayList<PetDTO> dtos) {
+    public petAddAdapter(Context context, ArrayList<PetDTO> petList) {
         this.context = context;
-        this.dtos = dtos;
-
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-    public void addDto(PetDTO dto){
-        dtos.add(dto);
+        this.petList = petList;
     }
 
-    public void removeDtos(){
-        dtos.clear();
+    @NonNull
+    @Override
+    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+       LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+       View itemView = inflater.inflate(R.layout.petlistviewcard,parent,false);
+
+        return new ItemViewHolder(itemView);
     }
 
     @Override
-    public int getCount() {
-        return dtos.size();
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+        PetDTO dto = petList.get(position);
+        holder.setPet(dto);
+
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PetAdd.dto = petList.get(position);
+            }
+        });
+    }
+    // 어댑터에 매소드 만들기
+
+    // 리사이클러뷰 내용 모두 지우기
+    public void removeAllItem(){
+        petList.clear();
     }
 
-    @Override
-    public Object getItem(int position) {
-        return dtos.get(position);
+    // 특정 인덱스 항목 가져오기
+    public PetDTO dto(int position) {
+        return petList.get(position);
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
+    // 특정 인덱스 항목 셋팅하기
+    public void setItem(int position, PetDTO dto){
+        petList.set(position, dto);
     }
 
+    // arrayList 통째로 셋팅하기
+    public void setItems(ArrayList<PetDTO> petList){
+        this.petList = petList;
+    }
     @Override
-    public View getView(final int position, View view, ViewGroup viewGroup) {
-        PetAddViewHolder viewHolder;
+    public int getItemCount() {
+        return petList.size();
+    }
 
-        if(view == null){
-            view = inflater.inflate(R.layout.petlistviewcard,
-                    viewGroup, false);
-            viewHolder = new PetAddViewHolder();
-            viewHolder.TV_Name = view.findViewById(R.id.TV_Name);
-            viewHolder.TV_Age = view.findViewById(R.id.TV_Age);
-            viewHolder.tv_weigth = view.findViewById(R.id.TV_Weight);
-            viewHolder.imageIcon = view.findViewById(R.id.imageView);
-            viewHolder.TV_Gender = view.findViewById(R.id.TV_Gender);
-            viewHolder.UpdateBtn = view.findViewById(R.id.signBtn);
-            viewHolder.signBtn = view.findViewById(R.id.signBtn);
+    public static class ItemViewHolder extends RecyclerView.ViewHolder{
+        public RelativeLayout parentLayout;
+        public TextView tvName, tvWeight, tvGender, tvAge;
+        public ImageView imageView;
 
-            view.setTag(viewHolder);
-        }else{
-            viewHolder = (PetAddViewHolder) view.getTag();
+        public ItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            parentLayout = itemView.findViewById(R.id.parentLayout);
+            tvName = itemView.findViewById(R.id.TVname);
+            tvWeight = itemView.findViewById(R.id.TVweight);
+            tvGender = itemView.findViewById(R.id.TVgender);
+            tvAge = itemView.findViewById(R.id.TVage);
+            imageView = itemView.findViewById(R.id.imageView);
         }
 
-        PetDTO dto = dtos.get(position);
-        String petname = dto.getPetname();
-        String petage = dto.getPetage();
-        String petweight = dto.getPetweight();
-        String petgender = dto.getPetgender();
-        String petimagePath = dto.getPetimage_path();
+        public void setPet(PetDTO dto){
+            tvName.setText(dto.getPetname());
+            tvGender.setText(dto.getPetgender());
+            tvWeight.setText(dto.getPetweight()+" Kg");
+            tvAge.setText(dto.getPetage() + " 세");
 
-
-        viewHolder.TV_Name.setText(petname);
-        viewHolder.TV_Gender.setText(petgender);
-        viewHolder.TV_Age.setText(petage);
-        viewHolder.tv_weigth.setText(petweight);
-        viewHolder.imageIcon.setImageResource(Integer.parseInt(petimagePath));
-
-        viewHolder.signBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mlistener != null) mlistener.onItemClick(view);
-            }
-        });
-
-        viewHolder.imageIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"선택 :" + position
-                + ", 이름 :" + dtos.get(position).getPetname(), Toast.LENGTH_SHORT);
-            }
-        });
-
-        return view;
+            Glide.with(itemView).load(dto.getPetimage_path()).into(imageView);
+        }
     }
-
-    public interface SetOnClickListener {
-        void onItemClick(View view);
     }
-
-    public class PetAddViewHolder{
-        public ImageView imageIcon;
-        public TextView TV_Name,TV_Age,tv_weigth,TV_Gender;
-        public Button UpdateBtn,signBtn;
-
-    }
-}

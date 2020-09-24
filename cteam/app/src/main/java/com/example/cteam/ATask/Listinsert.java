@@ -24,14 +24,15 @@ import static com.example.cteam.Login.loginDTO;
 
 public class Listinsert extends AsyncTask<Void,Void,Void> {
 
-    String id,petname,petage,petweight,petgender,petimage_path,imageRealPathA;
+    String id,petname,petage,petweight,petgender,petimagepath,imageRealPathA;
 
-    public Listinsert(String petname, String petage, String petweight, String petgender, String petimage_path, String imageRealPathA) {
+    public Listinsert(String id, String petname, String petage, String petweight, String petgender, String petimagepath, String imageRealPathA) {
+        this.id = id;
         this.petname = petname;
         this.petage = petage;
         this.petweight = petweight;
         this.petgender = petgender;
-        this.petimage_path = petimage_path;
+        this.petimagepath = petimagepath;
         this.imageRealPathA = imageRealPathA;
     }
 
@@ -42,7 +43,7 @@ public class Listinsert extends AsyncTask<Void,Void,Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-    id= loginDTO.getMember_id();
+
 
         try {
             // MultipartEntityBuild 생성
@@ -56,12 +57,11 @@ public class Listinsert extends AsyncTask<Void,Void,Void> {
             builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("petage", petage, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("petweight", petweight , ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("gender", petgender , ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petgender", petgender , ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petimagepath", petimagepath, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addPart("image", new FileBody(new File(imageRealPathA)));
 
-            builder.addTextBody("petimage_path", petimage_path, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addPart("imageRealPathA", new FileBody(new File(imageRealPathA)));
-
-            String postURL = ipConfig + "/app/PetaddInsert";
+            String postURL = ipConfig + "/app/cPetInsert";
 
             HttpClient httpClient = AndroidHttpClient.newInstance("cteam");
             HttpPost httpPost = new HttpPost(postURL);

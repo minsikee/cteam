@@ -52,7 +52,6 @@ public class MyPage extends Fragment {
         TextView myPage_name;
         TextView myPage_pw;
         TextView myPage_id;
-        //TextView myPage_qs;
         TextView myPage_qs_as;
         TextView myPage_phonenum;
         TextView myPage_pw_confirm;
@@ -64,8 +63,6 @@ public class MyPage extends Fragment {
         myPage_id.setText(Login.loginDTO.getMember_id());
         myPage_pw = rootView.findViewById(R.id.MyPage_pw);
         myPage_pw.setText(Login.loginDTO.getMember_pw());
-       // myPage_qs = rootView.findViewById(R.id.MyPage_qs);
-       // myPage_qs.setText(Login.loginDTO.getMember_qeustion());
         myPage_qs_as = rootView.findViewById(R.id.MyPage_qs_as);
         myPage_qs_as.setText(Login.loginDTO.getMember_answer());
         myPage_phonenum = rootView.findViewById(R.id.MyPage_phonenum);
