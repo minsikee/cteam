@@ -6,35 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".PetPhoto">
 
-    <GridView
-        android:id="@+id/gridView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="666dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
-        android:numColumns="3" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/petPhotoTitle">
 
-    <ImageButton
-        android:id="@+id/photoPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_toStartOf="@+id/photoMinus"
-        android:layout_toLeftOf="@+id/photoMinus"
-        android:src="@drawable/map_plus" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/petPhotoRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/photoMinus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/map_minus" />
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ProgressBar
+            android:id="@+id/progressBarSub1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/petPhotoTitle"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="일기"
+        android:textSize="30dp"
+        android:paddingLeft="20dp"
+        android:backgroundTint="#999"
+        android:paddingTop="10dp"
+        android:textColor="#999"
+        />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/photoPlus"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="2dp"-->
+<!--        android:layout_marginRight="2dp"-->
+<!--         android:layout_toRightOf="@+id/petPhotoTitle"-->
+
+<!--        android:src="@drawable/map_plus"-->
+<!--        android:backgroundTint="#FFF"/>-->
 
 </RelativeLayout>

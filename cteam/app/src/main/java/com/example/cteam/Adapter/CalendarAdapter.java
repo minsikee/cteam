@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +31,8 @@ import static com.example.cteam.CalendarAdd.selectIcon;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconViewHolder> {
     //로그 찍어볼 때
     private static final String TAG = "calendarAdapter";
+
+    private int selectedPosition = -1;
 
     Context context;
     ArrayList<CalendarDTO> icons;
@@ -57,6 +60,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
         CalendarDTO icon = icons.get(position);
         holder.setIcon(icon);
 
+
+
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,9 +71,28 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
                 selectIcon = icons.get(position);
 
                 Log.d(TAG, "onClick: " + selectIcon.getCalendar_memo());
-                Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_memo(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, "Onclick " + icons.get(position).getCalendar_memo(), Toast.LENGTH_SHORT).show();
+                selectedPosition = position;
+                notifyDataSetChanged();
             }
         });
+
+        // 선택 항목 강조
+        if(selectedPosition == position) {
+            holder.parentLayout.setBackgroundResource(R.drawable.cardpressed);
+        } else {
+            holder.parentLayout.setBackgroundResource(R.drawable.cardunpressed);
+        }
+
+
+//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // 선택 항목 강조
+//                selectedPosition = position;
+//                notifyDataSetChanged();
+//            }
+//        });
 
     }
 
@@ -112,6 +137,15 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
             c_icon = iconView.findViewById(R.id.CalendarAdd_icon);
             c_memo = iconView.findViewById(R.id.CalendarAdd_memo);
             c_time = iconView.findViewById(R.id.CalendarAdd_time);
+
+       /*     parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parentLayout.setBackgroundre(R.drawable.cardpressed);
+                }
+            });*/
+
+
         }
 
         public void setIcon(CalendarDTO icon) {

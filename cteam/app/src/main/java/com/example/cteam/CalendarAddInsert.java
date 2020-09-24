@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,17 +82,21 @@ public class CalendarAddInsert extends Fragment {
         np.setWrapSelectorWheel(false);
         np.setValue(0);
 
+
+        calendar_minute="0";
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                calendar_minute=String.valueOf(newVal);
+                    calendar_minute = String.valueOf(newVal);
 
                // Toast.makeText(activity, calendar_minute, Toast.LENGTH_SHORT).show();
             }
         });
 
+
         selectedTime=np.getValue();
 
+        Log.d("calendarInsert", "선택된 시간"+selectedTime);
 
         CalendarAddInsert_Time=rootView.findViewById(R.id.CalendarAddInsert_Time);
 
@@ -100,7 +105,8 @@ public class CalendarAddInsert extends Fragment {
 
 
         //찾기
-        CalendarAddInsert_memo = (TextView) rootView.findViewById(R.id.CalendarAddInsert_memo);
+        CalendarAddInsert_memo = rootView.findViewById(R.id.CalendarAddInsert_memo);
+        //CalendarAddInsert_memo.setText();
 
         //색상 선택 > (코드 간단하게 수정 가능?)
         CalendarAddInsert_color1 = rootView.findViewById(R.id.CalendarAddInsert_color1);

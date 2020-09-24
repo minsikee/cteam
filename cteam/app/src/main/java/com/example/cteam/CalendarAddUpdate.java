@@ -133,10 +133,12 @@ public class CalendarAddUpdate extends Fragment {
 
 
             //메모값 초기화
-            //CalendarAddUpdate_memo.setText("");
+            CalendarAddUpdate_memo.setText(calendar_memo);
 
             // 메모에 가져온 값 써 넣기
-            CalendarAddUpdate_memo.setText(calendar_memo);
+           if(CalendarAddUpdate_memo != null) {
+               CalendarAddUpdate_memo.setText(calendar_memo);
+           }
         }
 
 
@@ -148,8 +150,10 @@ public class CalendarAddUpdate extends Fragment {
         CalendarAddUpdate_Time.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         setDividerColor(CalendarAddUpdate_Time, android.R.color.white );
         CalendarAddUpdate_Time.setWrapSelectorWheel(false);
-        CalendarAddUpdate_Time.setValue(Integer.parseInt(calendar_hour));     //가져온 값으로 기본 값 설정
 
+        if(calendar_hour != null) {
+            CalendarAddUpdate_Time.setValue(Integer.parseInt(calendar_hour));     //가져온 값으로 기본 값 설정
+        }
         CalendarAddUpdate_Time.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -160,6 +164,8 @@ public class CalendarAddUpdate extends Fragment {
         });
 
         selectedTime=CalendarAddUpdate_Time.getValue();
+
+
 
 
 
@@ -177,8 +183,10 @@ public class CalendarAddUpdate extends Fragment {
         np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         setDividerColor(np, android.R.color.white );
         np.setWrapSelectorWheel(false);
-        np.setValue(Integer.parseInt(calendar_minute));     //가져온 값으로 기본 값 설정
 
+        if(calendar_minute!=null) {
+            np.setValue(Integer.parseInt(calendar_minute));     //가져온 값으로 기본 값 설정
+        }
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -1564,7 +1572,7 @@ public class CalendarAddUpdate extends Fragment {
 
             @Override
             public void onClick(View view) {
-                CalendarAddUpdate_memo.setText("");
+                //CalendarAddUpdate_memo.setText("");
                 activity.onFragmentChange(4, null);
 
             }
