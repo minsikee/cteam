@@ -144,7 +144,7 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public PetPhotoDTO readMessage(JsonReader reader) throws IOException {
-        String petname = "", petage = "", petweight = "", petgender = "", petimage_path = "";
+        String image_path = "",content = "", date = "", petname = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -152,21 +152,21 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
             if (readStr.equals("petname")) {
                 petname = reader.nextString();
             } else if (readStr.equals("petage")) {
-                petage = reader.nextString();
+                image_path = reader.nextString();
             } else if (readStr.equals("petweight")) {
-                petweight = reader.nextString();
+                content = reader.nextString();
             } else if (readStr.equals("petgender")) {
-                petgender = reader.nextString();
+                date = reader.nextString();
             } else if (readStr.equals("petimagepath")) {
-                petimage_path = reader.nextString();
+                petname = reader.nextString();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("listselect:myitem", petname + "," + petage + "," + petweight + "," + petgender);
+        Log.d("listselect:myitem", petname + "," + image_path + "," + content + "," + date);
 
-        return new PetPhotoDTO(petname, petage, petweight, petgender, petimage_path);
+        return new PetPhotoDTO(image_path, content, date, petname);
 
     }
 

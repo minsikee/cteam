@@ -104,8 +104,10 @@ public class PetSelect extends AppCompatActivity
         ImageView imageView = headerView.findViewById(R.id.profile);
         TextView tvloginID = headerView.findViewById(R.id.user_id);
         TextView tvloginName = headerView.findViewById(R.id.user_name);
-        tvloginID.setText(loginDTO.getMember_id());
-        tvloginName.setText(loginDTO.getMember_name());
+        if(loginDTO != null) {
+            tvloginID.setText(loginDTO.getMember_id());
+            tvloginName.setText(loginDTO.getMember_name());
+        }
         imageView.setImageResource(R.drawable.dog);
 
         getSupportFragmentManager().beginTransaction()
