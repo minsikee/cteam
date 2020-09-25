@@ -3,9 +3,14 @@ package com.example.cteam;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.os.Bundle;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +32,7 @@ import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
@@ -90,12 +97,12 @@ public class CalendarAdd extends Fragment {
             //CalendarAdd_view.setLayoutManager(layoutManager);
             CalendarAdd_view.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//            DividerItemDecoration dividerItemDecoration =
-//                    new DividerItemDecoration(CalendarAdd_view.getContext(),new LinearLayoutManager(getContext()).getOrientation());
-//            // 리싸이클러뷰 구분선
+           DividerItemDecoration dividerItemDecoration =
+                    new DividerItemDecoration(CalendarAdd_view.getContext(),new LinearLayoutManager(getContext()).getOrientation());
+//          // 리싸이클러뷰 구분선
 
-          //  CalendarAdd_view.addItemDecoration(dividerItemDecoration);
-            // 구분선 추가
+           CalendarAdd_view.addItemDecoration(dividerItemDecoration);
+             //구분선 추가
 
             RecyclerDecoration spaceDecoration = new RecyclerDecoration();
             CalendarAdd_view.addItemDecoration(spaceDecoration);
@@ -158,12 +165,16 @@ public class CalendarAdd extends Fragment {
         }
 
 
+
+
         //버튼 클릭시
         for(int i=0; i<button.length; i++){
 
             final int INDEX;
 
             INDEX = i;
+
+
 
             button[INDEX].setOnClickListener(new View.OnClickListener() {
 
@@ -181,6 +192,8 @@ public class CalendarAdd extends Fragment {
 
                 }*/
 
+                    btnclicked();
+                    //button[INDEX].setPressed(true);
 
                     //추가 클릭 > CalendarInsert로 이동
                     CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
@@ -214,6 +227,74 @@ public class CalendarAdd extends Fragment {
 //                return;
 //            }
 //        });
+
+        //스와이프로 수정 삭제
+        MySwipeHelper swipeHelper= new MySwipeHelper(getContext(),CalendarAdd_view,150) {
+            @Override
+            public void instantiatrMyButton(RecyclerView.ViewHolder viewHolder, List<MyButton> buffer) {
+                buffer.add(new MyButton(getContext(),
+                        "Delete",
+                        20,
+                        R.drawable.trashcan,
+                        Color.parseColor("#FF3C30"),
+                        new MyButtonClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+                               // Toast.makeText(CalendarAdd.this, "Delete click", Toast.LENGTH_SHORT).show();
+                                Log.d("TAG",viewHolder.getAdapterPosition()+"");
+                                CalListDelete calListDelete = new CalListDelete(icons.get(viewHolder.getLayoutPosition()).getCalendar_id());
+                                calListDelete.execute();
+                                icons.remove(viewHolder.getAdapterPosition());                // 해당 항목 삭제
+                                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());    // Adapter에 알려주기.
+
+                                refresh();
+                                adapter.notifyDataSetChanged();
+                            }
+                        }));
+                buffer.add(new MyButton(getContext(),
+                        "Update",
+                        20,
+                        R.drawable.modifypen,
+                        Color.parseColor("#03DAC5"),
+                        new MyButtonClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+
+                                   selectIcon= icons.get(viewHolder.getAdapterPosition());
+                                    activity.onFragmentChange(6, null);
+
+                            }
+                        }));
+            }
+        };// swipeHelper
+        //스와이프로 삭제
+//        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//
+//
+//                if(isNetworkConnected(getContext()) == true) {
+//
+//                        CalListDelete calListDelete = new CalListDelete(icons.get(viewHolder.getLayoutPosition()).getCalendar_id());
+//                        calListDelete.execute();
+//
+//                } else {
+//                    Toast.makeText(getContext(), "인터넷이 연결되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                icons.remove(viewHolder.getLayoutPosition());
+//
+//                adapter.notifyItemRemoved(viewHolder.getLayoutPosition());
+//            }
+//        };
+//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+//        itemTouchHelper.attachToRecyclerView(CalendarAdd_view);
+
 
 
 
@@ -250,7 +331,7 @@ public class CalendarAdd extends Fragment {
                 if(isNetworkConnected(getContext()) == true) {
                     //선택된 아이콘이 있을 때만 삭제
                     if(selectIcon != null){
-                        CalListDelete calListDelete = new CalListDelete(selectIcon.getCalendar_icon());
+                        CalListDelete calListDelete = new CalListDelete(selectIcon.getCalendar_id());
                         calListDelete.execute();
                         // 화면갱신
                         refresh();
@@ -297,5 +378,13 @@ public class CalendarAdd extends Fragment {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.detach(this).attach(this).commit();
     } //refresh()
+
+    private void btnclicked(){
+
+        for(int j=0; j<24; j++){
+            button[j].setPressed(false);
+        }
+
+    }
 
 }

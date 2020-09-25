@@ -2,10 +2,10 @@
 <selector
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true"
-        android:color="#DC2FEF"/>
+        android:color="#FF9A04"/>
     <!--체크가 됐을떄-->
 
-    <item android:color="#DF61ED"/>
+    <item android:color="#5CC2F1"/>
     <!--선택안됐을 때-->
     
 </selector>

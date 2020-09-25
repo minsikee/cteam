@@ -104,8 +104,10 @@ public class PetSelect extends AppCompatActivity
         ImageView imageView = headerView.findViewById(R.id.profile);
         TextView tvloginID = headerView.findViewById(R.id.user_id);
         TextView tvloginName = headerView.findViewById(R.id.user_name);
-        tvloginID.setText(loginDTO.getMember_id());
-        tvloginName.setText(loginDTO.getMember_name());
+        if(loginDTO != null) {
+            tvloginID.setText(loginDTO.getMember_id());
+            tvloginName.setText(loginDTO.getMember_name());
+        }
         imageView.setImageResource(R.drawable.dog);
 
         getSupportFragmentManager().beginTransaction()
@@ -119,7 +121,7 @@ public class PetSelect extends AppCompatActivity
                 switch (menuItem.getItemId()){
                     case R.id.tab1 :
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,petPhoto).commit();
+                                .replace(R.id.container,calendar).commit();
                         break;
                     case R.id.tab2 :
                         Intent intent = new Intent(getApplicationContext(),FindStore.class);
@@ -127,7 +129,7 @@ public class PetSelect extends AppCompatActivity
                         break;
                     case R.id.tab3 :
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,calendar).commit();
+                                .replace(R.id.container,petPhoto).commit();
                         break;
                     case R.id.tab4 :
                         getSupportFragmentManager().beginTransaction()
@@ -239,7 +241,7 @@ public class PetSelect extends AppCompatActivity
         }
 
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
+           // Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
 
@@ -256,7 +258,7 @@ public class PetSelect extends AppCompatActivity
         if (requestCode == 1) {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
                 }

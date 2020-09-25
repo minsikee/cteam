@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="0dp"
-        app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="#313C45">
+        app:cardUseCompatPadding="false">
 
         <LinearLayout
             android:id="@+id/parentLayout"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/cardunpressed">
 
             <LinearLayout
                 android:layout_width="53dp"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="3">
+                android:weightSum="4">
 
                 <TextView
                     android:id="@+id/CalendarAdd_time"
@@ -54,22 +54,23 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:text=""
-                    android:textColor="#FFF"
-                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:textSize="13sp"
                     android:layout_margin="3dp"
                     android:paddingLeft="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1.5"
+                    />
                 <TextView
                     android:id="@+id/CalendarAdd_memo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:text="메모"
-                    android:textColor="#FFF"
-                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:textSize="15sp"
                     android:layout_margin="3dp"
                     android:paddingLeft="20dp"
-                    android:layout_weight="2"/>
+                    android:layout_weight="2.5"/>
 
             </LinearLayout>
 
