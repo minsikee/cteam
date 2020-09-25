@@ -1,11 +1,13 @@
 package com.example.cteam.board;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -17,7 +19,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.cteam.ATask.BoardselectList;
 import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.R;
@@ -25,12 +29,24 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 import static com.example.cteam.R.array.board_SpinnerArray;
 
 public class WalkBoard extends Fragment {
 
     Spinner spinner_board, spinner_City, spinner_Sigungu;
     ArrayAdapter<CharSequence> City_spinner, Sigungu_spinner;
+
+    //ATask
+    BoardselectList boardselectList;
+    //DTO
+    ArrayList<BoardDTO> myItemArrayList;
+    //RecyclerView
+    RecyclerView recyclerView;
+    //Adapter
+    BoardAdapter boardAdapter;
+
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -101,28 +117,41 @@ public class WalkBoard extends Fragment {
         });
 
         // 게시판 리사이클러 뷰 찾기
-        RecyclerView recyclerView = rootView.findViewById(R.id.board_list);
+        recyclerView = rootView.findViewById(R.id.board_list);
 
-        // 임의의 데이터 만들기 (이 부분에서 게시판 정보를 가져와야 함)
-        BoardDTO dto = new BoardDTO();
-        dto.setTitle("글제목");
-        dto.setId("아이디");
-        dto.setDate("20200822");
-        dto.setComment("8개");
-
-        BoardDTO dto2 = new BoardDTO();
-        dto.setTitle("글제목2임");
-        dto.setId("현열");
-        dto.setDate("54654654");
-        dto.setComment("99개");
-
-        ArrayList<BoardDTO> bList = new ArrayList<>();
-        bList.add(dto);
-        bList.add(dto2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext(),
+                RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
 
         // 리사이클러뷰 어댑터 선언
-        BoardAdapter adapter = new BoardAdapter(bList);
-        recyclerView.setAdapter(adapter);
+        myItemArrayList = new ArrayList<>();
+        boardAdapter = new BoardAdapter(rootView.getContext(), myItemArrayList);
+
+        recyclerView.setAdapter(boardAdapter);
+
+        if(isNetworkConnected(rootView.getContext()) == true){
+            boardselectList = new BoardselectList(myItemArrayList, boardAdapter, progressDialog);
+            boardselectList.execute();
+        }else {
+            Toast.makeText(rootView.getContext(), "인터넷이 연결되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+        }
+        // 임의의 데이터 만들기 (이 부분에서 게시판 정보를 가져와야 함)
+//        BoardDTO dto = new BoardDTO();
+//        dto.setTitle("글제목");
+//        dto.setId("아이디");
+//        dto.setDate("20200822");
+//        dto.setComment("8개");
+//
+//        BoardDTO dto2 = new BoardDTO();
+//        dto.setTitle("글제목2임");
+//        dto.setId("현열");
+//        dto.setDate("54654654");
+//        dto.setComment("99개");
+//
+//        ArrayList<BoardDTO> bList = new ArrayList<>();
+//        bList.add(dto);
+//        bList.add(dto2);
+
 
         //글등록 플로팅액션버튼 → 글쓰기 Activity로 이동
         FloatingActionButton fab = rootView.findViewById(R.id.board_write);
