@@ -791,7 +791,6 @@ public class Calendar extends Fragment {
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon33));
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon44));
-                cal_icon3.mutate();
                 //cal_icon3.mutate();
                 //cal_icon3.getDrawable(R.drawable.cal_3icons).mutate();
                 //cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
@@ -802,7 +801,6 @@ public class Calendar extends Fragment {
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon55));
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon66));
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon77));
-                cal_icon3.mutate();
                 //boolean replace4 = cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, (Drawable) getResources().getDrawable(R.drawable.icon55));
                 //boolean replace5 = cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, (Drawable) getResources().getDrawable(R.drawable.icon66));
                 //boolean replace6 = cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, (Drawable) getResources().getDrawable(R.drawable.icon77));
@@ -812,7 +810,7 @@ public class Calendar extends Fragment {
                 //cal_icon4.getDrawable(R.drawable.cal_3icons).mutate();
             }
 
-
+            cal_icon3.mutate();
             java.util.Calendar calendar3 = java.util.Calendar.getInstance();
             calendar3.add(java.util.Calendar.DAY_OF_MONTH, i);
             events.add(new EventDay(calendar3, R.drawable.cal_3icons));
