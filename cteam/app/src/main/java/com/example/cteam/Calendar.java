@@ -785,22 +785,23 @@ public class Calendar extends Fragment {
         //날짜에 아이콘 붙이기 (3개짜리)
 
         for(int i = 1; i < 7; i++) {
-            LayerDrawable cal_icon3 = (LayerDrawable) getResources().getDrawable(R.drawable.cal_3icons);
+            LayerDrawable cal_icon3 = (LayerDrawable) getResources().getDrawable(R.drawable.cal_3icons).mutate();
             if(i <= 3) {
                 //Drawable replace = (Drawable) getResources().getDrawable(R.drawable.icon11);
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
-                cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon33));
-                cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon44));
+                //cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon33));
+                //cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon44));
                 //cal_icon3.mutate();
-                //cal_icon3.getDrawable(R.drawable.cal_3icons).mutate();
+                cal_icon3.getDrawable(R.drawable.cal_3icons);
                 //cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon11));
                 //cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon33));
                 //cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon44));
             }
             else if(i > 3) {
                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, getResources().getDrawable(R.drawable.icon55));
-                cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon66));
-                cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon77));
+                //cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon66));
+                //cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon77));
+                cal_icon3.getDrawable(R.drawable.cal_3icons);
                 //boolean replace4 = cal_icon3.setDrawableByLayerId(R.id.cal_3icons1, (Drawable) getResources().getDrawable(R.drawable.icon55));
                 //boolean replace5 = cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, (Drawable) getResources().getDrawable(R.drawable.icon66));
                 //boolean replace6 = cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, (Drawable) getResources().getDrawable(R.drawable.icon77));
