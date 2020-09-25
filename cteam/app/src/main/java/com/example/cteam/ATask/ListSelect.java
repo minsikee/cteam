@@ -5,15 +5,19 @@ import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.cteam.Adapter.petAddAdapter;
 import com.example.cteam.Common.CommonMethod;
 import com.example.cteam.Dto.PetDTO;
+import com.example.cteam.Login;
+import com.example.cteam.PetAdd;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -23,15 +27,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ListSelect extends AsyncTask<Void, Void, Void> {
-
-    ArrayList<PetDTO> myItemArrayList;
+    String member_id;
+    ArrayList<PetDTO> petList;
     petAddAdapter adapter;
-    ProgressDialog progressDialog;
 
-    public ListSelect(ArrayList<PetDTO> myItemArrayList, petAddAdapter adapter, ProgressDialog progressDialog) {
-        this.myItemArrayList = myItemArrayList;
+
+    public ListSelect(String member_id, ArrayList<PetDTO> petList, petAddAdapter adapter) {
+        this.member_id = member_id;
+        this.petList = petList;
         this.adapter = adapter;
-        this.progressDialog = progressDialog;
     }
 
     HttpClient httpClient;
@@ -46,14 +50,17 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        myItemArrayList.clear();
+        petList.clear();
         String result = "";
-        String postURL = CommonMethod.ipConfig + "/app/anSelectMulti";
+        String postURL = CommonMethod.ipConfig + "/app/cPetSelect";
 
         try {
             // MultipartEntityBuild 생성
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+
+            builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
 
             // 전송
             InputStream inputStream = null;
@@ -77,7 +84,7 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
             inputStream.close();*/
 
         } catch (Exception e) {
-            Log.d("Sub1", e.getMessage());
+            Log.d("petAdd", e.getMessage());
             e.printStackTrace();
         }finally {
             if(httpEntity != null){
@@ -102,13 +109,23 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
 
-        if(progressDialog != null){
+/*        if(progressDialog != null){
             progressDialog.dismiss();
         }
 
-        Log.d("Sub1", "List Select Complete!!!");
+        Log.d("PetAdd", "petList Select Complete!!!");  */
 
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
+        if (petList.size() > 0) {    //데이타가 추가, 수정되었을때
+
+            adapter.notifyDataSetChanged();
+
+        } else {    //뷰에 표시될 데이타가 없을때
+
+
+
+        }
+
     }
 
     public void readJsonStream(InputStream inputStream) throws IOException {
@@ -116,7 +133,7 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
         try {
             reader.beginArray();
             while (reader.hasNext()) {
-                myItemArrayList.add(readMessage(reader));
+                petList.add(readMessage(reader));
             }
             reader.endArray();
         } finally {
@@ -125,12 +142,12 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public PetDTO readMessage(JsonReader reader) throws IOException {
-        String petname = "", petage = "", petweight = "", petgender = "";
+        String petname = "", petage = "", petweight = "", petgender = "", petimage_path = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            if (readStr.equals("petpetname")) {
+            if (readStr.equals("petname")) {
                 petname = reader.nextString();
             } else if (readStr.equals("petage")) {
                 petage = reader.nextString();
@@ -138,13 +155,16 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
                 petweight = reader.nextString();
             } else if (readStr.equals("petgender")) {
                 petgender = reader.nextString();
-            }else {
+            } else if (readStr.equals("petimagepath")) {
+                petimage_path = reader.nextString();
+            } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
         Log.d("listselect:myitem", petname + "," + petage + "," + petweight + "," + petgender);
-       return null;
+
+        return new PetDTO(petname, petage, petweight, petgender, petimage_path);
 
     }
 
