@@ -142,7 +142,7 @@ public class Find extends AppCompatActivity {
                     String member_question = Find_qs;
                     String member_answer = Find_as.getText().toString();
 
-                    Toast.makeText(Find.this, Find_qs, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Find.this, Find_qs, Toast.LENGTH_SHORT).show();
 
                     FindPwSelect findPwSelect = new FindPwSelect(member_id, member_question,member_answer);
                     try {

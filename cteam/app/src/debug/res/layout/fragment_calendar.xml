@@ -24,7 +24,7 @@
             app:selectionColor="#FFB4BE"
             app:selectionLabelColor="#FFFFFF"
             app:eventsEnabled="true"
-            app:daysLabelsColor="#ff0000" />
+            app:daysLabelsColor="#CC000000" />
 
     </LinearLayout>
 
@@ -40,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/catplus"
-            android:backgroundTint="#6CC6EF"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            app:tint="#FFB4BE" />
 
     </LinearLayout>
 

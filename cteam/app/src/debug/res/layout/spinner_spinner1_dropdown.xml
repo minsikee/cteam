@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:padding="5dp"
     android:orientation="horizontal"
@@ -8,17 +9,17 @@
 
     <ImageView
         android:src="@drawable/outline_lock_open_black_18dp"
-        android:tint="@color/colorPrimary"
         android:layout_width="18dp"
-        android:layout_height="18dp" />
+        android:layout_height="18dp"
+        app:tint="#FFB4BE" />
 
     <TextView
         android:id="@+id/spinnerText"
         android:textSize="15sp"
-        android:textColor="#000"
+        android:textColor="#969696"
         android:alpha="0.87"
         android:paddingLeft="13dp"
-        android:textColorHint="#1f000000"
+        android:textColorHint="#969696"
         android:layout_weight="1"
         android:gravity="center"
         android:layout_width="wrap_content"
