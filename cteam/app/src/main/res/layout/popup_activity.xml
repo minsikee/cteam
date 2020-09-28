@@ -15,10 +15,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="53dp"
-            android:background="#B961A0A8"
+            android:background="#FFB4BE"
             android:gravity="center"
             android:text="약관"
-            android:textColor="#fff"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
     <!-- //end 타이틀바 -->
@@ -28,7 +28,8 @@
         android:padding="24dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#40969696">
 
         <TextView
             android:id="@+id/txtText"
@@ -37,21 +38,25 @@
             android:layout_marginBottom="3dp"
             android:alpha="0.87"
             android:gravity="center"
-            android:textColor="#000"
+            android:textColor="#CC000000"
             android:textSize="15sp"
-            android:text="약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관
-                        약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관
-                        약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관
-                        약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관
-                        약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관약관
-                        " />
+            android:text="약관약관약관약관약관약관약관약관약관
+            약관약관약관약관약관약관약관약관약관
+            약관약관약관약관약관약관약관약관약관
+            약관약관약관약관약관약관약관약관약관
+            약관약관약관약관약관약관약관약관약관
+            약관약관약관약관약관약관약관약관약관
+            약관약관약관약관약관약관약관약관약관" />
 
     </LinearLayout>
     <!-- Notice -->
+<!--
+
     <View
         android:background="#66bdbdbd"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
+-->
 
     <!-- 닫기 버튼 -->
     <LinearLayout
@@ -66,7 +71,7 @@
             android:layout_width="173dp"
             android:layout_height="53dp"
             android:layout_weight="1"
-            android:background="#398E98"
+            android:background="#FFB4BE"
             android:gravity="center"
             android:onClick="mOnClose"
             android:padding="16dp"
@@ -79,12 +84,12 @@
             android:layout_width="173dp"
             android:layout_height="53dp"
             android:layout_weight="1"
-            android:background="#00000000"
+            android:background="#969696"
             android:gravity="center"
             android:onClick="mOnClose"
             android:padding="16dp"
             android:text="취소"
-            android:textColor="#00BCD4"
+            android:textColor="#FFFFFF"
             android:textSize="15sp" />
     </LinearLayout>
     <!--// 닫기 버튼 -->
