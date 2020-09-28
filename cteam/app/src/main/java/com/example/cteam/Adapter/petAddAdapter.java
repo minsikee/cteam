@@ -27,6 +27,7 @@ import com.example.cteam.PetAdd;
 import com.example.cteam.PetSelect;
 import com.example.cteam.R;
 import com.example.cteam.pet_add.petInsert;
+import com.example.cteam.pet_add.petUpdate;
 
 import java.util.ArrayList;
 
@@ -54,12 +55,21 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         PetDTO dto = petList.get(position);
         holder.setPet(dto);
 
-        holder.signBtn.setOnClickListener(new View.OnClickListener() {
+        holder.selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 petAddDto = petList.get(position);
                 Log.d("main:petaddadapter", "onClick: " + petAddDto.getPetname());
                 Intent intent = new Intent(context, PetSelect.class);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                petAddDto = petList.get(position);
+                Intent intent = new Intent(context, petUpdate.class);
                 context.startActivity(intent);
             }
         });
@@ -95,7 +105,7 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         public RelativeLayout parentLayout;
         public TextView tvName, tvWeight, tvGender, tvAge;
         public ImageView imageView;
-        public Button signBtn;
+        public Button selectBtn, updateBtn;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,7 +116,8 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
             tvGender = itemView.findViewById(R.id.TVgender);
             tvAge = itemView.findViewById(R.id.TVage);
             imageView = itemView.findViewById(R.id.imageView);
-            signBtn = itemView.findViewById(R.id.signBtn);
+            selectBtn = itemView.findViewById(R.id.selectBtn);
+            updateBtn = itemView.findViewById(R.id.updateBtn);
         }
 
         public void setPet(PetDTO dto){
