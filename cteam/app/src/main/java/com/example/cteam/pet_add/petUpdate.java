@@ -56,7 +56,7 @@ public class petUpdate extends AppCompatActivity {
     long fileSize = 0;
 
 
-    @Override
+   /* @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
@@ -239,5 +239,5 @@ public class petUpdate extends AppCompatActivity {
     }
     public void btnCancelClicked(View view){
         finish();
-    }
+    }*/
 }
