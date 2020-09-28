@@ -17,7 +17,9 @@
             android:id="@+id/nav_logout"
             android:title="로그아웃"/>
 
-
+        <item
+            android:id="@+id/nav_pet"
+            android:title="반려동물 선택화면"/>
 
     </group>
 
