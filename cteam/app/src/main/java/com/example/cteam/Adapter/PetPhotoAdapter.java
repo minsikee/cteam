@@ -119,7 +119,9 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
         }
 
         public void setItem(PetPhotoDTO petPhoto){
-
+            if(petPhoto!=null){
+                Log.d("yyyy", "setItem: d"+petPhoto.getPetPhoto_content());
+            }
            // id.setText(item.getId());
             petPhoto_petName.setText(petPhoto.getPetName());
             petPhoto_date.setText(petPhoto.getPetPhoto_date());
