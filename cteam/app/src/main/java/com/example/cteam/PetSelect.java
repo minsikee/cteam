@@ -125,7 +125,7 @@ public class PetSelect extends AppCompatActivity
                         break;
                     case R.id.tab2 :
                         Intent intent = new Intent(getApplicationContext(),FindStore.class);
-                        startActivity(intent); 
+                        startActivity(intent);
                         break;
                     case R.id.tab3 :
                         getSupportFragmentManager().beginTransaction()
@@ -162,7 +162,6 @@ public class PetSelect extends AppCompatActivity
             Intent intent = new Intent(this, PetAdd.class);
             startActivity(intent);
             petAddDto = null;
-            //onFragmentSelected(3, null);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);        //메뉴 누른뒤에 사라지는 것(스타트상태로)

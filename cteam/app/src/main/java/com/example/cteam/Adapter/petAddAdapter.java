@@ -64,19 +64,6 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
             }
         });
 
-     /*   holder.signBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(petAddDto != null){
-                    Intent intent = new Intent(context, PetSelect.class);
-                    context.startActivity(intent);
-                    petAddDto = null;
-
-                }else {
-                    Log.d("main:petaddadapter", "onClick: signBtn => 항목을 선택해 주세요" );
-                }
-            }
-        });*/
     }
     // 어댑터에 매소드 만들기
 
