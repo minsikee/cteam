@@ -6,22 +6,22 @@
         android:gravity="left"
         android:width="40dp"
         android:height="40dp"
-        android:drawable="@drawable/sample_icon_1" >
+        android:drawable="@drawable/background_transparent" >
     </item>
     <item
         android:id="@+id/cal_3icons2"
         android:gravity="center"
         android:width="40dp"
         android:height="40dp"
-        android:right="40dp"
-        android:left="40dp"
-        android:drawable="@drawable/sample_icon_3" >
+        android:right="45dp"
+        android:left="45dp"
+        android:drawable="@drawable/background_transparent" >
     </item>
     <item
         android:id="@+id/cal_3icons3"
         android:gravity="right"
         android:width="40dp"
         android:height="40dp"
-        android:drawable="@drawable/sample_icon_5" >
+        android:drawable="@drawable/background_transparent" >
     </item>
 </layer-list>
