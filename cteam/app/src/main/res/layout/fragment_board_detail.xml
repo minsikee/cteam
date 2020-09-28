@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".board.BoardDetail">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/board_detail"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="상세보기" />
+
+            <TextView
+                android:id="@+id/board_detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="제목"
+                android:textSize="25sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/board_detail_writer_img"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    tools:src="@tools:sample/avatars" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/board_detail_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="아이디"/>
+
+                    <TextView
+                        android:id="@+id/board_detail_date"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="등록시간"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/board_detail_content"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:text="내용"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/board_detail_comment_img"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="5dp"
+                    tools:src="@tools:sample/avatars" />
+
+                <EditText
+                    android:id="@+id/board_detail_comment_write"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:hint="댓글을 작성하세요" />
+
+                <Button
+                    android:id="@+id/board_detail_comment_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="등록"
+                    android:textColor="#000000"
+                    android:textSize="15sp"/>
+
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/board_detail_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
