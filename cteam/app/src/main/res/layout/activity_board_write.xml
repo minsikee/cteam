@@ -1,9 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     tools:context=".board.BoardWrite">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/board_write_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/board_write_subject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/board_write_SpinnerArray"/>
+
+            <TextView
+                android:id="@+id/member_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/board_write_title"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:hint="제목"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/board_write_content"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:gravity="top"
+                android:hint="내용을 입력하세요."
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/board_write_filebutton"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="사진선택" />
+
+                <ImageView
+                    android:id="@+id/board_write_image"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/board_write_fileselect"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="위치선택" />
+
+                <Spinner
+                    android:id="@+id/board_write_region1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/spinner_region" />
+
+                <Spinner
+                    android:id="@+id/board_write_region2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/board_write_cancel"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="btnBoardcancel"
+                    android:layout_marginLeft="50dp"
+                    android:text="취소" />
+
+                <Button
+                    android:id="@+id/board_write_submit"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="btnBoardinsert"
+                    android:layout_marginLeft="50dp"
+                    android:text="등록" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
