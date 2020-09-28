@@ -56,7 +56,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.IconVi
 
 
 
-
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

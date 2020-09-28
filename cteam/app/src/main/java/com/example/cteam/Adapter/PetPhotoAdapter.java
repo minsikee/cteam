@@ -23,6 +23,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 import static com.example.cteam.PetPhoto.selectPetPhoto;
 
 
@@ -122,6 +123,7 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
 
            // id.setText(item.getId());
             petPhoto_petName.setText(petPhoto.getPetName());
+           // petPhoto_petName.setText(petAddDto.getPetname());
             petPhoto_date.setText(petPhoto.getPetPhoto_date());
             petPhoto_content.setText(petPhoto.getPetPhoto_content()
             );
