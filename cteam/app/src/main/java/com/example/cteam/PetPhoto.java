@@ -83,7 +83,7 @@ public class PetPhoto extends Fragment {
 
         //데이터 불러옴
 
-        String pet_name="자몽";
+        String pet_name="초롱이";
         String member_id= loginDTO.getMember_id();
 
 
