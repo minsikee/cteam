@@ -1,11 +1,13 @@
 package com.example.cteam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -26,7 +28,6 @@ public class PetAdd extends AppCompatActivity {
 
     ListSelect listSelect;
     Button btnAdd;
-    Button btnUpdate;
 
     ArrayList<PetDTO> petList;
 
@@ -39,7 +40,6 @@ public class PetAdd extends AppCompatActivity {
         setContentView(R.layout.activity_pet_add);
 
         btnAdd = findViewById(R.id.btnAdd);
-        btnUpdate = findViewById(R.id.btnUpdate);
 
         petList = new ArrayList<>();
         adapter = new petAddAdapter(this, petList);
@@ -50,7 +50,22 @@ public class PetAdd extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
 
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

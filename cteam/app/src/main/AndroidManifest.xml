@@ -63,10 +63,7 @@
         <activity
             android:name=".IdFindPopup"
             android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:name=".BarIconPopup"
-            android:theme="@android:style/Theme.Dialog"
-            />
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDUe3mN0qdkPzd2vfAtCmVBwUyMwVsJJw4"/>

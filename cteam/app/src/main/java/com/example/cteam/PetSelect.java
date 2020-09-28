@@ -157,6 +157,8 @@ public class PetSelect extends AppCompatActivity
             onFragmentSelected(1, null);
         }else if(id == R.id.nav_logout){
             onFragmentSelected(2, null);
+        }else if(id == R.id.nav_logout){
+            onFragmentSelected(3, null);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);        //메뉴 누른뒤에 사라지는 것(스타트상태로)
@@ -178,6 +180,10 @@ public class PetSelect extends AppCompatActivity
         }else if (position == 2){
             curFragment = logout;
             toolbar.setTitle("로그아웃");
+        }else if (position == 3){
+            Intent intent = new Intent(this, PetAdd.class);
+            startActivity(intent);
+
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.container,curFragment).commit();
     }
