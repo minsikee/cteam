@@ -31,21 +31,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
+import static com.example.cteam.Login.loginDTO;
+
 public class petUpdate extends AppCompatActivity {
 
     EditText petName, petAge,petWeight,petGender;
 
-    String name = "";
-    String age = "";
-    String weight = "";
-    String gender ="";
+    String petname = "";
+    String petage = "";
+    String petweight = "";
+    String petgender ="";
     ImageView petPhoto;
 
     Button btnLoad,btnCancle,btn_update,btnReset;
 
-    public String imagePath;
+    public String petimagepath;
     public String pImgDbPathU;
-    public String imageRealPathU = "", imageDbPathU = "";
+    public String imageRealPathA = "", imageDbPathU = "";
 
     final int CAMERA_REQUEST = 1000;
     final int LOAD_IMAGE = 1001;
@@ -53,14 +55,13 @@ public class petUpdate extends AppCompatActivity {
     File file = null;
     long fileSize = 0;
 
-    java.text.SimpleDateFormat tmpDateFormat;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
 
-       /* petName = findViewById(R.id.petName);
+        petName = findViewById(R.id.petName);
         petAge = findViewById(R.id.petAge);
         petGender = findViewById(R.id.petGender);
         petWeight = findViewById(R.id.petWeight);
@@ -73,25 +74,28 @@ public class petUpdate extends AppCompatActivity {
 
         petPhoto = findViewById(R.id.petPhoto);
 
+        // 보내온 값 파싱
         Intent intent = getIntent();
         PetDTO selItem = (PetDTO) intent.getSerializableExtra("selItem");
 
-        name = selItem.getName();
-        age = selItem.getAge();
-        gender = selItem.getGender();
-        weight = selItem.getWeight();
+        petname = selItem.getPetname();
+        petage = selItem.getPetage();
+        petgender = selItem.getPetgender();
+        petweight = selItem.getPetweight();
 
-        petName.setText(name);
-        petAge.setText(age);
-        petWeight.setText(weight);
-        petGender.setText(gender);
+        // 가져온 값 써 넣기
+        petName.setText(petname);
+        petAge.setText(petage);
+        petWeight.setText(petweight);
+        petGender.setText(petgender);
 
-        imagePath = selItem.getImage_path();
-        pImgDbPathU = imagePath;
-        imageDbPathU = imagePath;
+        petimagepath = selItem.getPetimage_path();
+        pImgDbPathU = petimagepath;
+        imageDbPathU = pImgDbPathU;
 
+        // 선택된 이미지 보여주기
         petPhoto.setVisibility(View.VISIBLE);
-        Glide.with(this).load(imagePath).into(petPhoto);
+        Glide.with(this).load(petimagepath).into(petPhoto);
 
         btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +109,7 @@ public class petUpdate extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -133,8 +138,8 @@ public class petUpdate extends AppCompatActivity {
                     Toast.makeText(this, "이미지가 null 입니다...", Toast.LENGTH_SHORT).show();
                 }
 
-                imageRealPathU = file.getAbsolutePath();
-                String uploadFileName = imageRealPathU.split("/")[imageRealPathU.split("/").length - 1];
+                imageRealPathA = file.getAbsolutePath();
+                String uploadFileName = imageRealPathA.split("/")[imageRealPathA.split("/").length - 1];
                 imageDbPathU = CommonMethod.ipConfig + "/app/resources/" + uploadFileName;
 
                 ImageView imageView = (ImageView) findViewById(R.id.imageView);
@@ -164,8 +169,8 @@ public class petUpdate extends AppCompatActivity {
                     Toast.makeText(this, "이미지가 null 입니다...", Toast.LENGTH_SHORT).show();
                 }
 
-                imageRealPathU = path;
-                String uploadFileName = imageRealPathU.split("/")[imageRealPathU.split("/").length - 1];
+                imageRealPathA = path;
+                String uploadFileName = imageRealPathA.split("/")[imageRealPathA.split("/").length - 1];
                 imageDbPathU = CommonMethod.ipConfig + "/app/resources/" + uploadFileName;
 
             } catch (Exception e){
@@ -187,20 +192,20 @@ public class petUpdate extends AppCompatActivity {
         return res;
     }
 
-    public void btnAddClicked(View view){
+    public void btnUpdateClicked(View view){
         if(CommonMethod.isNetworkConnected(this) == true){
             if(fileSize <= 30000000) {  // 파일크기가 30메가 보다 작아야 업로드 할수 있음
 
-                name = petName.getText().toString();
-                age = petAge.getText().toString();
-                gender = petGender.getText().toString();
-                weight = petWeight.getText().toString();
+                petname = petName.getText().toString();
+                petage = petAge.getText().toString();
+                petgender = petGender.getText().toString();
+                petweight = petWeight.getText().toString();
 
 
 
 
 
-                ListUpdate listUpdate = new ListUpdate( name, age,gender,weight, pImgDbPathU, imageDbPathU, imageRealPathU);
+                ListUpdate listUpdate = new ListUpdate(loginDTO.getMember_id(), petname, petage,petgender,petweight, pImgDbPathU, imageDbPathU, imageRealPathA);
                 listUpdate.execute();
 
 
@@ -230,6 +235,9 @@ public class petUpdate extends AppCompatActivity {
             Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
-*/
+
+    }
+    public void btnCancelClicked(View view){
+        finish();
     }
 }

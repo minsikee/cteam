@@ -20,16 +20,17 @@ import java.nio.charset.Charset;
 
 public class ListUpdate extends AsyncTask<Void,Void,Void> {
 
-    String  name,age,gender,weight, pImgDbPathU, imageDbPathU, imageRealPathU;
+    public String memeber_id,petname,petage,petweight,petgender;
+    public String petimagepath,imageRealPathA="";
 
-    public ListUpdate(String name, String age, String gender, String weight, String pImgDbPathU, String imageDbPathU, String imageRealPathU) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.weight = weight;
-        this.pImgDbPathU = pImgDbPathU;
-        this.imageDbPathU = imageDbPathU;
-        this.imageRealPathU = imageRealPathU;
+    public ListUpdate(String member_id, String memeber_id, String petname, String petage, String petweight, String petgender, String petimagepath, String imageRealPathA) {
+        this.memeber_id = memeber_id;
+        this.petname = petname;
+        this.petage = petage;
+        this.petweight = petweight;
+        this.petgender = petgender;
+        this.petimagepath = petimagepath;
+        this.imageRealPathA = imageRealPathA;
     }
     @Override
     protected void onPreExecute() {
@@ -46,33 +47,37 @@ public class ListUpdate extends AsyncTask<Void,Void,Void> {
             builder.setCharset(Charset.forName("UTF-8"));
 
             // 문자열 및 데이터 추가
-            builder.addTextBody("name", name, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("age", age, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("gender", gender, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("weight", weight, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("memeber_id", memeber_id, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petage", petage, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petweight", petweight , ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petgender", petgender , ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petimagepath", petimagepath, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addPart("image", new FileBody(new File(imageRealPathA)));
 
-            Log.d("Sub1Update11", name);
-            Log.d("Sub1Update12", age);
-            Log.d("Sub1Update13", gender);
-            Log.d("Sub1Update14", weight);
-            Log.d("Sub1Update16", pImgDbPathU);
-            Log.d("Sub1Update17", imageDbPathU);
+            Log.d("PetUpdate", memeber_id);
+            Log.d("PetUpdate", petname);
+            Log.d("PetUpdate", petage);
+            Log.d("PetUpdate", petweight);
+            Log.d("PetUpdate", petgender);
+            Log.d("PetUpdate", petimagepath);
+            Log.d("PetUpdate", imageRealPathA);
 
             // 이미지를 새로 선택했으면 선택한 이미지와 기존에 이미지 경로를 같이 보낸다
-            if(!imageRealPathU.equals("")){
+            if(!petimagepath.equals("")){
                 Log.d("Sub1Update:postURL", "1");
                 // 기존에 있던 DB 경로
-                builder.addTextBody("pDbImgPath", pImgDbPathU, ContentType.create("Multipart/related", "UTF-8"));
+                builder.addTextBody("pDbImgPath", petimagepath, ContentType.create("Multipart/related", "UTF-8"));
                 // DB에 저장할 경로
-                builder.addTextBody("dbImgPath", imageDbPathU, ContentType.create("Multipart/related", "UTF-8"));
+                builder.addTextBody("dbImgPath", petimagepath, ContentType.create("Multipart/related", "UTF-8"));
                 // 실제 이미지 파일
-                builder.addPart("image", new FileBody(new File(imageRealPathU)));
+                builder.addPart("image", new FileBody(new File(imageRealPathA)));
 
-                postURL = CommonMethod.ipConfig + "/app/anUpdateMulti";
+                postURL = CommonMethod.ipConfig + "/app/cPetUpdate";
 
-            }else if(imageRealPathU.equals("")){  // 이미지를 바꾸지 않았다면
+            }else if(imageRealPathA.equals("")){  // 이미지를 바꾸지 않았다면
                 Log.d("Sub1Update:postURL", "3");
-                postURL = CommonMethod.ipConfig + "/app/anUpdateMultiNo";
+                postURL = CommonMethod.ipConfig + "/app/cPetUpdate";
             }else{
                 Log.d("Sub1Update:postURL", "5 : error");
             }
