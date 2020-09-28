@@ -125,7 +125,7 @@ public class PetSelect extends AppCompatActivity
                         break;
                     case R.id.tab2 :
                         Intent intent = new Intent(getApplicationContext(),FindStore.class);
-                        startActivity(intent);
+                        startActivity(intent); 
                         break;
                     case R.id.tab3 :
                         getSupportFragmentManager().beginTransaction()
