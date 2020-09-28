@@ -106,7 +106,7 @@ public class CalcalSelect extends AsyncTask<Void, Void, ArrayList<CalendarDTO>> 
 
     public CalendarDTO readMessage(JsonReader reader) throws IOException {
 
-        String calendar_date = "", calendar_icon = "", calendar_memo = "", calendar_hour = "", calendar_minute = "";
+        String calendar_date = "", calendar_icon = "", calendar_memo = "", calendar_hour = "", calendar_minute = "",calendar_id="";
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -123,7 +123,7 @@ public class CalcalSelect extends AsyncTask<Void, Void, ArrayList<CalendarDTO>> 
         }
         reader.endObject();
 
-        return new CalendarDTO(calendar_date, calendar_icon, calendar_memo, calendar_hour, calendar_minute);
+        return new CalendarDTO(calendar_date, calendar_icon, calendar_memo, calendar_hour, calendar_minute,calendar_id);
 
     }
 

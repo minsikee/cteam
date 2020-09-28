@@ -155,7 +155,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         mainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PetBar.class);
+                Intent intent = new Intent(getApplicationContext(), PetSelect.class);
                 startActivity(intent);
             }
         });

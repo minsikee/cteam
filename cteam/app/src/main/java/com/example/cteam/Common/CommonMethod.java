@@ -17,7 +17,10 @@ public class CommonMethod {
     /*public static String  ipConfig = "http://192.168.200.151:8989";*/
 
 
+<<<<<<< HEAD
     public static String ipConfig = "http://192.168.0.37:8080";
+=======
+>>>>>>> 92ed5373bc0f9ba98bedcbaf8066605c41a2ceed
 
     // 네트워크에 연결되어 있는가
     public static boolean isNetworkConnected(Context context) {

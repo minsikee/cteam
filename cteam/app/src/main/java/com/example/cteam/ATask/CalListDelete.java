@@ -16,10 +16,10 @@ import java.nio.charset.Charset;
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 
 public class CalListDelete extends AsyncTask<Void, Void, Void> {
-    String calendar_icon;
+    String calendar_id;
 
-    public CalListDelete(String calendar_icon) {
-        this.calendar_icon = calendar_icon;
+    public CalListDelete(String calendar_id) {
+        this.calendar_id= calendar_id;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class CalListDelete extends AsyncTask<Void, Void, Void> {
 
             // 문자열 및 데이터 추가
 
-            builder.addTextBody("calendar_icon", calendar_icon, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("calendar_id", calendar_id, ContentType.create("Multipart/related", "UTF-8"));
 
             String postURL = ipConfig + "/app/calDelete";
             // 전송

@@ -33,7 +33,8 @@
             android:id="@+id/Calendar_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/sample_icon_4"
+            android:src="@drawable/catplus"
+            android:backgroundTint="#6CC6EF"
             android:visibility="gone"/>
 
     </LinearLayout>

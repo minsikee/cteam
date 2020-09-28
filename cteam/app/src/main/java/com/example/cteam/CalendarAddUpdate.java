@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cteam.ATask.CalListUpdate;
 import com.example.cteam.Dto.CalendarDTO;
@@ -40,6 +41,7 @@ public class CalendarAddUpdate extends Fragment {
     String calendar_memo;
     String calendar_minute;
     String calendar_hour;
+    String calendar_id;
 
     NumberPicker CalendarAddUpdate_Time;
     TextView CalendarAddUpdate_memo;
@@ -75,6 +77,7 @@ public class CalendarAddUpdate extends Fragment {
     java.text.SimpleDateFormat tmpDateFormat;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,6 +91,8 @@ public class CalendarAddUpdate extends Fragment {
             selectIcon= (CalendarDTO) bundle.getSerializable("selectIcon");
             activity.sBundle = null;
         }*/
+        //refresh();
+
 
         //메모찾기
         CalendarAddUpdate_memo = rootView.findViewById(R.id.CalendarAddUpdate_memo);
@@ -114,9 +119,6 @@ public class CalendarAddUpdate extends Fragment {
         CalendarAddUpdate_icon8=rootView.findViewById(R.id.CalendarAddUpdate_icon8);
 
 
-
-
-
         if(selectIcon != null){
             Log.d("main:CalAddUpdate", "onCreateView: " + selectIcon.getCalendar_memo());
 
@@ -125,11 +127,18 @@ public class CalendarAddUpdate extends Fragment {
             calendar_memo=selectIcon.getCalendar_memo();
             calendar_hour=selectIcon.getCalendar_hour();
             calendar_minute=selectIcon.getCalendar_minute();
+            calendar_id=selectIcon.getCalendar_id();
 
-            Log.d("main:date", "onCreateView:date 값"+calendar_date);
+            Log.d("main:date", "onCreateView:memo 값"+calendar_memo);
+
+
+            //메모값 초기화
+            CalendarAddUpdate_memo.setText(calendar_memo);
 
             // 메모에 가져온 값 써 넣기
-            CalendarAddUpdate_memo.setText(calendar_memo);
+           if(CalendarAddUpdate_memo != null) {
+               CalendarAddUpdate_memo.setText(calendar_memo);
+           }
         }
 
 
@@ -141,8 +150,10 @@ public class CalendarAddUpdate extends Fragment {
         CalendarAddUpdate_Time.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         setDividerColor(CalendarAddUpdate_Time, android.R.color.white );
         CalendarAddUpdate_Time.setWrapSelectorWheel(false);
-        CalendarAddUpdate_Time.setValue(Integer.parseInt(calendar_hour));     //가져온 값으로 기본 값 설정
 
+        if(calendar_hour != null) {
+            CalendarAddUpdate_Time.setValue(Integer.parseInt(calendar_hour));     //가져온 값으로 기본 값 설정
+        }
         CalendarAddUpdate_Time.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -153,6 +164,8 @@ public class CalendarAddUpdate extends Fragment {
         });
 
         selectedTime=CalendarAddUpdate_Time.getValue();
+
+
 
 
 
@@ -170,8 +183,10 @@ public class CalendarAddUpdate extends Fragment {
         np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         setDividerColor(np, android.R.color.white );
         np.setWrapSelectorWheel(false);
-        np.setValue(Integer.parseInt(calendar_minute));     //가져온 값으로 기본 값 설정
 
+        if(calendar_minute!=null) {
+            np.setValue(Integer.parseInt(calendar_minute));     //가져온 값으로 기본 값 설정
+        }
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -1554,11 +1569,16 @@ public class CalendarAddUpdate extends Fragment {
         //취소 > 저장하지 않고 CalendarAdd로 이동
         CalendarAddUpdate_cancel = rootView.findViewById(R.id.CalendarAddUpdate_cancel);
         CalendarAddUpdate_cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                //CalendarAddUpdate_memo.setText("");
                 activity.onFragmentChange(4, null);
+
             }
+
         });
+
 
         //확인 > 저장하고 CalendarAdd로 이동
         CalendarAddUpdate_ok = rootView.findViewById(R.id.CalendarAddUpdate_ok);
@@ -1716,10 +1736,11 @@ public class CalendarAddUpdate extends Fragment {
 
                     Log.d("main:hour", "onClick: 시간"+calendar_hour);
 
-                    CalListUpdate calListUpdate = new CalListUpdate(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
+                    CalListUpdate calListUpdate = new CalListUpdate(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute,calendar_id);
                     calListUpdate.execute();
 
                     activity.onFragmentChange(4, null);
+
                 }
                 //Toast.makeText(getContext(), calendar_icon, Toast.LENGTH_SHORT).show();
             }
@@ -1750,4 +1771,9 @@ public class CalendarAddUpdate extends Fragment {
             }
         }
     }
+
+    private void refresh() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.detach(this).attach(this).commit();
+    } //refresh()
 }
