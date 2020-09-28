@@ -14,12 +14,16 @@ import java.io.IOException;
 
 public class CommonMethod {
 
+<<<<<<< HEAD
     /*public static String  ipConfig = "http://192.168.200.151:8989";*/
 
 
 
     public static String ipConfig = "http://192.168.0.37:8080";
 
+=======
+    public static String ipConfig = "http://192.168.0.141:8080";
+>>>>>>> d5e711cb1af46bcdf9e7ca9f40d59f9191c47af4
 
     // 네트워크에 연결되어 있는가
     public static boolean isNetworkConnected(Context context) {

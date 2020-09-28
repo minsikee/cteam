@@ -18,7 +18,13 @@
             android:id="@+id/CalendarView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:selectionColor="#3F51B5" />
+            app:headerColor="#FFB4BE"
+            app:todayLabelColor="#FFB4BE"
+            app:type="one_day_picker"
+            app:selectionColor="#FFB4BE"
+            app:selectionLabelColor="#FFFFFF"
+            app:eventsEnabled="true"
+            app:daysLabelsColor="#ff0000" />
 
     </LinearLayout>
 

@@ -86,5 +86,5 @@ dependencies {
     implementation 'com.android.support:design:30.0.0'
 
    //이미지 동그랗게 만드는 라이브러리
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
