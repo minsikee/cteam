@@ -7,6 +7,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
+import java.util.Calendar;
 import java.util.HashSet;
 
 public class SaturdayDecorator implements DayViewDecorator {
@@ -25,6 +26,6 @@ public class SaturdayDecorator implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.addSpan(new ForegroundColorSpan(Color.RED));
+        view.addSpan(new ForegroundColorSpan(Color.BLUE));
     }
 }

@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.cteam.Dto.CalendarDTO;
 import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.board.WalkBoard;
@@ -29,6 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 
 
 public class PetSelect extends AppCompatActivity
@@ -107,8 +109,7 @@ public class PetSelect extends AppCompatActivity
         tvloginID.setText(loginDTO.getMember_id());
         tvloginName.setText(loginDTO.getMember_name());
 
-        imageView.setImageResource(R.drawable.dog);
-
+        Glide.with(this).load(petAddDto.getPetimage_path()).into(imageView);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, calendar).commit(); //첫화면에 프래그먼트 1이 나오게
 
@@ -157,8 +158,10 @@ public class PetSelect extends AppCompatActivity
             onFragmentSelected(1, null);
         }else if(id == R.id.nav_logout){
             onFragmentSelected(2, null);
-        }else if(id == R.id.nav_logout){
-            onFragmentSelected(3, null);
+        }else if(id == R.id.nav_pet){
+            Intent intent = new Intent(this, PetAdd.class);
+            startActivity(intent);
+            petAddDto = null;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);        //메뉴 누른뒤에 사라지는 것(스타트상태로)
@@ -180,11 +183,11 @@ public class PetSelect extends AppCompatActivity
         }else if (position == 2){
             curFragment = logout;
             toolbar.setTitle("로그아웃");
-        }else if (position == 3){
+        }/*else if (position == 3){
             Intent intent = new Intent(this, PetAdd.class);
             startActivity(intent);
 
-        }
+        }*/
         getSupportFragmentManager().beginTransaction().replace(R.id.container,curFragment).commit();
     }
 

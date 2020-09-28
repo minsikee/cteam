@@ -46,8 +46,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     Button loginBtn1, loginBtn2,loginBtn3,mainBtn;
     SignInButton btn_google;//구글 로그인버튼
     FirebaseAuth auth;  //파이어베이스 인증객체
-    GoogleApiClient googleApiClient;    //구글 api
-    private static final int REQ_SIGN_GOOGLE=100;   //구글로그인결과
+    //GoogleApiClient googleApiClient;    //구글 api
+    //private static final int REQ_SIGN_GOOGLE=100;   //구글로그인결과
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         loginBtn1 = findViewById(R.id.login_btn1);
         loginBtn2 = findViewById(R.id.login_btn2);
         loginBtn3 = findViewById(R.id.login_btn3);
-        mainBtn = findViewById(R.id.main_btn);
 
 //        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestIdToken(getString(R.string.default_web_client_id))
@@ -152,19 +151,9 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             }
         });
 
-        mainBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PetSelect.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-
     }
 
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {//구글 로그인 인증을 요청했을때 결과값을 되돌려받는곳
         super.onActivityResult(requestCode, resultCode, data);
@@ -178,6 +167,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         }
 
     }
+*/
 
     private void resultLogin(final GoogleSignInAccount account) {
         AuthCredential credential= GoogleAuthProvider.getCredential(account.getIdToken(),null);

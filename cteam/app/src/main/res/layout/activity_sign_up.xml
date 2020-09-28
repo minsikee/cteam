@@ -22,7 +22,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:src="@drawable/dogface" />
+            android:src="@drawable/catbody" />
 
         <Button
             android:id="@+id/Signup_BtnPhotoAdd"
@@ -41,7 +41,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/baseline_pets_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="이름을 입력하세요"
@@ -55,7 +55,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_person_outline_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="아이디 입력"
@@ -86,7 +86,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_lock_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="비밀번호를 입력하세요"
@@ -101,7 +101,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_lock_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="비밀번호 확인"
@@ -126,7 +126,6 @@
             android:layout_below="@+id/SignUp_pw_confirm"
             android:layout_marginTop="5dp"
             android:background="@drawable/spinner_spinner1"
-
             android:gravity="center_vertical"
             android:textSize="14sp"
             />
@@ -140,7 +139,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_help_outline_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="비밀번호 찾기 답을 입력하세요"
@@ -154,7 +153,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_call_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:hint="연락처를 입력하세요"
