@@ -142,7 +142,8 @@ public class CalendarAdd extends Fragment {
         }//버튼찾기
 
 
-        Log.d("main:this","사이즈"+icons.size());
+
+
 
 
 
