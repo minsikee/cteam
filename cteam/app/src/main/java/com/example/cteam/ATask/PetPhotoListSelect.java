@@ -31,13 +31,16 @@ import java.util.ArrayList;
 public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
     ArrayList<PetPhotoDTO> petPhotos;
     PetPhotoAdapter petPhotoAdapter;
+    String member_id;
     String pet_name;
 
 
-    public PetPhotoListSelect(ArrayList<PetPhotoDTO> petPhotos, PetPhotoAdapter petPhotoAdapter,String pet_name) {
+
+    public PetPhotoListSelect(ArrayList<PetPhotoDTO> petPhotos, PetPhotoAdapter petPhotoAdapter,String pet_name,String member_id) {
         this.petPhotos = petPhotos;
         this.petPhotoAdapter = petPhotoAdapter;
         this.pet_name = pet_name;
+        this.member_id= member_id;
     }
 
     HttpClient httpClient;
@@ -62,11 +65,15 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
 
+
+
             builder.addTextBody("petName", pet_name, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
+
 
             // 전송
             InputStream inputStream = null;
-            httpClient = AndroidHttpClient.newInstance("Android");
+            httpClient = AndroidHttpClient.newInstance("cteam");
             httpPost = new HttpPost(postURL);
             httpPost.setEntity(builder.build());
             httpResponse = httpClient.execute(httpPost);
@@ -144,29 +151,31 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public PetPhotoDTO readMessage(JsonReader reader) throws IOException {
-        String image_path = "",content = "", date = "", petname = "";
+        String petName = "",petPhoto_imgpath = "",petPhoto_content = "", petPhoto_date = "";
+        int petPhoto_no = 0;
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            if (readStr.equals("petname")) {
-                petname = reader.nextString();
-            } else if (readStr.equals("petage")) {
-                image_path = reader.nextString();
-            } else if (readStr.equals("petweight")) {
-                content = reader.nextString();
-            } else if (readStr.equals("petgender")) {
-                date = reader.nextString();
-            } else if (readStr.equals("petimagepath")) {
-                petname = reader.nextString();
+            int readInt=reader.nextInt();
+            if (readStr.equals("petName")) {
+                petName = reader.nextString();
+            } else if (readStr.equals("petPhoto_imgpath")) {
+                petPhoto_imgpath = reader.nextString();
+            } else if (readStr.equals("petPhoto_content")) {
+                petPhoto_content = reader.nextString();
+            } else if (readStr.equals("petPhoto_date")) {
+                petPhoto_date = reader.nextString();
+            } else if(readStr.equals("petPhoto_no")){
+                petPhoto_no=reader.nextInt();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("listselect:myitem", petname + "," + image_path + "," + content + "," + date);
+        Log.d("listselect:myitem", petName + "," + petPhoto_imgpath + "," + petPhoto_content + "," + petPhoto_date);
 
-        return new PetPhotoDTO(image_path, content, date, petname);
+        return new PetPhotoDTO(petPhoto_imgpath, petPhoto_content, petPhoto_date, petName, petPhoto_no);
 
     }
 

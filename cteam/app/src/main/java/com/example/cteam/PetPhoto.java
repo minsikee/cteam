@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+import static com.example.cteam.Login.loginDTO;
 
 public class PetPhoto extends Fragment {
 
@@ -83,9 +84,11 @@ public class PetPhoto extends Fragment {
         //데이터 불러옴
 
         String pet_name="자몽";
+        String member_id= loginDTO.getMember_id();
+
 
         if(isNetworkConnected(getActivity()) == true) {
-            petPhotoListSelect = new PetPhotoListSelect(petPhotos, petPhotoAdapter, pet_name);
+            petPhotoListSelect = new PetPhotoListSelect(petPhotos, petPhotoAdapter, pet_name,member_id);
             try {
                 petPhotoListSelect.execute().get();
             } catch (ExecutionException e) {

@@ -122,10 +122,11 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
 
            // id.setText(item.getId());
             petPhoto_petName.setText(petPhoto.getPetName());
-           // date.setText(item.getDate());
-            //petPhoto_content.setText();
+            petPhoto_date.setText(petPhoto.getPetPhoto_date());
+            petPhoto_content.setText(petPhoto.getPetPhoto_content()
+            );
 
-            Glide.with(itemView).load(petPhoto.getImage_path()).into(petPhoto_image);
+            Glide.with(itemView).load(petPhoto.getPetPhoto_imgpath()).into(petPhoto_image);
         }
     }
 
