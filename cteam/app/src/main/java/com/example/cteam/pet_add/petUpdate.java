@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class petUpdate extends AppCompatActivity {
 
@@ -56,15 +57,15 @@ public class petUpdate extends AppCompatActivity {
     long fileSize = 0;
 
 
-   /* @Override
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
 
-        petName = findViewById(R.id.petName);
-        petAge = findViewById(R.id.petAge);
-        petGender = findViewById(R.id.petGender);
-        petWeight = findViewById(R.id.petWeight);
+        petName = findViewById(R.id.petname);
+        petAge = findViewById(R.id.petage);
+        petGender = findViewById(R.id.petgender);
+        petWeight = findViewById(R.id.petweight);
         petPhoto = findViewById(R.id.petPhoto);
 
         btnLoad = findViewById(R.id.btnLoad);
@@ -76,20 +77,21 @@ public class petUpdate extends AppCompatActivity {
 
         // 보내온 값 파싱
         Intent intent = getIntent();
-        PetDTO selItem = (PetDTO) intent.getSerializableExtra("selItem");
+        //PetDTO selItem = (PetDTO) intent.getSerializableExtra("selItem");
 
-        petname = selItem.getPetname();
+      /*  petname = selItem.getPetname();
         petage = selItem.getPetage();
         petgender = selItem.getPetgender();
-        petweight = selItem.getPetweight();
+        petweight = selItem.getPetweight();*/
+
 
         // 가져온 값 써 넣기
-        petName.setText(petname);
-        petAge.setText(petage);
-        petWeight.setText(petweight);
-        petGender.setText(petgender);
+        petName.setText(petAddDto.getPetname());
+        petAge.setText(petAddDto.getPetage());
+        petWeight.setText(petAddDto.getPetweight());
+        petGender.setText(petAddDto.getPetgender());
 
-        petimagepath = selItem.getPetimage_path();
+      //  petimagepath = selItem.getPetimage_path();
         pImgDbPathU = petimagepath;
         imageDbPathU = pImgDbPathU;
 
@@ -239,5 +241,5 @@ public class petUpdate extends AppCompatActivity {
     }
     public void btnCancelClicked(View view){
         finish();
-    }*/
+    }
 }
