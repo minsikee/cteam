@@ -15,10 +15,10 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="#5E73E6"
+            android:background="#FFB4BE"
             android:text="일정수정"
             android:textSize="20dp"
-            android:textColor="#FFF"
+            android:textColor="#FFFFFF"
             android:gravity="center"/>
 
         <TextView
@@ -28,6 +28,7 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/title"
             android:layout_marginBottom="10dp"
+            android:textColor="#969696"
             android:text="아이콘 색상 선택"
             android:textSize="20sp"
             android:layout_marginLeft="15dp"/>
@@ -111,6 +112,7 @@
             android:layout_below="@+id/CalendarAddUpdate_color1"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
+            android:textColor="#969696"
             android:text="아이콘 선택"
             android:textSize="20sp"
             android:layout_marginLeft="15dp"/>
@@ -194,6 +196,7 @@
             android:layout_below="@+id/CalendarAddUpdate_icon1"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
+            android:textColor="#969696"
             android:text="메모"
             android:textSize="20sp"
             android:layout_marginLeft="15dp"/>
@@ -214,6 +217,7 @@
             android:layout_below="@+id/CalendarAddUpdate_memo"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
+            android:textColor="#969696"
             android:text="시간"
             android:textSize="20sp"
             android:layout_marginLeft="15dp"
@@ -277,9 +281,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="50dp"
             android:text="수정"
-            android:background="#5E73E6"
-            android:textSize="20dp"
-            android:textColor="#FFF"/>
+            android:background="@drawable/login_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/CalendarAddUpdate_cancel"
@@ -290,9 +295,9 @@
             android:text="취소"
             android:layout_toRightOf="@id/CalendarAddUpdate_ok"
             android:textSize="20dp"
-            android:background="#FFF"
-            android:textColor="#5E73E6"
-            />
+            android:background="@drawable/text_stroke"
+            android:shadowColor="@android:color/transparent"
+            android:textColor="#969696" />
 
 
 

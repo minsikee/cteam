@@ -65,10 +65,12 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
             }
         });
 
+
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 petAddDto = petList.get(position);
+                Log.d("main:petaddadapter", "onClick: " + petAddDto.getPetname());
                 Intent intent = new Intent(context, petUpdate.class);
                 context.startActivity(intent);
             }

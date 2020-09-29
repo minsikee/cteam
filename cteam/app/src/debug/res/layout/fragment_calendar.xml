@@ -19,12 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:headerColor="#FFB4BE"
+            app:headerLabelColor="#ffffff"
+            app:pagesColor="#ffffff"
             app:todayLabelColor="#FFB4BE"
             app:type="one_day_picker"
             app:selectionColor="#FFB4BE"
             app:selectionLabelColor="#FFFFFF"
-            app:eventsEnabled="true"
-            app:daysLabelsColor="#CC000000" />
+            app:eventsEnabled="true" />
 
     </LinearLayout>
 

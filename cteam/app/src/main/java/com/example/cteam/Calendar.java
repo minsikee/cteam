@@ -8,22 +8,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.example.cteam.ATask.CalcalSelect;
-import com.example.cteam.CalendarDecorator.SaturdayDecorator;
-import com.example.cteam.CalendarDecorator.SundayDecorator;
+
 import com.example.cteam.Dto.CalendarDTO;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -69,11 +70,6 @@ public class Calendar extends Fragment {
         max.add(java.util.Calendar.MONTH, 12);
         CalendarView.setMinimumDate(min);
         CalendarView.setMaximumDate(max);
-
-        //일요일은 빨간맛~!
-        java.util.Calendar sunday = java.util.Calendar.getInstance();
-        sunday.add(java.util.Calendar.SUNDAY, 0);
-        CalendarView.setBackgroundColor(Color.RED);
 
         //이벤트 추가할 배열 생성
         events = new ArrayList<>();
