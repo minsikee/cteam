@@ -32,11 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_weight="1">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="나이 :"
-            android:gravity="right|center"/>
+            android:gravity="right|center"
+            android:text="나이 (세) :" />
         <EditText
             android:id="@+id/petage"
             android:layout_width="match_parent"
@@ -51,11 +52,12 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_weight="1">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="몸무게 :"
-            android:gravity="right|center"/>
+            android:gravity="right|center"
+            android:text="몸무게 (kg) :" />
 
         <EditText
             android:id="@+id/petweight"
