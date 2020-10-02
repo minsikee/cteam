@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -146,6 +147,23 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
                     R.array.offer_types, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerOfferType.setAdapter(adapter);
+
+            spinnerOfferType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    String item = spinnerOfferType.getSelectedItem().toString();
+
+                    if(item.equals("delete")){
+                        
+
+                    }
+
+                }
+
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
 
 
 
