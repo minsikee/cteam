@@ -228,6 +228,16 @@ public class CalendarAdd extends Fragment {
 //                return;
 //            }
 //        });
+        //추가버튼 그냥 클릭시
+        CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isNetworkConnected(getContext()) == true) {
+
+                    Toast.makeText(activity, "시간을 먼저 클릭하세요", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //스와이프로 수정 삭제
         MySwipeHelper swipeHelper= new MySwipeHelper(getContext(),CalendarAdd_view,150) {
