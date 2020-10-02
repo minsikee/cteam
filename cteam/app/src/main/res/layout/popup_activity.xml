@@ -66,18 +66,6 @@
         android:layout_height="wrap_content"
         android:weightSum="2">
 
-        <Button
-            android:id="@+id/iconPopup_agree"
-            android:layout_width="173dp"
-            android:layout_height="53dp"
-            android:layout_weight="1"
-            android:background="#FFB4BE"
-            android:gravity="center"
-            android:onClick="mOnClose"
-            android:padding="16dp"
-            android:text="동의하기"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
 
         <Button
             android:id="@+id/iconPopup_cancel"
@@ -91,6 +79,20 @@
             android:text="취소"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/iconPopup_agree"
+            android:layout_width="173dp"
+            android:layout_height="53dp"
+            android:layout_weight="1"
+            android:background="#FFB4BE"
+            android:gravity="center"
+            android:onClick="mOnClose"
+            android:padding="16dp"
+            android:text="동의하기"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
     </LinearLayout>
     <!--// 닫기 버튼 -->
 </LinearLayout>

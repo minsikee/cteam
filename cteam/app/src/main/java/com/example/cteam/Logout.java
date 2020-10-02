@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,11 +45,12 @@ public class Logout extends Fragment {
     }
     public void showMsg(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("로그아웃");
-        builder.setMessage("정말로 종료하시겠습니까?");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle(Html.fromHtml("<font color='#333333'>로그아웃</font>"));
+        builder.setMessage(Html.fromHtml("<font color='#333333'>정말로 종료하시겠습니까?</font>"));
+        //builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setIconAttribute(android.R.attr.alertDialogIcon);
 
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(Html.fromHtml("<font color='#333333'>예</font>"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent = new Intent(getActivity(),Login.class);
@@ -55,7 +58,7 @@ public class Logout extends Fragment {
             }
         });
 
-        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(Html.fromHtml("<font color='#333333'>취소</font>"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

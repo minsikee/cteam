@@ -66,54 +66,7 @@
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/petName"
-                        android:hint="이름"
-                        android:textColorHint="#969696"
-                        android:textColor="#333333"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/petWeight"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:gravity="center_vertical"
-                        android:text="몸무게 : "
-                        android:textColor="#969696"
-                        android:layout_below="@id/petName"
-                        android:textStyle="bold"
-                        android:textSize="18dp" />
-
-
-                    <TextView
-                        android:id="@+id/TVweight"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:gravity="center_vertical"
-                        android:layout_toRightOf="@id/petWeight"
-                        android:layout_below="@+id/petName"
-                        android:hint="몸무게"
-                        android:textColorHint="#969696"
-                        android:textColor="#333333"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:gravity="center_vertical"
-                        android:text="성　별 : "
-                        android:textColor="#969696"
-                        android:layout_below="@+id/petWeight"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/TVgender"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:gravity="center_vertical"
-                        android:layout_toRightOf="@id/textView8"
-                        android:layout_below="@+id/petWeight"
-                        android:hint="성별"
+                        android:hint="펫 이름"
                         android:textColorHint="#969696"
                         android:textColor="#333333"
                         android:textSize="18sp" />
@@ -125,7 +78,7 @@
                         android:gravity="center_vertical"
                         android:text="나　이 : "
                         android:textColor="#969696"
-                        android:layout_below="@id/textView8"
+                        android:layout_below="@id/petName"
                         android:textStyle="bold"
                         android:textSize="18sp" />
 
@@ -135,11 +88,58 @@
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/petAge"
-                        android:layout_below="@+id/textView8"
-                        android:hint="나이"
+                        android:layout_below="@+id/petName"
+                        android:hint="펫 나이"
                         android:textColorHint="#969696"
                         android:textColor="#333333"
                         android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="성　별 : "
+                        android:textColor="#969696"
+                        android:layout_below="@+id/petAge"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TVgender"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/textView8"
+                        android:layout_below="@+id/petAge"
+                        android:hint="펫 성별"
+                        android:textColorHint="#969696"
+                        android:textColor="#333333"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/petWeight"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="몸무게 : "
+                        android:textColor="#969696"
+                        android:layout_below="@id/textView8"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/TVweight"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/petWeight"
+                        android:layout_below="@+id/textView8"
+                        android:hint="펫 몸무게"
+                        android:textColorHint="#969696"
+                        android:textColor="#333333"
+                        android:textSize="18dp" />
 
 
             </RelativeLayout>
