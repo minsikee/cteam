@@ -11,11 +11,11 @@
                 android:topRightRadius="50dp"
 
                 />
-            <solid android:color="#7F6AF1" />
+            <solid android:color="#FFB4BE" />
 
             <stroke
                 android:width="5dp"
-                android:color="#7F6AF1" />
+                android:color="#FFB4BE" />
 
         </shape>
     </item>

@@ -6,26 +6,24 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/pw_cancleBtn"
+        android:id="@+id/pw_btn"
         android:layout_width="120dp"
         android:layout_height="37dp"
         android:layout_below="@+id/edPW"
-
         android:layout_centerVertical="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-
-        android:layout_toEndOf="@+id/pw_btn"
-        android:layout_toRightOf="@+id/pw_btn"
+        android:layout_toEndOf="@+id/pw_cancleBtn"
+        android:layout_toRightOf="@+id/pw_cancleBtn"
         android:background="@drawable/login_stroke"
         android:shadowColor="@android:color/transparent"
-        android:text="취소"
+        android:text="확인"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/pw_btn"
+        android:id="@+id/pw_cancleBtn"
         android:layout_width="120dp"
         android:layout_height="37dp"
         android:layout_below="@+id/edPW"
@@ -35,10 +33,10 @@
         android:layout_marginStart="85dp"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/login_stroke"
+        android:background="@drawable/text_stroke"
         android:shadowColor="@android:color/transparent"
-        android:text="확인"
-        android:textColor="#FFFFFF"
+        android:textColor="#969696"
+        android:text="취소"
         android:textSize="16sp" />
 
     <TextView

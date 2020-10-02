@@ -37,8 +37,9 @@ public class HelpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 return header;
             case CHILD:
                TextView itemTextView = new TextView(context);
-                itemTextView.setPadding(subItemPaddingLeft, subItemPaddingTopAndBottom, 0, subItemPaddingTopAndBottom);
+                itemTextView.setPadding((int) (10 * dp), (int) (5 * dp), (int) (10 * dp), (int) (5 * dp));
                 itemTextView.setTextColor(0x88000000);
+                itemTextView.setTextSize(18);
                 itemTextView.setLayoutParams(
                         new ViewGroup.LayoutParams(
                                 ViewGroup.LayoutParams.MATCH_PARENT,

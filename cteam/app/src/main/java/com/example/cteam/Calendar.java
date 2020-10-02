@@ -1,6 +1,5 @@
 package com.example.cteam;
 
-import android.graphics.Color;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
@@ -20,10 +19,8 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.example.cteam.ATask.CalcalSelect;
-import com.example.cteam.CalendarDecorator.SaturdayDecorator;
-import com.example.cteam.CalendarDecorator.SundayDecorator;
+
 import com.example.cteam.Dto.CalendarDTO;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -70,11 +67,6 @@ public class Calendar extends Fragment {
         CalendarView.setMinimumDate(min);
         CalendarView.setMaximumDate(max);
 
-        //일요일은 빨간맛~!
-        java.util.Calendar sunday = java.util.Calendar.getInstance();
-        sunday.add(java.util.Calendar.SUNDAY, 0);
-        CalendarView.setBackgroundColor(Color.RED);
-
         //이벤트 추가할 배열 생성
         events = new ArrayList<>();
 
@@ -94,6 +86,31 @@ public class Calendar extends Fragment {
                 //이벤트 추가 버튼 등장
                 Calendar_event = rootView.findViewById(R.id.Calendar_event);
                 Calendar_event.setVisibility(View.VISIBLE);
+
+/*
+                //달력 아래에 붙일 아이콘 데이터 불러옴
+                calendar_date = select_date;
+                if(isNetworkConnected(getActivity()) == true) {
+                    calListSelect2 = new CalListSelect2(icons, adapter2, calendar_date);
+                    try {
+                        calListSelect2.execute().get();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "인터넷이 연결되어 있지 않습니다.",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                icons = new ArrayList<>();
+                adapter2 = new CalendarAdapter2(getActivity(), icons);
+                Calendar_view = rootView.findViewById(R.id.Calendar_view);
+                Calendar_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+                Calendar_view.setAdapter(adapter2);
+*/
+
                 //이벤트 추가 버튼 클릭 > 날짜 데이터 갖고 CalendarAdd로 이동
                 Calendar_event.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -105,7 +122,7 @@ public class Calendar extends Fragment {
             }
         });
 
-        //스케줄 데이터 불러옴
+        //달력에 붙일 아이콘 데이터 불러옴
         if (isNetworkConnected(getActivity()) == true) {
             calcalSelect = new CalcalSelect();
             try {
@@ -318,7 +335,7 @@ public class Calendar extends Fragment {
                     } //첫번째 아이콘
 
                     //두번째 아이콘
-                    if (dateCounts.get(i) == 2 || dateCounts.get(i) == 3) {
+                    if (dateCounts.get(i) == 2 || dateCounts.get(i) >= 3) {
                         if (j == 1) {
                             if (icons.get(sum + j).calendar_icon.equals("11")) {
                                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons2, getResources().getDrawable(R.drawable.icon11));
@@ -455,7 +472,7 @@ public class Calendar extends Fragment {
                     } //스케줄이 2개이상 일때만
 
                     //세번째 아이콘
-                    if (dateCounts.get(i) == 3) {
+                    if (dateCounts.get(i) >= 3) {
                         if (j == 2) {
                             if (icons.get(sum + j).calendar_icon.equals("11")) {
                                 cal_icon3.setDrawableByLayerId(R.id.cal_3icons3, getResources().getDrawable(R.drawable.icon11));
@@ -629,8 +646,6 @@ public class Calendar extends Fragment {
         */
 
         return rootView;
-
-
 
     } //onCreateView()
 

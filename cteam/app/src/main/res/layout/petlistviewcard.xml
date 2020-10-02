@@ -5,243 +5,190 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:weightSum="30"
     tools:ignore="MissingDefaultResource">
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginStart="18.3dp"
-        android:layout_marginLeft="18.3dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="18.7dp"
-        android:layout_marginRight="18.7dp"
-        card_view:cardCornerRadius="20dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp">
 
         <RelativeLayout
             android:id="@+id/parentLayout"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="#ffffff"
-            android:backgroundTint="#FFE6EE"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="200dp"
+            android:background="#40FFB4BE"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="50dp"
-                android:layout_height="155dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginRight="1dp">
+                android:id="@+id/parentLayout1"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_margin="10dp"
+                android:padding="10dp">
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="152dp"
-                    android:layout_height="135dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="11dp"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/TVage"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/petName"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="228dp"
-                    android:layout_marginLeft="228dp"
-                    android:layout_marginTop="78dp"
-                    android:layout_marginEnd="91dp"
-                    android:layout_marginRight="91dp"
-                    android:hint="나이"
-                    android:textSize="18sp" />
+                <RelativeLayout
+                    android:id="@+id/parentLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_toRightOf="@id/parentLayout1">
 
-                <TextView
-                    android:id="@+id/petAge"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="179dp"
-                    android:layout_marginLeft="179dp"
-                    android:layout_marginTop="113dp"
-                    android:text="나이 :"
-                    android:textStyle="bold"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/petName"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="이　름 : "
+                        android:textColor="#969696"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="178dp"
-                    android:layout_marginLeft="178dp"
-                    android:layout_marginTop="77dp"
-                    android:text="성별 : "
-                    android:textStyle="bold"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/TVname"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/petName"
+                        android:hint="펫 이름"
+                        android:textColorHint="#969696"
+                        android:textColor="#333333"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/TVgender"
-                    android:layout_width="71dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="227dp"
-                    android:layout_marginLeft="227dp"
-                    android:layout_marginTop="77dp"
-                    android:hint="성별"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/petAge"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="나　이 : "
+                        android:textColor="#969696"
+                        android:layout_below="@id/petName"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="177dp"
-                    android:layout_marginLeft="177dp"
-                    android:layout_marginTop="44dp"
-                    android:layout_marginEnd="128dp"
-                    android:layout_marginRight="128dp"
-                    android:text="몸무게 :"
-                    android:textStyle="bold"
-                    android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/TVage"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/petAge"
+                        android:layout_below="@+id/petName"
+                        android:hint="펫 나이"
+                        android:textColorHint="#969696"
+                        android:textColor="#333333"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/TVweight"
-                    android:layout_width="80dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="244dp"
-                    android:layout_marginLeft="244dp"
-                    android:layout_marginTop="44dp"
-                    android:layout_marginEnd="58dp"
-                    android:layout_marginRight="58dp"
-                    android:hint="몸무게"
-                    android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="성　별 : "
+                        android:textColor="#969696"
+                        android:layout_below="@+id/petAge"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/TVname"
-                    android:layout_width="70dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="-1dp"
-                    android:layout_marginLeft="-1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="79dp"
-                    android:layout_marginRight="79dp"
-                    android:layout_toEndOf="@+id/petName"
-                    android:layout_toRightOf="@+id/petName"
-                    android:hint="이름"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/TVgender"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/textView8"
+                        android:layout_below="@+id/petAge"
+                        android:hint="펫 성별"
+                        android:textColorHint="#969696"
+                        android:textColor="#333333"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/petName"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="176dp"
-                    android:layout_marginLeft="176dp"
-                    android:layout_marginTop="10dp"
-                    android:text="이름 :"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/petWeight"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="몸무게 : "
+                        android:textColor="#969696"
+                        android:layout_below="@id/textView8"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/TVweight"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/petWeight"
+                        android:layout_below="@+id/textView8"
+                        android:hint="펫 몸무게"
+                        android:textColorHint="#969696"
+                        android:textColor="#333333"
+                        android:textSize="18dp" />
 
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/selectBtn"
-                android:layout_width="120dp"
-                android:layout_height="35dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="5dp"
-                android:background="#EDB5F6"
-                android:text="선택"
-                android:textColor="#1E2755"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:id="@+id/parentLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/parentLayout1">
 
-            <Button
-                android:id="@+id/deleteBtn"
-                android:layout_width="120dp"
-                android:layout_height="35dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="126dp"
-                android:layout_marginRight="126dp"
-                android:layout_marginBottom="5dp"
-                android:background="#344342"
-                android:text="삭제"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <Button
+                    android:id="@+id/updateBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:text="수정"
+                    android:background="@drawable/login_stroke"
+                    android:shadowColor="@android:color/transparent"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/updateBtn"
-                android:layout_width="120dp"
-                android:layout_height="35dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="94dp"
-                android:layout_marginEnd="132dp"
-                android:layout_marginRight="132dp"
-                android:layout_marginBottom="5dp"
-                android:background="#7F90EC"
-                android:text="수정"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <Button
+                    android:id="@+id/deleteBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:text="삭제"
+                    android:background="@drawable/text_stroke"
+                    android:shadowColor="@android:color/transparent"
+                    android:textColor="#969696"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
+                    <Button
+                    android:id="@+id/selectBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:text="선택"
+                    android:background="@drawable/login_stroke"
+                    android:shadowColor="@android:color/transparent"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
