@@ -1,4 +1,4 @@
-package com.example.cteam.ATask;
+package com.example.cteam.ATask.PetPhoto;
 
 import android.app.ProgressDialog;
 import android.net.http.AndroidHttpClient;
@@ -93,7 +93,7 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
             inputStream.close();*/
 
         } catch (Exception e) {
-            Log.d("petAdd", e.getMessage());
+            Log.d("petphoto", e.getMessage());
             e.printStackTrace();
         }finally {
             if(httpEntity != null){
@@ -151,13 +151,13 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public PetPhotoDTO readMessage(JsonReader reader) throws IOException {
-        String petName = "",petPhoto_imgpath = "",petPhoto_content = "", petPhoto_date = "";
-        int petPhoto_no = 0;
+        String petName = "",petPhoto_imgpath = "",petPhoto_content = "", petPhoto_date = "",petPhoto_no = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            int readInt=reader.nextInt();
+
+
             if (readStr.equals("petName")) {
                 petName = reader.nextString();
             } else if (readStr.equals("petPhoto_imgpath")) {
@@ -167,13 +167,16 @@ public class PetPhotoListSelect extends AsyncTask<Void, Void, Void> {
             } else if (readStr.equals("petPhoto_date")) {
                 petPhoto_date = reader.nextString();
             } else if(readStr.equals("petPhoto_no")){
-                petPhoto_no=reader.nextInt();
+                petPhoto_no=reader.nextString();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("listselect:myitem", petName + "," + petPhoto_imgpath + "," + petPhoto_content + "," + petPhoto_date);
+        
+      //  Log.d("listselect:myitem", petName + "," + petPhoto_imgpath + "," + petPhoto_content + "," + petPhoto_date);
+
+        Log.d("listselect:myitem", petName);
 
         return new PetPhotoDTO(petPhoto_imgpath, petPhoto_content, petPhoto_date, petName, petPhoto_no);
 

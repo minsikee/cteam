@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.cteam.Adapter.PetPhotoAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.board.WalkBoard;
@@ -225,6 +226,7 @@ public class PetSelect extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.container, calendarAddUpdate).commit();
         }
     }
+
 
 
     private void checkDangerousPermissions() {  //위험권한
