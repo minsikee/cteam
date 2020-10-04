@@ -82,6 +82,7 @@ public class petInsert extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), LOAD_IMAGE);
+
             }
         });
 
@@ -188,6 +189,8 @@ public class petInsert extends AppCompatActivity {
 
                 startActivity(showIntent);
 
+                Intent refresh = new Intent(this, PetAdd.class);
+                startActivity(refresh);
                 finish();
             } else {
                 Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",

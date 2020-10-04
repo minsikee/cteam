@@ -38,6 +38,7 @@ public class petUpdate extends AppCompatActivity {
 
     EditText petName, petAge,petWeight,petGender;
 
+    String originalName ="";
     String petname = "";
     String petage = "";
     String petweight = "";
@@ -57,7 +58,8 @@ public class petUpdate extends AppCompatActivity {
     long fileSize = 0;
 
 
-   /* @Override
+
+     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
@@ -77,23 +79,22 @@ public class petUpdate extends AppCompatActivity {
 
         // 보내온 값 파싱
         Intent intent = getIntent();
-        //PetDTO selItem = (PetDTO) intent.getSerializableExtra("selItem");
 
-      /*  petname = selItem.getPetname();
-        petage = selItem.getPetage();
-        petgender = selItem.getPetgender();
-        petweight = selItem.getPetweight();*/
+        petname = petAddDto.getPetname();
+        petage = petAddDto.getPetage();
+        petgender = petAddDto.getPetgender();
+        petweight = petAddDto.getPetweight();
 
 
         // 가져온 값 써 넣기
-        petName.setText(petAddDto.getPetname());
-        petAge.setText(petAddDto.getPetage());
-        petWeight.setText(petAddDto.getPetweight());
-        petGender.setText(petAddDto.getPetgender());
+        petName.setText(petname);
+        petAge.setText(petage);
+        petWeight.setText(petweight);
+        petGender.setText(petgender);
 
-      //  petimagepath = selItem.getPetimage_path();
+        petimagepath = petAddDto.getPetimage_path();
         pImgDbPathU = petimagepath;
-        imageDbPathU = pImgDbPathU;
+        imageDbPathU = petimagepath;
 
         // 선택된 이미지 보여주기
         petPhoto.setVisibility(View.VISIBLE);
@@ -202,23 +203,23 @@ public class petUpdate extends AppCompatActivity {
                 petage = petAge.getText().toString();
                 petgender = petGender.getText().toString();
                 petweight = petWeight.getText().toString();
+                originalName = petAddDto.getPetname();
 
-
-
-
-
-                ListUpdate listUpdate = new ListUpdate(loginDTO.getMember_id(), petname, petage,petgender,petweight, pImgDbPathU, imageDbPathU, imageRealPathA);
+                ListUpdate listUpdate = new ListUpdate(originalName, loginDTO.getMember_id(), petname, petage,petweight, petgender,pImgDbPathU, imageDbPathU, imageRealPathA);
                 listUpdate.execute();
-
 
 
                 Intent showIntent = new Intent(getApplicationContext(), PetAdd.class);
                 showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_SINGLE_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                 startActivity(showIntent);
 
+                Intent refresh = new Intent(this, PetAdd.class);
+                startActivity(refresh);
                 finish();
+
             }else{
                 // 알림창 띄움
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -241,5 +242,5 @@ public class petUpdate extends AppCompatActivity {
     }
     public void btnCancelClicked(View view){
         finish();
-    }*/
+    }
 }
