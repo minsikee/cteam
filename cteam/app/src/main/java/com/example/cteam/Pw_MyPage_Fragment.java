@@ -33,12 +33,6 @@ public class Pw_MyPage_Fragment extends Fragment {
 
         activity = (PetSelect) getActivity();
 
-       /* if(activity.mBundle != null){
-            bundle = activity.mBundle;
-            dto = (MemberDTO) bundle.getSerializable("memberdto");
-            activity.mBundle = null;
-        }*/
-
         editPW = rootView.findViewById(R.id.edPW);
         pw_btn = rootView.findViewById(R.id.pw_btn);
         pw_btn.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +44,6 @@ public class Pw_MyPage_Fragment extends Fragment {
                     editPW.setText(null);
 
                 }else {
-                    Toast.makeText(activity, "dto : "+ Login.loginDTO.getMember_pw()+"\n입력한 비번 : "+ editPW.getText().toString(), Toast.LENGTH_LONG).show();
                     showMessage();
                 }
             }
@@ -78,14 +71,6 @@ public class Pw_MyPage_Fragment extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
             }
         });
-
-        /*
-        builder.setNeutralButton("확인", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        */
 
         AlertDialog dialog = builder.create();
         dialog.show();
