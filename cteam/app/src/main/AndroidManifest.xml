@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PetSelect"/>
-
+        <activity android:name=".pet_add.petUpdate"/>
         <activity android:name=".board.BoardWrite"/>
         <activity android:name=".PetModify" />
         <activity android:name=".SignUp" />

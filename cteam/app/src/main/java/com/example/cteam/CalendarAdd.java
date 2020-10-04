@@ -30,12 +30,15 @@ import com.example.cteam.ATask.CalListDelete;
 import com.example.cteam.ATask.CalListSelect;
 import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
+import com.example.cteam.Dto.PetDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class CalendarAdd extends Fragment {
     public static CalendarDTO selectIcon = null;
@@ -51,6 +54,7 @@ public class CalendarAdd extends Fragment {
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
     String calendar_date;
+    String petname;
 
     CalListSelect calListSelect;
 
@@ -120,8 +124,9 @@ public class CalendarAdd extends Fragment {
 
         //데이터 불러옴
             calendar_date = select_date;
+            petname = petAddDto.getPetname();
             if(isNetworkConnected(getActivity()) == true) {
-                calListSelect = new CalListSelect(icons, adapter, calendar_date);
+                calListSelect = new CalListSelect(icons, adapter, calendar_date, petname);
                 try {
                     calListSelect.execute().get();
                 } catch (ExecutionException e) {

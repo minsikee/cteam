@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class Calendar extends Fragment {
     //로그 찍어볼 때
@@ -47,6 +48,7 @@ public class Calendar extends Fragment {
 
     ArrayList<CalendarDTO> icons;
     CalcalSelect calcalSelect;
+    String petname;
 
     @Nullable
     @Override
@@ -123,8 +125,9 @@ public class Calendar extends Fragment {
         });
 
         //달력에 붙일 아이콘 데이터 불러옴
+        petname = petAddDto.getPetname();
         if (isNetworkConnected(getActivity()) == true) {
-            calcalSelect = new CalcalSelect();
+            calcalSelect = new CalcalSelect(petname);
             try {
                 icons = calcalSelect.execute().get();
                 //Log.d("main:Calendar", "onCreateView: " + icons.get(0).calendar_date);

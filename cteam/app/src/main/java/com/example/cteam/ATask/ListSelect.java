@@ -64,7 +64,7 @@ public class ListSelect extends AsyncTask<Void, Void, Void> {
 
             // 전송
             InputStream inputStream = null;
-            httpClient = AndroidHttpClient.newInstance("Android");
+            httpClient = AndroidHttpClient.newInstance("cteam");
             httpPost = new HttpPost(postURL);
             httpPost.setEntity(builder.build());
             httpResponse = httpClient.execute(httpPost);
