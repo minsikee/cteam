@@ -53,9 +53,10 @@
         <activity android:name=".Find" />
         <activity android:name=".pet_add.petInsert" />
         <activity android:name=".FindStore"/>
-        <activity android:name=".PetAdd">
+        <activity android:name=".PetAdd"/>
 
-        </activity>
+        <activity android:name=".PetPhotoUpdate"/>
+
         <activity android:name="PetPhotoInsert"/>
 
         <activity

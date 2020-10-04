@@ -21,7 +21,7 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/petPhotoInsert_back"
+                android:id="@+id/petPhotoUpdate_back"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="0.4"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:layout_weight="2.8"
-                android:hint="New Post"
+                android:hint="Edit Post"
                 android:textColor="#263ABD"
                 android:textSize="20dp"
                 android:inputType="text"
@@ -42,10 +42,10 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
 
-               />
+                />
 
             <Button
-                android:id="@+id/petPhotoInsert_upload"
+                android:id="@+id/petPhotoUpdate_upload"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
@@ -95,15 +95,15 @@
                 android:paddingRight="20dp">
 
                 <Button
-                    android:id="@+id/petPhotoInsert_PhotoUpLoad"
+                    android:id="@+id/petPhotoUpdate_PhotoUpLoad"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/outline_photo_camera_black_18dp"
                     android:backgroundTint="#FFB4BE"
                     android:layout_gravity="center_vertical"
-                   />
+                    />
                 <Button
-                    android:id="@+id/petPhotoInsert_Camera"
+                    android:id="@+id/petPhotoUpdate_Camera"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/picture"
@@ -155,7 +155,7 @@
             android:text="게시글" />
 
         <EditText
-            android:id="@+id/petPhotoInsert_content"
+            android:id="@+id/petPhotoUpdate_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

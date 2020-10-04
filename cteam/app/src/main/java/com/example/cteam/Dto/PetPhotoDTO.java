@@ -1,6 +1,8 @@
 package com.example.cteam.Dto;
 
-public class PetPhotoDTO {
+import java.io.Serializable;
+
+public class PetPhotoDTO implements Serializable {
     private String petPhoto_imgpath;
     private String petPhoto_content;
     private String petPhoto_date;
