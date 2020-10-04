@@ -1,13 +1,18 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +27,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import static com.bumptech.glide.load.resource.bitmap.TransformationUtils.circleCrop;
 import static com.example.cteam.Login.loginDTO;
 import static com.example.cteam.PetAdd.petAddDto;
 import static com.example.cteam.PetPhoto.selectPetPhoto;
@@ -53,7 +59,7 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
         Log.d("main:adater", "" + position);
 
         PetPhotoDTO petPhoto = petPhotos.get(position);
-        holder.setItem(petPhoto);
+        holder.setItem(petPhoto,mContext);
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +111,7 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
         public ImageView petPhoto_image;
         public TextView petPhoto_content;
         public ProgressBar progressBar;
+        public Spinner spinnerOfferType;
 
         public ItemViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -116,10 +123,10 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
             petPhoto_image = itemView.findViewById(R.id.petPhoto_image);
             petPhoto_content=itemView.findViewById(R.id.petPhoto_content);
             progressBar = itemView.findViewById(R.id.progressBar);
-
+            spinnerOfferType = (Spinner)itemView.findViewById(R.id.spinnerOfferType);
         }
 
-        public void setItem(PetPhotoDTO petPhoto){
+        public void setItem(PetPhotoDTO petPhoto,Context mContext){
             if(petPhoto!=null){
                 Log.d("yyyy", "setItem: d"+petPhoto.getPetPhoto_content());
             }
@@ -130,7 +137,36 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
             petPhoto_content.setText(petPhoto.getPetPhoto_content()
             );
 
+
+            Glide.with(itemView).load(petAddDto.getPetimage_path()).circleCrop().into(petPhoto_profile);
             Glide.with(itemView).load(petPhoto.getPetPhoto_imgpath()).into(petPhoto_image);
+
+
+            //스피너
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext,
+                    R.array.offer_types, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerOfferType.setAdapter(adapter);
+
+            spinnerOfferType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    String item = spinnerOfferType.getSelectedItem().toString();
+
+                    if(item.equals("delete")){
+                        
+
+                    }
+
+                }
+
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+
+
         }
     }
 

@@ -35,12 +35,12 @@ public class Help extends Fragment {
         HelpAdapter.Item list1 = new HelpAdapter.Item(HelpAdapter.HEADER, "반려동물은 어디서 데려오나요?");
         list1.invisibleChildren  = new ArrayList<>();
         list1.invisibleChildren .add(new HelpAdapter.Item(HelpAdapter.CHILD,
-                "사지말고 입양하세요"));
+                "사지 말고 입양하세요"));
         data.add(list1);
 
         HelpAdapter.Item list2 = new HelpAdapter.Item(HelpAdapter.HEADER, "어플의 사용법");
         list2.invisibleChildren  = new ArrayList<>();
-        list2.invisibleChildren .add(new HelpAdapter.Item(HelpAdapter.CHILD, "보다보면알아요"));
+        list2.invisibleChildren .add(new HelpAdapter.Item(HelpAdapter.CHILD, "보다 보면 알아요"));
         data.add(list2);
 
         HelpAdapter.Item list3 = new HelpAdapter.Item(HelpAdapter.HEADER, "다운로드 받는 법");

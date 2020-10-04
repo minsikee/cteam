@@ -85,7 +85,7 @@ public class petUpdate extends AppCompatActivity {
         petgender = petAddDto.getPetgender();
         petweight = petAddDto.getPetweight();
 
-
+/*여기부터
         // 가져온 값 써 넣기
         petName.setText(petname);
         petAge.setText(petage);
@@ -115,7 +115,7 @@ public class petUpdate extends AppCompatActivity {
 
 
     }
-
+여기까지*/
     private File createFile() throws IOException {
         java.text.SimpleDateFormat tmpDateFormat = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss");
 
