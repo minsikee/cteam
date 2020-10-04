@@ -13,6 +13,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -26,8 +27,10 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 public class CalcalSelect extends AsyncTask<Void, Void, ArrayList<CalendarDTO>> {
 
     ArrayList<CalendarDTO> icons;
+    String petname;
 
-    public CalcalSelect() {
+    public CalcalSelect(String petname) {
+        this.petname = petname;
     }
 
     HttpClient httpClient;
@@ -51,6 +54,8 @@ public class CalcalSelect extends AsyncTask<Void, Void, ArrayList<CalendarDTO>> 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             // 기본셋팅 여기까지
+
+            builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
 
             // 전송, 그대로 갖다쓰기
             InputStream inputStream = null;
