@@ -151,14 +151,14 @@ public class PetPhotoUpdate extends AppCompatActivity {
                         PetPhotoUpdateP petPhotoUpdatep = new PetPhotoUpdateP(petPhoto_no, petPhoto_content, pImgDbPathU, imageDbPathU, imageRealPathA);
                         petPhotoUpdatep.execute();
 
-//
-//                        Intent showIntent = new Intent(getApplicationContext(), PetPhoto.class);
-//                        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-//                                Intent.FLAG_ACTIVITY_SINGLE_TOP |
-//                                Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(showIntent);
+                        Intent showIntent = new Intent(getApplicationContext(), PetSelect.class);
+                        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                       startActivity(showIntent);
 
                         finish();
+
                     } else {
                         // 알림창 띄움
                         final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
@@ -178,6 +178,14 @@ public class PetPhotoUpdate extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        petPhotoUpdate_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
             }
         });
 
@@ -268,9 +276,6 @@ public class PetPhotoUpdate extends AppCompatActivity {
         return res;
     }
 
-    public void petPhotoUpdate_backClicked (View view){
-        finish();
-    }
 }
 
 

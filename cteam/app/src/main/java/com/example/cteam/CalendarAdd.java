@@ -44,6 +44,7 @@ public class CalendarAdd extends Fragment {
     public static CalendarDTO selectIcon = null;
 
     PetSelect activity;
+    int clicked=0;
 
     CalendarDTO dto;
     Bundle bundle = null;
@@ -172,7 +173,7 @@ public class CalendarAdd extends Fragment {
 
 
 
-
+        
         //버튼 클릭시
         for(int i=0; i<button.length; i++){
 
@@ -199,13 +200,16 @@ public class CalendarAdd extends Fragment {
                 }*/
 
                     btnclicked();
-                    //button[INDEX].setPressed(true);
+
+                        button[INDEX].setSelected(true);
 
                     //추가 클릭 > CalendarInsert로 이동
                     CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
                     CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            
                             if(isNetworkConnected(getContext()) == true){
                                 bundle.putInt("time",INDEX);
                                 activity.onFragmentChange(5, bundle);
@@ -233,7 +237,7 @@ public class CalendarAdd extends Fragment {
 //                return;
 //            }
 //        });
-        
+
 
         //스와이프로 수정 삭제
         MySwipeHelper swipeHelper= new MySwipeHelper(getContext(),CalendarAdd_view,150) {
@@ -389,7 +393,7 @@ public class CalendarAdd extends Fragment {
     private void btnclicked(){
 
         for(int j=0; j<24; j++){
-            button[j].setPressed(false);
+            button[j].setSelected(false);
         }
 
     }

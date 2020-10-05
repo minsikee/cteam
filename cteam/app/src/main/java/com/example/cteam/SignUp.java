@@ -168,9 +168,9 @@ public class SignUp extends AppCompatActivity {
                 }
 
                 //패스워드
-                if(!Pattern.matches("^[a-zA-Z0-9]{8,12}$", member_pw))
+                if(!Pattern.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[.$@$!%*#?&])[A-Za-z\\d.$@$!%*#?&]{8,20}$", member_pw))
                 {
-                    Toast.makeText(SignUp.this,"패스워드는 영문,숫자 8-12자로 입력하세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this,"패스워드는 영문,숫자,특수문자를 합하여 8-20자리입니다.",Toast.LENGTH_LONG).show();
                     signupPw.setText("");
                     signupPw.requestFocus();
                     return;

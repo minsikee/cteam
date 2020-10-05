@@ -95,7 +95,7 @@
                 android:paddingRight="20dp">
 
                 <Button
-                    android:id="@+id/petPhotoUpdate_PhotoUpLoad"
+                    android:id="@+id/petPhotoUpdate_Camera"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/outline_photo_camera_black_18dp"
@@ -103,7 +103,7 @@
                     android:layout_gravity="center_vertical"
                     />
                 <Button
-                    android:id="@+id/petPhotoUpdate_Camera"
+                    android:id="@+id/petPhotoUpdate_PhotoUpLoad"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/picture"

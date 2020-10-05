@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -60,6 +61,8 @@ public class PetSelect extends AppCompatActivity
     Bundle cBundle = null;
 
     Bundle sBundle=null;
+
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +116,7 @@ public class PetSelect extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, calendar).commit(); //첫화면에 프래그먼트 1이 나오게
 
-        BottomNavigationView bottomNavigationView =
-                findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -226,6 +228,12 @@ public class PetSelect extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
+        Log.d("main:petselect", "onNewIntent: 11111");
+        petPhoto.onActivityResult(10001, RESULT_OK, intent);
 
+    }
 }

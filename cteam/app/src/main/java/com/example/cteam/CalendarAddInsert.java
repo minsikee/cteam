@@ -83,7 +83,7 @@ public class CalendarAddInsert extends Fragment {
         np.setWrapSelectorWheel(false);
         np.setValue(0);
 
-
+        //분이 0일때
         calendar_minute="0";
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -101,6 +101,8 @@ public class CalendarAddInsert extends Fragment {
 
         CalendarAddInsert_Time=rootView.findViewById(R.id.CalendarAddInsert_Time);
 
+
+        //시간 세팅
         CalendarAddInsert_Time.setText(calendar_hour+"시");
 
 
@@ -703,5 +705,19 @@ public class CalendarAddInsert extends Fragment {
         }
     }
 
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        CalendarAddInsert_memo.setText(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        CalendarAddInsert_memo.setText(null);
+    }
 
 }
