@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
-    android:paddingLeft="13dp"
-    android:paddingRight="13dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:src="@drawable/outline_lock_open_black_18dp"
-        android:tint="@color/colorPrimary"
         android:layout_width="18dp"
-        android:layout_height="18dp" />
+        android:layout_height="18dp"
+        app:tint="#FFB4BE" />
 
     <TextView
         android:id="@+id/spinnerText"
@@ -23,14 +24,15 @@
         android:gravity="center|left"
         android:paddingLeft="5dp"
         android:textColor="#D3878686"
-        android:textColorHint="#1f000000"
+        android:textColorHint="#696969"
         android:textSize="14sp" />
 
     <ImageView
         android:src="@drawable/baseline_arrow_drop_down_black_18dp"
         android:scaleType="centerInside"
         android:layout_width="20dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:tint="#969696" />
 
 </LinearLayout>
 

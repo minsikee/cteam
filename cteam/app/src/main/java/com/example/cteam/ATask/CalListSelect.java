@@ -28,11 +28,13 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
     String calendar_date;
+    String petname;
 
-    public CalListSelect(ArrayList<CalendarDTO> icons, CalendarAdapter adapter, String calendar_date) {
+    public CalListSelect(ArrayList<CalendarDTO> icons, CalendarAdapter adapter, String calendar_date, String petname) {
         this.icons = icons;
         this.adapter = adapter;
         this.calendar_date = calendar_date;
+        this.petname = petname;
     }
 
     HttpClient httpClient;
@@ -58,6 +60,7 @@ public class CalListSelect extends AsyncTask<Void, Void, String> {
             // 기본셋팅 여기까지
 
             builder.addTextBody("calendar_date", calendar_date, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
 
             // 전송, 그대로 갖다쓰기
             InputStream inputStream = null;

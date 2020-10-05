@@ -1,12 +1,21 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
+import static com.example.cteam.CalendarAdd.selectIcon;
+
+import static com.example.cteam.PetAdd.petAddDto;
 
 
 import androidx.annotation.NonNull;
@@ -15,11 +24,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.PetAdd;
+import com.example.cteam.PetSelect;
 import com.example.cteam.R;
+import com.example.cteam.pet_add.petInsert;
+import com.example.cteam.pet_add.petUpdate;
 
 import java.util.ArrayList;
 
-import static com.example.cteam.PetAdd.dto;
 
 public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHolder> {
     Context context;
@@ -44,13 +55,27 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         PetDTO dto = petList.get(position);
         holder.setPet(dto);
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                PetAdd.dto = petList.get(position);
+                petAddDto = petList.get(position);
+                Log.d("main:petaddadapter", "onClick: " + petAddDto.getPetname());
+                Intent intent = new Intent(context, PetSelect.class);
+                context.startActivity(intent);
             }
         });
+
+
+        holder.updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                petAddDto = petList.get(position);
+                Log.d("main:petaddadapter", "onClick: " + petAddDto.getPetname());
+                Intent intent = new Intent(context, petUpdate.class);
+                context.startActivity(intent);
+            }
+        });
+
     }
     // 어댑터에 매소드 만들기
 
@@ -82,6 +107,7 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         public RelativeLayout parentLayout;
         public TextView tvName, tvWeight, tvGender, tvAge;
         public ImageView imageView;
+        public Button selectBtn, updateBtn;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +118,8 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
             tvGender = itemView.findViewById(R.id.TVgender);
             tvAge = itemView.findViewById(R.id.TVage);
             imageView = itemView.findViewById(R.id.imageView);
+            selectBtn = itemView.findViewById(R.id.selectBtn);
+            updateBtn = itemView.findViewById(R.id.updateBtn);
         }
 
         public void setPet(PetDTO dto){

@@ -36,26 +36,39 @@
                     >
                     <ImageView
                         android:id="@+id/petPhoto_profile"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/cat"
-                        android:layout_gravity="center_vertical"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
                         android:paddingLeft="20dp"
+
                         />
                     <TextView
                         android:id="@+id/petPhoto_petName"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="left"
+                        android:gravity="left|center"
                         android:paddingLeft="10dp"
                         android:text="나"
                         android:textColor="#666"
                         android:textSize="16sp"
                         android:textStyle="normal|bold" />
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnerOfferType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dialog"
+                        ></Spinner>
+                </RelativeLayout>
 
 
                 </LinearLayout>
+
                 <ImageView
                     android:id="@+id/petPhoto_image"
                     android:layout_width="360dp"
@@ -70,7 +83,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.5"
                     android:gravity="left|center_vertical"
-                   android:textColor="#C1666666"
+                   android:textColor="#FFB4B2"
                     android:text="2020.03.05"
                     android:textSize="12sp"
                     android:textStyle="normal|bold" />

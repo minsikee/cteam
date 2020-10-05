@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class CalendarAddInsert extends Fragment {
 
@@ -39,8 +40,8 @@ public class CalendarAddInsert extends Fragment {
     String calendar_memo;
     String calendar_minute;
     String calendar_hour;
+    String petname;
     TextView CalendarAddInsert_Time;
-
 
     ImageView CalendarAddInsert_color1, CalendarAddInsert_color2, CalendarAddInsert_color3, CalendarAddInsert_color4,
             CalendarAddInsert_color5, CalendarAddInsert_color6, CalendarAddInsert_color7, CalendarAddInsert_color8;
@@ -82,7 +83,7 @@ public class CalendarAddInsert extends Fragment {
         np.setWrapSelectorWheel(false);
         np.setValue(0);
 
-
+        //분이 0일때
         calendar_minute="0";
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -100,6 +101,8 @@ public class CalendarAddInsert extends Fragment {
 
         CalendarAddInsert_Time=rootView.findViewById(R.id.CalendarAddInsert_Time);
 
+
+        //시간 세팅
         CalendarAddInsert_Time.setText(calendar_hour+"시");
 
 
@@ -666,7 +669,8 @@ public class CalendarAddInsert extends Fragment {
                     }
                     calendar_memo = CalendarAddInsert_memo.getText().toString();
 
-                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute);
+                    petname = petAddDto.getPetname();
+                    CalListInsert calListInsert = new CalListInsert(calendar_date, calendar_icon, calendar_memo,calendar_hour,calendar_minute, petname);
                     calListInsert.execute();
 
                     activity.onFragmentChange(4, null);
@@ -701,5 +705,19 @@ public class CalendarAddInsert extends Fragment {
         }
     }
 
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        CalendarAddInsert_memo.setText(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        CalendarAddInsert_memo.setText(null);
+    }
 
 }

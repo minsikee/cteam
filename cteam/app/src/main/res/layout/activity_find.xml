@@ -17,10 +17,11 @@
             android:layout_height="40dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/baseline_pets_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
+            android:textColorHint="#969696"
             android:hint="이름을 입력하세요" />
 
         <EditText
@@ -31,11 +32,12 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_call_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:inputType="phone"
             android:gravity="center_vertical"
             android:textSize="14sp"
+            android:textColorHint="#969696"
             android:hint="전화번호를 입력하세요" />
 
         <Button
@@ -60,10 +62,11 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_person_outline_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
+            android:textColorHint="#969696"
             android:hint="아이디를 입력하세요" />
 
         <!--    <EditText
@@ -97,10 +100,11 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
             android:drawableLeft="@drawable/outline_help_outline_black_18dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="#FFB4BE"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
+            android:textColorHint="#969696"
             android:hint="비밀번호 찾기 답변을 입력하세요" />
 
         <Button
@@ -126,7 +130,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/text_stroke"
             android:shadowColor="@android:color/transparent"
-            android:textColor="#3F51B5"
+            android:textColor="#969696"
             android:textSize="16sp"
             android:text="로그인하기" />
 
@@ -140,7 +144,7 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/text_stroke"
             android:shadowColor="@android:color/transparent"
-            android:textColor="#3F51B5"
+            android:textColor="#969696"
             android:textSize="16sp"
             android:text="회원가입" />
 

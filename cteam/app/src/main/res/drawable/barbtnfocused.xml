@@ -8,11 +8,11 @@
         android:top="5dp"
         android:left="5dp">
         <shape android:shape="rectangle" >
-            <solid android:color="#9AE5EF" />
+            <solid android:color="#0D969696" />
 
             <stroke
                 android:width="5dp"
-                android:color="#03A9F4" />
+                android:color="#FFB4BE" />
         </shape>
 
 

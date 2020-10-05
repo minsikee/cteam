@@ -30,17 +30,21 @@ import com.example.cteam.ATask.CalListDelete;
 import com.example.cteam.ATask.CalListSelect;
 import com.example.cteam.Adapter.CalendarAdapter;
 import com.example.cteam.Dto.CalendarDTO;
+import com.example.cteam.Dto.PetDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class CalendarAdd extends Fragment {
     public static CalendarDTO selectIcon = null;
 
     PetSelect activity;
+    int clicked=0;
 
     CalendarDTO dto;
     Bundle bundle = null;
@@ -51,6 +55,7 @@ public class CalendarAdd extends Fragment {
     ArrayList<CalendarDTO> icons;
     CalendarAdapter adapter;
     String calendar_date;
+    String petname;
 
     CalListSelect calListSelect;
 
@@ -120,8 +125,9 @@ public class CalendarAdd extends Fragment {
 
         //데이터 불러옴
             calendar_date = select_date;
+            petname = petAddDto.getPetname();
             if(isNetworkConnected(getActivity()) == true) {
-                calListSelect = new CalListSelect(icons, adapter, calendar_date);
+                calListSelect = new CalListSelect(icons, adapter, calendar_date, petname);
                 try {
                     calListSelect.execute().get();
                 } catch (ExecutionException e) {
@@ -142,7 +148,8 @@ public class CalendarAdd extends Fragment {
         }//버튼찾기
 
 
-        Log.d("main:this","사이즈"+icons.size());
+
+
 
 
 
@@ -166,7 +173,7 @@ public class CalendarAdd extends Fragment {
 
 
 
-
+        
         //버튼 클릭시
         for(int i=0; i<button.length; i++){
 
@@ -193,13 +200,16 @@ public class CalendarAdd extends Fragment {
                 }*/
 
                     btnclicked();
-                    //button[INDEX].setPressed(true);
+
+                        button[INDEX].setSelected(true);
 
                     //추가 클릭 > CalendarInsert로 이동
                     CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
                     CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            
                             if(isNetworkConnected(getContext()) == true){
                                 bundle.putInt("time",INDEX);
                                 activity.onFragmentChange(5, bundle);
@@ -227,6 +237,7 @@ public class CalendarAdd extends Fragment {
 //                return;
 //            }
 //        });
+
 
         //스와이프로 수정 삭제
         MySwipeHelper swipeHelper= new MySwipeHelper(getContext(),CalendarAdd_view,150) {
@@ -382,7 +393,7 @@ public class CalendarAdd extends Fragment {
     private void btnclicked(){
 
         for(int j=0; j<24; j++){
-            button[j].setPressed(false);
+            button[j].setSelected(false);
         }
 
     }

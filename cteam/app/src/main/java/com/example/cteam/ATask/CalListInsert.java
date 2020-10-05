@@ -21,13 +21,15 @@ public class CalListInsert extends AsyncTask<Void, Void, Void> {
     String calendar_memo;
     String calendar_hour;
     String calendar_minute;
+    String petname;
 
-    public CalListInsert(String calendar_date, String calendar_icon, String calendar_memo,String calendar_hour,String calendar_minute) {
+    public CalListInsert(String calendar_date, String calendar_icon, String calendar_memo,String calendar_hour,String calendar_minute, String petname) {
         this.calendar_date = calendar_date;
         this.calendar_icon = calendar_icon;
         this.calendar_memo = calendar_memo;
         this.calendar_hour = calendar_hour;
         this.calendar_minute = calendar_minute;
+        this.petname = petname;
     }
 
     @Override
@@ -45,6 +47,7 @@ public class CalListInsert extends AsyncTask<Void, Void, Void> {
             builder.addTextBody("calendar_memo", calendar_memo, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("calendar_hour", calendar_hour, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("calendar_minute", calendar_minute, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
 
             String postURL = ipConfig + "/app/calInsert";
             // 전송

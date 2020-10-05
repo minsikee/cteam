@@ -46,19 +46,19 @@
         </activity>
         <activity android:name=".PetSelect"/>
         <activity android:name=".board.BoardDetail"/>
+        <activity android:name=".pet_add.petUpdate"/>
         <activity android:name=".board.BoardWrite"/>
-        <activity android:name=".Petbar_Add"/>
-        <activity android:name=".ConsetPopup" />
-        <activity android:name=".PetBar"  />
         <activity android:name=".PetModify" />
         <activity android:name=".SignUp" />
         <activity android:name=".PasswordModify" />
         <activity android:name=".Find" />
         <activity android:name=".pet_add.petInsert" />
         <activity android:name=".FindStore"/>
-        <activity android:name=".PetAdd">
+        <activity android:name=".PetAdd"/>
 
-        </activity>
+        <activity android:name=".PetPhotoUpdate"/>
+
+        <activity android:name="PetPhotoInsert"/>
 
         <activity
             android:name=".PopupActivity"
@@ -66,10 +66,7 @@
         <activity
             android:name=".IdFindPopup"
             android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:name=".BarIconPopup"
-            android:theme="@android:style/Theme.Dialog"
-            />
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDUe3mN0qdkPzd2vfAtCmVBwUyMwVsJJw4"/>

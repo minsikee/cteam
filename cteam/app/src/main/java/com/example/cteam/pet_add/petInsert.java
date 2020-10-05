@@ -82,6 +82,7 @@ public class petInsert extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), LOAD_IMAGE);
+
             }
         });
 
@@ -91,6 +92,13 @@ public class petInsert extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PetSelect.class);
                 startActivity(intent);
+            }
+        });
+
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -141,7 +149,7 @@ public class petInsert extends AppCompatActivity {
                 if(newBitmap != null){
                     petPhoto.setImageBitmap(newBitmap);
                 }else{
-                    Toast.makeText(this, "이미지가 null 입니다...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
                 }
 
                 imageRealPathA = path;
@@ -188,6 +196,8 @@ public class petInsert extends AppCompatActivity {
 
                 startActivity(showIntent);
 
+                Intent refresh = new Intent(this, PetAdd.class);
+                startActivity(refresh);
                 finish();
             } else {
                 Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",

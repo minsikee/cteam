@@ -98,6 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:orientation="vertical"
+            android:layout_marginTop="10dp"
             android:layout_weight="0.5"
             android:weightSum="4">
 
@@ -205,94 +206,103 @@
                 android:weightSum="12">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:paddingLeft="5dp"
                     android:text="0"
-                    android:textSize="15dp"
-                    />
+                    android:textColor="#333333"
+                    android:textSize="15dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="1"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="2"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="3"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="4"
-                    android:paddingLeft="5dp"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="5"
-                    android:paddingLeft="4dp"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="6"
-                    android:textColor="#FFC107"
+                    android:textColor="#333333"
                     android:textSize="15dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="7"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="8"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="9"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="10"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="11"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -409,100 +419,108 @@
                 android:weightSum="12">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:paddingLeft="5dp"
                     android:text="12"
-                    android:textSize="15dp"
-                    android:textColor="#03A9F4"
-                    />
+                    android:textColor="#333333"
+                    android:textSize="15dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="13"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="14"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="15"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="16"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="17"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="18"
-                    android:textColor="#FFC107"
+                    android:textColor="#333333"
                     android:textSize="15dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="19"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="20"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="21"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="22"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="23"
+                    android:textColor="#969696"
                     android:textSize="15dp" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
             <FrameLayout
             android:layout_width="match_parent"

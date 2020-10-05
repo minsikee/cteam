@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import static com.example.cteam.Login.loginDTO;
 
 public class Logout extends Fragment {
     private String title;
@@ -29,7 +34,10 @@ public class Logout extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMsg();
+                Intent intent = new Intent(getActivity(),Login.class);
+                startActivity(intent);
+                loginDTO = null;
+
             }
         });
 
@@ -41,27 +49,5 @@ public class Logout extends Fragment {
         });
         return rootView;
     }
-    public void showMsg(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("로그아웃");
-        builder.setMessage("정말로 종료하시겠습니까?");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
 
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(getActivity(),Login.class);
-                startActivity(intent);
-            }
-        });
-
-        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
 }

@@ -1,7 +1,9 @@
 package com.example.cteam;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +33,6 @@ public class Pw_MyPage_Fragment extends Fragment {
 
         activity = (PetSelect) getActivity();
 
-       /* if(activity.mBundle != null){
-            bundle = activity.mBundle;
-            dto = (MemberDTO) bundle.getSerializable("memberdto");
-            activity.mBundle = null;
-        }*/
-
         editPW = rootView.findViewById(R.id.edPW);
         pw_btn = rootView.findViewById(R.id.pw_btn);
         pw_btn.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +44,6 @@ public class Pw_MyPage_Fragment extends Fragment {
                     editPW.setText(null);
 
                 }else {
-                    Toast.makeText(activity, "dto : "+ Login.loginDTO.getMember_pw()+"\n입력한 비번 : "+ editPW.getText().toString(), Toast.LENGTH_LONG).show();
                     showMessage();
                 }
             }
@@ -66,11 +61,12 @@ public class Pw_MyPage_Fragment extends Fragment {
     private void showMessage() {
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(activity);
-        builder.setTitle("안내");
-        builder.setMessage("비밀번호를 다시 입력하세요!");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle(Html.fromHtml("<font color='#333333'>안내</font>"));
+        builder.setMessage(Html.fromHtml("<font color='#333333'>비밀번호를 다시 입력하세요!</font>"));
+        //builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setIconAttribute(android.R.attr.alertDialogIcon);
 
-        builder.setNeutralButton("확인", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(Html.fromHtml("<font color='#333333'>확인</font>"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }

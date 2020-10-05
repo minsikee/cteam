@@ -15,12 +15,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.cteam.Adapter.PetPhotoAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.board.WalkBoard;
@@ -29,6 +32,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 
 
 public class PetSelect extends AppCompatActivity
@@ -58,11 +62,12 @@ public class PetSelect extends AppCompatActivity
 
     Bundle sBundle=null;
 
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_select);
-        checkDangerousPermissions(); //위험권한
         calendar=new Calendar();
         walkBoard = new WalkBoard();
         petPhoto = new PetPhoto();
@@ -107,13 +112,11 @@ public class PetSelect extends AppCompatActivity
         tvloginID.setText(loginDTO.getMember_id());
         tvloginName.setText(loginDTO.getMember_name());
 
-        imageView.setImageResource(R.drawable.dog);
-
+        Glide.with(this).load(petAddDto.getPetimage_path()).into(imageView);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, calendar).commit(); //첫화면에 프래그먼트 1이 나오게
 
-        BottomNavigationView bottomNavigationView =
-                findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -157,8 +160,10 @@ public class PetSelect extends AppCompatActivity
             onFragmentSelected(1, null);
         }else if(id == R.id.nav_logout){
             onFragmentSelected(2, null);
-        }else if(id == R.id.nav_logout){
-            onFragmentSelected(3, null);
+        }else if(id == R.id.nav_pet){
+            Intent intent = new Intent(this, PetAdd.class);
+            startActivity(intent);
+            petAddDto = null;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);        //메뉴 누른뒤에 사라지는 것(스타트상태로)
@@ -180,11 +185,11 @@ public class PetSelect extends AppCompatActivity
         }else if (position == 2){
             curFragment = logout;
             toolbar.setTitle("로그아웃");
-        }else if (position == 3){
+        }/*else if (position == 3){
             Intent intent = new Intent(this, PetAdd.class);
             startActivity(intent);
 
-        }
+        }*/
         getSupportFragmentManager().beginTransaction().replace(R.id.container,curFragment).commit();
     }
 
@@ -223,51 +228,12 @@ public class PetSelect extends AppCompatActivity
         }
     }
 
-
-    private void checkDangerousPermissions() {  //위험권한
-        String[] permissions = {
-                Manifest.permission.RECEIVE_SMS,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.INTERNET,
-                Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.VIBRATE
-
-        };
-
-        int permissionCheck = PackageManager.PERMISSION_GRANTED;
-        for (int i = 0; i < permissions.length; i++) {
-            permissionCheck = ContextCompat.checkSelfPermission(this, permissions[i]);
-            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-                break;
-            }
-        }
-
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-           // Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
-                Toast.makeText(this, "권한 설명 필요함.", Toast.LENGTH_LONG).show();
-            } else {
-                ActivityCompat.requestPermissions(this, permissions, 1);
-            }
-        }
-    }
-
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == 1) {
-            for (int i = 0; i < permissions.length; i++) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                  //  Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
-                }
-            }
-        }
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        Log.d("main:petselect", "onNewIntent: 11111");
+        petPhoto.onActivityResult(10001, RESULT_OK, intent);
+
     }
 }

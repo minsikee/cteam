@@ -7,11 +7,11 @@
         android:top="5dp"
         android:left="-5dp">
         <shape android:shape="rectangle" >
-            <solid android:color="#FAF6F4F4" />
+            <solid android:color="#0D969696" />
 
             <stroke
                 android:width="5dp"
-                android:color="#7F6AF1" />
+                android:color="#FFB4BE" />
         </shape>
     </item>
 </layer-list>
