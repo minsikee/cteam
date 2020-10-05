@@ -1,17 +1,23 @@
 package com.example.cteam;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +28,14 @@ import android.widget.Toast;
 import com.example.cteam.ATask.PetPhoto.PetPhotoListSelect;
 import com.example.cteam.Adapter.PetPhotoAdapter;
 import com.example.cteam.Dto.PetPhotoDTO;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,7 +48,7 @@ import static com.example.cteam.PetAdd.petAddDto;
 public class PetPhoto extends Fragment {
 
     public static PetPhotoDTO selectPetPhoto = null;
-
+    private Context context;
 
     ImageButton photoPlus, photoMinus;
 
@@ -51,6 +64,12 @@ public class PetPhoto extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_pet_photo, container, false);
+
+        Log.d("main:petphoto", "onCreateView: 들어옴 ");
+
+        checkDangerousPermissions();
+        //컨ㅅ텍스트 가져오기
+       // context=container.getContext();
 
         //리사이클러 뷰 셋팅
         petPhotos = new ArrayList<>();
@@ -149,6 +168,58 @@ public class PetPhoto extends Fragment {
         }
     }
 
+
+
+    private void checkDangerousPermissions() {
+        String[] permissions = {
+
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.CAMERA
+
+        };
+
+        int permissionCheck = PackageManager.PERMISSION_GRANTED;
+        for (int i = 0; i < permissions.length; i++) {
+            permissionCheck = ContextCompat.checkSelfPermission(getActivity(), permissions[i]);
+            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                break;
+            }
+        }
+
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            // Toast.makeText(this, "권한 있음", Toast.LENGTH_LONG).show();
+        } else {
+            // Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), permissions[0])) {
+               // Toast.makeText(this, "권한 설명 필요함.", Toast.LENGTH_LONG).show();
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), permissions, 1);
+            }
+        }
+    }
+
+
+
+
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    //  Toast.makeText(this, permissions[i] + " 권한이 승인됨.", Toast.LENGTH_LONG).show();
+                } else {
+                    // Toast.makeText(this, permissions[i] + " 권한이 승인되지 않음.", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
 
 
 }

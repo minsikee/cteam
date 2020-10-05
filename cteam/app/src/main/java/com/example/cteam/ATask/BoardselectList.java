@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
 
+import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
 
 import org.apache.http.HttpEntity;
@@ -28,13 +29,13 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 public class BoardselectList extends AsyncTask<Void, Void, String> {
     // 생성자
     public static ArrayList<BoardDTO> walkboardArrayList;
-    com.example.cteam.Adapter.BoardAdapter BoardAdapter;
+    BoardAdapter BoardAdapter;
     ProgressDialog progressDialog;
 
-    public BoardselectList(ArrayList<BoardDTO> walkboardArrayList, com.example.cteam.Adapter.BoardAdapter BoardAdapter, ProgressDialog progressDialog) {
+    public BoardselectList(ArrayList<BoardDTO> walkboardArrayList, BoardAdapter BoardAdapter) {
         this.walkboardArrayList = walkboardArrayList;
         this.BoardAdapter = BoardAdapter;
-        this.progressDialog = progressDialog;
+
     }
 
     HttpClient httpClient;
@@ -51,7 +52,7 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
         walkboardArrayList.clear();
         String result = "";
-        String postURL = ipConfig + "/app/WalkboardSelect";
+        String postURL = ipConfig + "/app/boardselect";
 
         try {
             // MultipartEntityBuild 생성
@@ -104,12 +105,6 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
-        if(progressDialog != null){
-            progressDialog.dismiss();
-        }
-
-        Log.d("Sub1", "List Select Complete!!!");
-
         BoardAdapter.notifyDataSetChanged();
     }
 
@@ -127,15 +122,15 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
     }
 
     public BoardDTO readMessage(JsonReader reader) throws IOException {
-        String id = "",subject = "", title = "", date = "";
-        int comment=0;
+        String id = "",subject = "", title = "", date = "",comment="";
+        int num=0;
+
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            int readint=reader.nextInt();
-            if (readint == comment) {
-                comment = reader.nextInt();
+            if (readStr.equals("comment")) {
+                comment = reader.nextString();
             } else if (readStr.equals("id")) {
                 id = reader.nextString();
             } else if (readStr.equals("subject")) {
@@ -144,12 +139,16 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
                 title = reader.nextString();
             } else if (readStr.equals("date")) {
                 date = reader.nextString();
-            } else {
+            }else if (readStr.equals("num")) {
+                num = reader.nextInt();
+
+            }
+            else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("board:myitem", id + "," + subject + "," + title + "," + date + "," + comment);
+        Log.d("board:myitem", id + "," + subject + "," + title + "," + date + "," + comment+","+num);
         return new BoardDTO(id, subject, title, date, comment);
 
 

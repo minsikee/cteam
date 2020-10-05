@@ -97,7 +97,7 @@ public class PetPhotoInsert extends AppCompatActivity {
 
         petPhotoInsert_Camera.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 try {
                     try {
                         file = createFile();
@@ -166,12 +166,14 @@ public class PetPhotoInsert extends AppCompatActivity {
     }
 
     private File createFile() throws IOException {
+        java.text.SimpleDateFormat tmpDateFormat = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss");
 
         String imageFileName = "My" + tmpDateFormat.format(new Date()) + ".jpg";
         File storageDir = Environment.getExternalStorageDirectory();
         File curFile = new File(storageDir, imageFileName);
 
         return curFile;
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
