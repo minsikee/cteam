@@ -56,7 +56,6 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
                     android:src="@drawable/dogplay"
-                    android:tint="#B44628"
                     android:scaleType="fitXY" />
 
             </RelativeLayout>
