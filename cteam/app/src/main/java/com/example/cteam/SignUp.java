@@ -247,8 +247,7 @@ public class SignUp extends AppCompatActivity {
                     finish();
                 }else{
 
-
-                    Toast.makeText(SignUp.this, "정보를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "중복된 아이디입니다", Toast.LENGTH_SHORT).show();
                     Log.d("main:joinact", "삽입실패 !!!");
 
 

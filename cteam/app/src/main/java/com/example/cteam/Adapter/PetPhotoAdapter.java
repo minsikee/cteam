@@ -1,6 +1,7 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.util.Log;
@@ -20,12 +21,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.PetPhoto.PetPhotoDelete;
 import com.example.cteam.Dto.PetPhotoDTO;
+import com.example.cteam.PetPhotoUpdate;
 import com.example.cteam.R;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.bumptech.glide.load.resource.bitmap.TransformationUtils.circleCrop;
 import static com.example.cteam.Login.loginDTO;
@@ -43,7 +48,7 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
         this.mContext = mContext;
         this.petPhotos = petPhotos;
     }
-
+    public PetPhotoAdapter(){};
 
     @NonNull
     @Override
@@ -71,7 +76,48 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
               //  Toast.makeText(mContext, "Onclick " + arrayList.get(position).getId(), Toast.LENGTH_SHORT).show();
 
             }
+
         });
+
+
+        holder.spinnerOfferType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                String item = holder.spinnerOfferType.getSelectedItem().toString();
+
+                if(item.equals("delete")){
+
+                    Log.d(TAG, "onItemSelected: 눌린거"+petPhoto.getPetPhoto_no());
+                    PetPhotoDelete petPhotoDelete;
+                   petPhotoDelete=new PetPhotoDelete(petPhoto.getPetPhoto_no(),petPhotos);
+                    try {
+                        petPhotoDelete.execute().get();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    petPhotos.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, petPhotos.size());
+
+
+
+                }else if(item.equals("edit")){
+
+                    Intent intent=new Intent(mContext,PetPhotoUpdate.class);
+                    intent.putExtra("petPhoto", petPhoto);
+                    mContext.startActivity(intent);
+
+                }
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
@@ -113,6 +159,7 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
         public ProgressBar progressBar;
         public Spinner spinnerOfferType;
 
+
         public ItemViewHolder(@NonNull final View itemView) {
             super(itemView);
 
@@ -147,23 +194,6 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
                     R.array.offer_types, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerOfferType.setAdapter(adapter);
-
-            spinnerOfferType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                    String item = spinnerOfferType.getSelectedItem().toString();
-
-                    if(item.equals("delete")){
-                        
-
-                    }
-
-                }
-
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
 
 
 

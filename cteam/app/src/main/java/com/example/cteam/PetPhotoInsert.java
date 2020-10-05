@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.example.cteam.ATask.Listinsert;
 import com.example.cteam.ATask.PetPhoto.PetPhotoInsertS;
@@ -44,7 +46,7 @@ public class PetPhotoInsert extends AppCompatActivity {
     String petName, member_id, PetPhoto_content, PetPhoto_imgPath;
     ImageView petPhoto;
 
-    Button petPhotoInsert_upload,petPhotoInsert_back,petPhotoInsert_PhotoUpLoad;
+    Button petPhotoInsert_upload,petPhotoInsert_back,petPhotoInsert_PhotoUpLoad,petPhotoInsert_Camera;
 
     public String imageRealPathA, imageDbPathA;
 
@@ -69,6 +71,7 @@ public class PetPhotoInsert extends AppCompatActivity {
         petPhotoInsert_content=findViewById(R.id.petPhotoInsert_content);
         petPhoto=findViewById(R.id.petPhoto);
         petPhotoInsert_PhotoUpLoad=findViewById(R.id.petPhotoInsert_PhotoUpLoad);
+        petPhotoInsert_Camera=findViewById(R.id.petPhotoInsert_Camera);
 
         petPhotos=new ArrayList<>();
 
@@ -88,6 +91,41 @@ public class PetPhotoInsert extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+
+        petPhotoInsert_Camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    try {
+                        file = createFile();
+                        Log.d("Sub1Update:FilePath ", file.getAbsolutePath());
+                    } catch (Exception e) {
+                        Log.d("Sub1Update:error1", "Something Wrong", e);
+                    }
+
+                    petPhoto.setVisibility(View.VISIBLE);
+
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // API24 이상 부터
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                                FileProvider.getUriForFile(getApplicationContext(),
+                                        getApplicationContext().getPackageName() + ".fileprovider", file));
+                        Log.d("sub1:appId", getApplicationContext().getPackageName());
+                    } else {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                    }
+
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivityForResult(intent, CAMERA_REQUEST);
+                    }
+
+                } catch (Exception e) {
+                    Log.d("Sub1Update:error2", "Something Wrong", e);
+                }
+
             }
         });
 
