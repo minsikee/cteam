@@ -56,7 +56,6 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
                     android:src="@drawable/dogplay"
-                    android:tint="#B44628"
                     android:scaleType="fitXY" />
 
             </RelativeLayout>
@@ -81,7 +80,7 @@
 
                 <EditText
                     android:id="@+id/petName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:layout_toRightOf="@id/petName1"
@@ -101,7 +100,7 @@
 
                 <EditText
                     android:id="@+id/petAge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:layout_below="@+id/petName1"
@@ -122,7 +121,7 @@
 
                 <EditText
                     android:id="@+id/petGender"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:layout_below="@+id/petAge1"
@@ -143,7 +142,7 @@
 
                 <EditText
                     android:id="@+id/petWeight"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:layout_below="@+id/petGender1"
@@ -202,7 +201,6 @@
                                     android:id="@+id/btnCancle"
                                     android:layout_width="160dp"
                                     android:layout_height="40dp"
-                                    android:onClick="btnCancelClicked"
                                     android:background="@drawable/text_stroke"
                                     android:shadowColor="@android:color/transparent"
                                     android:textColor="#969696"
