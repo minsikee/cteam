@@ -107,7 +107,7 @@ public class PetSelect extends AppCompatActivity
         TextView tvloginID = headerView.findViewById(R.id.user_id);
         TextView tvloginName = headerView.findViewById(R.id.user_name);
         tvloginID.setText(loginDTO.getMember_id());
-        tvloginName.setText(loginDTO.getMember_name());
+        tvloginName.setText(petAddDto.getPetname());
 
         Glide.with(this).load(petAddDto.getPetimage_path()).into(imageView);
         getSupportFragmentManager().beginTransaction()

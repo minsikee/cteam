@@ -99,7 +99,7 @@ public class petInsert extends AppCompatActivity {
         petgenderSpinner.setAdapter(spinnerAdapter);
 
         //힌트 나타나게
-        petgenderSpinner.setSelection(3);
+        petgenderSpinner.setSelection(4);
 
 
         petGender= (String) petgenderSpinner.getSelectedItem();
@@ -147,7 +147,13 @@ public class petInsert extends AppCompatActivity {
                 finish();
             }
         });
+        btn_add = findViewById(R.id.btn_add);
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
     }
 
     private File createFile() throws IOException {
@@ -246,9 +252,11 @@ public class petInsert extends AppCompatActivity {
                 startActivity(refresh);
                 finish();
             } else {
-                Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
             }
+        }else {
+            Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
+                    Toast.LENGTH_SHORT).show();
         }
 
         }
