@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PetSelect"/>
-
+        <activity android:name=".board.BoardDetail"/>
         <activity android:name=".board.BoardWrite"/>
         <activity android:name=".Petbar_Add"/>
         <activity android:name=".ConsetPopup" />

@@ -56,13 +56,17 @@ public class Boardinsert extends AsyncTask<Void, Void, Void> {
             builder.addTextBody("content", content, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("city", city, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("region", region, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("dbImgPath", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addPart("image", new FileBody(new File(imageRealPathA)));
+            if (imageDbPathA != null) {
+                builder.addTextBody("dbImgPath", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
+            }
+            if (imageRealPathA != null) {
+                builder.addPart("image", new FileBody(new File(imageRealPathA)));
+            }
 
             String postURL = ipConfig + "/app/boardinsert";
 
             // 전송
-            httpClient = AndroidHttpClient.newInstance("Android");
+            httpClient = AndroidHttpClient.newInstance("cteam");
             httpPost = new HttpPost(postURL);
             httpPost.setEntity(builder.build());
             httpResponse = httpClient.execute(httpPost);
