@@ -12,9 +12,12 @@ import android.provider.MediaStore;
 import android.text.AutoText;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -23,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.example.cteam.ATask.Listinsert;
+import com.example.cteam.Adapter.GenderSpinnerAdapter;
 import com.example.cteam.Common.CommonMethod;
 import com.example.cteam.Login;
 import com.example.cteam.PetAdd;
@@ -32,16 +36,24 @@ import com.example.cteam.R;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class petInsert extends AppCompatActivity {
 
-    EditText petName, petAge,petWeight,petGender;
+    EditText petName;
+    EditText petAge;
+    EditText petWeight;
+    String petGender;
     Button goMain;
+    Spinner petgenderSpinner;
+    GenderSpinnerAdapter spinnerAdapter;
 
-    String petname = "", petage = "",petweight = "",petgender ="";
+    String petname = "", petage = "",petweight = "",petgender;
     ImageView petPhoto;
     String id;
 
@@ -64,7 +76,7 @@ public class petInsert extends AppCompatActivity {
 
         petName = findViewById(R.id.petName);
         petAge = findViewById(R.id.petAge);
-        petGender = findViewById(R.id.petGender);
+        //petGender = findViewById(R.id.petGender);
         petWeight = findViewById(R.id.petWeight);
         petPhoto = findViewById(R.id.petPhoto);
 
@@ -72,12 +84,46 @@ public class petInsert extends AppCompatActivity {
         btn_add = findViewById(R.id.btn_add);
         btnCancle = findViewById(R.id.btnCancle);
 
+        //데이터
+        List<String> data = new ArrayList<>();
+        data.add("여(중성화 O)"); data.add("여(중성화 X)"); data.add("남(중성화 O)"); data.add("남(중성화 X)");data.add("성별선택");
+
+
+        //UI생성
+        petgenderSpinner = findViewById(R.id.petGender);
+
+        //Adapter
+        spinnerAdapter = new com.example.cteam.Adapter.GenderSpinnerAdapter(this,data);
+
+        //Adapter 적용
+        petgenderSpinner.setAdapter(spinnerAdapter);
+
+        //힌트 나타나게
+        petgenderSpinner.setSelection(3);
+
+
+        petGender= (String) petgenderSpinner.getSelectedItem();
+
+        //스피너가 선택한 값 받게
+        petgenderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                petGender=parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
         btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                petPhoto.setVisibility(View.VISIBLE);
 
+                petPhoto.setVisibility(View.VISIBLE);
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
@@ -183,7 +229,7 @@ public class petInsert extends AppCompatActivity {
                 id = loginDTO.getMember_id().toString();
                 petname = petName.getText().toString();
                 petage = petAge.getText().toString();
-                petgender = petGender.getText().toString();
+                petgender = petGender;
                 petweight = petWeight.getText().toString();
 
                 Listinsert listinsert = new Listinsert(id, petname, petage, petweight, petgender, imageDbPathA, imageRealPathA);

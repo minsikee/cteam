@@ -2,6 +2,8 @@ package com.example.cteam.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import static com.example.cteam.PetAdd.petAddDto;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -58,6 +61,18 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         holder.selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AppCompatDialog dialog = new AppCompatDialog(context);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.setContentView(R.layout.progress);
+                dialog.show();
+                final ImageView cteam_progress = (ImageView) dialog.findViewById(R.id.cteam_progress);
+                final AnimationDrawable frameAnimation = (AnimationDrawable) cteam_progress.getBackground();
+                cteam_progress.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        frameAnimation.start();
+                    }
+                });
                 petAddDto = petList.get(position);
                 Log.d("main:petaddadapter", "onClick: " + petAddDto.getPetname());
                 Intent intent = new Intent(context, PetSelect.class);

@@ -62,7 +62,7 @@
 
                     <TextView
                         android:id="@+id/TVname"
-                        android:layout_width="70dp"
+                        android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/petName"
@@ -84,7 +84,7 @@
 
                     <TextView
                         android:id="@+id/TVage"
-                        android:layout_width="70dp"
+                        android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/petAge"
@@ -107,7 +107,7 @@
 
                     <TextView
                         android:id="@+id/TVgender"
-                        android:layout_width="70dp"
+                        android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/textView8"
@@ -131,7 +131,7 @@
 
                     <TextView
                         android:id="@+id/TVweight"
-                        android:layout_width="70dp"
+                        android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/petWeight"

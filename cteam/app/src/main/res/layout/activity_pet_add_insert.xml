@@ -56,7 +56,6 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
                     android:src="@drawable/dogplay"
-                    android:tint="#B44628"
                     android:scaleType="fitXY" />
 
             </RelativeLayout>
@@ -120,7 +119,7 @@
                     android:textColor="#969696"
                     android:textSize="18sp" />
 
-                <EditText
+              <!--  <EditText
                     android:id="@+id/petGender"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -129,7 +128,21 @@
                     android:layout_toRightOf="@id/petGender1"
                     android:textColorHint="#969696"
                     android:hint="성별을 입력하세요"
-                    android:inputType="text" />
+                    android:inputType="text" />-->
+
+                <Spinner
+                    android:id="@+id/petGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/petAge"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/gender_spinner_back"
+                    android:layout_toEndOf="@+id/petGender1"
+                    android:layout_toRightOf="@+id/petGender1"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/petWeight1"
