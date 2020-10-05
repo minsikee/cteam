@@ -41,7 +41,7 @@ public class Pw_MyPage_Fragment extends Fragment {
                 if(editPW.getText().toString().trim().equals(Login.loginDTO.getMember_pw())){
 
                     activity.onFragmentChange(1, bundle);
-                    editPW.setText(null);
+
 
                 }else {
                     showMessage();
@@ -52,7 +52,7 @@ public class Pw_MyPage_Fragment extends Fragment {
         pw_cancleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.onFragmentChange(2, null);
+                activity.onFragmentChange(3, null);
             }
         });
         return rootView;
@@ -74,5 +74,17 @@ public class Pw_MyPage_Fragment extends Fragment {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        editPW.setText(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        editPW.setText(null);
+
     }
 }
