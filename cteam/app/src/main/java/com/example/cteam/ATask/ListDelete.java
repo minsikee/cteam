@@ -16,9 +16,12 @@ import java.nio.charset.Charset;
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 
 public class ListDelete extends AsyncTask<Void, Void, Void> {
+
+    String member_id;
     String petname;
 
-    public ListDelete(String petname) {
+    public ListDelete(String member_id, String petname) {
+        this.member_id= member_id;
         this.petname= petname;
     }
 
@@ -33,6 +36,7 @@ public class ListDelete extends AsyncTask<Void, Void, Void> {
 
             // 문자열 및 데이터 추가
 
+            builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
 
             String postURL = ipConfig + "/app/cPetDelete";

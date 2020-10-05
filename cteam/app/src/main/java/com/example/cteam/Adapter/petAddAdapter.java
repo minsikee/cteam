@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import static com.example.cteam.CalendarAdd.selectIcon;
 
+import static com.example.cteam.Login.loginDTO;
 import static com.example.cteam.PetAdd.petAddDto;
 
 
@@ -25,7 +26,9 @@ import androidx.appcompat.app.AppCompatDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.ListDelete;
 import com.example.cteam.Dto.PetDTO;
+import com.example.cteam.Login;
 import com.example.cteam.PetAdd;
 import com.example.cteam.PetSelect;
 import com.example.cteam.R;
@@ -91,6 +94,23 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
             }
         });
 
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dto != null) {
+                    String member_id = loginDTO.getMember_id();
+                    String petname = dto.getPetname();
+                    ListDelete listDelete = new ListDelete(member_id, petname);
+                    listDelete.execute();
+
+                    Intent refresh = new Intent(context, PetAdd.class);
+                    context.startActivity(refresh);
+                }else {
+                    Log.d("TAG", "onClick: "+dto.getPetname());
+                }
+            }
+        });
+
     }
     // 어댑터에 매소드 만들기
 
@@ -122,7 +142,7 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         public RelativeLayout parentLayout;
         public TextView tvName, tvWeight, tvGender, tvAge;
         public ImageView imageView;
-        public Button selectBtn, updateBtn;
+        public Button selectBtn, updateBtn, deleteBtn;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -135,6 +155,7 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
             imageView = itemView.findViewById(R.id.imageView);
             selectBtn = itemView.findViewById(R.id.selectBtn);
             updateBtn = itemView.findViewById(R.id.updateBtn);
+            deleteBtn = itemView.findViewById(R.id.deleteBtn);
         }
 
         public void setPet(PetDTO dto){

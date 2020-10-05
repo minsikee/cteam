@@ -119,7 +119,7 @@
                     android:textColor="#969696"
                     android:textSize="18sp" />
 
-                <EditText
+                <!--<EditText
                     android:id="@+id/petgender"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -128,7 +128,21 @@
                     android:layout_toRightOf="@id/petGender1"
                     android:textColorHint="#969696"
                     android:hint="Gender"
-                    android:inputType="text" />
+                    android:inputType="text" />-->
+
+                <Spinner
+                    android:id="@+id/petgender"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:layout_below="@+id/petage"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="-70dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/petGender1"
+                    android:layout_toRightOf="@+id/petGender1"
+                    android:background="@drawable/gender_spinner_back"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/petWeight1"
