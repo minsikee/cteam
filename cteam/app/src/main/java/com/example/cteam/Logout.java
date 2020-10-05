@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,7 +38,7 @@ public class Logout extends Fragment {
                 Intent intent = new Intent(getActivity(),Login.class);
                 startActivity(intent);
                 loginDTO = null;
-
+                ActivityCompat.finishAffinity(activity);
             }
         });
 
