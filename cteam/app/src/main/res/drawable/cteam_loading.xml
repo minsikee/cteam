@@ -4,37 +4,16 @@
     android:oneshot="false">
 
     <item
-        android:drawable="@drawable/mypetmily_loading0"
-        android:duration="200"/>
-    <item
-        android:drawable="@drawable/mypetmily_loading1"
-        android:duration="200"/>
-    <item
-        android:drawable="@drawable/mypetmily_loading2"
-        android:duration="200"/>
-    <item
-        android:drawable="@drawable/mypetmily_loading3"
-        android:duration="200"/>
-    <item
-        android:drawable="@drawable/mypetmily_loading4"
-        android:duration="200"/>
-    <item
-        android:drawable="@drawable/mypetmily_loading5"
-        android:duration="200"/>
-    <item
-        android:drawable="@drawable/mypetmily_loading6"
-        android:duration="200"/>
-    <item
         android:drawable="@drawable/mypetmily_loading7"
-        android:duration="200"/>
+        android:duration="1"/>
     <item
         android:drawable="@drawable/mypetmily_loading8"
-        android:duration="200"/>
+        android:duration="1"/>
     <item
         android:drawable="@drawable/mypetmily_loading9"
-        android:duration="200"/>
+        android:duration="1"/>
     <item
         android:drawable="@drawable/mypetmily_loading10"
-        android:duration="200"/>
+        android:duration="1"/>
 
 </animation-list>
