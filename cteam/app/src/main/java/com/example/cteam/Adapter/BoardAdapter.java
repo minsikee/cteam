@@ -1,9 +1,11 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,30 +13,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.R;
+import com.example.cteam.board.BoardDetail;
 import com.example.cteam.board.WalkBoard;
 
 import java.util.ArrayList;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHolder> {
-    ArrayList<BoardDTO> list;
+
     Context mcontext;
+    ArrayList<BoardDTO> list;
 
     public BoardAdapter(Context mcontext, ArrayList<BoardDTO> list) {
-        this.list = list;
         this.mcontext = mcontext;
+        this.list = list;
+
     }
 
-
+    // ViewHolder 생성
+    // row layout을 화면에 뿌려주고 holder에 연결
     @NonNull
     @Override
     public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BoardViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.board_list_item, parent, false));
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.board_list_item, parent, false);
+        BoardViewHolder holder = new BoardViewHolder(itemView);
+        return holder;
+//        return new BoardViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.board_list_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BoardViewHolder holder,final int position) {
         BoardDTO dto = list.get(position);
         holder.setBoard(dto);
+
+
+
     }
 
     @Override
@@ -44,15 +57,31 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
 
     class BoardViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView msubject;
-        private TextView mtitle;
-        private TextView mid;
-        private TextView mdate;
-        private TextView mcomment;
+        public LinearLayout parentLayout;
+        public TextView msubject;
+        public TextView mtitle;
+        public TextView mid;
+        public TextView mdate;
+        public TextView mcomment;
 
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            //클릭했을때 Detail로 변경
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(mcontext, BoardDetail.class);
+                        String id = list.get(position).getId();
+                        intent.putExtra("id", id);
+                        mcontext.startActivity(intent);
+                    }
+                }
+            });
+
+            parentLayout = itemView.findViewById(R.id.parentLayout);
             msubject = itemView.findViewById(R.id.msubject);
             mtitle = itemView.findViewById(R.id.mtitle);
             mid = itemView.findViewById(R.id.mid);
@@ -69,4 +98,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         }
 
     }
+
+
 }

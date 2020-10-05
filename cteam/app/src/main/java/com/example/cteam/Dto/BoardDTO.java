@@ -7,11 +7,11 @@ public class BoardDTO implements Serializable {
     private String subject;
     private String title;
     private String date;
-    private int comment;
+    private String comment;
 
     public BoardDTO() {    }
 
-    public BoardDTO(String id, String subject, String title, String date, int comment) {
+    public BoardDTO(String id, String subject, String title, String date, String comment) {
         this.id = id;
         this.subject = subject;
         this.title = title;
@@ -51,11 +51,11 @@ public class BoardDTO implements Serializable {
         this.date = date;
     }
 
-    public int getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(int comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 }

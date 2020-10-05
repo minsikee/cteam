@@ -1776,4 +1776,19 @@ public class CalendarAddUpdate extends Fragment {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.detach(this).attach(this).commit();
     } //refresh()
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        CalendarAddUpdate_memo.setText(calendar_memo);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        CalendarAddUpdate_memo.setText(calendar_memo);
+    }
+
 }
