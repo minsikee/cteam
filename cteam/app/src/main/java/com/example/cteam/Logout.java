@@ -17,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import static com.example.cteam.Login.loginDTO;
 
 public class Logout extends Fragment {
     private String title;
@@ -31,7 +34,10 @@ public class Logout extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMsg();
+                Intent intent = new Intent(getActivity(),Login.class);
+                startActivity(intent);
+                loginDTO = null;
+
             }
         });
 
@@ -43,28 +49,5 @@ public class Logout extends Fragment {
         });
         return rootView;
     }
-    public void showMsg(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(Html.fromHtml("<font color='#333333'>로그아웃</font>"));
-        builder.setMessage(Html.fromHtml("<font color='#333333'>정말로 종료하시겠습니까?</font>"));
-        //builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setIconAttribute(android.R.attr.alertDialogIcon);
 
-        builder.setPositiveButton(Html.fromHtml("<font color='#333333'>예</font>"), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(getActivity(),Login.class);
-                startActivity(intent);
-            }
-        });
-
-        builder.setNeutralButton(Html.fromHtml("<font color='#333333'>취소</font>"), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
 }

@@ -95,6 +95,13 @@ public class petInsert extends AppCompatActivity {
             }
         });
 
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private File createFile() throws IOException {
@@ -142,7 +149,7 @@ public class petInsert extends AppCompatActivity {
                 if(newBitmap != null){
                     petPhoto.setImageBitmap(newBitmap);
                 }else{
-                    Toast.makeText(this, "이미지가 null 입니다...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
                 }
 
                 imageRealPathA = path;

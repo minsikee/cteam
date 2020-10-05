@@ -202,7 +202,6 @@
                                     android:id="@+id/btnCancle"
                                     android:layout_width="160dp"
                                     android:layout_height="40dp"
-                                    android:onClick="btnCancelClicked"
                                     android:background="@drawable/text_stroke"
                                     android:shadowColor="@android:color/transparent"
                                     android:textColor="#969696"
