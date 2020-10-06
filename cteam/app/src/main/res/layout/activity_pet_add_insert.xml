@@ -107,7 +107,7 @@
                     android:layout_toRightOf="@id/petAge1"
                     android:textColorHint="#969696"
                     android:hint="나이를 입력하세요"
-                    android:inputType="textPersonName" />
+                    android:inputType="number" />
 
                 <TextView
                     android:id="@+id/petGender1"
@@ -118,17 +118,6 @@
                     android:text="성　별 : "
                     android:textColor="#969696"
                     android:textSize="18sp" />
-
-              <!--  <EditText
-                    android:id="@+id/petGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical"
-                    android:layout_below="@+id/petAge1"
-                    android:layout_toRightOf="@id/petGender1"
-                    android:textColorHint="#969696"
-                    android:hint="성별을 입력하세요"
-                    android:inputType="text" />-->
 
                 <Spinner
                     android:id="@+id/petGender"
@@ -163,7 +152,7 @@
                     android:layout_toRightOf="@id/petWeight1"
                     android:textColorHint="#969696"
                     android:hint="무게를 입력하세요"
-                    android:inputType="text" />
+                    android:inputType="number" />
 
                 <Button
                     android:id="@+id/btnLoad"

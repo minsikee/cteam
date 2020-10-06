@@ -1,7 +1,6 @@
 package com.example.cteam.pet_add;
 
-import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -45,7 +44,7 @@ import static com.example.cteam.Login.loginDTO;
 import static com.example.cteam.PetAdd.petAddDto;
 
 public class petInsert extends AppCompatActivity {
-    Context context;
+
     EditText petName;
     EditText petAge;
     EditText petWeight;
@@ -152,8 +151,17 @@ public class petInsert extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
-            }
+
+                if(petName.getText().toString().equals("") || petAge.getText().toString().equals("")
+                      || petWeight.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
+                }else if(petPhoto == null){
+                    Toast.makeText(petInsert.this, "사진을 등록해주세요", Toast.LENGTH_SHORT).show();
+                }else {
+                    btnAddClicked();
+                    }
+                }
+
         });
     }
 
@@ -180,10 +188,8 @@ public class petInsert extends AppCompatActivity {
                     String uploadFileName = imageRealPathA.split("/")[imageRealPathA.split("/").length - 1];
                     imageDbPathA = CommonMethod.ipConfig + "/app/resources/" + uploadFileName;
                 }else{
-                    imageRealPathA =  getURLForResource(R.drawable.dog);
-                    String uploadFileName = imageRealPathA.split("/")[imageRealPathA.split("/").length - 1];
-                    imageDbPathA = CommonMethod.ipConfig + "/app/resources/" + uploadFileName;
 
+                    Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -207,7 +213,7 @@ public class petInsert extends AppCompatActivity {
                     petPhoto.setImageBitmap(newBitmap);
                 }else{
 
-                    Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(petInsert.this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
                 }
 
                 imageRealPathA = path;
@@ -237,11 +243,8 @@ public class petInsert extends AppCompatActivity {
     private String getURLForResource(int resId) {
         return Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resId).toString();
     }
-    public void btnAddClicked(View view) {
-        if(petname == null){
-            petName.requestFocus();
-            petName.setCursorVisible(true);
-        }
+    public void btnAddClicked() {
+        
         if (CommonMethod.isNetworkConnected(this) == true) {
             if (fileSize <= 30000000) {
                 id = loginDTO.getMember_id().toString();
@@ -264,10 +267,10 @@ public class petInsert extends AppCompatActivity {
                 startActivity(refresh);
                 finish();
             } else {
-                Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
+                Toast.makeText(petInsert.this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show();
             }
         }else {
-            Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
+            Toast.makeText(petInsert.this, "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
 

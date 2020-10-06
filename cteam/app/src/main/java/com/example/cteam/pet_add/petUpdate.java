@@ -11,9 +11,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.ListUpdate;
+import com.example.cteam.Adapter.GenderSpinnerAdapter;
 import com.example.cteam.Common.CommonMethod;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.PetAdd;
@@ -29,15 +32,17 @@ import com.example.cteam.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static com.example.cteam.Login.loginDTO;
 import static com.example.cteam.PetAdd.petAddDto;
 
 public class petUpdate extends AppCompatActivity {
 
-    EditText petName, petAge,petWeight,petGender;
-
+    EditText petName, petAge,petWeight;
+    String petGender;
     String originalName ="";
     String petname = "";
     String petage = "";
@@ -46,6 +51,8 @@ public class petUpdate extends AppCompatActivity {
     ImageView petPhoto;
 
     Button btnLoad,btnCancle,btn_update,btnReset;
+    Spinner petgenderSpinner;
+    GenderSpinnerAdapter spinnerAdapter;
 
     public String petimagepath;
     public String pImgDbPathU;
@@ -64,10 +71,22 @@ public class petUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_add_update);
 
+        // 보내온 값 파싱
+        Intent intent = getIntent();
+        petname = petAddDto.getPetname();
+        petage = petAddDto.getPetage();
+        petgender = petAddDto.getPetgender();
+        petweight = petAddDto.getPetweight();
+
+
         petName = findViewById(R.id.petname);
+        petName.setText(petname);
         petAge = findViewById(R.id.petage);
-        petGender = findViewById(R.id.petgender);
+        petAge.setText(petage);
+        //petGender = findViewById(R.id.petgender);
         petWeight = findViewById(R.id.petweight);
+        petWeight.setText(petweight);
+
         petPhoto = findViewById(R.id.petPhoto);
 
         btnLoad = findViewById(R.id.btnLoad);
@@ -77,21 +96,40 @@ public class petUpdate extends AppCompatActivity {
 
         petPhoto = findViewById(R.id.petPhoto);
 
-        // 보내온 값 파싱
-        Intent intent = getIntent();
-
-        petname = petAddDto.getPetname();
-        petage = petAddDto.getPetage();
-        petgender = petAddDto.getPetgender();
-        petweight = petAddDto.getPetweight();
 
 
-        // 가져온 값 써 넣기
-        petName.setText(petname);
-        petAge.setText(petage);
-        petWeight.setText(petweight);
-        petGender.setText(petgender);
+        //데이터
+        List<String> data = new ArrayList<>();
+        data.add("여(중성화 O)"); data.add("여(중성화 X)"); data.add("남(중성화 O)"); data.add("남(중성화 X)");data.add(petAddDto.getPetgender());
 
+        //UI생성
+        petgenderSpinner = findViewById(R.id.petgender);
+
+        //Adapter
+        spinnerAdapter = new com.example.cteam.Adapter.GenderSpinnerAdapter(this,data);
+
+        //Adapter 적용
+        petgenderSpinner.setAdapter(spinnerAdapter);
+
+        //힌트 나타나게
+        petgenderSpinner.setSelection(4);
+
+        petGender= (String) petgenderSpinner.getSelectedItem();
+
+        //스피너가 선택한 값 받게
+        petgenderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                petGender=parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
         petimagepath = petAddDto.getPetimage_path();
         pImgDbPathU = petimagepath;
         imageDbPathU = petimagepath;
@@ -201,7 +239,7 @@ public class petUpdate extends AppCompatActivity {
 
                 petname = petName.getText().toString();
                 petage = petAge.getText().toString();
-                petgender = petGender.getText().toString();
+                petgender = petGender;
                 petweight = petWeight.getText().toString();
                 originalName = petAddDto.getPetname();
 
