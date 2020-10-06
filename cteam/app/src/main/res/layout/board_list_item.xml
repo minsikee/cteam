@@ -26,17 +26,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="vertical"
+                android:background="@drawable/cardradius1"
                 android:layout_weight="4">
 
-                <TextView
-                    android:id="@+id/msubject"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="@drawable/cardradius1"
-                    android:textSize="14dp"
-                    android:textColor="#333333"
-                    android:text="산책"/>
+                    android:layout_height="25dp">
+
+                    <TextView
+                        android:id="@+id/msubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:textSize="14dp"
+                        android:textColor="#333333"
+                        android:text="산책"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
+
+                    <TextView
+                        android:id="@+id/mcity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="도시"
+                        android:textSize="16dp"
+                        android:textColor="#333333" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
