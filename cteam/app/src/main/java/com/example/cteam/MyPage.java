@@ -122,9 +122,9 @@ public class MyPage extends Fragment {
                         myPage_pw.requestFocus();
                         myPage_pw.setCursorVisible(true);
 
-                   }else  if(!Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", phoneNum))
+                   }else  if(!Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", phoneNum))
                 {
-                    Toast.makeText(getActivity(),"올바른 핸드폰 번호가 아닙니다.\n010-0000-0000으로 적어주세요",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"올바른 핸드폰 번호 형식이 아닙니다.\n숫자만 적어주세요",Toast.LENGTH_SHORT).show();
                     myPage_phonenum.setText("");
                     myPage_phonenum.requestFocus();
                     myPage_phonenum.setCursorVisible(true);
@@ -157,7 +157,6 @@ public class MyPage extends Fragment {
                         e.printStackTrace();
                     }
                     Toast.makeText(getActivity(), "회원정보 수정이 완료되었습니다", Toast.LENGTH_LONG).show();
-                    myPage_pw_confirm.setText(null);
                     activity.onFragmentChange(3, null );
                 }
             }
@@ -184,6 +183,7 @@ public class MyPage extends Fragment {
         myPage_pw.setText(Login.loginDTO.getMember_pw());
         myPage_qs_as.setText(Login.loginDTO.getMember_answer());
         myPage_phonenum.setText(Login.loginDTO.getMember_phonenum());
+        myPage_pw_confirm.setText(null);
     }
 
     @Override
@@ -194,5 +194,6 @@ public class MyPage extends Fragment {
         myPage_pw.setText(Login.loginDTO.getMember_pw());
         myPage_qs_as.setText(Login.loginDTO.getMember_answer());
         myPage_phonenum.setText(Login.loginDTO.getMember_phonenum());
+        myPage_pw_confirm.setText(null);
     }
 }
