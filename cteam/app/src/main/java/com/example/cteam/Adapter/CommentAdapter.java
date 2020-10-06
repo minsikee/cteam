@@ -1,29 +1,18 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
-import com.example.cteam.PetSelect;
 import com.example.cteam.R;
-
 import java.util.ArrayList;
 
-import static com.example.cteam.PetAdd.petAddDto;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemViewHolder> {
     Context context;
@@ -57,7 +46,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
                 Intent intent = new Intent(context, petUpdate.class);
                 context.startActivity(intent);
             }
-        });*/
+        });
 /*
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +84,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
     }
 
     // arrayList 통째로 셋팅하기
-    public void setItems(ArrayList<PetDTO> petList){
+    public void setItems(ArrayList<CommentDTO> commentList){
         this.commentList = commentList;
     }
     @Override
