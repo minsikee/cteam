@@ -9,19 +9,17 @@ public class BoardDTO implements Serializable {
     private String city;
     private String region;
     private String date;
-    private String comment;
     private String num;
 
     public BoardDTO() {    }
 
-    public BoardDTO(String id, String subject, String title, String city, String region, String date, String comment, String num) {
+    public BoardDTO(String id, String subject, String title, String city, String region, String date, String num) {
         this.id = id;
         this.subject = subject;
         this.title = title;
         this.city = city;
         this.region = region;
         this.date = date;
-        this.comment = comment;
         this.num = num;
     }
 
@@ -71,14 +69,6 @@ public class BoardDTO implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public String getNum() {
