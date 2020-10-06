@@ -1,171 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_sub1_add"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="10"
-    android:gravity="center_vertical"
+    android:orientation="vertical">
 
-    >
-    <ScrollView
+    <RelativeLayout
+        android:id="@+id/relative1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <Button
-                android:id="@+id/petPhotoInsert_back"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="0.4"
-                android:onClick="btnAddClicked"
-                android:background="@drawable/back"
-                android:backgroundTint="#999"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_weight="2.8"
-                android:hint="New Post"
-                android:textColor="#263ABD"
-                android:textSize="20dp"
-                android:inputType="text"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingLeft="15dp"
-
-               />
-
-            <Button
-                android:id="@+id/petPhotoInsert_upload"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:onClick="btnCancelClicked"
-                android:textColor="#FFB4BE"
-                android:textSize="15dp"
-                android:background="@drawable/background_transparent"
-                android:text="upload" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="1"/>
-
-
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_weight="3"
-
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical"
-                android:paddingRight="20dp">
-
-                <Button
-                    android:id="@+id/petPhotoInsert_Camera"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/outline_photo_camera_black_18dp"
-                    android:backgroundTint="#FFB4BE"
-                    android:layout_gravity="center_vertical"
-                   />
-                <Button
-                    android:id="@+id/petPhotoInsert_PhotoUpLoad"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/picture"
-                    android:backgroundTint="#7A4F55"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_vertical"
-                    />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                android:layout_weight="2"
-                android:background="#22C38686">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin ="10dp">
-
-                    <ImageView
-                        android:id="@+id/petPhoto"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitCenter" />
-
-                </FrameLayout>
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_weight="2">
+        <Button
+            android:id="@+id/petPhotoInsert_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:onClick="btnAddClicked"
+            android:background="@drawable/back"
+            android:backgroundTint="#444444" />
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="NEW POST"
+            android:textColor="#444444"
+            android:textSize="24dp"
+            android:inputType="text"
+            android:layout_gravity="center" />
 
-            android:text="게시글" />
+        <Button
+            android:id="@+id/petPhotoInsert_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:onClick="btnCancelClicked"
+            android:textColor="#FFB4BE"
+            android:textSize="24dp"
+            android:background="@drawable/background_transparent"
+            android:text="UPLOAD" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:id="@+id/petPhoto"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY" />
+
+        <Button
+            android:id="@+id/petPhotoInsert_Camera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/petPhoto"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/outline_photo_camera_black_18dp"
+            android:backgroundTint="#FFB4BE"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:id="@+id/petPhotoInsert_PhotoUpLoad"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/petPhoto"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/picture"
+            android:backgroundTint="#FFB4BE"
+            android:layout_gravity="center_vertical" />
 
         <EditText
             android:id="@+id/petPhotoInsert_content"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_below="@+id/petPhotoInsert_Camera"
+            android:layout_marginTop="10dp"
+            android:hint="메모를 입력하세요"
+            android:textColorHint="#969696"
             android:text=""
+            android:textColor="#444444"
+            android:textSize="18sp"
             android:inputType="text"
             android:layout_gravity="center_vertical" />
 
-    </LinearLayout>
-
-
-
+    </RelativeLayout>
 
 </LinearLayout>
+
