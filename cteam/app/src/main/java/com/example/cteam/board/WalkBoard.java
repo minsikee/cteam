@@ -87,6 +87,33 @@ public class WalkBoard extends Fragment {
 
 
 
+        //전체보기 or 나눔게시판
+        spinner_board.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (spinner_board.getSelectedItem().equals("전체보기")) {
+//                    board_kind="전체보기";
+//                    search(text,board_kind,city2);
+//                }else if(spinner_board.getSelectedItem().equals("산책게시판")){
+//                    board_kind="산책게시판";
+//                    search(text,board_kind,city2);
+//                }else{
+//                    board_kind="나눔게시판";
+//                    search(text,board_kind,city2);
+//                }
+
+                board_kind=spinner_board.getSelectedItem().toString();
+                Log.d("board_kind", "onItemSelected: "+board_kind);
+                search(text,board_kind,city2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+
+
+
+
         //도시 선택
         spinner_City = rootView.findViewById(R.id.board_spinnercity);
         spinner_Sigungu = rootView.findViewById(R.id.board_spinnersigungu);
@@ -529,28 +556,6 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setAdapter(Sigungu
         */
 
-        //전체보기 or 나눔게시판
-        spinner_board.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (spinner_board.getSelectedItem().equals("전체보기")) {
-//                    board_kind="전체보기";
-//                    search(text,board_kind,city2);
-//                }else if(spinner_board.getSelectedItem().equals("산책게시판")){
-//                    board_kind="산책게시판";
-//                    search(text,board_kind,city2);
-//                }else{
-//                    board_kind="나눔게시판";
-//                    search(text,board_kind,city2);
-//                }
-
-                board_kind=spinner_board.getSelectedItem().toString();
-                Log.d("board_kind", "onItemSelected: "+board_kind);
-                search(text,board_kind,city2);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
-        });
 
         board_editsearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -624,15 +629,28 @@ public class WalkBoard extends Fragment {
         // 게시판 종류가 전체보기일 때는 모든 데이터를 보여준다.
         if (board_kind.equals("전체보기") ) {
 
-            if(city2.equals("전체보기전체보기")) { //if1-if1 전체보기 & 도시가 전체보기 일때
+            if(city2.equals("전체보기전체보기")) {
 
                 if (charText.length() == 0) {   //if1-if2 전체보기 & 도시가 전체보기 & 글자 "" 일때
 
                     myItemArrayList.addAll(myItemArrayListCopy); //모든 목록
 
+
                 }//if1-if2 전체보기 & 도시가 전체보기 & 글자 "" 일때
                 else {
 
+                    for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                    {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText))
+                        {
+                            // 검색된 데이터를 리스트에 추가한다.
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
+                        }
+                    }
+
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
 
 
                 }//if1-else2 전체보기 & 도시가 전체보기 & 글자 "" 가 아닐때
@@ -640,6 +658,38 @@ public class WalkBoard extends Fragment {
             }//if1-if1 전체보기 & 도시가 전체보기 일때
 
             else{//if1-else1 전체보기 & 도시가 전체보기가 아닐때
+
+                    if(charText.length() == 0){// 전체보기 & 도시가 전체보기가 아닐때 & 글자 안썼을때
+                        for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                        {
+                            // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                            if (myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2))
+                            {
+                                // 검색된 데이터를 리스트에 추가한다.
+                                myItemArrayList.add(myItemArrayListCopy.get(i));
+                            }
+                        }
+
+                        // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                        boardAdapter.notifyDataSetChanged();
+
+                    }else{// 전체보기 & 도시가 전체보기가 아닐때 & 글자 썼을때
+                        for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                        {
+                            // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                            if (myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2)&&
+                                    myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText) )
+                            {
+                                // 검색된 데이터를 리스트에 추가한다.
+                                myItemArrayList.add(myItemArrayListCopy.get(i));
+                            }
+                        }
+
+                        // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                        boardAdapter.notifyDataSetChanged();
+
+
+                    }
 
 
             }//if1-else1 전체보기 & 도시가 전체보기가 아닐때
@@ -650,16 +700,78 @@ public class WalkBoard extends Fragment {
         // 전체보기가 아닐때(나눔 or 산책)- 게시판 선택했을때
         {
 
-            //게시판 종류선택했을때 && 도시와 구 선택했을때
-            if(!city2.equals("")){
+
+            if( !city2.equals("") ){
 
 
+                if( charText.length() > 0 ){//게시판 종류선택했을때 && 도시와 구 선택했을때 && 글썼을때
+
+                    for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                    {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind)
+                                &&myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2)
+                                &&myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText))
+                        {
+                            // 검색된 데이터를 리스트에 추가한다.
+                            Log.d("search", "search: "+myItemArrayListCopy.get(i).getCity2()+","+city2);
+
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
+                        }
+                    }
+
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
+
+                }else {//게시판 종류선택했을때 && 도시와 구 선택했을때 && 글X
+
+                    for (int i = 0; i < myItemArrayListCopy.size(); i++) {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind)
+                                && myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2)) {
+                            // 검색된 데이터를 리스트에 추가한다.
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
+                        }
+                    }
+
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
 
 
-
-
+                }
             }else{ //게시판 종류만 선택했을때, 도시선택X
 
+                if(charText.length() > 0){//게시판 종류선택했을때 && 도시와 구 X && 글만 썼을때
+                            for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                            {
+                                // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                                if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind)
+                                        &&myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText))
+                                {
+                                    // 검색된 데이터를 리스트에 추가한다.
+                                    myItemArrayList.add(myItemArrayListCopy.get(i));
+                                }
+                            }
+
+                            // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                              boardAdapter.notifyDataSetChanged();
+                }else{//게시판 종류선택했을때 && 도시와 구 X && 글X
+
+                    for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                    {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind))
+                        {
+                            // 검색된 데이터를 리스트에 추가한다.
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
+                        }
+                    }
+
+                // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                boardAdapter.notifyDataSetChanged();
+
+
+                }
 
 
             }
