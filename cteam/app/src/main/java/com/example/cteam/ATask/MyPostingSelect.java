@@ -151,7 +151,7 @@ public class MyPostingSelect  extends AsyncTask<Void, Void, String> {
 
         String city2=city+""+region;
         reader.endObject();
-        return new BoardDTO(id, subject, title, city, region, date, comment, num);
+        return new BoardDTO(id, subject, title, city, region, date, num);
 
     }
 
