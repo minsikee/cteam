@@ -65,7 +65,6 @@ public class WalkBoard extends Fragment {
     //Adapter
     BoardAdapter boardAdapter;
 
-    ProgressDialog progressDialog;
 
     EditText board_editsearch;
     @Override

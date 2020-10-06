@@ -43,30 +43,30 @@ public class MyPage extends Fragment {
     SpinnerAdapter spinnerAdapter;
     String myPage_qs;
 
+    TextView myPage_name;
+    TextView myPage_pw;
+    TextView myPage_id;
+    TextView myPage_qs_as;
+    TextView myPage_phonenum;
+    TextView myPage_pw_confirm;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity = (PetSelect) getActivity();
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.activity_my_page,container,false);
 
-        TextView myPage_name;
-        TextView myPage_pw;
-        TextView myPage_id;
-        TextView myPage_qs_as;
-        TextView myPage_phonenum;
-        TextView myPage_pw_confirm;
+
         myPage_pw_confirm = rootView.findViewById(R.id.MyPage_pw_confirm);
 
         myPage_name = rootView.findViewById(R.id.MyPage_name);
-        myPage_name.setText(Login.loginDTO.getMember_name());
         myPage_id = rootView.findViewById(R.id.MyPage_id);
-        myPage_id.setText(Login.loginDTO.getMember_id());
         myPage_pw = rootView.findViewById(R.id.MyPage_pw);
-        myPage_pw.setText(Login.loginDTO.getMember_pw());
         myPage_qs_as = rootView.findViewById(R.id.MyPage_qs_as);
-        myPage_qs_as.setText(Login.loginDTO.getMember_answer());
         myPage_phonenum = rootView.findViewById(R.id.MyPage_phonenum);
-        myPage_phonenum.setText(Login.loginDTO.getMember_phonenum());
+
+
+
+
 
         //데이터
         List<String> data = new ArrayList<>();
@@ -122,9 +122,9 @@ public class MyPage extends Fragment {
                         myPage_pw.requestFocus();
                         myPage_pw.setCursorVisible(true);
 
-                   }else  if(!Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", phoneNum))
+                   }else  if(!Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", phoneNum))
                 {
-                    Toast.makeText(getActivity(),"올바른 핸드폰 번호가 아닙니다.\n010-0000-0000으로 적어주세요",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"올바른 핸드폰 번호 형식이 아닙니다.\n숫자만 적어주세요",Toast.LENGTH_SHORT).show();
                     myPage_phonenum.setText("");
                     myPage_phonenum.requestFocus();
                     myPage_phonenum.setCursorVisible(true);
@@ -157,7 +157,6 @@ public class MyPage extends Fragment {
                         e.printStackTrace();
                     }
                     Toast.makeText(getActivity(), "회원정보 수정이 완료되었습니다", Toast.LENGTH_LONG).show();
-                    myPage_pw_confirm.setText(null);
                     activity.onFragmentChange(3, null );
                 }
             }
@@ -175,5 +174,26 @@ public class MyPage extends Fragment {
         });
 
         return rootView;
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        myPage_name.setText(Login.loginDTO.getMember_name());
+        myPage_id.setText(Login.loginDTO.getMember_id());
+        myPage_pw.setText(Login.loginDTO.getMember_pw());
+        myPage_qs_as.setText(Login.loginDTO.getMember_answer());
+        myPage_phonenum.setText(Login.loginDTO.getMember_phonenum());
+        myPage_pw_confirm.setText(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        myPage_name.setText(Login.loginDTO.getMember_name());
+        myPage_id.setText(Login.loginDTO.getMember_id());
+        myPage_pw.setText(Login.loginDTO.getMember_pw());
+        myPage_qs_as.setText(Login.loginDTO.getMember_answer());
+        myPage_phonenum.setText(Login.loginDTO.getMember_phonenum());
+        myPage_pw_confirm.setText(null);
     }
 }

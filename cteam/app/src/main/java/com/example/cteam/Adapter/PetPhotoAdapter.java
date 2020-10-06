@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -150,7 +151,7 @@ public class PetPhotoAdapter extends RecyclerView.Adapter<PetPhotoAdapter.ItemVi
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
 
-        public LinearLayout parentLayout;
+        public RelativeLayout parentLayout;
         public TextView petPhoto_petName;
         public ImageView petPhoto_profile;
         public TextView petPhoto_date;
