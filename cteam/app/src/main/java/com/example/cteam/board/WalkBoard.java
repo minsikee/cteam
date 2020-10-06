@@ -87,6 +87,13 @@ public class WalkBoard extends Fragment {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_board.setAdapter(spinnerAdapter);
 
+        //도시 선택
+        spinner_City = rootView.findViewById(R.id.board_spinnercity);
+        spinner_Sigungu = rootView.findViewById(R.id.board_spinnersigungu);
+        Button board_search = rootView.findViewById(R.id.board_search);
+        City_spinner = ArrayAdapter.createFromResource(rootView.getContext(),
+                R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
+        spinner_City.setAdapter(City_spinner);
 
 
         //전체보기 or 나눔게시판
@@ -103,8 +110,13 @@ public class WalkBoard extends Fragment {
 //                    board_kind="나눔게시판";
 //                    search(text,board_kind,city2);
 //                }
-
                 board_kind=spinner_board.getSelectedItem().toString();
+
+                if(board_kind.equals("전체보기")){
+                    City_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
+                    Sigungu_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_City.setAdapter(City_spinner);
+                }
                 Log.d("board_kind", "onItemSelected: "+board_kind);
                 search(text,board_kind,city2);
             }
@@ -116,13 +128,6 @@ public class WalkBoard extends Fragment {
 
 
 
-        //도시 선택
-        spinner_City = rootView.findViewById(R.id.board_spinnercity);
-        spinner_Sigungu = rootView.findViewById(R.id.board_spinnersigungu);
-        Button board_search = rootView.findViewById(R.id.board_search);
-        City_spinner = ArrayAdapter.createFromResource(rootView.getContext(),
-                R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
-        spinner_City.setAdapter(City_spinner);
 
         spinner_City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
