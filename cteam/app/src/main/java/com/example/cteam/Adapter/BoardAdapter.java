@@ -2,6 +2,7 @@ package com.example.cteam.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,10 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
 
     }
 
+    public BoardAdapter(ArrayList<BoardDTO> list) {
+        this.list = list;
+    }
+
     // ViewHolder 생성
     // row layout을 화면에 뿌려주고 holder에 연결
     @NonNull
@@ -46,8 +51,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         BoardDTO dto = list.get(position);
         holder.setBoard(dto);
 
-
-
     }
 
     @Override
@@ -61,6 +64,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         public TextView msubject;
         public TextView mtitle;
         public TextView mid;
+        public TextView mcity;
         public TextView mdate;
         public TextView mcomment;
 
@@ -74,8 +78,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(mcontext, BoardDetail.class);
-                        String id = list.get(position).getId();
-                        intent.putExtra("id", id);
+                        String num = list.get(position).getNum();
+                        intent.putExtra("num", num);
+                        Log.d("num", "onClick: num"+num);
                         mcontext.startActivity(intent);
                     }
                 }
@@ -85,6 +90,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             msubject = itemView.findViewById(R.id.msubject);
             mtitle = itemView.findViewById(R.id.mtitle);
             mid = itemView.findViewById(R.id.mid);
+            mcity = itemView.findViewById(R.id.mcity);
             mdate = itemView.findViewById(R.id.mdate);
             mcomment = itemView.findViewById(R.id.mcomment);
         }
@@ -93,11 +99,11 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             msubject.setText(dto.getSubject());
             mtitle.setText(dto.getTitle());
             mid.setText(dto.getId());
+            mcity.setText(dto.getCity()+ " " +dto.getRegion());
             mdate.setText(dto.getDate());
             mcomment.setText(dto.getComment());
         }
 
     }
-
 
 }
