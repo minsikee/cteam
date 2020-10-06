@@ -29,6 +29,9 @@ import com.example.cteam.Common.CommonMethod;
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardinsertDTO;
 import com.example.cteam.Login;
+import com.example.cteam.PetAdd;
+import com.example.cteam.PetChoose;
+import com.example.cteam.PetSelect;
 import com.example.cteam.R;
 
 import java.io.File;
@@ -44,10 +47,6 @@ public class BoardWrite extends AppCompatActivity {
     EditText board_write_title, board_write_content;
     Button board_write_filebutton, board_write_cancel, board_write_submit;
     ImageView board_write_image;
-
-    ArrayList<BoardDTO> list;
-    RecyclerView rv;
-    BoardAdapter adapter;
 
     ArrayAdapter<CharSequence> adspin1, adspin2;
 
@@ -69,8 +68,6 @@ public class BoardWrite extends AppCompatActivity {
         board_write_cancel = findViewById(R.id.board_write_cancel);
         board_write_submit = findViewById(R.id.board_write_submit);
         board_write_image = findViewById(R.id.board_write_image);
-        rv = (RecyclerView)findViewById(R.id.board_list);
-        adapter = new BoardAdapter(list);
 
         final Spinner spin1 = (Spinner)findViewById(R.id.board_write_region1);
         final Spinner spin2 = (Spinner)findViewById(R.id.board_write_region2);
@@ -345,11 +342,10 @@ public class BoardWrite extends AppCompatActivity {
                 startActivity(showIntent);
 */
                 Boardinsert boardinsert = new Boardinsert(subject, title, content, city, region,
-                        imageDbPathA, imageRealPathA, Login.loginDTO.getMember_id());
+                        imageDbPathA, imageRealPathA, Login.loginDTO.getMember_id(), PetAdd.petAddDto.getPetimage_path());
                 boardinsert.execute();
 
                 finish();
-                listRefresh();
             }else{
                 // 알림창 띄움
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -374,7 +370,6 @@ public class BoardWrite extends AppCompatActivity {
     //취소버튼
     public void btnCancelClicked(View view){
         finish();
-        listRefresh();
     }
 
     @Override
@@ -422,16 +417,6 @@ public class BoardWrite extends AppCompatActivity {
         return res;
     }
 
-    private void listRefresh() {
-
-        /*방법1 - 레이아웃 매니저를 새로 붙여준다 */
-        /*   rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-              rv.setHasFixedSize(false);*/
-
-        /*방법2 - 뷰 레이아웃을 모두 지워주고 아덥터를 다시 붙인다 */
-        rv.removeAllViewsInLayout();
-        rv.setAdapter(adapter);
-    }
 
 
 }

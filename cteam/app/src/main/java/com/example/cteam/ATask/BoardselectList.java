@@ -121,15 +121,15 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
     }
 
     public BoardDTO readMessage(JsonReader reader) throws IOException {
-        String id = "",subject = "", title = "", city = "", region = "", date = "",comment="";
+        String id = "",subject = "", title = "", city = "", region = "", date = "";
         String num = "";
 
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            if (readStr.equals("comment")) {
-                comment = reader.nextString();
+            if (readStr.equals("num")) {
+                num = reader.nextString();
             } else if (readStr.equals("id")) {
                 id = reader.nextString();
             } else if (readStr.equals("subject")) {
@@ -142,19 +142,14 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
                 region = reader.nextString();
             } else if (readStr.equals("date")) {
                 date = reader.nextString();
-            }else if (readStr.equals("num")) {
-                num = reader.nextString();
-
-            }
-            else {
+            } else {
                 reader.skipValue();
             }
         }
 
-        String city2=city+""+region;
         reader.endObject();
-        Log.d("board:myitem", id + "," + subject + "," + title + "," + city2 + "," + date + "," + comment+","+num);
-        return new BoardDTO(id, subject, title, city, region, date, comment, num);
+        Log.d("board:myitem", id + "," + subject + "," + title + "," + date + "," + num);
+        return new BoardDTO(id, subject, title, city, region, date, num);
 
 
 
