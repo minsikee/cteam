@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="spinner_region">
-        <item></item>
+        <item>전체보기</item>
         <item>서울특별시</item>
         <item>부산광역시</item>
         <item>대구광역시</item>
@@ -19,6 +19,10 @@
         <item>경상북도</item>
         <item>경상남도</item>
         <item>제주특별자치도</item>
+    </string-array>
+
+    <string-array name="spinner_region_all">
+        <item>전체보기</item>
     </string-array>
 
     <string-array name="spinner_region_seoul">

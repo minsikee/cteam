@@ -2,6 +2,6 @@
 <resources>
     <string-array name="board_write_SpinnerArray">
         <item>산책게시판</item>
-        <item>돌봄이게시판</item>
+        <item>나눔게시판</item>
     </string-array>
 </resources>

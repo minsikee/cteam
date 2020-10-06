@@ -10,12 +10,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +32,7 @@ import com.example.cteam.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 import static com.example.cteam.R.array.board_SpinnerArray;
@@ -41,6 +46,20 @@ public class WalkBoard extends Fragment {
     BoardselectList boardselectList;
     //DTO
     ArrayList<BoardDTO> myItemArrayList;
+
+    private ArrayList<BoardDTO> myItemArrayListCopy;
+
+    //도시와 구
+    String city="";
+    String sigungu="";
+    //도시+구(검색할때 사용)
+    String city2="";
+
+    //검색어
+    String text="";
+    //게시판여부
+    String board_kind="";
+
     //RecyclerView
     RecyclerView recyclerView;
     //Adapter
@@ -48,6 +67,7 @@ public class WalkBoard extends Fragment {
 
     ProgressDialog progressDialog;
 
+    EditText board_editsearch;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -57,6 +77,7 @@ public class WalkBoard extends Fragment {
         spinner_board = rootView.findViewById(R.id.board_spinner_board);
         ArrayList<String> list = new ArrayList<>();
 
+        board_editsearch=rootView.findViewById(R.id.board_editsearch);
 
         //게시판 선택창
         ArrayAdapter spinnerAdapter =
@@ -65,14 +86,7 @@ public class WalkBoard extends Fragment {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_board.setAdapter(spinnerAdapter);
 
-        spinner_board.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
-        });
 
         //도시 선택
         spinner_City = rootView.findViewById(R.id.board_spinnercity);
@@ -86,16 +100,49 @@ public class WalkBoard extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (City_spinner.getItem(i).equals("서울특별시")) {
+
+                    //도시설정
+                    city="서울특별시";
+
                     Sigungu_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region_seoul, android.R.layout.simple_spinner_dropdown_item);
+                    Sigungu_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_Sigungu.setAdapter(Sigungu_spinner);
+                    spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+                        }
+                    });
+                }else if(City_spinner.getItem(i).equals("전체보기")) {
+                    Sigungu_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region_all, android.R.layout.simple_spinner_dropdown_item);
                     Sigungu_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner_Sigungu.setAdapter(Sigungu_spinner);
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="전체보기";
+                            sigungu="전체보기";
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) {
+
                         }
                     });
                 }else if(City_spinner.getItem(i).equals("부산광역시")) {
@@ -105,6 +152,17 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            city="부산광역시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
+
+
+
                         }
 
                         @Override
@@ -118,6 +176,15 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            city="대구광역시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
+
                         }
 
                         @Override
@@ -131,6 +198,14 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            city="인천광역시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -144,6 +219,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="광주광역시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -157,6 +239,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="대전광역시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -170,6 +259,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="울산광역시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -183,6 +279,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="세종특별자치시";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -196,6 +299,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="경기도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -209,6 +319,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="강원도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -222,6 +339,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="충청북도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -235,6 +359,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="충청남도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -248,6 +379,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="전라북도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -261,6 +399,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="전라남도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -274,6 +419,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="경상북도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -287,6 +439,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="경상남도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -300,6 +459,13 @@ public class WalkBoard extends Fragment {
                     spinner_Sigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            city="제주특별자치도";
+                            sigungu=Sigungu_spinner.getItem(i).toString();
+                            Log.d("sigungu", "onItemSelected: "+Sigungu_spinner.getItem(i).toString());
+
+                            city2=city+sigungu;
+                            Log.d("city2", "onItemSelected: "+city2);
+                            search(text,board_kind,city2);
                         }
 
                         @Override
@@ -307,7 +473,13 @@ public class WalkBoard extends Fragment {
                         }
                     });
                 }
+
+
+
+
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -331,11 +503,76 @@ public class WalkBoard extends Fragment {
 
         if(isNetworkConnected(rootView.getContext()) == true){
             boardselectList = new BoardselectList(myItemArrayList, boardAdapter);
-            boardselectList.execute();
+            try {
+                boardselectList.execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }else {
             Toast.makeText(rootView.getContext(), "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
+
+
+        //리스트 복사
+        myItemArrayListCopy= new ArrayList<BoardDTO>();
+        myItemArrayListCopy.addAll(myItemArrayList);
+
+
+      /*  spinner_City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (City_spinner.getItem(i).equals("서울특별시")) {
+                    Sigungu_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region_seoul, android.R.layout.simple_spinner_dropdown_item);
+                    Sigungu_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_Sigungu.setAdapter(Sigungu
+        */
+
+        //전체보기 or 나눔게시판
+        spinner_board.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (spinner_board.getSelectedItem().equals("전체보기")) {
+//                    board_kind="전체보기";
+//                    search(text,board_kind,city2);
+//                }else if(spinner_board.getSelectedItem().equals("산책게시판")){
+//                    board_kind="산책게시판";
+//                    search(text,board_kind,city2);
+//                }else{
+//                    board_kind="나눔게시판";
+//                    search(text,board_kind,city2);
+//                }
+
+                board_kind=spinner_board.getSelectedItem().toString();
+                Log.d("board_kind", "onItemSelected: "+board_kind);
+                search(text,board_kind,city2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+        board_editsearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // input창에 문자를 입력할때마다 호출된다.
+                // search 메소드를 호출한다.
+                 text = board_editsearch.getText().toString();
+                Log.d(text, "afterTextChanged: "+text);
+                search(text,board_kind,city2);
+            }
+        });
+
 
 
 
@@ -376,6 +613,65 @@ public class WalkBoard extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+    }
+
+
+    // 검색을 수행하는 메소드
+    public void search(String charText,String board_kind,String city2) {
+
+        // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
+        myItemArrayList.clear();
+
+        // 게시판 종류가 전체보기일 때는 모든 데이터를 보여준다.
+        if (board_kind.equals("전체보기") ) {
+
+            if(city2.equals("전체보기전체보기")) { //if1-if1 전체보기 & 도시가 전체보기 일때
+
+                if (charText.length() == 0) {   //if1-if2 전체보기 & 도시가 전체보기 & 글자 "" 일때
+
+                    myItemArrayList.addAll(myItemArrayListCopy); //모든 목록
+
+                }//if1-if2 전체보기 & 도시가 전체보기 & 글자 "" 일때
+                else {
+
+
+
+                }//if1-else2 전체보기 & 도시가 전체보기 & 글자 "" 가 아닐때
+
+            }//if1-if1 전체보기 & 도시가 전체보기 일때
+
+            else{//if1-else1 전체보기 & 도시가 전체보기가 아닐때
+
+
+            }//if1-else1 전체보기 & 도시가 전체보기가 아닐때
+
+        }//if1 전체보기 일때
+
+        else
+        // 전체보기가 아닐때(나눔 or 산책)- 게시판 선택했을때
+        {
+
+            //게시판 종류선택했을때 && 도시와 구 선택했을때
+            if(!city2.equals("")){
+
+
+
+
+
+
+            }else{ //게시판 종류만 선택했을때
+
+
+            }
+
+
+
+
+
+        }//else1 전체보기가 아닐때
+
+        // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+        boardAdapter.notifyDataSetChanged();
     }
 
 
