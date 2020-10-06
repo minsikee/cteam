@@ -114,7 +114,7 @@ public class WalkBoard extends Fragment {
 
                 if(board_kind.equals("전체보기")){
                     City_spinner = ArrayAdapter.createFromResource(rootView.getContext(), R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
-                    Sigungu_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    City_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner_City.setAdapter(City_spinner);
                 }
                 Log.d("board_kind", "onItemSelected: "+board_kind);
@@ -768,6 +768,7 @@ public class WalkBoard extends Fragment {
                     {
                         // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
                         if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind))
+                            Log.d("subject", "search: subject "+myItemArrayListCopy.get(i).getSubject()+","+board_kind);
                         {
                             // 검색된 데이터를 리스트에 추가한다.
                             myItemArrayList.add(myItemArrayListCopy.get(i));
