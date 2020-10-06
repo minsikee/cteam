@@ -46,7 +46,6 @@ public class WalkBoard extends Fragment {
     //Adapter
     BoardAdapter boardAdapter;
 
-    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

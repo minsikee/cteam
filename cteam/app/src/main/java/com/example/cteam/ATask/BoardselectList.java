@@ -30,7 +30,6 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
     // 생성자
     public static ArrayList<BoardDTO> walkboardArrayList;
     BoardAdapter BoardAdapter;
-    ProgressDialog progressDialog;
 
     public BoardselectList(ArrayList<BoardDTO> walkboardArrayList, BoardAdapter BoardAdapter) {
         this.walkboardArrayList = walkboardArrayList;
@@ -122,8 +121,8 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
     }
 
     public BoardDTO readMessage(JsonReader reader) throws IOException {
-        String id = "",subject = "", title = "", date = "",comment="";
-        int num=0;
+        String id = "",subject = "", title = "", city = "", region = "", date = "",comment="";
+        String num = "";
 
 
         reader.beginObject();
@@ -137,19 +136,25 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
                 subject = reader.nextString();
             } else if (readStr.equals("title")) {
                 title = reader.nextString();
+            } else if (readStr.equals("city")) {
+                city = reader.nextString();
+            } else if (readStr.equals("region")) {
+                region = reader.nextString();
             } else if (readStr.equals("date")) {
                 date = reader.nextString();
             }else if (readStr.equals("num")) {
-                num = reader.nextInt();
+                num = reader.nextString();
 
             }
             else {
                 reader.skipValue();
             }
         }
+
+        String city2=city+""+region;
         reader.endObject();
-        Log.d("board:myitem", id + "," + subject + "," + title + "," + date + "," + comment+","+num);
-        return new BoardDTO(id, subject, title, date, comment);
+        Log.d("board:myitem", id + "," + subject + "," + title + "," + city2 + "," + date + "," + comment+","+num);
+        return new BoardDTO(id, subject, title, city, region, date, comment, num);
 
 
 

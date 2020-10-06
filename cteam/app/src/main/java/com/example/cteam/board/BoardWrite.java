@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,14 +21,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cteam.ATask.Boardinsert;
+import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Common.CommonMethod;
+import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardinsertDTO;
 import com.example.cteam.Login;
 import com.example.cteam.R;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 
@@ -40,11 +45,14 @@ public class BoardWrite extends AppCompatActivity {
     Button board_write_filebutton, board_write_cancel, board_write_submit;
     ImageView board_write_image;
 
+    ArrayList<BoardDTO> list;
+    RecyclerView rv;
+    BoardAdapter adapter;
+
     ArrayAdapter<CharSequence> adspin1, adspin2;
 
     File file = null;
     long fileSize = 0;
-
     public String imageRealPathA, imageDbPathA;
 
     @Override
@@ -61,8 +69,8 @@ public class BoardWrite extends AppCompatActivity {
         board_write_cancel = findViewById(R.id.board_write_cancel);
         board_write_submit = findViewById(R.id.board_write_submit);
         board_write_image = findViewById(R.id.board_write_image);
-
-        BoardinsertDTO dto = new BoardinsertDTO();
+        rv = (RecyclerView)findViewById(R.id.board_list);
+        adapter = new BoardAdapter(list);
 
         final Spinner spin1 = (Spinner)findViewById(R.id.board_write_region1);
         final Spinner spin2 = (Spinner)findViewById(R.id.board_write_region2);
@@ -312,16 +320,6 @@ public class BoardWrite extends AppCompatActivity {
             }
         });
 
-//        board_write_submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(isNetworkConnected(this) == true) {
-//
-//                }
-//            }
-//        });
-
-
     }
 
     //등록버튼 클릭시
@@ -351,7 +349,7 @@ public class BoardWrite extends AppCompatActivity {
                 boardinsert.execute();
 
                 finish();
-
+                listRefresh();
             }else{
                 // 알림창 띄움
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -376,6 +374,7 @@ public class BoardWrite extends AppCompatActivity {
     //취소버튼
     public void btnCancelClicked(View view){
         finish();
+        listRefresh();
     }
 
     @Override
@@ -422,4 +421,17 @@ public class BoardWrite extends AppCompatActivity {
         cursor.close();
         return res;
     }
+
+    private void listRefresh() {
+
+        /*방법1 - 레이아웃 매니저를 새로 붙여준다 */
+        /*   rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+              rv.setHasFixedSize(false);*/
+
+        /*방법2 - 뷰 레이아웃을 모두 지워주고 아덥터를 다시 붙인다 */
+        rv.removeAllViewsInLayout();
+        rv.setAdapter(adapter);
+    }
+
+
 }

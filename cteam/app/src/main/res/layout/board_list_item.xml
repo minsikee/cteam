@@ -38,10 +38,21 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/mtitle"
+                    android:id="@+id/mcity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="도시"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/mtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
                     android:text="제목"

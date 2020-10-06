@@ -15,10 +15,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.BoardDetailSelect;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class BoardDetail extends AppCompatActivity {
 
@@ -50,18 +54,21 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_region = findViewById(R.id.board_detail_region);
         board_detail_image = findViewById(R.id.board_detail_image);
 
+
         if (getIntent() != null) {
             Intent intent = getIntent();
-            String id = intent.getStringExtra("id");
-            Log.i(TAG, "id: " + id);
+            String num = intent.getStringExtra("num");
+            Log.i(TAG, "num: " + num);
+            intent.putExtra("num", num);
+            BoardDetailSelect boardDetailSelect = new BoardDetailSelect(num);
+            boardDetailSelect.execute();
         }
-
 
         if(board_detail_image != null) {
             board_detail_image.setVisibility(View.VISIBLE);
         }
 
-
+        Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
 
     }
 }
