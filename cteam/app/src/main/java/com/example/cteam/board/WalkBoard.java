@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.cteam.ATask.BoardselectList;
 import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
+import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,6 +34,7 @@ import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 import static com.example.cteam.R.array.board_SpinnerArray;
 
 public class WalkBoard extends Fragment {
+    public static BoardDTO boardDTO = null;
 
     Spinner spinner_board, spinner_City, spinner_Sigungu;
     ArrayAdapter<CharSequence> City_spinner, Sigungu_spinner;
