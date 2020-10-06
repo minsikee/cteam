@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cteam.Dto.BoardDTO;
+import com.example.cteam.Login;
 import com.example.cteam.R;
 import com.example.cteam.board.BoardDetail;
 import com.example.cteam.board.WalkBoard;
@@ -66,7 +67,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         public TextView mid;
         public TextView mcity;
         public TextView mdate;
-        public TextView mcomment;
 
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,8 +78,11 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(mcontext, BoardDetail.class);
+                        String member_id = Login.loginDTO.getMember_id();
                         String num = list.get(position).getNum();
+                        intent.putExtra("member_id", member_id);
                         intent.putExtra("num", num);
+                        Log.d("member_id", "onClick: member_"+member_id);
                         Log.d("num", "onClick: num"+num);
                         mcontext.startActivity(intent);
                     }
@@ -92,7 +95,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             mid = itemView.findViewById(R.id.mid);
             mcity = itemView.findViewById(R.id.mcity);
             mdate = itemView.findViewById(R.id.mdate);
-            mcomment = itemView.findViewById(R.id.mcomment);
         }
 
         public void setBoard(BoardDTO dto) {
@@ -136,7 +138,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             }
             //mcity.setText(dto.getCity()+ " " +dto.getRegion());
             mdate.setText(dto.getDate());
-            mcomment.setText(dto.getComment());
         }
 
     }

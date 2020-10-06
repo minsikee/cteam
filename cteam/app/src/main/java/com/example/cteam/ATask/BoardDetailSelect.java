@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
+import com.example.cteam.Dto.BoardDetailDTO;
 import com.example.cteam.Dto.MemberDTO;
 
 import org.apache.http.HttpEntity;
@@ -30,10 +31,11 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
 
     private static final String TAG = "BoardDetailSelect";
 
-    String num;
+    String num, member_id;
 
-    public BoardDetailSelect(String num) {
+    public BoardDetailSelect(String num, String member_id) {
         this.num = num;
+        this.member_id = member_id;
     }
 
     HttpClient httpClient;
@@ -53,6 +55,7 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
 
             // 문자열 및 데이터 추가
             builder.addTextBody("num", num, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
 
             String postURL = ipConfig + "/app/boarddetail";
             // 전송
@@ -96,34 +99,44 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
 
     }
 
-    public BoardDTO readMessage(InputStream inputStream) throws IOException {
+    public BoardDetailDTO readMessage(InputStream inputStream) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
 
-        String member_id = "", member_pw = "", member_name = "", member_phonenum = "", member_question = "", member_answer = "";
+        String num = "", subject = "", title = "", content = "", member_id = "", petname = "", imagepath =""
+                , city = "", region = "", petimagepath = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            if (readStr.equals("member_id")) {
+            if (readStr.equals("board_num")) {
+                num = reader.nextString();
+            } else if (readStr.equals("board_subject")) {
+                subject = reader.nextString();
+            } else if (readStr.equals("board_title")) {
+                title = reader.nextString();
+            } else if (readStr.equals("board_content")) {
+                content = reader.nextString();
+            } else if (readStr.equals("member_id")) {
                 member_id = reader.nextString();
-            } else if (readStr.equals("member_pw")) {
-                member_pw = reader.nextString();
-            } else if (readStr.equals("member_name")) {
-                member_name = reader.nextString();
-            } else if (readStr.equals("member_phonenum")) {
-                member_phonenum = reader.nextString();
-            } else if (readStr.equals("member_question")) {
-                member_question = reader.nextString();
-            } else if (readStr.equals("member_answer")) {
-                member_answer = reader.nextString();
+            } else if (readStr.equals("petname")) {
+                petname = reader.nextString();
+            } else if (readStr.equals("board_imagepath")) {
+                imagepath = reader.nextString();
+            } else if (readStr.equals("board_city")) {
+                city = reader.nextString();
+            } else if (readStr.equals("board_region")) {
+                region = reader.nextString();
+            } else if (readStr.equals("petimagepath")) {
+                petimagepath = reader.nextString();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("main:loginselect : ", member_id + "," + member_pw + "," + member_name + "," + member_phonenum + "," + member_question
-                + "," + member_answer);
-        return null;//new BoardDTO(member_id, member_pw, member_name, member_phonenum, member_question, member_answer);
+        Log.d("board:boarddetail : ", num + "," + subject + "," + title + "," + content + "," + member_id
+                + "," + petname + "," + imagepath + "," + city + "," + region + "," + petimagepath);
+
+        return new BoardDetailDTO(num, subject, title, content, member_id, petname, imagepath, city, region, petimagepath);
 
     }
 }
