@@ -99,7 +99,42 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             msubject.setText(dto.getSubject());
             mtitle.setText(dto.getTitle());
             mid.setText(dto.getId());
-            mcity.setText(dto.getCity()+ " " +dto.getRegion());
+            if(dto.getCity().equals("서울특별시")) {
+                mcity.setText("서울 " + dto.getRegion());
+            } else if(dto.getCity().equals("부산광역시")) {
+                mcity.setText("부산 " + dto.getRegion());
+            } else if(dto.getCity().equals("대구광역시")) {
+                mcity.setText("대구 " + dto.getRegion());
+            } else if(dto.getCity().equals("인천광역시")) {
+                mcity.setText("인천 " + dto.getRegion());
+            } else if(dto.getCity().equals("광주광역시")) {
+                mcity.setText("광주 " + dto.getRegion());
+            } else if(dto.getCity().equals("대전광역시")) {
+                mcity.setText("대전 " + dto.getRegion());
+            } else if(dto.getCity().equals("울산광역시")) {
+                mcity.setText("울산 " + dto.getRegion());
+            } else if(dto.getCity().equals("세종특별자치시")) {
+                mcity.setText("세종 " + dto.getRegion());
+            } else if(dto.getCity().equals("경기도")) {
+                mcity.setText("경기 " + dto.getRegion());
+            } else if(dto.getCity().equals("강원도")) {
+                mcity.setText("강원 " + dto.getRegion());
+            } else if(dto.getCity().equals("충청북도")) {
+                mcity.setText("충북 " + dto.getRegion());
+            } else if(dto.getCity().equals("충청남도")) {
+                mcity.setText("충남 " + dto.getRegion());
+            } else if(dto.getCity().equals("전라북도")) {
+                mcity.setText("전북 " + dto.getRegion());
+            } else if(dto.getCity().equals("전라남도")) {
+                mcity.setText("전남 " + dto.getRegion());
+            } else if(dto.getCity().equals("경상북도")) {
+                mcity.setText("경북 " + dto.getRegion());
+            } else if(dto.getCity().equals("경상남도")) {
+                mcity.setText("경남 " + dto.getRegion());
+            } else if(dto.getCity().equals("제주특별자치도")) {
+                mcity.setText("제주 " + dto.getRegion());
+            }
+            //mcity.setText(dto.getCity()+ " " +dto.getRegion());
             mdate.setText(dto.getDate());
             mcomment.setText(dto.getComment());
         }
