@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,7 @@ public class BoardDetail extends AppCompatActivity {
     CircleImageView board_detail_writer_img, board_detail_comment_img;
     EditText board_detail_comment_write;
     Button board_detail_comment_submit;
-    ListView board_detail_comment;
+    RecyclerView board_detail_comment;
     ImageView board_detail_image;
 
     @Override
@@ -58,9 +59,12 @@ public class BoardDetail extends AppCompatActivity {
         if (getIntent() != null) {
             Intent intent = getIntent();
             String num = intent.getStringExtra("num");
+            String member_id = intent.getStringExtra("member_id");
             Log.i(TAG, "num: " + num);
+            Log.i(TAG, "member_id: " + member_id);
             intent.putExtra("num", num);
-            BoardDetailSelect boardDetailSelect = new BoardDetailSelect(num);
+            intent.putExtra("member_id", member_id);
+            BoardDetailSelect boardDetailSelect = new BoardDetailSelect(num, member_id);
             boardDetailSelect.execute();
         }
 
