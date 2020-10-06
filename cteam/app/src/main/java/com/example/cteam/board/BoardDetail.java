@@ -68,9 +68,13 @@ public class BoardDetail extends AppCompatActivity {
             boardDetailSelect.execute();
         }
 
+
+
         if(board_detail_image != null) {
             board_detail_image.setVisibility(View.VISIBLE);
         }
+
+
 
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
 
