@@ -35,10 +35,10 @@
 
                     <TextView
                         android:id="@+id/msubject"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:gravity="center"
+                        android:layout_centerInParent="true"
                         android:textSize="14dp"
                         android:textColor="#333333"
                         android:text="산책"/>
