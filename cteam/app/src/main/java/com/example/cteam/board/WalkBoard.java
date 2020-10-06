@@ -658,7 +658,8 @@ public class WalkBoard extends Fragment {
 
 
 
-            }else{ //게시판 종류만 선택했을때
+            }else{ //게시판 종류만 선택했을때, 도시선택X
+
 
 
             }
