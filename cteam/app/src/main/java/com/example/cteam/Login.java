@@ -114,7 +114,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 }
 
                 if(loginDTO != null){
-                    Toast.makeText(Login.this, "로그인 되었습니다 !!!", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(Login.this, "로그인 되었습니다 !!!", Toast.LENGTH_SHORT).show();
                     Log.d("main:login", loginDTO.getMember_id() + "님 로그인 되었습니다 !!!");
                     Log.d("main:login", loginDTO.getMember_pw() + "님 로그인 되었습니다 !!!");
                     Log.d("main:login", loginDTO.getMember_name() + "님 로그인 되었습니다 !!!");

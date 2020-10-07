@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -73,6 +74,10 @@ public class BoardWrite extends AppCompatActivity {
         board_write_cancel = findViewById(R.id.board_write_cancel);
         board_write_submit = findViewById(R.id.board_write_submit);
         board_write_image = findViewById(R.id.board_write_image);
+
+
+        board_write_content.setMovementMethod(new ScrollingMovementMethod());
+
 
         final Spinner spin1 = (Spinner)findViewById(R.id.board_write_region1);
         final Spinner spin2 = (Spinner)findViewById(R.id.board_write_region2);
