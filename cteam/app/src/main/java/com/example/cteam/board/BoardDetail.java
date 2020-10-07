@@ -24,9 +24,6 @@ import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.cteam.PetAdd.petAddDto;
@@ -42,7 +39,6 @@ public class BoardDetail extends AppCompatActivity {
     Button board_detail_comment_submit;
     RecyclerView board_detail_comment;
     ImageView board_detail_image;
-    List<BoardDetailDTO> list;
     BoardDetailDTO boardDetailDTO;
 
     @Override
@@ -82,6 +78,11 @@ public class BoardDetail extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+
         board_detail_title.setText(boardDetailDTO.getBoard_title());
         board_detail_id.setText(boardDetailDTO.getmember_id2());
         board_detail_date.setText(boardDetailDTO.getBoard_date());
@@ -89,15 +90,24 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_city.setText(boardDetailDTO.getBoard_city());
         board_detail_region.setText(boardDetailDTO.getBoard_region());
 
-
-        if(board_detail_image != null) {
-            board_detail_image.setVisibility(View.VISIBLE);
-        }else {
-            Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).circleCrop().into(board_detail_image);
-        }
-
+        Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).into(board_detail_image);
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        board_detail_title.setText(boardDetailDTO.getBoard_title());
+        board_detail_id.setText(boardDetailDTO.getmember_id2());
+        board_detail_date.setText(boardDetailDTO.getBoard_date());
+        board_detail_content.setText(boardDetailDTO.getBoard_content());
+        board_detail_city.setText(boardDetailDTO.getBoard_city());
+        board_detail_region.setText(boardDetailDTO.getBoard_region());
+
+        Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).into(board_detail_image);
+        Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
+        Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
     }
 }

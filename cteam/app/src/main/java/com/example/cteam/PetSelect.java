@@ -106,7 +106,7 @@ public class PetSelect extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        String loginID = "자몽";
+        //String loginID = "자몽";
         View headerView = navigationView.getHeaderView(0);
         ImageView imageView = headerView.findViewById(R.id.profile);
         TextView tvloginID = headerView.findViewById(R.id.user_id);
@@ -236,7 +236,13 @@ public class PetSelect extends AppCompatActivity
         super.onNewIntent(intent);
 
         Log.d("main:petselect", "onNewIntent: 11111");
-        petPhoto.onActivityResult(10001, RESULT_OK, intent);
+        if(intent.getStringExtra("fragment").equals("petphotoupdate") ) {
+            petPhoto.onActivityResult(10001, RESULT_OK, intent);
+        }
+        if(intent.getStringExtra("fragment").equals("BoardWrite") ) {
+            walkBoard.onActivityResult(100, RESULT_OK, intent);
+        }
+
 
     }
 }

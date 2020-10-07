@@ -1,11 +1,10 @@
 package com.example.cteam.Dto;
 
 public class BoardDetailDTO {
-    String board_subject, board_title, board_content, member_id2, petname, board_date, board_imagepath, board_city, board_region, petimagepath;
-    int board_num2;
+    String board_subject, board_title, board_content, member_id2, petname, board_date, board_imagepath, board_city, board_region, petimagepath, board_num2;
     public BoardDetailDTO() {}
 
-    public BoardDetailDTO(int board_num2, String board_subject, String board_title, String board_content,
+    public BoardDetailDTO(String board_num2, String board_subject, String board_title, String board_content,
                           String member_id2, String petname, String board_date, String board_imagepath,
                           String board_city, String board_region, String petimagepath) {
         super();
@@ -22,11 +21,11 @@ public class BoardDetailDTO {
         this.petimagepath = petimagepath;
     }
 
-    public int getboard_num2() {
+    public String getboard_num2() {
         return board_num2;
     }
 
-    public void setboard_num2(int board_num2) {
+    public void setboard_num2(String board_num2) {
         this.board_num2 = board_num2;
     }
 

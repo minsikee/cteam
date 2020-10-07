@@ -10,6 +10,7 @@ public class BoardDTO implements Serializable {
     private String region;
     private String date;
     private String num;
+    private String city2="";
 
     public BoardDTO() {    }
 
@@ -78,4 +79,6 @@ public class BoardDTO implements Serializable {
     public  void setNum(String num) {
         this.num = num;
     }
+
+    public String getCity2(){return city2=city+region; }
 }
