@@ -94,7 +94,7 @@
             android:background="@drawable/text_dashed"
             android:textColorHint="#969696"
             android:textSize="18dp"
-            android:hint="제목을 입력하세요" />
+            android:hint="  제목을 입력하세요" />
 
         <EditText
             android:id="@+id/board_write_content"
@@ -105,7 +105,7 @@
             android:background="@drawable/text_dashed"
             android:textColorHint="#969696"
             android:textSize="18dp"
-            android:hint="내용을 입력하세요" />
+            android:hint="  내용을 입력하세요" />
 
     </RelativeLayout>
 
@@ -146,13 +146,14 @@
                         android:shadowColor="@android:color/transparent"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
-                        android:text="사진 첨부"
-                        android:visibility="visible"/>
+                        android:text="사진 선택"/>
 
                     <Button
                         android:id="@+id/board_write_filecancel"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/login_stroke"
                         android:shadowColor="@android:color/transparent"
                         android:textColor="#FFFFFF"
@@ -216,16 +217,5 @@
                 android:scaleType="fitXY" />
 
         </RelativeLayout>
-
-    <Button
-        android:id="@+id/board_write_fileselect"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="위치선택" />
-
-    <TextView
-        android:id="@+id/member_id"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
 
 </LinearLayout>
