@@ -79,6 +79,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
+                    Log.d(TAG, "onClick: position" + position);
                     if (position != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(mcontext, BoardDetail.class);
                         String member_id = loginDTO.getMember_id();
