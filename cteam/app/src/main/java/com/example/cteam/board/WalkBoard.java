@@ -153,6 +153,7 @@ public class WalkBoard extends Fragment {
                             city2=city+sigungu;
                             Log.d("city2", "onItemSelected: "+city2);
                             search(text,board_kind,city2);
+
                         }
 
                         @Override
@@ -708,11 +709,11 @@ public class WalkBoard extends Fragment {
         }//if1 전체보기 일때
 
         else
-        // 전체보기가 아닐때(나눔 or 산책)- 게시판 선택했을때
+        //게시판이 전체보기가 아닐때(나눔 or 산책)- 게시판 선택했을때
         {
 
 
-            if( !city2.equals("") ){
+            if( !city2.equals("전체보기전체보기") ){
 
 
                 if( charText.length() > 0 ){//게시판 종류선택했을때 && 도시와 구 선택했을때 && 글썼을때
@@ -750,6 +751,7 @@ public class WalkBoard extends Fragment {
 
 
                 }
+
             }else{ //게시판 종류만 선택했을때, 도시선택X
 
                 if(charText.length() > 0){//게시판 종류선택했을때 && 도시와 구 X && 글만 썼을때
@@ -772,8 +774,9 @@ public class WalkBoard extends Fragment {
                     {
                         // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
                         if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind))
-                            Log.d("subject", "search: subject "+myItemArrayListCopy.get(i).getSubject()+","+board_kind);
+
                         {
+                            Log.d("subject", "search: subject "+myItemArrayListCopy.get(i).getSubject()+","+board_kind);
                             // 검색된 데이터를 리스트에 추가한다.
                             myItemArrayList.add(myItemArrayListCopy.get(i));
                         }
