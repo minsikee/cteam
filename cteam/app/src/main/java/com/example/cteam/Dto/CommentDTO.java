@@ -10,6 +10,15 @@ public class CommentDTO implements Serializable {
     private String writer_image;
     private String comment_num;
 
+    public CommentDTO(String member_id, String board_num, String content, String writedate, String writer_image, String comment_num) {
+        this.member_id = member_id;
+        this.board_num = board_num;
+        this.content = content;
+        this.writedate = writedate;
+        this.writer_image = writer_image;
+        this.comment_num = comment_num;
+    }
+
     public String getMember_id() {
         return member_id;
     }
@@ -58,12 +67,5 @@ public class CommentDTO implements Serializable {
         this.comment_num = comment_num;
     }
 
-    public CommentDTO(String member_id, String board_num, String content, String writedate, String writer_image, String comment_num) {
-        this.member_id = member_id;
-        this.board_num = board_num;
-        this.content = content;
-        this.writedate = writedate;
-        this.writer_image = writer_image;
-        this.comment_num = comment_num;
-    }
+
 }

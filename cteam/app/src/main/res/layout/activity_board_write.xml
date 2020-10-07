@@ -91,21 +91,38 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:background="@drawable/text_dashed"
             android:textColorHint="#969696"
             android:textSize="18dp"
-            android:hint="  제목을 입력하세요" />
+            android:hint="제목을 입력하세요" />
 
-        <EditText
-            android:id="@+id/board_write_content"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/board_write_title"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_dashed"
-            android:textColorHint="#969696"
-            android:textSize="18dp"
-            android:hint="  내용을 입력하세요" />
+            android:layout_centerVertical="true">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/board_write_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/text_dashed"
+                    android:scrollbars="vertical"
+                    android:textColorHint="#969696"
+                    android:textSize="18dp"
+                    android:hint="이 힌트 저 위로 올리는 방법 아는 사람?!" />
+
+            </FrameLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 
