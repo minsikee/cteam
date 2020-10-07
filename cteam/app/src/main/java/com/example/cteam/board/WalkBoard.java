@@ -797,7 +797,7 @@ public class WalkBoard extends Fragment {
 
 
             }
-            
+
 
         }//else1 전체보기가 아닐때
 
