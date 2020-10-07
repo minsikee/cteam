@@ -66,38 +66,25 @@
                         android:textSize="18sp"
                         android:text="아이디" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/board_detail_modify"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@id/board_detail_center"
-                        android:layout_centerVertical="true"
-                        android:textColor="#FF3C3C"
-                        android:textSize="18sp"
-                        android:text="글 수정" />
-
-                    <TextView
-                        android:id="@+id/board_detail_center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginRight="10dp"
                         android:layout_toLeftOf="@id/board_detail_delete"
                         android:layout_centerVertical="true"
-                        android:textColor="#FF3C3C"
-                        android:textSize="18sp"
-                        android:text="|" />
+                        android:src="@drawable/eraser"
+                        app:tint="#FF3C3C" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/board_detail_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginRight="10dp"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:textColor="#FF3C3C"
-                        android:textSize="18sp"
-                        android:text="글 삭제" />
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/delete"
+                        app:tint="#FF3C3C" />
 
                 </RelativeLayout>
 
