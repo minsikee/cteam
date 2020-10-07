@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +85,8 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_city = findViewById(R.id.board_detail_city);
         board_detail_region = findViewById(R.id.board_detail_region);
         board_detail_image = findViewById(R.id.board_detail_image);
+
+        board_detail_content.setMovementMethod(new ScrollingMovementMethod());
 
         commentList = new ArrayList<>();
         adapter = new CommentAdapter(this, commentList);

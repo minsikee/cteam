@@ -94,6 +94,9 @@ public class CalendarAdd extends Fragment {
 
         }
 
+        //추가 클릭 > CalendarInsert로 이동
+        CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
+
         //리사이클러 뷰 셋팅
             icons = new ArrayList<>();
             adapter = new CalendarAdapter(getActivity(), icons);
@@ -121,6 +124,13 @@ public class CalendarAdd extends Fragment {
 
 
 
+        //추가버튼 그냥 클릭시
+        CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(activity, "시간을 먼저 클릭하세요", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         //데이터 불러옴
@@ -203,8 +213,7 @@ public class CalendarAdd extends Fragment {
 
                         button[INDEX].setSelected(true);
 
-                    //추가 클릭 > CalendarInsert로 이동
-                    CalendarAdd_insert = rootView.findViewById(R.id.CalendarAdd_insert);
+                  
                     CalendarAdd_insert.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

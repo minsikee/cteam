@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.example.cteam.Dto.BoardDetailDTO;
 
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

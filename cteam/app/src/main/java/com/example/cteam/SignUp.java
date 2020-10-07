@@ -23,6 +23,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cteam.ATask.IdDoubleCheck;
 import com.example.cteam.ATask.JoinInsert;
 import com.example.cteam.Common.CommonMethod;
 
@@ -38,15 +39,16 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 
 public class SignUp extends AppCompatActivity {
 
-    String state;
-
+    String state="";
+    String member_id="";
     EditText signupId, signupPw, signupName, signupPwConfirm, signupAnswer, signupPhoneNum;
-    Button btnJoin, btnCancel, Signup_IdCheck,Sigunup_photoAdd;
+    Button btnJoin, btnCancel, Signup_IdCheck,Sigunup_photoAdd,Signup_idCheck;
     TextView SignUp_agree_text,txtResult;
     CheckBox SignUp_agree;
     ImageView SignUp_img;
     //UI
     Spinner Signup_qs_spinner;
+
 
     //Adapter
     SpinnerAdapter spinnerAdapter;
@@ -78,8 +80,12 @@ public class SignUp extends AppCompatActivity {
         signupPwConfirm =findViewById(R.id.SignUp_pw_confirm);
         SignUp_agree= findViewById(R.id.SignUp_agree);
         Signup_IdCheck=findViewById(R.id.Signup_idCheck);
-        Sigunup_photoAdd=findViewById(R.id.Signup_BtnPhotoAdd);
         SignUp_img=findViewById(R.id.SignUp_img);
+        Signup_idCheck=findViewById(R.id.Signup_idCheck);
+
+
+        member_id=signupId.getText().toString();
+
 
         if(data1==1){
             SignUp_agree.setChecked(true);
@@ -122,25 +128,47 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        //카메라 버튼 클릭시
-        Sigunup_photoAdd.setOnClickListener(new View.OnClickListener() {
+
+        Signup_IdCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUp_img.setVisibility(View.VISIBLE);
+                member_id=signupId.getText().toString();
 
-                Intent intent=new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_PICK);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), LOAD_IMAGE);
+                if(!Pattern.matches("^[a-zA-Z0-9]{5,10}$", member_id)) {
+                    Toast.makeText(SignUp.this, "아이디를 영문,숫자 5-10자로 입력하세요.", Toast.LENGTH_LONG).show();
+                    signupId.setText("");
+                    signupId.requestFocus();
+                    return;
+                }else {
+
+                    IdDoubleCheck idDoubleCheck = new IdDoubleCheck(member_id);
+                    try {
+                        state = idDoubleCheck.execute().get().trim();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (state.equals("1")) {
+                        Toast.makeText(SignUp.this, "중복된 아이디입니다", Toast.LENGTH_SHORT).show();
+                        signupId.setText("");
+                        signupId.requestFocus();
+                    } else {
+                        Toast.makeText(SignUp.this, "사용가능한 아이디입니다", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
             }
         });
+
+
 
         btnJoin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                String member_id = signupId.getText().toString();
+                member_id=signupId.getText().toString();
                 String member_pw = signupPw.getText().toString();
                 String member_name = signupName.getText().toString();
                 String member_question =  signupQuestion;
@@ -148,7 +176,7 @@ public class SignUp extends AppCompatActivity {
                 String member_phonenum = signupPhoneNum.getText().toString();
                 String member_signupPwConfirm =signupPwConfirm.getText().toString();
 
-                //아이디 유효성
+                //이름 유효성
                 if(!Pattern.matches("^[가-힣]{2,8}$", member_name))
                 {
                     Toast.makeText(SignUp.this,"이름을 한글 2-8자로 입력하세요.",Toast.LENGTH_SHORT).show();
@@ -159,13 +187,16 @@ public class SignUp extends AppCompatActivity {
 
 
                 //아이디 유효성
-                if(!Pattern.matches("^[a-zA-Z0-9]{5,10}$", member_id))
-                {
-                    Toast.makeText(SignUp.this,"아이디를 영문,숫자 5-10자로 입력하세요.",Toast.LENGTH_LONG).show();
+                if(!Pattern.matches("^[a-zA-Z0-9]{5,10}$", member_id)) {
+                    Toast.makeText(SignUp.this, "아이디를 영문,숫자 5-10자로 입력하세요.", Toast.LENGTH_LONG).show();
                     signupId.setText("");
                     signupId.requestFocus();
                     return;
                 }
+
+
+
+
 
                 //패스워드
                 if(!Pattern.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[.$@$!%*#?&])[A-Za-z\\d.$@$!%*#?&]{8,20}$", member_pw))
