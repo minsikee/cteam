@@ -6,9 +6,7 @@ import android.util.JsonReader;
 import android.util.Log;
 
 import com.example.cteam.Dto.BoardDetailDTO;
-import com.example.cteam.Dto.MemberDTO;
-import com.example.cteam.board.BoardDetail;
-import com.google.gson.Gson;
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
