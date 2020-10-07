@@ -21,17 +21,13 @@ import static com.example.cteam.Common.CommonMethod.ipConfig;
 public class CommentInsert extends AsyncTask<Void, Void, Void> {
     private static final String TAG = "Boardinsert";
 
-    private String member_id, board_num, content, writedate, writer_image, comment_num, imageDbPathA, imageRealPathA;
+    private String member_id, board_num, content, writer_image, imageRealPathA;
 
-    public CommentInsert(String member_id, String board_num, String content, String writedate
-            , String writer_image, String comment_num, String imageDbPathA, String imageRealPathA) {
+    public CommentInsert(String member_id, String board_num, String content, String writer_image, String imageRealPathA) {
         this.member_id = member_id;
         this.board_num = board_num;
         this.content = content;
-        this.writedate = writedate;
         this.writer_image = writer_image;
-        this.comment_num = comment_num;
-        this.imageDbPathA = imageDbPathA;
         this.imageRealPathA = imageRealPathA;
     }
 
@@ -53,17 +49,14 @@ public class CommentInsert extends AsyncTask<Void, Void, Void> {
             builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("board_num", board_num, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("content", content, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("writedate", writedate, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("comment_num", comment_num, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("writer_image", writer_image, ContentType.create("Multipart/related", "UTF-8"));
-           if (imageDbPathA != null) {
-                builder.addTextBody("writer_image", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
+            if (writer_image != null) {
+                builder.addTextBody("writer_image", writer_image, ContentType.create("Multipart/related", "UTF-8"));
             }
             if (imageRealPathA != null) {
                 builder.addPart("image", new FileBody(new File(imageRealPathA)));
             }
 
-            String postURL = ipConfig + "/app/boardinsert";
+            String postURL = ipConfig + "/app/cCommentInsert";
 
             // 전송
             httpClient = AndroidHttpClient.newInstance("cteam");
@@ -71,15 +64,6 @@ public class CommentInsert extends AsyncTask<Void, Void, Void> {
             httpPost.setEntity(builder.build());
             httpResponse = httpClient.execute(httpPost);
             httpEntity = httpResponse.getEntity();
-/*
-            // 받기
-            BufferedReader br = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
-            String line = "";
-            StringBuffer sb = new StringBuffer();
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-*/
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -104,7 +88,7 @@ public class CommentInsert extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //Log.d("Sub1Add:imageFilePath1", "추가성공");
+
 
     }
 }
