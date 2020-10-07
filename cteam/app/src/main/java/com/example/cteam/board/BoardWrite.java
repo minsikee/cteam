@@ -38,6 +38,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+import static com.example.cteam.PetAdd.petAddDto;
 
 public class BoardWrite extends AppCompatActivity {
 
@@ -342,7 +343,7 @@ public class BoardWrite extends AppCompatActivity {
                 startActivity(showIntent);
 */
                 Boardinsert boardinsert = new Boardinsert(subject, title, content, city, region,
-                        imageDbPathA, imageRealPathA, Login.loginDTO.getMember_id(), PetAdd.petAddDto.getPetimage_path());
+                        imageDbPathA, imageRealPathA, Login.loginDTO.getMember_id(), petAddDto.petname, petAddDto.getPetimage_path());
                 boardinsert.execute();
 
                 finish();

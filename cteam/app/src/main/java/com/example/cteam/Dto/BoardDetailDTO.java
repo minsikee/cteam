@@ -1,59 +1,65 @@
 package com.example.cteam.Dto;
 
 public class BoardDetailDTO {
-    private String num;
-    private String subject;
-    private String title;
-    private String content;
-    private String member_id;
-    private String petname;
-    private String imagepath;
-    private String city;
-    private String region;
-    private String petimagepath;
+    String board_subject, board_title, board_content, member_id2, petname, board_date, board_imagepath, board_city, board_region, petimagepath;
+    int board_num2;
+    public BoardDetailDTO() {}
 
-    public BoardDetailDTO(String num, String subject, String title, String content, String member_id, String petname, String imagepath, String city, String region, String petimagepath) {
-
+    public BoardDetailDTO(int board_num2, String board_subject, String board_title, String board_content,
+                          String member_id2, String petname, String board_date, String board_imagepath,
+                          String board_city, String board_region, String petimagepath) {
+        super();
+        this.board_num2 = board_num2;
+        this.board_subject = board_subject;
+        this.board_title = board_title;
+        this.board_content = board_content;
+        this.member_id2 = member_id2;
+        this.petname = petname;
+        this.board_date = board_date;
+        this.board_imagepath = board_imagepath;
+        this.board_city = board_city;
+        this.board_region = board_region;
+        this.petimagepath = petimagepath;
     }
 
-    public String getNum() {
-        return num;
+    public int getboard_num2() {
+        return board_num2;
     }
 
-    public void setNum(String num) {
-        this.num = num;
+    public void setboard_num2(int board_num2) {
+        this.board_num2 = board_num2;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getBoard_subject() {
+        return board_subject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setBoard_subject(String board_subject) {
+        this.board_subject = board_subject;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBoard_title() {
+        return board_title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBoard_title(String board_title) {
+        this.board_title = board_title;
     }
 
-    public String getContent() {
-        return content;
+    public String getBoard_content() {
+        return board_content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBoard_content(String board_content) {
+        this.board_content = board_content;
     }
 
-    public String getMember_id() {
-        return member_id;
+    public String getmember_id2() {
+        return member_id2;
     }
 
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
+    public void setmember_id2(String member_id2) {
+        this.member_id2 = member_id2;
     }
 
     public String getPetname() {
@@ -64,28 +70,36 @@ public class BoardDetailDTO {
         this.petname = petname;
     }
 
-    public String getImagepath() {
-        return imagepath;
+    public String getBoard_date() {
+        return board_date;
     }
 
-    public void setImagepath(String imagepath) {
-        this.imagepath = imagepath;
+    public void setBoard_date(String board_date) {
+        this.board_date = board_date;
     }
 
-    public String getCity() {
-        return city;
+    public String getBoard_imagepath() {
+        return board_imagepath;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setBoard_imagepath(String board_imagepath) {
+        this.board_imagepath = board_imagepath;
     }
 
-    public String getRegion() {
-        return region;
+    public String getBoard_city() {
+        return board_city;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setBoard_city(String board_city) {
+        this.board_city = board_city;
+    }
+
+    public String getBoard_region() {
+        return board_region;
+    }
+
+    public void setBoard_region(String board_region) {
+        this.board_region = board_region;
     }
 
     public String getPetimagepath() {
@@ -95,4 +109,8 @@ public class BoardDetailDTO {
     public void setPetimagepath(String petimagepath) {
         this.petimagepath = petimagepath;
     }
+
+
+
+
 }

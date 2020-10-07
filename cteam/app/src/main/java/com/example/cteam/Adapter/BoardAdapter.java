@@ -16,14 +16,14 @@ import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Login;
 import com.example.cteam.R;
 import com.example.cteam.board.BoardDetail;
-import com.example.cteam.board.WalkBoard;
-
+import static com.example.cteam.Login.loginDTO;
 import java.util.ArrayList;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHolder> {
-
+    private static final String TAG = "BoardAdapter";
     Context mcontext;
     ArrayList<BoardDTO> list;
+    BoardDTO dto;
 
     public BoardAdapter(Context mcontext, ArrayList<BoardDTO> list) {
         this.mcontext = mcontext;
@@ -49,9 +49,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
 
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder,final int position) {
-        BoardDTO dto = list.get(position);
+        dto = list.get(position);
+        String member_id = loginDTO.getMember_id();
+        String num = dto.getNum();
+        Log.d(TAG, "onClick: member_id = "+member_id);
+        Log.d(TAG, "onClick: num = "+num);
         holder.setBoard(dto);
-
     }
 
     @Override
@@ -78,8 +81,8 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(mcontext, BoardDetail.class);
-                        String member_id = Login.loginDTO.getMember_id();
-                        String num = list.get(position).getNum();
+                        String member_id = loginDTO.getMember_id();
+                        String num = dto.getNum();
                         intent.putExtra("member_id", member_id);
                         intent.putExtra("num", num);
                         Log.d("member_id", "onClick: member_"+member_id);

@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.cteam.ATask.BoardselectList;
 import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
+import com.example.cteam.Dto.BoardDetailDTO;
 import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,6 +41,7 @@ import static com.example.cteam.R.array.board_SpinnerArray;
 
 public class WalkBoard extends Fragment {
     public static BoardDTO boardDTO = null;
+    public static BoardDetailDTO boardDetailDTO = null;
 
     Spinner spinner_board, spinner_City, spinner_Sigungu;
     ArrayAdapter<CharSequence> City_spinner, Sigungu_spinner;
@@ -61,6 +63,7 @@ public class WalkBoard extends Fragment {
     String text="";
     //게시판여부
     String board_kind="";
+
 
     //RecyclerView
     RecyclerView recyclerView;
@@ -526,6 +529,7 @@ public class WalkBoard extends Fragment {
 
         // 리사이클러뷰 어댑터 선언
         myItemArrayList = new ArrayList<>();
+
         boardAdapter = new BoardAdapter(rootView.getContext(), myItemArrayList);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext(),
