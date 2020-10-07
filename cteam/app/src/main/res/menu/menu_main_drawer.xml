@@ -9,14 +9,19 @@
             android:title="마이페이지" />
 
         <item
-            android:id="@+id/nav_help"
-            android:icon="@drawable/nav_question"
-            android:title="도움말" />
-
-        <item
             android:id="@+id/nav_pet"
             android:icon="@drawable/nav_pet"
             android:title="반려동물 선택화면"/>
+
+        <item
+            android:id="@+id/nav_board"
+            android:icon="@drawable/nav_board"
+            android:title="내가 작성한 게시물"/>
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/nav_question"
+            android:title="도움말" />
 
         <item
             android:id="@+id/nav_logout"

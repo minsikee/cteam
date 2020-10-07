@@ -47,6 +47,7 @@ public class PetSelect extends AppCompatActivity
     Logout logout;
     PetChoose petChoose;
     Pw_MyPage_Fragment pw_myPage_fragment;
+    MyPosting myPosting;
     // MemberDTO dto;
     Bundle mBundle = null;
 
@@ -86,6 +87,7 @@ public class PetSelect extends AppCompatActivity
         myPage = new MyPage();
         help = new Help();
         logout = new Logout();
+        myPosting = new MyPosting();
 
         //캘린더 - 프래그먼트 객체 생성
         //calendar = (com.example.cteam.Calendar) getSupportFragmentManager().findFragmentById(R.id.calendar);
@@ -164,6 +166,8 @@ public class PetSelect extends AppCompatActivity
             Intent intent = new Intent(this, PetAdd.class);
             startActivity(intent);
             petAddDto = null;
+        }else if(id == R.id.nav_board){
+            onFragmentSelected(3, null);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);        //메뉴 누른뒤에 사라지는 것(스타트상태로)
@@ -178,13 +182,12 @@ public class PetSelect extends AppCompatActivity
         if (position == 0){
             mBundle = bundle;
             curFragment = pw_myPage_fragment;
-            toolbar.setTitle("마이페이지");
         }else if (position == 1){
             curFragment = help;
-            toolbar.setTitle("도움말");
-        }else if (position == 2){
+        }else if (position == 2) {
             curFragment = logout;
-            toolbar.setTitle("로그아웃");
+        }else if (position == 3) {
+            curFragment = myPosting;
         }/*else if (position == 3){
             Intent intent = new Intent(this, PetAdd.class);
             startActivity(intent);

@@ -123,6 +123,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/login_stroke"
                     android:shadowColor="@android:color/transparent"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:text="검색"/>
 

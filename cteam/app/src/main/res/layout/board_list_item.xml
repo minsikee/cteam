@@ -55,7 +55,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="도시"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:textColor="#333333" />
 
                 </RelativeLayout>
@@ -86,7 +86,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_alignParentBottom="true"
                             android:text="아이디"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:textColor="#333333" />
 
                         <TextView
