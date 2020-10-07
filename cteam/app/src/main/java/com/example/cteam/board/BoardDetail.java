@@ -3,6 +3,7 @@ package com.example.cteam.board;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,12 +16,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.BoardDetailSelect;
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardDetailDTO;
 import com.example.cteam.Dto.PetDTO;
+import com.example.cteam.Login;
+import com.example.cteam.MemberDTO;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
 
@@ -33,7 +37,8 @@ public class BoardDetail extends AppCompatActivity {
     private static final String TAG = "BoardDetail";
 
     TextView board_detail_title, board_detail_id, board_detail_date,
-            board_detail_content, board_detail_city, board_detail_region;
+            board_detail_content, board_detail_city, board_detail_region
+            , board_detail_modify, board_detail_delete;
     CircleImageView board_detail_writer_img, board_detail_comment_img;
     EditText board_detail_comment_write;
     Button board_detail_comment_submit;
@@ -45,8 +50,6 @@ public class BoardDetail extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_detail);
-
-        boardDetailDTO = new BoardDetailDTO();
 
         board_detail_title = findViewById(R.id.board_detail_title);
         board_detail_id = findViewById(R.id.board_detail_id);
@@ -60,6 +63,9 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_city = findViewById(R.id.board_detail_city);
         board_detail_region = findViewById(R.id.board_detail_region);
         board_detail_image = findViewById(R.id.board_detail_image);
+        board_detail_modify = findViewById(R.id.board_detail_modify);
+        board_detail_delete = findViewById(R.id.board_detail_delete);
+
 
         if (getIntent() != null) {
             Intent intent = getIntent();
@@ -77,6 +83,29 @@ public class BoardDetail extends AppCompatActivity {
             }
 
         }
+        board_detail_modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isNetworkConnected(this) == true){
+
+                    if(boardDetailDTO != null){
+                        Log.d("sub1:update1", BoardDetailDTO.getId());
+
+                        Intent intent = new Intent(getApplicationContext(), Sub1Update.class);
+                        intent.putExtra("boardDetailDTO", BoardDetailDTO);
+                        startActivity(intent);
+
+                    }else {
+                        Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }else {
+                    Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
     @Override
@@ -93,6 +122,12 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).into(board_detail_image);
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
+
+        if( !boardDetailDTO.getmember_id2().equals(Login.loginDTO.getMember_id()) ) {
+            board_detail_modify.setVisibility(View.GONE);
+            board_detail_delete.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -109,5 +144,11 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).into(board_detail_image);
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
+
+        if( !boardDetailDTO.getmember_id2().equals(Login.loginDTO.getMember_id()) ) {
+            board_detail_modify.setVisibility(View.GONE);
+            board_detail_delete.setVisibility(View.GONE);
+        }
     }
+
 }
