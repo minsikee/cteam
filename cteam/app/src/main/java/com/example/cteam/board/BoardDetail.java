@@ -24,9 +24,6 @@ import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.cteam.PetAdd.petAddDto;
@@ -42,7 +39,6 @@ public class BoardDetail extends AppCompatActivity {
     Button board_detail_comment_submit;
     RecyclerView board_detail_comment;
     ImageView board_detail_image;
-    List<BoardDetailDTO> list;
     BoardDetailDTO boardDetailDTO;
 
     @Override
