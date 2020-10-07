@@ -22,10 +22,12 @@ public class Boardinsert extends AsyncTask<Void, Void, Void> {
 
     private static final String TAG = "Boardinsert";
     
-    String subject, title, content, city, region, imageDbPathA, imageRealPathA, member_id, Petimage_path;
+    String subject, title, content, city, region, imageDbPathA, imageRealPathA,
+            member_id, Petimage_path, petname;
 
     public Boardinsert(String subject, String title, String content, String city, String region,
-                       String imageDbPathA, String imageRealPathA, String member_id, String Petimage_path) {
+                       String imageDbPathA, String imageRealPathA, String member_id,
+                       String petname, String Petimage_path) {
         this.subject = subject;
         this.title = title;
         this.content = content;
@@ -35,6 +37,7 @@ public class Boardinsert extends AsyncTask<Void, Void, Void> {
         this.imageRealPathA = imageRealPathA;
         this.member_id = member_id;
         this.Petimage_path = Petimage_path;
+        this.petname = petname;
     }
 
     HttpClient httpClient;
@@ -59,6 +62,7 @@ public class Boardinsert extends AsyncTask<Void, Void, Void> {
             builder.addTextBody("city", city, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("region", region, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("Petimage_path", Petimage_path, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("petname", petname, ContentType.create("Multipart/related", "UTF-8"));
             if (imageDbPathA != null) {
                 builder.addTextBody("dbImgPath", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
             }

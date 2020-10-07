@@ -81,7 +81,7 @@ public class BoardselectList extends AsyncTask<Void, Void, String> {
         } catch (Exception e) {
             Log.d("Sub1", e.getMessage());
             e.printStackTrace();
-        }finally {
+        } finally {
             if(httpEntity != null){
                 httpEntity = null;
             }

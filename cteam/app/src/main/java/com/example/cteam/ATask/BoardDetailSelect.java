@@ -1,15 +1,14 @@
 package com.example.cteam.ATask;
 
-import android.app.ProgressDialog;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
 
-import com.example.cteam.Adapter.BoardAdapter;
-import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardDetailDTO;
 import com.example.cteam.Dto.MemberDTO;
+import com.example.cteam.board.BoardDetail;
+import com.google.gson.Gson;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -19,18 +18,21 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 import static com.example.cteam.Login.loginDTO;
 
-public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
+public class BoardDetailSelect extends AsyncTask<Void, Void, BoardDetailDTO> {
 
     private static final String TAG = "BoardDetailSelect";
-
+    BoardDetailDTO details;
     String num, member_id;
 
     public BoardDetailSelect(String num, String member_id) {
@@ -44,7 +46,8 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
     HttpEntity httpEntity;
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected BoardDetailDTO doInBackground(Void... voids) {
+        String postURL = ipConfig + "/app/boarddetail";
 
         try {
             Log.d(TAG, "doInBackground: 실행");
@@ -54,10 +57,10 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
             // 문자열 및 데이터 추가
-            builder.addTextBody("num", num, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("board_num", num, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("member_id", member_id, ContentType.create("Multipart/related", "UTF-8"));
 
-            String postURL = ipConfig + "/app/boarddetail";
+
             // 전송
             InputStream inputStream = null;
             httpClient = AndroidHttpClient.newInstance("cteam");
@@ -68,9 +71,21 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
             inputStream = httpEntity.getContent();
 
             // 하나의 오브젝트 가져올때
-            //loginDTO = readMessage(inputStream);
+            details = readMessage(inputStream);
 
-            //inputStream.close();
+            inputStream.close();
+
+//            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+//            String line = "";
+//            StringBuffer sb = new StringBuffer();
+//            while ((line = br.readLine()) != null) {
+//                sb.append(line);
+//            }
+//
+//            Log.i(TAG, "doInBackground: " + sb.toString());
+//
+//            Gson gson = new Gson();
+//            details = gson.fromJson(sb.toString().trim(), BoardDetailDTO.class);
 
         } catch (Exception e) {
             Log.d("main:boarddetailselect", e.getMessage());
@@ -91,52 +106,55 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, Void> {
 
         }
         Log.d(TAG, "doInBackground: 종료");
-        return null;
+        return details;
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
+    protected void onPostExecute(BoardDetailDTO boardDetailDTO) {
 
     }
 
     public BoardDetailDTO readMessage(InputStream inputStream) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+        String board_subject = "", board_title = "", board_content = "", member_id2 = "", petname = "", board_date = ""
+                , board_imagepath = "", board_city = "", board_region = "", petimagepath = "";
 
-        String num = "", subject = "", title = "", content = "", member_id = "", petname = "", imagepath =""
-                , city = "", region = "", petimagepath = "";
-
+        int board_num2 = 0;
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
-            if (readStr.equals("board_num")) {
-                num = reader.nextString();
-            } else if (readStr.equals("board_subject")) {
-                subject = reader.nextString();
+            if (readStr.equals("board_subject")) {
+                board_subject = reader.nextString();
             } else if (readStr.equals("board_title")) {
-                title = reader.nextString();
+                board_title = reader.nextString();
             } else if (readStr.equals("board_content")) {
-                content = reader.nextString();
-            } else if (readStr.equals("member_id")) {
-                member_id = reader.nextString();
+                board_content = reader.nextString();
+            } else if (readStr.equals("member_id2")) {
+                member_id2 = reader.nextString();
             } else if (readStr.equals("petname")) {
                 petname = reader.nextString();
+            } else if (readStr.equals("board_date")) {
+                board_date = reader.nextString();
             } else if (readStr.equals("board_imagepath")) {
-                imagepath = reader.nextString();
+                board_imagepath = reader.nextString();
             } else if (readStr.equals("board_city")) {
-                city = reader.nextString();
+                board_city = reader.nextString();
             } else if (readStr.equals("board_region")) {
-                region = reader.nextString();
+                board_region = reader.nextString();
             } else if (readStr.equals("petimagepath")) {
                 petimagepath = reader.nextString();
+            } else if (readStr.equals("board_num2")) {
+                board_num2 = reader.nextInt();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("board:boarddetail : ", num + "," + subject + "," + title + "," + content + "," + member_id
-                + "," + petname + "," + imagepath + "," + city + "," + region + "," + petimagepath);
-
-        return new BoardDetailDTO(num, subject, title, content, member_id, petname, imagepath, city, region, petimagepath);
+        Log.d("main:loginselect : ", board_num2 + "," + board_subject + "," + board_title +
+                "," + board_content + "," + member_id2 + "," + petname + "," + board_date +
+                "," + board_imagepath + "," + board_city + "," + board_region + "," + petimagepath);
+        return new BoardDetailDTO(board_num2, board_subject, board_title, board_content,
+                member_id2, petname, board_date, board_imagepath, board_city, board_region, petimagepath);
 
     }
 }
