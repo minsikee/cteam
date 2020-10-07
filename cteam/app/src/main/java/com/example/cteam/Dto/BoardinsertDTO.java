@@ -9,6 +9,7 @@ public class BoardinsertDTO {
     private String image;
     private String city;
     private String region;
+    private String petname;
 
     public String getId() {
         return id;
@@ -64,5 +65,13 @@ public class BoardinsertDTO {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public String getPetname() {
+        return petname;
+    }
+
+    public void setPetname(String petname) {
+        this.petname = petname;
     }
 }

@@ -18,8 +18,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.BoardDetailSelect;
+import com.example.cteam.Dto.BoardDTO;
+import com.example.cteam.Dto.BoardDetailDTO;
+import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -36,11 +42,15 @@ public class BoardDetail extends AppCompatActivity {
     Button board_detail_comment_submit;
     RecyclerView board_detail_comment;
     ImageView board_detail_image;
+    List<BoardDetailDTO> list;
+    BoardDetailDTO boardDetailDTO;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_detail);
+
+        boardDetailDTO = new BoardDetailDTO();
 
         board_detail_title = findViewById(R.id.board_detail_title);
         board_detail_id = findViewById(R.id.board_detail_id);
@@ -55,23 +65,38 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_region = findViewById(R.id.board_detail_region);
         board_detail_image = findViewById(R.id.board_detail_image);
 
-
         if (getIntent() != null) {
             Intent intent = getIntent();
             String num = intent.getStringExtra("num");
             String member_id = intent.getStringExtra("member_id");
             Log.i(TAG, "num: " + num);
             Log.i(TAG, "member_id: " + member_id);
-            intent.putExtra("num", num);
-            intent.putExtra("member_id", member_id);
             BoardDetailSelect boardDetailSelect = new BoardDetailSelect(num, member_id);
             boardDetailSelect.execute();
+            try {
+                boardDetailDTO = boardDetailSelect.get();
+                Log.i(TAG, "dto " + boardDetailDTO.getBoard_title());
+            }catch(Exception e) {
+                e.getMessage();
+            }
+
         }
+
+        board_detail_title.setText(boardDetailDTO.getBoard_title());
+        board_detail_id.setText(boardDetailDTO.getmember_id2());
+        board_detail_date.setText(boardDetailDTO.getBoard_date());
+        board_detail_content.setText(boardDetailDTO.getBoard_content());
+        board_detail_city.setText(boardDetailDTO.getBoard_city());
+        board_detail_region.setText(boardDetailDTO.getBoard_region());
+
 
         if(board_detail_image != null) {
             board_detail_image.setVisibility(View.VISIBLE);
+        }else {
+            Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).circleCrop().into(board_detail_image);
         }
 
+        Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
 
     }
