@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="board_write_SpinnerArray">
-        <item>산책게시판</item>
-        <item>나눔게시판</item>
+        <item>산책</item>
+        <item>나눔</item>
     </string-array>
 </resources>

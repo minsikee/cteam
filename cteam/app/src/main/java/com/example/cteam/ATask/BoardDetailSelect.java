@@ -117,9 +117,8 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, BoardDetailDTO> {
     public BoardDetailDTO readMessage(InputStream inputStream) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
         String board_subject = "", board_title = "", board_content = "", member_id2 = "", petname = "", board_date = ""
-                , board_imagepath = "", board_city = "", board_region = "", petimagepath = "";
+                , board_imagepath = "", board_city = "", board_region = "", petimagepath = "", board_num2 = "";
 
-        int board_num2 = 0;
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
@@ -144,7 +143,7 @@ public class BoardDetailSelect extends AsyncTask<Void, Void, BoardDetailDTO> {
             } else if (readStr.equals("petimagepath")) {
                 petimagepath = reader.nextString();
             } else if (readStr.equals("board_num2")) {
-                board_num2 = reader.nextInt();
+                board_num2 = reader.nextString();
             } else {
                 reader.skipValue();
             }

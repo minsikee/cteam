@@ -155,7 +155,8 @@ public class PetPhotoUpdate extends AppCompatActivity {
                         showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_SINGLE_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                       startActivity(showIntent);
+                        showIntent.putExtra("fragment", "petphotoupdate");
+                        startActivity(showIntent);
 
                         finish();
 

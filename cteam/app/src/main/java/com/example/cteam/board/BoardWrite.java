@@ -1,5 +1,7 @@
 package com.example.cteam.board;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,6 +38,7 @@ import com.example.cteam.R;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 import static com.example.cteam.PetAdd.petAddDto;
@@ -344,9 +347,25 @@ public class BoardWrite extends AppCompatActivity {
 */
                 Boardinsert boardinsert = new Boardinsert(subject, title, content, city, region,
                         imageDbPathA, imageRealPathA, Login.loginDTO.getMember_id(), petAddDto.petname, petAddDto.getPetimage_path());
-                boardinsert.execute();
+                try {
+                    boardinsert.execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                Intent showIntent = new Intent(getApplicationContext(), PetSelect.class);
+                showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                showIntent.putExtra("fragment", "BoardWrite");
+                startActivity(showIntent);
 
                 finish();
+
+
+
             }else{
                 // 알림창 띄움
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
