@@ -80,8 +80,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
                 String comment_num=dto.getComment_num();
                 CommentDelete commentDelete = new CommentDelete(comment_num);
                 commentDelete.execute();
-                Intent refresh = new Intent(context, BoardDetail.class);
-                context.startActivity(refresh);
+
+                commentList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, commentList.size());
+
+                /*Intent refresh = new Intent(context, BoardDetail.class);
+                context.startActivity(refresh);*/
+
             }
         });
 
