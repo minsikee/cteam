@@ -1,20 +1,27 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.CommentDelete;
 import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.Login;
+import com.example.cteam.PetAdd;
 import com.example.cteam.R;
 import com.example.cteam.board.BoardDetail;
 
@@ -53,41 +60,30 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
         if(dto.getMember_id().equals(loginDTO.getMember_id())){
             btnCommentUpdate.setVisibility(View.VISIBLE);
             btnCommentDelete.setVisibility(View.VISIBLE);
+
         }else{
             btnCommentUpdate.setVisibility(View.GONE);
             btnCommentDelete.setVisibility(View.GONE);
         }
 
         holder.setComment(dto);
-
-
-/*
-        holder.updateBtn.setOnClickListener(new View.OnClickListener() {
+        holder.CommentUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                petAddDto = petList.get(position);
-                Log.d("main:petaddadapter", "onClick: " + petAddDto.getPetname());
-                Intent intent = new Intent(context, petUpdate.class);
-                context.startActivity(intent);
+                Log.d("TAG", "onClick: 클릭됨 comment_number : "+dto.getComment_num());
             }
         });
-/*
-        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+
+        holder.CommentDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (dto != null) {
-                    String member_id = loginDTO.getMember_id();
-                    String petname = dto.getPetname();
-                    ListDelete listDelete = new ListDelete(member_id, petname);
-                    listDelete.execute();
-
-                    Intent refresh = new Intent(context, PetAdd.class);
-                    context.startActivity(refresh);
-                }else {
-                    Log.d("TAG", "onClick: "+dto.getMember_id());
-                }
+                String comment_num=dto.getComment_num();
+                CommentDelete commentDelete = new CommentDelete(comment_num);
+                commentDelete.execute();
+                /*Intent refresh = new Intent(context, BoardDetail.class);
+                context.startActivity(refresh);*/
             }
-        });*/
+        });
 
     }
     // 어댑터에 매소드 만들기
@@ -119,6 +115,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
         public RelativeLayout CommentParentLayout;
         public TextView comment_id, comment_date, TVcomment;
+        public EditText ETcomment;
         public Button CommentUpdate, CommentDelete;
         public ImageView comment_writer_img;
 
@@ -131,6 +128,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
             CommentUpdate = itemView.findViewById(R.id.CommentUpdate);
             CommentDelete = itemView.findViewById(R.id.CommentDelete);
             comment_writer_img = itemView.findViewById(R.id.comment_writer_img);
+
         }
 
         public void setComment(CommentDTO dto){
