@@ -1,16 +1,23 @@
 package com.example.cteam.board;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.Board.BoardDetailUpdate;
+import com.example.cteam.ATask.ListUpdate;
 import com.example.cteam.Dto.BoardDetailDTO;
 import com.example.cteam.Dto.BoardinsertDTO;
 import com.example.cteam.Login;
@@ -18,9 +25,15 @@ import com.example.cteam.R;
 
 import java.io.File;
 
+import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
+
 public class BoardUpdate extends AppCompatActivity {
 
     private static final String TAG = "BoardUpdate";
+
+    String board_write_subject, board_write_region1, board_write_region2, board_write_title,
+            board_write_content;
+
 
     Spinner Uboard_write_subject;
     Spinner Uboard_write_region1;
@@ -54,11 +67,85 @@ public class BoardUpdate extends AppCompatActivity {
         Uboard_write_submit = findViewById(R.id.Uboard_write_submit);
         Uboard_write_image = findViewById(R.id.Uboard_write_image);
 
+        // 보내온 값 파싱
         Intent intent = getIntent();
         BoardDetailDTO boardDetailDTO = (BoardDetailDTO)intent.getSerializableExtra("boardDetailDTO");
 
-        //Uboard_write_subject = boardDetailDTO.getBoard_subject();
+        // 텍스트 삽입
+        board_write_subject = boardDetailDTO.getBoard_subject();
+        board_write_region1 = boardDetailDTO.getBoard_city();
+        board_write_region2 = boardDetailDTO.getBoard_region();
+
+        board_write_title = boardDetailDTO.getBoard_title();
+        board_write_content = boardDetailDTO.getBoard_content();
+
+        Uboard_write_subject.getSelectedItem().toString();
+        Uboard_write_region1.getSelectedItem().toString();
+        Uboard_write_region2.getSelectedItem().toString();
+
+        Uboard_write_title.setText(board_write_title);
+        Uboard_write_content.setText(board_write_content);
+
+        //사진수정
+        imagePath = boardDetailDTO.getBoard_imagepath();
+        pImgDbPathU = imagePath;
+        imageDbPathU = pImgDbPathU;
+        Uboard_write_image.setVisibility(View.VISIBLE);
+        Glide.with(this).load(imagePath).into(Uboard_write_image);
+        Uboard_write_filebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uboard_write_image.setVisibility(View.VISIBLE);
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), LOAD_IMAGE);
+            }
+        });
 
     }
 
+    public void btnBoardUpdateSubmit(View view){
+        if(isNetworkConnected(this) == true){
+            if(fileSize <= 30000000) {  // 파일크기가 30메가 보다 작아야 업로드 할수 있음
+//                id = etId.getText().toString();
+//               name = etName.getText().toString();
+
+//                BoardDetailUpdate boardDetailUpdate = new ListUpdate(id, name, date, pImgDbPathU, imageDbPathU, imageRealPathU);
+//                boardDetailUpdate.execute();
+
+                //Toast.makeText(getApplicationContext(), "수정성공", Toast.LENGTH_LONG).show();
+
+                Intent showIntent = new Intent(getApplicationContext(), BoardDetailUpdate.class);
+                showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |   // 이 엑티비티 플래그를 사용하여 엑티비티를 호출하게 되면 새로운 태스크를 생성하여 그 태스크안에 엑티비티를 추가하게 됩니다. 단, 기존에 존재하는 태스크들중에 생성하려는 엑티비티와 동일한 affinity(관계, 유사)를 가지고 있는 태스크가 있다면 그곳으로 새 엑티비티가 들어가게됩니다.
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP | // 엑티비티를 호출할 경우 호출된 엑티비티가 현재 태스크의 최상단에 존재하고 있었다면 새로운 인스턴스를 생성하지 않습니다. 예를 들어 ABC가 엑티비티 스택에 존재하는 상태에서 C를 호출하였다면 여전히 ABC가 존재하게 됩니다.
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP); // 만약에 엑티비티스택에 호출하려는 엑티비티의 인스턴스가 이미 존재하고 있을 경우에 새로운 인스턴스를 생성하는 것 대신에 존재하고 있는 엑티비티를 포그라운드로 가져옵니다. 그리고 엑티비티스택의 최상단 엑티비티부터 포그라운드로 가져올 엑티비티까지의 모든 엑티비티를 삭제합니다.
+                startActivity(showIntent);
+
+                finish();
+            }else{
+                // 알림창 띄움
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("알림");
+                builder.setMessage("파일 크기가 30MB초과하는 파일은 업로드가 제한되어 있습니다.\n30MB이하 파일로 선택해 주십시요!!!");
+                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+
+        }else {
+            Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void btnBoardUpdateCancel(View view){
+        finish();
+    }
 }

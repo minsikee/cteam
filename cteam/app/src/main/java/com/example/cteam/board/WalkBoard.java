@@ -1,7 +1,6 @@
 package com.example.cteam.board;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,16 +21,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cteam.ATask.BoardselectList;
+import com.example.cteam.ATask.Board.BoardselectList;
 import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardDetailDTO;
-import com.example.cteam.Dto.MemberDTO;
 import com.example.cteam.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -631,11 +627,14 @@ public class WalkBoard extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("WalkBoard이동", "오류??");
 
         if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
             // recreate your fragment here
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.detach(this).attach(this).commit();
+            Log.d("WalkBoard새로고침", "오류?");
+
         }
         if ((requestCode == 101) && (resultCode == Activity.RESULT_OK)) {
             // recreate your fragment here
