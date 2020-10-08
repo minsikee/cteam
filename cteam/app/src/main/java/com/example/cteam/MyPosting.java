@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cteam.ATask.BoardselectList;
+import com.example.cteam.ATask.MyCommentSelect;
 import com.example.cteam.ATask.MyPostingSelect;
 import com.example.cteam.Adapter.BoardAdapter;
+import com.example.cteam.Adapter.CommentAdapter;
 import com.example.cteam.Dto.BoardDTO;
+import com.example.cteam.Dto.CommentDTO;
 
 import java.util.ArrayList;
 
@@ -30,13 +32,15 @@ public class MyPosting extends Fragment {
     Bundle bundle = null;
 
     ArrayList<BoardDTO> myItemArrayList;
-    RecyclerView board_list;
+    ArrayList<CommentDTO> commentList;
+    RecyclerView board_list, comment_list;
     BoardAdapter boardAdapter;
+    CommentAdapter commentAdapter;
     MyPostingSelect myPostingSelect;
+    MyCommentSelect myCommentSelect;
     String member_id;
 
     Button myposting_text, myposting_comment;
-    TextView board_comment;
 
     @Nullable
     @Override
@@ -49,14 +53,16 @@ public class MyPosting extends Fragment {
         // 버튼
         myposting_text = rootView.findViewById(R.id.myposting_text);
         myposting_comment = rootView.findViewById(R.id.myposting_comment);
-        board_comment = rootView.findViewById(R.id.board_comment);
+        board_list = rootView.findViewById(R.id.board_list);
+        comment_list = rootView.findViewById(R.id.comment_list);
 
         // 내 글 클릭시
         myposting_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 board_list.setVisibility(View.VISIBLE);
-                board_comment.setVisibility(View.GONE);
+                comment_list.setVisibility(View.GONE);
+
             }
         });
 
@@ -64,13 +70,13 @@ public class MyPosting extends Fragment {
         myposting_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                board_comment.setVisibility(View.VISIBLE);
                 board_list.setVisibility(View.GONE);
+                comment_list.setVisibility(View.VISIBLE);
+
             }
         });
 
         // 게시글 리사이클러뷰 셋팅
-        board_list = rootView.findViewById(R.id.board_list);
         myItemArrayList = new ArrayList<>();
         boardAdapter = new BoardAdapter(rootView.getContext(), myItemArrayList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext(),
@@ -84,6 +90,24 @@ public class MyPosting extends Fragment {
             myPostingSelect = new MyPostingSelect(myItemArrayList, boardAdapter, member_id);
             myPostingSelect.execute();
         }else {
+            Toast.makeText(rootView.getContext(), "인터넷이 연결되어 있지 않습니다.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        // 댓글 리사이클러뷰 셋팅
+        commentList = new ArrayList<>();
+        commentAdapter = new CommentAdapter(rootView.getContext(), commentList);
+        layoutManager = new LinearLayoutManager(rootView.getContext(),
+                RecyclerView.VERTICAL, false);
+        comment_list.setLayoutManager(layoutManager);
+        comment_list.setAdapter(commentAdapter);
+
+        // 댓글 데이터 가져오기
+        if(isNetworkConnected(rootView.getContext()) == true){
+            member_id = loginDTO.getMember_id();
+            myCommentSelect = new MyCommentSelect(commentList, commentAdapter, member_id);
+            myCommentSelect.execute();
+        } else {
             Toast.makeText(rootView.getContext(), "인터넷이 연결되어 있지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
