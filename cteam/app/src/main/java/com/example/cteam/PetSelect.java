@@ -121,6 +121,7 @@ public class PetSelect extends AppCompatActivity
                 .replace(R.id.container, calendar).commit(); //첫화면에 프래그먼트 1이 나오게
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
