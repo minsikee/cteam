@@ -69,23 +69,23 @@
                     android:textSize="15sp"
                     android:text="댓글" />
 
-                <ImageView
+                <Button
                     android:id="@+id/CommentUpdate"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_toLeftOf="@id/CommentDelete"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/eraser"
-                    app:tint="#FF3C3C" />
+                    android:background="@drawable/eraser"
+                    android:backgroundTint="#FF3C3C" />
 
-                <ImageView
+                <Button
                     android:id="@+id/CommentDelete"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/delete"
-                    app:tint="#FF3C3C" />
+                    android:background="@drawable/delete"
+                    android:backgroundTint="#FF3C3C" />
 
             </RelativeLayout>
 
