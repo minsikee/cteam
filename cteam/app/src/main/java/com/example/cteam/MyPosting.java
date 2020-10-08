@@ -62,7 +62,6 @@ public class MyPosting extends Fragment {
             public void onClick(View v) {
                 board_list.setVisibility(View.VISIBLE);
                 comment_list.setVisibility(View.GONE);
-
             }
         });
 
@@ -72,7 +71,6 @@ public class MyPosting extends Fragment {
             public void onClick(View v) {
                 board_list.setVisibility(View.GONE);
                 comment_list.setVisibility(View.VISIBLE);
-
             }
         });
 
