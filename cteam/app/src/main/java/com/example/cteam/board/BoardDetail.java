@@ -51,6 +51,7 @@ import static com.example.cteam.PetAdd.petAddDto;
 public class BoardDetail extends AppCompatActivity {
 
     private static final String TAG = "BoardDetail";
+    public static CommentDTO commentDTO = null;
 
     TextView board_detail_title, board_detail_id, board_detail_date,
             board_detail_content, board_detail_city, board_detail_region

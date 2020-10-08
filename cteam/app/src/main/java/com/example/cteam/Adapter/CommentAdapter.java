@@ -14,8 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
+import com.example.cteam.Login;
 import com.example.cteam.R;
+import com.example.cteam.board.BoardDetail;
+
 import java.util.ArrayList;
+
+import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.board.BoardDetail.commentDTO;
 
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemViewHolder> {
@@ -40,6 +46,15 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
     public void onBindViewHolder(@NonNull CommentAdapter.ItemViewHolder holder, int position) {
         CommentDTO dto = commentList.get(position);
         holder.setComment(dto);
+
+        if(loginDTO.getMember_id().equals(commentList.get(position).getMember_id())){
+            holder.CommentUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.CommentUpdate.setVisibility(position);
+                }
+            });
+        }
 /*
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override

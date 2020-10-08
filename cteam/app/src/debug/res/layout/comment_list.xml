@@ -76,7 +76,8 @@
                     android:layout_toLeftOf="@id/CommentDelete"
                     android:layout_centerVertical="true"
                     android:background="@drawable/eraser"
-                    android:backgroundTint="#FF3C3C" />
+                    android:backgroundTint="#FF3C3C"
+                    android:visibility="gone"/>
 
                 <Button
                     android:id="@+id/CommentDelete"
@@ -85,7 +86,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/delete"
-                    android:backgroundTint="#FF3C3C" />
+                    android:backgroundTint="#FF3C3C"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
 
