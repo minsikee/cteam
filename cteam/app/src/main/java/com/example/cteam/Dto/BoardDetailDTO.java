@@ -1,6 +1,8 @@
 package com.example.cteam.Dto;
 
-public class BoardDetailDTO {
+import java.io.Serializable;
+
+public class BoardDetailDTO implements Serializable {
     String board_subject, board_title, board_content, member_id2, petname, board_date,
             board_imagepath, board_city, board_region, petimagepath, board_num2;
     public BoardDetailDTO() {}

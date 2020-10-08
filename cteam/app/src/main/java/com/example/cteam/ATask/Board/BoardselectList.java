@@ -1,4 +1,4 @@
-package com.example.cteam.ATask;
+package com.example.cteam.ATask.Board;
 
 import android.app.ProgressDialog;
 import android.net.http.AndroidHttpClient;

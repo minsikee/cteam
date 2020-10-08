@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cteam.ATask.BoardselectList;
 import com.example.cteam.ATask.MyPostingSelect;
 import com.example.cteam.Adapter.BoardAdapter;
 import com.example.cteam.Dto.BoardDTO;
