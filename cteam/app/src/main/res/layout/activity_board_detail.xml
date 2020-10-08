@@ -24,7 +24,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/text_dashed"
                 android:textColor="#555555"
-                android:textSize="25sp"
+                android:textSize="24sp"
                 android:gravity="center"
                 android:text="글 제목"/>
 
@@ -42,6 +42,7 @@
                 android:id="@+id/board_detail_writer_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/dog"
                 app:civ_border_color="#969696"
                 app:civ_border_width="2dp" />
@@ -70,7 +71,6 @@
                         android:id="@+id/board_detail_modify"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginRight="10dp"
                         android:layout_toLeftOf="@id/board_detail_delete"
                         android:layout_centerVertical="true"
                         android:onClick="board_detail_modify"
@@ -117,9 +117,9 @@
                         android:id="@+id/board_detail_region"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
                         android:textColor="#969696"
                         android:textSize="16sp"
                         android:text="지역" />
@@ -227,7 +227,8 @@
                 android:background="@drawable/comment_stroke"
                 android:textColorHint="#969696"
                 android:hint="댓글,, 뒤로가기 버튼달아야함?"
-                android:textColor="#555555" />
+                android:textColor="#555555"
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/board_detail_comment_submit"
