@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.CommentDelete;
+import com.example.cteam.CustomDialog;
 import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.Login;
@@ -56,6 +57,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.ItemViewHolder holder, int position) {
         CommentDTO dto = commentList.get(position);
+       // commentDTO = commentList.get(position);
 
         if(dto.getMember_id().equals(loginDTO.getMember_id())){
             btnCommentUpdate.setVisibility(View.VISIBLE);
@@ -70,7 +72,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
         holder.CommentUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("TAG", "onClick: 클릭됨 comment_number : "+dto.getComment_num());
+                commentDTO = commentList.get(position);
+                CustomDialog customDialog = new CustomDialog(context);
+
+                // 커스텀 다이얼로그를 호출한다.
+                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
+                customDialog.callFunction(holder.TVcomment);
             }
         });
 
