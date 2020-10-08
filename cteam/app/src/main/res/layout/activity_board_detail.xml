@@ -178,7 +178,7 @@
         <RelativeLayout
             android:id="@+id/relative4"
             android:layout_width="match_parent"
-            android:layout_height="271dp"
+            android:layout_height="270dp"
             android:layout_below="@+id/relative3">
 
             <ImageView
@@ -195,7 +195,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="60dp"/>
 
