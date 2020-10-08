@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -20,21 +21,37 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.BoardDetailSelect;
+
+import com.example.cteam.ATask.CommentInsert;
+import com.example.cteam.ATask.CommentSelect;
+import com.example.cteam.ATask.Listinsert;
+import com.example.cteam.Adapter.CommentAdapter;
+import com.example.cteam.Common.CommonMethod;
+
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardDetailDTO;
+import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.Login;
 import com.example.cteam.MemberDTO;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
 
+
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.cteam.Login.loginDTO;
 import static com.example.cteam.PetAdd.petAddDto;
 
 public class BoardDetail extends AppCompatActivity {
 
     private static final String TAG = "BoardDetail";
+    public static CommentDTO commentDTO = null;
 
     TextView board_detail_title, board_detail_id, board_detail_date,
             board_detail_content, board_detail_city, board_detail_region
@@ -46,7 +63,16 @@ public class BoardDetail extends AppCompatActivity {
     ImageView board_detail_image;
     BoardDetailDTO boardDetailDTO;
 
-    @Override
+    String member_id, board_num,content="";
+    public String imageRealPathA, writer_image;
+
+    ArrayList<CommentDTO> commentList;
+
+    RecyclerView recyclerView;
+    CommentAdapter adapter;
+    CommentSelect commentSelect;
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_detail);
@@ -66,6 +92,21 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_modify = findViewById(R.id.board_detail_modify);
         board_detail_delete = findViewById(R.id.board_detail_delete);
 
+        commentList = new ArrayList<>();
+        adapter = new CommentAdapter(this, commentList);
+        recyclerView = findViewById(R.id.board_detail_comment);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setAdapter(adapter);
+
+        board_detail_comment_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnSubmitClicked();
+            }
+        });
 
         if (getIntent() != null) {
             Intent intent = getIntent();
@@ -83,29 +124,17 @@ public class BoardDetail extends AppCompatActivity {
             }
 
         }
-        board_detail_modify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isNetworkConnected(this) == true){
 
-                    if(boardDetailDTO != null){
-                        Log.d("sub1:update1", BoardDetailDTO.getId());
 
-                        Intent intent = new Intent(getApplicationContext(), Sub1Update.class);
-                        intent.putExtra("boardDetailDTO", BoardDetailDTO);
-                        startActivity(intent);
-
-                    }else {
-                        Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                }else {
-                    Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        //여기에 셀렉트
+        commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
+        try {
+            commentSelect.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
     @Override
@@ -123,7 +152,7 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
 
-        if( !boardDetailDTO.getmember_id2().equals(Login.loginDTO.getMember_id()) ) {
+        if( !boardDetailDTO.getmember_id2().equals(loginDTO.getMember_id()) ) {
             board_detail_modify.setVisibility(View.GONE);
             board_detail_delete.setVisibility(View.GONE);
         }
@@ -145,10 +174,21 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
 
-        if( !boardDetailDTO.getmember_id2().equals(Login.loginDTO.getMember_id()) ) {
-            board_detail_modify.setVisibility(View.GONE);
-            board_detail_delete.setVisibility(View.GONE);
-        }
     }
 
+
+    public void btnSubmitClicked() {
+        member_id= loginDTO.getMember_id();
+        board_num = boardDetailDTO.getboard_num2();
+        content = board_detail_comment_write.getText().toString();
+        writer_image = petAddDto.getPetimage_path();
+
+        CommentInsert commentInsert = new CommentInsert(member_id, board_num, content, writer_image, imageRealPathA);
+        commentInsert.execute();
+
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
+    }
 }

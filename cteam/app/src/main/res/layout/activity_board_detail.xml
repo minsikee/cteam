@@ -75,7 +75,7 @@
                         android:layout_centerVertical="true"
                         android:onClick="board_detail_modify"
                         android:background="@drawable/eraser"
-                        android:backgroundTint="#FF3C3C" />
+                        android:backgroundTint="#2E85CA" />
 
                     <Button
                         android:id="@+id/board_detail_delete"
@@ -86,7 +86,7 @@
                         android:layout_alignParentRight="true"
                         android:onClick="board_detail_delete"
                         android:background="@drawable/delete"
-                        android:backgroundTint="#FF3C3C" />
+                        android:backgroundTint="#FD7070" />
 
                 </RelativeLayout>
 
@@ -184,17 +184,20 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@drawable/line"
-                android:backgroundTint="#969696"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:background="@drawable/line"
+                android:backgroundTint="#969696" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/board_detail_comment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="70dp" />
 
         </RelativeLayout>
 

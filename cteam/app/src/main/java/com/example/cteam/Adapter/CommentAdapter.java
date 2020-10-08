@@ -4,19 +4,30 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
+import com.example.cteam.Login;
 import com.example.cteam.R;
+import com.example.cteam.board.BoardDetail;
+
 import java.util.ArrayList;
+
+import static com.example.cteam.Login.loginDTO;
+import static com.example.cteam.board.BoardDetail.commentDTO;
 
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemViewHolder> {
     Context context;
     ArrayList<CommentDTO> commentList;
+    Button btnCommentUpdate, btnCommentDelete;
 
     public CommentAdapter(Context context, ArrayList<CommentDTO> commentList) {
         this.context = context;
@@ -29,13 +40,26 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.comment_list,parent,false);
 
+        btnCommentUpdate = itemView.findViewById(R.id.CommentUpdate);
+        btnCommentDelete = itemView.findViewById(R.id.CommentDelete);
+
         return new CommentAdapter.ItemViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.ItemViewHolder holder, int position) {
         CommentDTO dto = commentList.get(position);
+
+        if(dto.getMember_id().equals(loginDTO.getMember_id())){
+            btnCommentUpdate.setVisibility(View.VISIBLE);
+            btnCommentDelete.setVisibility(View.VISIBLE);
+        }else{
+            btnCommentUpdate.setVisibility(View.GONE);
+            btnCommentDelete.setVisibility(View.GONE);
+        }
+
         holder.setComment(dto);
+
 
 /*
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
@@ -94,19 +118,27 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
         public RelativeLayout CommentParentLayout;
-        public TextView comment_id;
-
+        public TextView comment_id, comment_date, TVcomment;
+        public Button CommentUpdate, CommentDelete;
+        public ImageView comment_writer_img;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             CommentParentLayout = itemView.findViewById(R.id.CommentParentLayout);
-
+            comment_id = itemView.findViewById(R.id.comment_id);
+            comment_date = itemView.findViewById(R.id.comment_date);
+            TVcomment = itemView.findViewById(R.id.TVcomment);
+            CommentUpdate = itemView.findViewById(R.id.CommentUpdate);
+            CommentDelete = itemView.findViewById(R.id.CommentDelete);
+            comment_writer_img = itemView.findViewById(R.id.comment_writer_img);
         }
 
         public void setComment(CommentDTO dto){
             comment_id.setText(dto.getMember_id());
+            comment_date.setText(dto.getWritedate());
+            TVcomment.setText(dto.getContent());
 
-
+            Glide.with(itemView).load(dto.getWriter_image()).into(comment_writer_img);
         }
     }
 }
