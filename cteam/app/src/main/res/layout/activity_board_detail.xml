@@ -178,23 +178,26 @@
         <RelativeLayout
             android:id="@+id/relative4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="271dp"
             android:layout_below="@+id/relative3">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@drawable/line"
-                android:backgroundTint="#969696"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:background="@drawable/line"
+                android:backgroundTint="#969696" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/board_detail_comment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="60dp"/>
 
         </RelativeLayout>
 
