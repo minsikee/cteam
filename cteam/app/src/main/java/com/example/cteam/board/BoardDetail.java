@@ -3,11 +3,11 @@ package com.example.cteam.board;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,32 +15,33 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.BoardDetailSelect;
+
 import com.example.cteam.ATask.CommentInsert;
 import com.example.cteam.ATask.CommentSelect;
 import com.example.cteam.ATask.Listinsert;
 import com.example.cteam.Adapter.CommentAdapter;
 import com.example.cteam.Common.CommonMethod;
+
 import com.example.cteam.Dto.BoardDTO;
 import com.example.cteam.Dto.BoardDetailDTO;
 import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
-import com.example.cteam.PetAdd;
-import com.example.cteam.PetSelect;
+import com.example.cteam.Login;
+import com.example.cteam.MemberDTO;
 import com.example.cteam.R;
-import com.example.cteam.pet_add.petInsert;
 import com.google.android.gms.maps.model.Circle;
 
-import org.w3c.dom.Comment;
+
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -52,7 +53,8 @@ public class BoardDetail extends AppCompatActivity {
     private static final String TAG = "BoardDetail";
 
     TextView board_detail_title, board_detail_id, board_detail_date,
-            board_detail_content, board_detail_city, board_detail_region;
+            board_detail_content, board_detail_city, board_detail_region
+            , board_detail_modify, board_detail_delete;
     CircleImageView board_detail_writer_img, board_detail_comment_img;
     EditText board_detail_comment_write;
     Button board_detail_comment_submit;
@@ -69,12 +71,10 @@ public class BoardDetail extends AppCompatActivity {
     CommentAdapter adapter;
     CommentSelect commentSelect;
 
-    @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_detail);
-
-        boardDetailDTO = new BoardDetailDTO();
 
         board_detail_title = findViewById(R.id.board_detail_title);
         board_detail_id = findViewById(R.id.board_detail_id);
@@ -88,8 +88,8 @@ public class BoardDetail extends AppCompatActivity {
         board_detail_city = findViewById(R.id.board_detail_city);
         board_detail_region = findViewById(R.id.board_detail_region);
         board_detail_image = findViewById(R.id.board_detail_image);
-
-        board_detail_content.setMovementMethod(new ScrollingMovementMethod());
+        board_detail_modify = findViewById(R.id.board_detail_modify);
+        board_detail_delete = findViewById(R.id.board_detail_delete);
 
         commentList = new ArrayList<>();
         adapter = new CommentAdapter(this, commentList);
@@ -124,6 +124,7 @@ public class BoardDetail extends AppCompatActivity {
 
         }
 
+
         //여기에 셀렉트
         commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
         try {
@@ -149,6 +150,12 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).into(board_detail_image);
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
+
+        if( !boardDetailDTO.getmember_id2().equals(loginDTO.getMember_id()) ) {
+            board_detail_modify.setVisibility(View.GONE);
+            board_detail_delete.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -165,7 +172,9 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getBoard_imagepath()).into(board_detail_image);
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
+
     }
+
 
     public void btnSubmitClicked() {
         member_id= loginDTO.getMember_id();
@@ -176,21 +185,9 @@ public class BoardDetail extends AppCompatActivity {
         CommentInsert commentInsert = new CommentInsert(member_id, board_num, content, writer_image, imageRealPathA);
         commentInsert.execute();
 
-//        Intent showIntent = new Intent(getApplicationContext(), BoardDetail.class);
-//        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-//                Intent.FLAG_ACTIVITY_SINGLE_TOP |
-//                Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//        startActivityForResult(showIntent,1111);
         Intent intent = getIntent();
         finish();
         startActivity(intent);
-
-
-
-        //        Intent refresh = new Intent(this, BoardDetail.class);
-//        startActivity(refresh);
-        // finish();
 
     }
 }

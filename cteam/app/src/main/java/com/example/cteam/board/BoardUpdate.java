@@ -57,7 +57,7 @@ public class BoardUpdate extends AppCompatActivity {
         Intent intent = getIntent();
         BoardDetailDTO boardDetailDTO = (BoardDetailDTO)intent.getSerializableExtra("boardDetailDTO");
 
-        Uboard_write_subject = boardDetailDTO.getBoard_subject();
+        //Uboard_write_subject = boardDetailDTO.getBoard_subject();
 
     }
 
