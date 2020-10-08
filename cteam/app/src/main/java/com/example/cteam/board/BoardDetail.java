@@ -20,7 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.cteam.ATask.BoardDetailSelect;
+import com.example.cteam.ATask.Board.BoardDetailSelect;
+
 
 import com.example.cteam.ATask.CommentInsert;
 import com.example.cteam.ATask.CommentSelect;
