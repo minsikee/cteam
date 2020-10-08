@@ -1,5 +1,6 @@
 package com.example.cteam;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -243,12 +244,13 @@ public class PetSelect extends AppCompatActivity
         }
 
         if(intent.getStringExtra("fragment").equals("Boardwrite") ) {
+            Log.d("WalkBoard이동", "오류?");
             walkBoard.onActivityResult(100, RESULT_OK, intent);
         }
 
-        if(intent.getStringExtra("Fragment").equals("BoardWrite") ) {
+/*        if(intent.getStringExtra("Fragment").equals("BoardWrite") ) {
             walkBoard.onActivityResult(101, RESULT_OK, intent);
-        }
+        }*/
 
     }
 }

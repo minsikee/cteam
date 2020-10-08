@@ -1,7 +1,5 @@
 package com.example.cteam.board;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,7 +10,6 @@ import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,21 +21,14 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cteam.ATask.Boardinsert;
-import com.example.cteam.Adapter.BoardAdapter;
+import com.example.cteam.ATask.Board.Boardinsert;
 import com.example.cteam.Common.CommonMethod;
-import com.example.cteam.Dto.BoardDTO;
-import com.example.cteam.Dto.BoardinsertDTO;
 import com.example.cteam.Login;
-import com.example.cteam.PetAdd;
-import com.example.cteam.PetChoose;
 import com.example.cteam.PetSelect;
 import com.example.cteam.R;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
@@ -441,7 +431,7 @@ public class BoardWrite extends AppCompatActivity {
                 }
 
                 imageRealPathA = path;
-                Log.d("Sub1Add", "imageFilePathA Path : " + imageRealPathA);
+                Log.d("BoardWrite", "imageFilePathA Path : " + imageRealPathA);
                 String uploadFileName = imageRealPathA.split("/")[imageRealPathA.split("/").length - 1];
                 imageDbPathA = CommonMethod.ipConfig + "/app/resources/" + uploadFileName;
 
