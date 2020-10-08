@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.cteam.ATask.BoardDetailSelect;
 import com.example.cteam.ATask.CommentInsert;
+import com.example.cteam.ATask.CommentSelect;
 import com.example.cteam.ATask.Listinsert;
 import com.example.cteam.Adapter.CommentAdapter;
 import com.example.cteam.Common.CommonMethod;
@@ -39,6 +40,7 @@ import com.google.android.gms.maps.model.Circle;
 import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -65,6 +67,7 @@ public class BoardDetail extends AppCompatActivity {
 
     RecyclerView recyclerView;
     CommentAdapter adapter;
+    CommentSelect commentSelect;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,6 +124,16 @@ public class BoardDetail extends AppCompatActivity {
 
         }
 
+        //여기에 셀렉트
+        commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
+        try {
+            commentSelect.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
     @Override
     public void onStart(){
@@ -163,16 +176,21 @@ public class BoardDetail extends AppCompatActivity {
         CommentInsert commentInsert = new CommentInsert(member_id, board_num, content, writer_image, imageRealPathA);
         commentInsert.execute();
 
-        Intent showIntent = new Intent(getApplicationContext(), BoardDetail.class);
-        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                Intent.FLAG_ACTIVITY_SINGLE_TOP |
-                Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        Intent showIntent = new Intent(getApplicationContext(), BoardDetail.class);
+//        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+//                Intent.FLAG_ACTIVITY_SINGLE_TOP |
+//                Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        startActivityForResult(showIntent,1111);
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
 
-        startActivity(showIntent);
-        board_detail_comment_write.setText(null);
-//        Intent refresh = new Intent(this, BoardDetail.class);
+
+
+        //        Intent refresh = new Intent(this, BoardDetail.class);
 //        startActivity(refresh);
-       // finish();
+        // finish();
 
     }
 }

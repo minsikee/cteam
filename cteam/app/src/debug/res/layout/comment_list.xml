@@ -46,11 +46,11 @@
                     android:id="@+id/comment_date"
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"
-                    android:layout_toRightOf="@id/comment_id"
                     android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/comment_id"
+                    android:text="작성일"
                     android:textColor="#777777"
-                    android:textSize="13sp"
-                    android:text="작성일" />
+                    android:textSize="13sp" />
 
             </RelativeLayout>
 
