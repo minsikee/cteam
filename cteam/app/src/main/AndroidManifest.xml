@@ -48,6 +48,7 @@
         <activity android:name=".board.BoardDetail"/>
         <activity android:name=".pet_add.petUpdate"/>
         <activity android:name=".board.BoardWrite"/>
+        <activity android:name=".board.BoardUpdate"/>
         <activity android:name=".PetModify" />
         <activity android:name=".SignUp" />
         <activity android:name=".PasswordModify" />

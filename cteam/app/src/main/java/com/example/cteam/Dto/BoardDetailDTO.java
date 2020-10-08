@@ -1,7 +1,8 @@
 package com.example.cteam.Dto;
 
 public class BoardDetailDTO {
-    String board_subject, board_title, board_content, member_id2, petname, board_date, board_imagepath, board_city, board_region, petimagepath, board_num2;
+    String board_subject, board_title, board_content, member_id2, petname, board_date,
+            board_imagepath, board_city, board_region, petimagepath, board_num2;
     public BoardDetailDTO() {}
 
     public BoardDetailDTO(String board_num2, String board_subject, String board_title, String board_content,
