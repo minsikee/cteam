@@ -630,12 +630,18 @@ public class WalkBoard extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
             // recreate your fragment here
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.detach(this).attach(this).commit();
         }
-
+        if ((requestCode == 101) && (resultCode == Activity.RESULT_OK)) {
+            // recreate your fragment here
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
+        }
+        
     }
 
 

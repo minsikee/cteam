@@ -53,6 +53,7 @@ public class BoardWrite extends AppCompatActivity {
     Button board_write_filebutton, board_write_cancel, board_write_submit;
     ImageView board_write_image;
 
+
     ArrayAdapter<CharSequence> adspin1, adspin2;
 
     File file = null;
@@ -326,6 +327,20 @@ public class BoardWrite extends AppCompatActivity {
             }
         });
 
+        board_write_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent showIntent = new Intent(getApplicationContext(), PetSelect.class);
+                showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                showIntent.putExtra("Fragment", "BoardWrite");
+                startActivity(showIntent);
+
+              //  finish();
+            }
+        });
+
     }
 
     //등록버튼 클릭시
@@ -364,7 +379,7 @@ public class BoardWrite extends AppCompatActivity {
                 showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_SINGLE_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                showIntent.putExtra("fragment", "BoardWrite");
+                showIntent.putExtra("fragment", "Boardwrite");
                 startActivity(showIntent);
 
                 finish();
@@ -393,9 +408,17 @@ public class BoardWrite extends AppCompatActivity {
     }
 
     //취소버튼
-    public void btnCancelClicked(View view){
-        finish();
-    }
+//    public void btnBoardcancel(View view){
+//        onBackPressed();
+//        Intent showIntent = new Intent(getApplicationContext(), PetSelect.class);
+//        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+//            Intent.FLAG_ACTIVITY_SINGLE_TOP |
+//            Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        showIntent.putExtra("Fragment", "BoardWrite");
+//        startActivity(showIntent);
+//
+//        finish();
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

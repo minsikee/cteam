@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.example.cteam.Adapter.PetPhotoAdapter;
 import com.example.cteam.Dto.CalendarDTO;
 import com.example.cteam.Dto.MemberDTO;
+import com.example.cteam.board.BoardWrite;
 import com.example.cteam.board.WalkBoard;
 import com.example.cteam.Help;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -233,16 +234,21 @@ public class PetSelect extends AppCompatActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
+
         super.onNewIntent(intent);
 
         Log.d("main:petselect", "onNewIntent: 11111");
         if(intent.getStringExtra("fragment").equals("petphotoupdate") ) {
             petPhoto.onActivityResult(10001, RESULT_OK, intent);
         }
-        if(intent.getStringExtra("fragment").equals("BoardWrite") ) {
+
+        if(intent.getStringExtra("fragment").equals("Boardwrite") ) {
             walkBoard.onActivityResult(100, RESULT_OK, intent);
         }
 
+        if(intent.getStringExtra("Fragment").equals("BoardWrite") ) {
+            walkBoard.onActivityResult(101, RESULT_OK, intent);
+        }
 
     }
 }
