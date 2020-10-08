@@ -38,9 +38,9 @@
                     android:id="@+id/comment_id"
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"
+                    android:text="아이디"
                     android:textColor="#777777"
-                    android:textSize="13sp"
-                    android:text="아이디" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/comment_date"
@@ -50,7 +50,7 @@
                     android:layout_toRightOf="@id/comment_id"
                     android:text="작성일"
                     android:textColor="#777777"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 
@@ -76,7 +76,7 @@
                     android:layout_toLeftOf="@id/CommentDelete"
                     android:layout_centerVertical="true"
                     android:background="@drawable/eraser"
-                    android:backgroundTint="#FF3C3C"
+                    android:backgroundTint="#2E85CA"
                     android:visibility="gone"/>
 
                 <Button
@@ -84,10 +84,10 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
                     android:background="@drawable/delete"
-                    android:backgroundTint="#FF3C3C"
-                    android:visibility="gone"/>
+                    android:backgroundTint="#FD7070"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
 

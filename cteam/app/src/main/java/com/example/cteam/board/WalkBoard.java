@@ -556,6 +556,7 @@ public class WalkBoard extends Fragment {
         }
 
 
+
         //리스트 복사
         myItemArrayListCopy= new ArrayList<BoardDTO>();
         myItemArrayListCopy.addAll(myItemArrayList);

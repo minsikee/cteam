@@ -27,6 +27,7 @@ import static com.example.cteam.board.BoardDetail.commentDTO;
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemViewHolder> {
     Context context;
     ArrayList<CommentDTO> commentList;
+    Button btnCommentUpdate, btnCommentDelete;
 
     public CommentAdapter(Context context, ArrayList<CommentDTO> commentList) {
         this.context = context;
@@ -39,22 +40,27 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.comment_list,parent,false);
 
+        btnCommentUpdate = itemView.findViewById(R.id.CommentUpdate);
+        btnCommentDelete = itemView.findViewById(R.id.CommentDelete);
+
         return new CommentAdapter.ItemViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.ItemViewHolder holder, int position) {
         CommentDTO dto = commentList.get(position);
+
+        if(dto.getMember_id().equals(loginDTO.getMember_id())){
+            btnCommentUpdate.setVisibility(View.VISIBLE);
+            btnCommentDelete.setVisibility(View.VISIBLE);
+        }else{
+            btnCommentUpdate.setVisibility(View.GONE);
+            btnCommentDelete.setVisibility(View.GONE);
+        }
+
         holder.setComment(dto);
 
-        if(loginDTO.getMember_id().equals(commentList.get(position).getMember_id())){
-            holder.CommentUpdate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    holder.CommentUpdate.setVisibility(position);
-                }
-            });
-        }
+
 /*
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override

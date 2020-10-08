@@ -75,7 +75,7 @@
                         android:layout_centerVertical="true"
                         android:onClick="board_detail_modify"
                         android:background="@drawable/eraser"
-                        android:backgroundTint="#FF3C3C" />
+                        android:backgroundTint="#2E85CA" />
 
                     <Button
                         android:id="@+id/board_detail_delete"
@@ -86,7 +86,7 @@
                         android:layout_alignParentRight="true"
                         android:onClick="board_detail_delete"
                         android:background="@drawable/delete"
-                        android:backgroundTint="#FF3C3C" />
+                        android:backgroundTint="#FD7070" />
 
                 </RelativeLayout>
 
@@ -178,7 +178,7 @@
         <RelativeLayout
             android:id="@+id/relative4"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/relative3">
 
             <ImageView
@@ -197,7 +197,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="70dp" />
 
         </RelativeLayout>
 
