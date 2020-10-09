@@ -1,9 +1,11 @@
 package com.example.cteam.board;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,11 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.Board.BoardDelete;
 import com.example.cteam.ATask.Board.BoardDetailSelect;
 
 
 import com.example.cteam.ATask.CommentInsert;
 import com.example.cteam.ATask.CommentSelect;
+import com.example.cteam.ATask.ListDelete;
 import com.example.cteam.ATask.Listinsert;
 import com.example.cteam.Adapter.CommentAdapter;
 import com.example.cteam.Common.CommonMethod;
@@ -46,6 +50,7 @@ import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.cteam.Common.CommonMethod.isNetworkConnected;
 import static com.example.cteam.Login.loginDTO;
 import static com.example.cteam.PetAdd.petAddDto;
 
@@ -53,6 +58,7 @@ public class BoardDetail extends AppCompatActivity {
 
     private static final String TAG = "BoardDetail";
     public static CommentDTO commentDTO = null;
+    public static BoardDetailDTO boardDetailDTO = null;
 
     TextView board_detail_title, board_detail_id, board_detail_date,
             board_detail_content, board_detail_city, board_detail_region
@@ -62,7 +68,6 @@ public class BoardDetail extends AppCompatActivity {
     Button board_detail_comment_submit;
     RecyclerView board_detail_comment;
     ImageView board_detail_image;
-    BoardDetailDTO boardDetailDTO;
 
     String member_id, board_num,content="";
     public String imageRealPathA, writer_image;
@@ -127,6 +132,7 @@ public class BoardDetail extends AppCompatActivity {
         }
 
 
+/*
         //여기에 셀렉트
         commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
         try {
@@ -136,6 +142,7 @@ public class BoardDetail extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+*/
 
     }
     @Override
@@ -192,4 +199,75 @@ public class BoardDetail extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void board_detail_modify(View v){
+        if(isNetworkConnected(this) == true){
+            if(boardDetailDTO != null){
+                Log.d("update버튼 클릭", boardDetailDTO.getmember_id2());
+
+                Intent intent = new Intent(getApplicationContext(), BoardUpdate.class);
+                intent.putExtra("boardUpdateDTO", boardDetailDTO);
+                startActivity(intent);
+
+            }else {
+                Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        }else {
+            Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    // 삭제
+    public void board_detail_delete(View v) {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this);
+        if (isNetworkConnected(this) == true) {
+            builder.setTitle("안내");
+            builder.setMessage("정말 삭제 하시겠습니까?");
+            builder.setIcon(android.R.drawable.ic_dialog_alert);
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    if (boardDetailDTO != null) {
+                        Log.d("Sub1 : selImg => ", boardDetailDTO.getBoard_imagepath());
+
+                        BoardDelete boarddelete = new BoardDelete(boardDetailDTO.getmember_id2(), boardDetailDTO.getBoard_imagepath());
+                        boarddelete.execute();
+
+                        Intent refresh = new Intent(getApplicationContext() , WalkBoard.class);
+                        startActivity(refresh);
+//                        getBaseContext() .();
+
+                        adapter.notifyDataSetChanged(); // adapter 갱신
+                    } else {
+                        Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요(항목선택)",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+        } else {
+            Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
+                    Toast.LENGTH_SHORT).show(); // 테스트 111
+        }
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }

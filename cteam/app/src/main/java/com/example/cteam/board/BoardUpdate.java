@@ -31,8 +31,8 @@ public class BoardUpdate extends AppCompatActivity {
 
     private static final String TAG = "BoardUpdate";
 
-    String board_write_subject, board_write_region1, board_write_region2, board_write_title,
-            board_write_content;
+    String board_write_subject, board_write_region1, board_write_region2;
+    String board_write_title, board_write_content;
 
 
     Spinner Uboard_write_subject;
