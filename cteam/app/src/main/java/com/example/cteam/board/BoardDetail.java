@@ -133,16 +133,16 @@ public class BoardDetail extends AppCompatActivity {
         }
 
 
-//
-//        //여기에 셀렉트
-//        commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
-//        try {
-//            commentSelect.execute().get();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
+        //여기에 셀렉트
+        commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
+        try {
+            commentSelect.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //삭제
         board_detail_delete.setOnClickListener(new View.OnClickListener() {
