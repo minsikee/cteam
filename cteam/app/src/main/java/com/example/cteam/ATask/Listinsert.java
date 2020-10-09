@@ -2,7 +2,9 @@ package com.example.cteam.ATask;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.example.cteam.Common.CommonMethod;
 import com.example.cteam.Login;
 
 import org.apache.http.HttpEntity;

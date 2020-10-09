@@ -53,7 +53,6 @@ public class CustomDialog {
                 commentUpdate.execute();
 
                 TVcomment.setText(message.getText().toString());
-                Toast.makeText(context, "\"" +  message.getText().toString() + "\" 을 입력하였습니다.", Toast.LENGTH_SHORT).show();
 
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
@@ -62,8 +61,6 @@ public class CustomDialog {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "취소 했습니다.", Toast.LENGTH_SHORT).show();
-
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
             }

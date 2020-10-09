@@ -1,7 +1,9 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -84,16 +87,34 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
         holder.CommentDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String comment_num=dto.getComment_num();
-                CommentDelete commentDelete = new CommentDelete(comment_num);
-                commentDelete.execute();
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(context);
+                builder.setTitle(Html.fromHtml("<font color='#333333'>삭제 확인</font>"));
+                builder.setMessage(Html.fromHtml("<font color='#333333'>정말 댓글을 삭제하시겠습니까? \n 삭제하시려면 확인 버튼을 눌러주세요</font>"));
+                //builder.setIcon(android.R.drawable.ic_dialog_alert);
+                builder.setIconAttribute(android.R.attr.alertDialogIcon);
 
-                commentList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, commentList.size());
+                builder.setPositiveButton(Html.fromHtml("<font color='#333333'>확인</font>"), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String comment_num=dto.getComment_num();
+                        CommentDelete commentDelete = new CommentDelete(comment_num);
+                        commentDelete.execute();
 
-                /*Intent refresh = new Intent(context, BoardDetail.class);
-                context.startActivity(refresh);*/
+                        commentList.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, commentList.size());
+                    }
+                });
+                builder.setNegativeButton(Html.fromHtml("<font color='#333333'>취소</font>"), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             }
         });
@@ -152,5 +173,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
             Glide.with(itemView).load(dto.getWriter_image()).into(comment_writer_img);
         }
     }
+
 }
 
