@@ -1,9 +1,11 @@
 package com.example.cteam.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +24,12 @@ import static com.example.cteam.PetAdd.petAddDto;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cteam.ATask.CommentDelete;
 import com.example.cteam.ATask.ListDelete;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.Login;
@@ -97,17 +101,36 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (dto != null) {
-                    String member_id = loginDTO.getMember_id();
-                    String petname = dto.getPetname();
-                    ListDelete listDelete = new ListDelete(member_id, petname);
-                    listDelete.execute();
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(context);
+                builder.setTitle(Html.fromHtml("<font color='#333333'>안내</font>"));
+                builder.setMessage(Html.fromHtml("<font color='#333333'>정말로 "+dto.getPetname()+" 의 정보를 삭제하시겠습니까?</font>"));
+                builder.setIconAttribute(android.R.attr.alertDialogIcon);
 
-                    Intent refresh = new Intent(context, PetAdd.class);
-                    context.startActivity(refresh);
-                }else {
-                    Log.d("TAG", "onClick: "+dto.getPetname());
-                }
+                builder.setPositiveButton(Html.fromHtml("<font color='#333333'>확인</font>"), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (dto != null) {
+                            String member_id = loginDTO.getMember_id();
+                            String petname = dto.getPetname();
+                            ListDelete listDelete = new ListDelete(member_id, petname);
+                            listDelete.execute();
+
+                            Intent refresh = new Intent(context, PetAdd.class);
+                            context.startActivity(refresh);
+                        }else {
+                            Log.d("TAG", "onClick: "+dto.getPetname());
+                        }
+                    }
+                });
+                builder.setNegativeButton(Html.fromHtml("<font color='#333333'>취소</font>"), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -166,5 +189,33 @@ public class petAddAdapter extends RecyclerView.Adapter<petAddAdapter.ItemViewHo
 
             Glide.with(itemView).load(dto.getPetimage_path()).into(imageView);
         }
+    }
+    private void showMessage() {
+/*        AlertDialog.Builder builder =
+                new AlertDialog.Builder(context);
+        builder.setTitle(Html.fromHtml("<font color='#333333'>안내</font>"));
+        builder.setMessage(Html.fromHtml("<font color='#333333'>비밀번호를 다시 입력하세요!</font>"));
+        //builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setIconAttribute(android.R.attr.alertDialogIcon);
+
+        builder.setPositiveButton(Html.fromHtml("<font color='#333333'>확인</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (dto != null) {
+                    String member_id = loginDTO.getMember_id();
+                    String petname = dto.getPetname();
+                    ListDelete listDelete = new ListDelete(member_id, petname);
+                    listDelete.execute();
+
+                    Intent refresh = new Intent(context, PetAdd.class);
+                    context.startActivity(refresh);
+                }else {
+                    Log.d("TAG", "onClick: "+dto.getPetname());
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();*/
     }
     }
