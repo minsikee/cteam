@@ -39,6 +39,7 @@ import static com.example.cteam.PetAdd.petAddDto;
 
 public class PetSelect extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "PetSelect";
     public static MemberDTO dto = null;
     WalkBoard walkBoard;
     FindStore findStore;
@@ -244,14 +245,16 @@ public class PetSelect extends AppCompatActivity
             petPhoto.onActivityResult(10001, RESULT_OK, intent);
         }
 
+        if(intent.getStringExtra("fragment").equals("BoardDetail") ) {
+            walkBoard.onActivityResult(101, RESULT_OK, intent);
+        }
+
         if(intent.getStringExtra("fragment").equals("Boardwrite") ) {
             Log.d("WalkBoard이동", "오류?");
             walkBoard.onActivityResult(100, RESULT_OK, intent);
         }
 
-/*        if(intent.getStringExtra("Fragment").equals("BoardWrite") ) {
-            walkBoard.onActivityResult(101, RESULT_OK, intent);
-        }*/
+
 
     }
 }

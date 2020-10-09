@@ -11,14 +11,16 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
+import java.io.InputStream;
+
 import static com.example.cteam.Common.CommonMethod.ipConfig;
 
 public class BoardDelete extends AsyncTask<Void, Void, Void> {
 
-    String board_delete_id, board_delete_image;
+    String board_num2, board_delete_image;
 
-    public BoardDelete(String board_delete_id, String board_delete_image) {
-        this.board_delete_id = board_delete_id;
+    public BoardDelete(String board_num2, String board_delete_image) {
+        this.board_num2 = board_num2;
         this.board_delete_image = board_delete_image;
     }
 
@@ -31,18 +33,18 @@ public class BoardDelete extends AsyncTask<Void, Void, Void> {
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
             // 문자열 및 데이터 추가
-            builder.addTextBody("board_delete_id", board_delete_id, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("board_num2", board_num2, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("delDbImgPath", board_delete_image, ContentType.create("Multipart/related", "UTF-8"));
 
 
             // 전송
-            //InputStream inputStream = null;
+            InputStream inputStream = null;
             HttpClient httpClient = AndroidHttpClient.newInstance("cteam");
             HttpPost httpPost = new HttpPost(postURL);
             httpPost.setEntity(builder.build());
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
-            //inputStream = httpEntity.getContent();
+            inputStream = httpEntity.getContent();
 
             // 응답
            /* BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));

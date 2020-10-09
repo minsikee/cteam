@@ -39,6 +39,7 @@ import com.example.cteam.Dto.CommentDTO;
 import com.example.cteam.Dto.PetDTO;
 import com.example.cteam.Login;
 import com.example.cteam.MemberDTO;
+import com.example.cteam.PetSelect;
 import com.example.cteam.R;
 import com.google.android.gms.maps.model.Circle;
 
@@ -132,17 +133,71 @@ public class BoardDetail extends AppCompatActivity {
         }
 
 
-/*
-        //여기에 셀렉트
-        commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
-        try {
-            commentSelect.execute().get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-*/
+//
+//        //여기에 셀렉트
+//        commentSelect = new CommentSelect(boardDetailDTO.getboard_num2(), commentList, adapter);
+//        try {
+//            commentSelect.execute().get();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        //삭제
+        board_detail_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isNetworkConnected(getApplicationContext()) == true) {
+//            AlertDialog.Builder builder =
+//                    new AlertDialog.Builder(getApplicationContext());
+//            builder.setTitle("안내");
+//            builder.setMessage("정말 삭제 하시겠습니까?");
+//            builder.setIcon(android.R.drawable.ic_dialog_alert);
+//            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    if (boardDetailDTO != null) {
+                        Log.d(TAG, boardDetailDTO.getBoard_imagepath());
+
+                        BoardDelete boarddelete = new BoardDelete(boardDetailDTO.getboard_num2(), boardDetailDTO.getBoard_imagepath());
+                        boarddelete.execute();
+
+                        Log.d(TAG + "delete실행", boardDetailDTO.getBoard_imagepath());
+
+
+                        Intent showIntent = new Intent(getApplicationContext(), PetSelect.class);
+                        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        showIntent.putExtra("fragment", "BoardDetail");
+                        startActivity(showIntent);
+                        finish();
+
+                        adapter.notifyDataSetChanged(); // adapter 갱신
+                    } else {
+                        Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요(항목선택)",
+                                Toast.LENGTH_SHORT).show();
+                    }
+//                }
+//            });
+
+//            builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                }
+//            });
+//            AlertDialog dialog = builder.create();
+//            dialog.show();
+                } else {
+                    Toast.makeText(BoardDetail.this, "인터넷이 연결되어 있지 않습니다.",
+                            Toast.LENGTH_SHORT).show(); // 테스트 111
+                }
+
+            }
+        });
 
     }
     @Override
@@ -222,52 +277,8 @@ public class BoardDetail extends AppCompatActivity {
     }
 
     // 삭제
-    public void board_detail_delete(View v) {
-        AlertDialog.Builder builder =
-                new AlertDialog.Builder(this);
-        if (isNetworkConnected(this) == true) {
-            builder.setTitle("안내");
-            builder.setMessage("정말 삭제 하시겠습니까?");
-            builder.setIcon(android.R.drawable.ic_dialog_alert);
-            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    if (boardDetailDTO != null) {
-                        Log.d("Sub1 : selImg => ", boardDetailDTO.getBoard_imagepath());
-
-                        BoardDelete boarddelete = new BoardDelete(boardDetailDTO.getmember_id2(), boardDetailDTO.getBoard_imagepath());
-                        boarddelete.execute();
-
-                        Intent refresh = new Intent(getApplicationContext() , WalkBoard.class);
-                        startActivity(refresh);
-//                        getBaseContext() .();
-
-                        adapter.notifyDataSetChanged(); // adapter 갱신
-                    } else {
-                        Toast.makeText(getApplicationContext(), "항목 선택을 해 주세요(항목선택)",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
-            builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
-        } else {
-            Toast.makeText(this, "인터넷이 연결되어 있지 않습니다.",
-                    Toast.LENGTH_SHORT).show(); // 테스트 111
-        }
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
+//    public void board_detail_delete(View v) {
+//
+//    }
 
 }
