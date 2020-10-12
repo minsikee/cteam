@@ -258,10 +258,10 @@ public class BoardDetail extends AppCompatActivity {
     public void board_detail_modify(View v){
         if(isNetworkConnected(this) == true){
             if(boardDetailDTO != null){
-                Log.d("update버튼 클릭", boardDetailDTO.getmember_id2());
+                Log.d("update버튼 클릭", boardDetailDTO.getboard_num2());
 
-                Intent intent = new Intent(getApplicationContext(), BoardUpdate.class);
-                intent.putExtra("boardUpdateDTO", boardDetailDTO);
+                Intent intent = new Intent(this, BoardUpdate.class);
+                intent.putExtra("boardDetailDTO", boardDetailDTO);
                 startActivity(intent);
 
             }else {
