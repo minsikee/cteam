@@ -57,11 +57,11 @@ public class petInsert extends AppCompatActivity {
 
     String petname = "", petage = "",petweight = "",petgender;
     ImageView petPhoto;
-    String id;
+    String id="";
 
     Button btnLoad,btnCancle,btn_add;
 
-    public String imageRealPathA, imageDbPathA;
+    public String imageRealPathA="", imageDbPathA="";
 
     final int CAMERA_REQUEST = 1000;
     final int LOAD_IMAGE = 1001;
@@ -157,7 +157,7 @@ public class petInsert extends AppCompatActivity {
                 if(petName.getText().toString().equals("") || petAge.getText().toString().equals("")
                         || petWeight.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(), "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
-                }else if(petPhoto == null){
+                }else if(imageRealPathA.equals("")){
                     Toast.makeText(petInsert.this, "사진을 등록해주세요", Toast.LENGTH_SHORT).show();
                 }else {
                     btnAddClicked();
