@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class BoardDetailDTO implements Serializable {
     String board_subject, board_title, board_content, member_id2, petname, board_date,
             board_imagepath, board_city, board_region, petimagepath, board_num2;
-    public BoardDetailDTO() {}
 
     public BoardDetailDTO(String board_num2, String board_subject, String board_title, String board_content,
                           String member_id2, String petname, String board_date, String board_imagepath,
