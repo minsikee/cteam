@@ -43,6 +43,7 @@ public class PetSelect extends AppCompatActivity
     public static MemberDTO dto = null;
     WalkBoard walkBoard;
     FindStore findStore;
+    Iot iot;
     PetPhoto petPhoto;
     Toolbar toolbar;
     MyPage myPage;
@@ -143,6 +144,9 @@ public class PetSelect extends AppCompatActivity
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, walkBoard).commit();
                         break;
+                    case R.id.tab5 :
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, iot).commit();
                 }
 
                 return true;

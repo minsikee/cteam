@@ -32,4 +32,9 @@
         android:title="게시판"
         />
 
+    <item
+        android:id="@+id/tab5"
+        android:icon="@drawable/walk111"
+        android:title="Iot"
+        />
 </menu>
