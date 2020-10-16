@@ -230,7 +230,7 @@
                 android:gravity="center_vertical"
                 android:background="@drawable/comment_stroke"
                 android:textColorHint="#969696"
-                android:hint="댓글,, 뒤로가기 버튼달아야함?"
+                android:hint="댓글을 입력하세요"
                 android:textColor="#555555"
                 android:textSize="16dp" />
 
