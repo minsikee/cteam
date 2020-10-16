@@ -258,6 +258,10 @@ public class PetSelect extends AppCompatActivity
             walkBoard.onActivityResult(100, RESULT_OK, intent);
         }
 
+        if(intent.getStringExtra("fragment").equals("BoardWrite") ) {
+            Log.d("WalkBoard이동", "오류?");
+            walkBoard.onActivityResult(102, RESULT_OK, intent);
+        }
 
 
     }
