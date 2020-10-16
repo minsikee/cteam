@@ -16,6 +16,11 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- ▶ 진동 -->
     <uses-permission android:name="READ_GSERVICES" /> <!-- 구글 서비스 읽기 -->
 
+    <!--BLUETOOTH : 커넥션 요구, 커넥션 수락, 데이터 전송 등의 블루투스 통신을 하기 위해 필요한 권한
+    BLUETOOTH_ADMIN : 디바이스 검색 시작, 블루투스 설정을 조작하기 위해 필요-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -56,6 +61,7 @@
         <activity android:name=".pet_add.petInsert" />
         <activity android:name=".FindStore"/>
         <activity android:name=".PetAdd"/>
+
 
         <activity android:name=".PetPhotoUpdate"/>
 

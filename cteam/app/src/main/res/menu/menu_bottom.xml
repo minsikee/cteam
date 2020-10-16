@@ -34,7 +34,7 @@
 
     <item
         android:id="@+id/tab5"
-        android:icon="@drawable/walk111"
-        android:title="Iot"
+        android:icon="@drawable/paed111"
+        android:title="Iot 펫방석"
         />
 </menu>
