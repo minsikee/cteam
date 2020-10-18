@@ -2,7 +2,6 @@ package com.example.cteam;
 
 import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -78,7 +77,6 @@ public class PetSelect extends AppCompatActivity
         walkBoard = new WalkBoard();
         petPhoto = new PetPhoto();
         findStore = new FindStore();
-        iot = new Iot();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -260,15 +258,11 @@ public class PetSelect extends AppCompatActivity
             walkBoard.onActivityResult(100, RESULT_OK, intent);
         }
 
+        if(intent.getStringExtra("fragment").equals("BoardWrite") ) {
+            Log.d("WalkBoard이동", "오류?");
+            walkBoard.onActivityResult(102, RESULT_OK, intent);
+        }
 
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        iot.onActivityResult(10, RESULT_OK, data);
 
     }
 }

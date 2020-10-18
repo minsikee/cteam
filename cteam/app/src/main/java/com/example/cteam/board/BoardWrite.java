@@ -324,10 +324,11 @@ public class BoardWrite extends AppCompatActivity {
                 showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_SINGLE_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                showIntent.putExtra("Fragment", "BoardWrite");
+                showIntent.putExtra("fragment", "BoardWrite");
                 startActivity(showIntent);
 
-              //  finish();
+                finish();
+
             }
         });
 

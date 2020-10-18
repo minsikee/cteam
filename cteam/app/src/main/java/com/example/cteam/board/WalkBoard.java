@@ -582,7 +582,7 @@ public class WalkBoard extends Fragment {
             public void afterTextChanged(Editable editable) {
                 // input창에 문자를 입력할때마다 호출된다.
                 // search 메소드를 호출한다.
-                 text = board_editsearch.getText().toString();
+                text = board_editsearch.getText().toString();
                 Log.d(text, "afterTextChanged: "+text);
                 search(text,board_kind,city2);
             }
@@ -641,7 +641,11 @@ public class WalkBoard extends Fragment {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.detach(this).attach(this).commit();
         }
-        
+        if ((requestCode == 102) && (resultCode == Activity.RESULT_OK)) {
+            // recreate your fragment here
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
+        }
     }
 
 
@@ -684,37 +688,37 @@ public class WalkBoard extends Fragment {
 
             else{//if1-else1 전체보기 & 도시가 전체보기가 아닐때
 
-                    if(charText.length() == 0){// 전체보기 & 도시가 전체보기가 아닐때 & 글자 안썼을때
-                        for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                if(charText.length() == 0){// 전체보기 & 도시가 전체보기가 아닐때 & 글자 안썼을때
+                    for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                    {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2))
                         {
-                            // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
-                            if (myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2))
-                            {
-                                // 검색된 데이터를 리스트에 추가한다.
-                                myItemArrayList.add(myItemArrayListCopy.get(i));
-                            }
+                            // 검색된 데이터를 리스트에 추가한다.
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
                         }
-
-                        // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-                        boardAdapter.notifyDataSetChanged();
-
-                    }else{// 전체보기 & 도시가 전체보기가 아닐때 & 글자 썼을때
-                        for(int i = 0;i < myItemArrayListCopy.size(); i++)
-                        {
-                            // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
-                            if (myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2)&&
-                                    myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText) )
-                            {
-                                // 검색된 데이터를 리스트에 추가한다.
-                                myItemArrayList.add(myItemArrayListCopy.get(i));
-                            }
-                        }
-
-                        // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-                        boardAdapter.notifyDataSetChanged();
-
-
                     }
+
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
+
+                }else{// 전체보기 & 도시가 전체보기가 아닐때 & 글자 썼을때
+                    for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                    {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getCity2().toLowerCase().contains(city2)&&
+                                myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText) )
+                        {
+                            // 검색된 데이터를 리스트에 추가한다.
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
+                        }
+                    }
+
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
+
+
+                }
 
 
             }//if1-else1 전체보기 & 도시가 전체보기가 아닐때
@@ -768,19 +772,19 @@ public class WalkBoard extends Fragment {
             }else{ //게시판 종류만 선택했을때, 도시선택X
 
                 if(charText.length() > 0){//게시판 종류선택했을때 && 도시와 구 X && 글만 썼을때
-                            for(int i = 0;i < myItemArrayListCopy.size(); i++)
-                            {
-                                // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
-                                if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind)
-                                        &&myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText))
-                                {
-                                    // 검색된 데이터를 리스트에 추가한다.
-                                    myItemArrayList.add(myItemArrayListCopy.get(i));
-                                }
-                            }
+                    for(int i = 0;i < myItemArrayListCopy.size(); i++)
+                    {
+                        // arraylist의 모든 데이터에 입력받은 단어(charText)가 포함되어 있으면 true를 반환한다.
+                        if (myItemArrayListCopy.get(i).getSubject().toLowerCase().contains(board_kind)
+                                &&myItemArrayListCopy.get(i).getTitle().toLowerCase().contains(charText))
+                        {
+                            // 검색된 데이터를 리스트에 추가한다.
+                            myItemArrayList.add(myItemArrayListCopy.get(i));
+                        }
+                    }
 
-                            // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-                              boardAdapter.notifyDataSetChanged();
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
                 }else{//게시판 종류선택했을때 && 도시와 구 X && 글X
 
                     for(int i = 0;i < myItemArrayListCopy.size(); i++)
@@ -795,8 +799,8 @@ public class WalkBoard extends Fragment {
                         }
                     }
 
-                // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-                boardAdapter.notifyDataSetChanged();
+                    // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+                    boardAdapter.notifyDataSetChanged();
 
 
                 }
