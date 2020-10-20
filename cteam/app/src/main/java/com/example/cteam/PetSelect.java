@@ -77,6 +77,7 @@ public class PetSelect extends AppCompatActivity
         walkBoard = new WalkBoard();
         petPhoto = new PetPhoto();
         findStore = new FindStore();
+        iot = new Iot();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
