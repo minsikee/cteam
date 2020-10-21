@@ -32,7 +32,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/text_stroke"
             android:shadowColor="@android:color/transparent"
-            android:textColor="#FFFFFF"
+            android:textColor="#969696"
             android:textSize="24sp"
             android:text="발열팩 끄기" />
 
@@ -57,6 +57,7 @@
             android:layout_below="@id/btnTemperatureView"
             android:layout_marginTop="10dp"
             android:textSize="24dp"
+            android:textColor="#333333"
             android:gravity="center"
             android:hint="발열이 켜진 상태입니다"/>
 

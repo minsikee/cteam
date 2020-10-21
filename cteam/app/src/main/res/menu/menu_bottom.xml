@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/tab1"
@@ -18,11 +16,10 @@
         android:title="펫다이어리"
         />
 
-
     <item
         android:id="@+id/tab2"
         android:icon="@drawable/house111"
-        android:title="펫하우스"
+        android:title="IoT 펫방석"
         />
     <!--enalbed:제일처음 활성화되어있는것-->
     
@@ -32,9 +29,4 @@
         android:title="게시판"
         />
 
-    <item
-        android:id="@+id/tab5"
-        android:icon="@drawable/paed111"
-        android:title="Iot 펫방석"
-        />
 </menu>

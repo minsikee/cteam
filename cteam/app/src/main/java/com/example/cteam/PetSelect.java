@@ -134,8 +134,8 @@ public class PetSelect extends AppCompatActivity
                                 .replace(R.id.container,calendar).commit();
                         break;
                     case R.id.tab2 :
-                        Intent intent = new Intent(getApplicationContext(),FindStore.class);
-                        startActivity(intent);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, iot).commit();
                         break;
                     case R.id.tab3 :
                         getSupportFragmentManager().beginTransaction()
@@ -145,9 +145,6 @@ public class PetSelect extends AppCompatActivity
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, walkBoard).commit();
                         break;
-                    case R.id.tab5 :
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, iot).commit();
                 }
 
                 return true;
