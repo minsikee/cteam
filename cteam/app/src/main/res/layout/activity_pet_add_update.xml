@@ -43,7 +43,7 @@
 
             <RelativeLayout
                 android:id="@+id/parentLayout1"
-                android:layout_width="150dp"
+                android:layout_width="130dp"
                 android:layout_height="230dp"
                 android:layout_below="@id/parentLayout0"
                 android:layout_marginRight="10dp"
@@ -133,7 +133,7 @@
                 <Spinner
                     android:id="@+id/petgender"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/petage"
                     android:layout_marginStart="0dp"
                     android:layout_marginLeft="-70dp"
@@ -213,7 +213,7 @@
 
                                 <Button
                                     android:id="@+id/btnCancle"
-                                    android:layout_width="160dp"
+                                    android:layout_width="140dp"
                                     android:layout_height="40dp"
                                     android:onClick="btnCancelClicked"
                                     android:background="@drawable/text_stroke"

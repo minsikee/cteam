@@ -42,7 +42,7 @@
 
             <RelativeLayout
                 android:id="@+id/parentLayout1"
-                android:layout_width="150dp"
+                android:layout_width="130dp"
                 android:layout_height="230dp"
                 android:layout_below="@id/parentLayout0"
                 android:layout_marginRight="10dp"
@@ -202,7 +202,7 @@
 
                                 <Button
                                     android:id="@+id/btnCancle"
-                                    android:layout_width="160dp"
+                                    android:layout_width="140dp"
                                     android:layout_height="40dp"
                                     android:background="@drawable/text_stroke"
                                     android:shadowColor="@android:color/transparent"

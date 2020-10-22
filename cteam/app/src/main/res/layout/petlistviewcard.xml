@@ -27,7 +27,7 @@
 
             <RelativeLayout
                 android:id="@+id/parentLayout1"
-                android:layout_width="140dp"
+                android:layout_width="120dp"
                 android:layout_height="140dp"
                 android:layout_margin="10dp"
                 android:padding="10dp">
@@ -153,20 +153,28 @@
                 android:layout_marginRight="10dp"
                 android:layout_below="@+id/parentLayout1">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
                 <Button
                     android:id="@+id/updateBtn"
-                    android:layout_width="120dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="수정"
                     android:background="@drawable/login_stroke"
                     android:shadowColor="@android:color/transparent"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"/>
 
                 <Button
                     android:id="@+id/deleteBtn"
-                    android:layout_width="120dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:text="삭제"
@@ -174,11 +182,14 @@
                     android:shadowColor="@android:color/transparent"
                     android:textColor="#969696"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"/>
 
                     <Button
                     android:id="@+id/selectBtn"
-                    android:layout_width="120dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:text="선택"
@@ -186,7 +197,10 @@
                     android:shadowColor="@android:color/transparent"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold" android:layout_weight="1"/>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
