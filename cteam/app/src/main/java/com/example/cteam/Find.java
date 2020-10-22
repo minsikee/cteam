@@ -44,7 +44,7 @@ public class Find extends AppCompatActivity {
 
         //데이터
         List<String> data = new ArrayList<>();
-        data.add("롤모델의 이름"); data.add("당신의 꿈"); data.add("사랑하는 펫의 이름"); data.add("펫을 데려온 날짜"); data.add("인상깊게 본 영화의 제목");
+        data.add("당신이 가장 존경하는 사람은?"); data.add("당신의 반려동물의 이름은?"); data.add("당신의 반려동물을 입양한 날짜는?"); data.add("당신의 보물 1호는?"); data.add("당신이 가장 인상깊게 본 영화의 제목은?");
         data.add("비밀번호 찾기 힌트");
 
 
