@@ -215,11 +215,16 @@ public class BoardDetail extends AppCompatActivity {
         Glide.with(this).load(boardDetailDTO.getPetimagepath()).circleCrop().into(board_detail_writer_img);
         Glide.with(this).load(petAddDto.getPetimage_path()).circleCrop().into(board_detail_comment_img);
 
-        if( !boardDetailDTO.getmember_id2().equals(loginDTO.getMember_id()) ) {
+        if( !boardDetailDTO.getmember_id2().equals(loginDTO.getMember_id()) && !loginDTO.getMember_id().equals("admin") ) {
             board_detail_modify.setVisibility(View.GONE);
             board_detail_delete.setVisibility(View.GONE);
+        } else if ( boardDetailDTO.getmember_id2().equals(loginDTO.getMember_id()) ) {
+            board_detail_modify.setVisibility(View.VISIBLE);
+            board_detail_delete.setVisibility(View.VISIBLE);
+        } else if ( !boardDetailDTO.getmember_id2().equals(loginDTO.getMember_id()) && loginDTO.getMember_id().equals("admin") ) {
+            board_detail_modify.setVisibility(View.GONE);
+            board_detail_delete.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override

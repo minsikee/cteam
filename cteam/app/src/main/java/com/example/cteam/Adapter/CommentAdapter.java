@@ -66,9 +66,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ItemView
             btnCommentUpdate.setVisibility(View.VISIBLE);
             btnCommentDelete.setVisibility(View.VISIBLE);
 
-        }else{
+        } else if(!dto.getMember_id().equals(loginDTO.getMember_id()) && !loginDTO.getMember_id().equals("admin")) {
             btnCommentUpdate.setVisibility(View.GONE);
             btnCommentDelete.setVisibility(View.GONE);
+        } else if(!dto.getMember_id().equals(loginDTO.getMember_id()) && loginDTO.getMember_id().equals("admin")) {
+            btnCommentUpdate.setVisibility(View.GONE);
+            btnCommentDelete.setVisibility(View.VISIBLE);
         }
 
         holder.setComment(dto);
